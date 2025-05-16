@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,12 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Recovery Compass custom colors
+				navy: '#141E3C',
+				bronze: '#B3996F',
+				teal: '#39A0A0',
+				moonlight: '#D3E4FD',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				playfair: ['Playfair Display', 'serif'],
+				raleway: ['Raleway', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
@@ -84,11 +94,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
+				'gentle-pulse': {
+					'0%, 100%': { opacity: '0.9' },
+					'50%': { opacity: '1', filter: 'brightness(1.1)' },
+				},
+				'subtle-sway': {
+					'0%, 100%': { transform: 'rotate(-1deg)' },
+					'50%': { transform: 'rotate(1deg)' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 1.5s ease-out forwards',
+				'delayed-fade': 'fade-in 1.5s ease-out 1s forwards',
+				'gentle-pulse': 'gentle-pulse 4s infinite',
+				'subtle-sway': 'subtle-sway 6s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
 			}
 		}
 	},
