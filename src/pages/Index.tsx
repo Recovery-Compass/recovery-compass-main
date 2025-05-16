@@ -3,22 +3,28 @@ import { useState, useEffect, useRef } from 'react';
 import CompassLogo from '@/components/CompassLogo';
 import Navigation from '@/components/Navigation';
 import Section from '@/components/Section';
-import OurApproach from '@/components/OurApproach';
-import Stories from '@/components/Stories';
-import Resources from '@/components/Resources';
+import EnvironmentalDesign from '@/components/EnvironmentalDesign';
+import CompassCompanion from '@/components/CompassCompanion';
+import Stories from '@/components/StoriesOfTransformation';
+import OptionsNotPrograms from '@/components/OptionsNotPrograms';
 import Memorial from '@/components/Memorial';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState('compass');
   const [logoAnimated, setLogoAnimated] = useState(true);
   const [titleVisible, setTitleVisible] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState(false);
+  
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({
     compass: null,
-    'our-approach': null,
-    stories: null,
-    resources: null,
-    memorial: null,
+    'environmental-design': null,
+    'compass-companion': null,
+    'stories': null,
+    'options': null,
+    'memorial': null,
   });
 
   // Handle navigation between sections
@@ -65,7 +71,19 @@ const Index = () => {
       setTitleVisible(true);
     }, 2000);
     
-    return () => clearTimeout(titleTimer);
+    const ctaTimer = setTimeout(() => {
+      setCtaVisible(true);
+    }, 3000);
+    
+    const buttonTimer = setTimeout(() => {
+      setButtonVisible(true);
+    }, 4000);
+    
+    return () => {
+      clearTimeout(titleTimer);
+      clearTimeout(ctaTimer);
+      clearTimeout(buttonTimer);
+    };
   }, []);
 
   return (
@@ -94,22 +112,36 @@ const Index = () => {
           className={cn(
             'mt-6 max-w-lg text-center text-moonlight/90 text-lg md:text-xl',
             'transition-all duration-1000 delay-300',
-            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
-          Guiding the journey of recovery through meaningful environments 
-          and dignified remembrance.
+          Navigate your environment. Transform your life.
         </p>
+        
+        <div 
+          className={cn(
+            'mt-10',
+            'transition-all duration-1000 delay-700',
+            buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          )}
+        >
+          <Button 
+            onClick={() => handleNavigate('environmental-design')}
+            className="bg-transparent border-2 border-bronze text-bronze hover:bg-bronze/10 px-6 py-5 text-lg"
+          >
+            Begin Your Journey
+          </Button>
+        </div>
         
         <div 
           className={cn(
             'absolute bottom-12 left-1/2 transform -translate-x-1/2',
             'transition-all duration-1000 delay-1000',
-            titleVisible ? 'opacity-100' : 'opacity-0'
+            buttonVisible ? 'opacity-100' : 'opacity-0'
           )}
         >
           <button 
-            onClick={() => handleNavigate('our-approach')}
+            onClick={() => handleNavigate('environmental-design')}
             className="text-moonlight/70 hover:text-moonlight transition-colors duration-300"
             aria-label="Scroll down to learn more"
           >
@@ -131,9 +163,14 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Our Approach Section */}
-      <Section id="our-approach">
-        <OurApproach />
+      {/* Environmental Design Section */}
+      <Section id="environmental-design">
+        <EnvironmentalDesign />
+      </Section>
+      
+      {/* Compass Companion Section */}
+      <Section id="compass-companion">
+        <CompassCompanion />
       </Section>
       
       {/* Stories Section */}
@@ -141,9 +178,9 @@ const Index = () => {
         <Stories />
       </Section>
       
-      {/* Resources Section */}
-      <Section id="resources">
-        <Resources />
+      {/* Options Not Programs Section */}
+      <Section id="options">
+        <OptionsNotPrograms />
       </Section>
       
       {/* Memorial Section */}
@@ -159,7 +196,7 @@ const Index = () => {
             © {new Date().getFullYear()} Recovery Compass. All rights reserved.
           </p>
           <p className="text-moonlight/40 text-xs mt-2">
-            Supporting recovery journeys through environmental design and dignified remembrance.
+            Supporting transformation through environmental design and dignified remembrance.
           </p>
         </div>
       </footer>

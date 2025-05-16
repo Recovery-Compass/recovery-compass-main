@@ -13,9 +13,10 @@ const Navigation = ({ currentSection, onNavigate }: NavigationProps) => {
 
   const sections = [
     { id: 'compass', label: 'Compass' },
-    { id: 'our-approach', label: 'Our Approach' },
+    { id: 'environmental-design', label: 'Environmental Design' },
+    { id: 'compass-companion', label: 'Compass Companion' },
     { id: 'stories', label: 'Stories' },
-    { id: 'resources', label: 'Resources' },
+    { id: 'options', label: 'Options' },
     { id: 'memorial', label: 'Memorial Space' },
   ];
 

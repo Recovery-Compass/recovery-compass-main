@@ -21,23 +21,23 @@ const Memorial = () => {
   };
   
   const memorials = [
-    { name: "Robert J.", tribute: "Your courage taught us all what strength truly means. Forever remembered." },
-    { name: "Elizabeth M.", tribute: "The light you brought to our lives continues to guide us." },
-    { name: "James T.", tribute: "Your story isn't over—it lives on in all the lives you touched." }
+    { name: "Robert J.", tribute: "Your spirit of authenticity continues to inspire those who knew you. Your life mattered." },
+    { name: "Elizabeth M.", tribute: "The light you brought to our lives reminds us that connection is what truly heals." },
+    { name: "James T.", tribute: "Your story lives on in all the environments you transformed with your presence." }
   ];
   
   return (
     <div className="content-container">
       <h2 className="section-heading">Memorial Space</h2>
       <p className="section-subheading">
-        A dignified area for honoring loved ones lost to addiction
+        A dignified area for honoring loved ones
       </p>
       
       <div className="mt-12 text-center mb-12">
         <p className="text-moonlight/90 max-w-2xl mx-auto">
-          This space is dedicated to honoring the memory of those whose journeys ended too soon.
-          Their lives mattered, their struggles were valid, and their stories continue to inspire
-          our mission.
+          This space honors the memory of those whose journeys ended too soon, 
+          without defining them by their challenges. Their lives were complex, meaningful,
+          and worthy of remembrance beyond labels or categories.
         </p>
       </div>
       
@@ -57,12 +57,12 @@ const Memorial = () => {
       </div>
       
       <div className="max-w-md mx-auto">
-        <h3 className="font-playfair text-2xl text-bronze mb-6 text-center">Add a Tribute</h3>
+        <h3 className="font-playfair text-2xl text-bronze mb-6 text-center">Honor a Life</h3>
         
         {submitted ? (
           <div className="text-center p-6 border border-teal/30 rounded-lg bg-teal/10 text-moonlight animate-fade-in">
             Your tribute has been received and will be added to our memorial space.
-            <br />Thank you for honoring their memory.
+            <br />Thank you for honoring their memory with dignity.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
