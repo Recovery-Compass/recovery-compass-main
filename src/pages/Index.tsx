@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import CompassLogo from '@/components/CompassLogo';
 import Navigation from '@/components/Navigation';
@@ -7,6 +8,7 @@ import CompassCompanion from '@/components/CompassCompanion';
 import Stories from '@/components/StoriesOfTransformation';
 import OptionsNotPrograms from '@/components/OptionsNotPrograms';
 import Memorial from '@/components/Memorial';
+import RitualQuote from '@/components/RitualQuote';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -162,6 +164,13 @@ const Index = () => {
           </button>
         </div>
       </Section>
+
+      {/* Ritual Quote */}
+      <div className="py-16 bg-navy">
+        <RitualQuote>
+          What if the most effective way to overcome substance use… doesn't involve substance use treatment?
+        </RitualQuote>
+      </div>
 
       {/* Environmental Design Section */}
       <Section id="environmental-design">

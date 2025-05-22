@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import PathwayQuote from './PathwayQuote';
 
 const CompassCompanion = () => {
   return (
@@ -9,6 +10,11 @@ const CompassCompanion = () => {
       <p className="section-subheading">
         Self-directed assessment and personalized environmental optimization
       </p>
+      
+      <PathwayQuote className="mb-16 mt-8">
+        <p className="mb-6">Symptom management is an epidemic. We freeze people in their worst moment and call that the problem. But what if it's not 1 problem — what if it's 33?</p>
+        <p>When you give 100% of your effort to 5% of the problem, you get 5% of the result — every hour, every day.</p>
+      </PathwayQuote>
       
       <div className="mt-12 flex flex-col md:flex-row gap-16 items-center">
         <div className="md:w-1/2 space-y-6">

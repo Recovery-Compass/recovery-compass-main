@@ -1,5 +1,6 @@
 
 import { cn } from '@/lib/utils';
+import PathwayQuote from './PathwayQuote';
 
 const EnvironmentalDesign = () => {
   return (
@@ -8,6 +9,11 @@ const EnvironmentalDesign = () => {
       <p className="section-subheading">
         How optimizing your surroundings transforms life outcomes
       </p>
+      
+      <PathwayQuote className="mb-16 mt-8">
+        <p className="mb-6">Symptom management is an epidemic. We freeze people in their worst moment and call that the problem. But what if it's not 1 problem — what if it's 33?</p>
+        <p>When you give 100% of your effort to 5% of the problem, you get 5% of the result — every hour, every day.</p>
+      </PathwayQuote>
       
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
         <div className="space-y-4">
