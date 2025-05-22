@@ -47,7 +47,7 @@ const Navigation = ({ currentSection, onNavigate }: NavigationProps) => {
                 onClick={() => onNavigate(section.id)}
                 className={cn(
                   'px-2 md:px-3 py-2 text-sm md:text-base transition-all duration-300',
-                  'relative font-raleway tracking-wide',
+                  'relative font-montserrat tracking-wide',
                   currentSection === section.id
                     ? 'text-bronze'
                     : 'text-moonlight/70 hover:text-moonlight'

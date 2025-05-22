@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import CompassLogo from '@/components/CompassLogo';
 import Navigation from '@/components/Navigation';
@@ -100,8 +99,8 @@ const Index = () => {
         
         <h1 
           className={cn(
-            'text-4xl md:text-5xl lg:text-6xl text-bronze font-playfair tracking-wider',
-            'transition-opacity duration-1000 text-shadow-lg',
+            'text-bronze text-shadow-lg',
+            'transition-opacity duration-1000',
             titleVisible ? 'opacity-100' : 'opacity-0'
           )}
         >
@@ -110,7 +109,7 @@ const Index = () => {
         
         <p 
           className={cn(
-            'mt-6 max-w-lg text-center text-moonlight/90 text-lg md:text-xl',
+            'mt-6 max-w-lg text-center text-moonlight text-xl',
             'transition-all duration-1000 delay-300',
             ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
@@ -127,7 +126,8 @@ const Index = () => {
         >
           <Button 
             onClick={() => handleNavigate('environmental-design')}
-            className="bg-transparent border-2 border-bronze text-bronze hover:bg-bronze/10 px-6 py-5 text-lg"
+            variant="cta"
+            size="cta"
           >
             Begin Your Journey
           </Button>

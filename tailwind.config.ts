@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,10 +63,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				// Recovery Compass custom colors
-				navy: '#141E3C',
-				bronze: '#B3996F',
-				teal: '#39A0A0',
-				moonlight: '#D3E4FD',
+				navy: '#1a1f2e', // Deep Navy (updated to match branding)
+				bronze: '#D4AF37', // Gold (updated to match Compass Gold)
+				teal: '#148D8D', // Compass Teal
+				moonlight: '#F7F9F9', // Background Light
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -75,8 +74,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				playfair: ['Playfair Display', 'serif'],
-				raleway: ['Raleway', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
