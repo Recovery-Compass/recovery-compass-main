@@ -37,7 +37,7 @@ const CompassLogo = ({ className, size = 'lg', animated = true }: CompassLogoPro
         )}
       >
         <img 
-          src="/lovable-uploads/893f463c-aa0e-4b00-874f-01c074168975.png" 
+          src="/lovable-uploads/68c39900-fe84-4eac-be73-765984df2867.png" 
           alt="Recovery Compass Logo" 
           className={cn(
             'object-contain w-full h-full',
