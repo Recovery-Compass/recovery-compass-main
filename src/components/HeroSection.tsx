@@ -1,0 +1,113 @@
+
+import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
+import CompassLogo from '@/components/CompassLogo';
+import { Button } from '@/components/ui/button';
+
+interface HeroSectionProps {
+  onNavigate: (sectionId: string) => void;
+}
+
+const HeroSection = ({ onNavigate }: HeroSectionProps) => {
+  const [titleVisible, setTitleVisible] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState(false);
+  
+  // Initial animation sequence
+  useEffect(() => {
+    const titleTimer = setTimeout(() => {
+      setTitleVisible(true);
+    }, 2000);
+    
+    const ctaTimer = setTimeout(() => {
+      setCtaVisible(true);
+    }, 3000);
+    
+    const buttonTimer = setTimeout(() => {
+      setButtonVisible(true);
+    }, 4000);
+    
+    return () => {
+      clearTimeout(titleTimer);
+      clearTimeout(ctaTimer);
+      clearTimeout(buttonTimer);
+    };
+  }, []);
+
+  return (
+    <>
+      <CompassLogo 
+        size="xl" 
+        animated={true} 
+        className="mb-10"
+      />
+      
+      <h1 
+        className={cn(
+          'text-bronze text-shadow-lg',
+          'transition-opacity duration-1000',
+          titleVisible ? 'opacity-100' : 'opacity-0'
+        )}
+      >
+        RECOVERY COMPASS
+      </h1>
+      
+      <p 
+        className={cn(
+          'mt-6 max-w-lg text-center text-moonlight text-xl',
+          'transition-all duration-1000 delay-300',
+          ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        )}
+      >
+        Navigate your environment. Transform your life.
+      </p>
+      
+      <div 
+        className={cn(
+          'mt-10',
+          'transition-all duration-1000 delay-700',
+          buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        )}
+      >
+        <Button 
+          onClick={() => onNavigate('environmental-design')}
+          variant="cta"
+          size="cta"
+        >
+          Begin Your Journey
+        </Button>
+      </div>
+      
+      <div 
+        className={cn(
+          'absolute bottom-12 left-1/2 transform -translate-x-1/2',
+          'transition-all duration-1000 delay-1000',
+          buttonVisible ? 'opacity-100' : 'opacity-0'
+        )}
+      >
+        <button 
+          onClick={() => onNavigate('environmental-design')}
+          className="text-moonlight/70 hover:text-moonlight transition-colors duration-300"
+          aria-label="Scroll down to learn more"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="animate-bounce"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default HeroSection;
