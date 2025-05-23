@@ -1,20 +1,32 @@
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import PathwayQuote from './PathwayQuote';
+import { useState, useEffect } from 'react';
 
 const CompassCompanion = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="content-container">
-      <h2 className="section-heading">The Compass Companion</h2>
-      <p className="section-subheading">
-        Self-directed assessment and personalized environmental optimization
-      </p>
-      
-      <PathwayQuote className="mb-16 mt-8">
-        <p className="mb-6">Symptom management is an epidemic. We freeze people in their worst moment and call that the problem. But what if it's not 1 problem — what if it's 33?</p>
-        <p>When you give 100% of your effort to 5% of the problem, you get 5% of the result — every hour, every day.</p>
-      </PathwayQuote>
+      <div className="py-12">
+        <h1 
+          className={cn(
+            'text-bronze text-center text-3xl font-black transition-all duration-1000',
+            'py-12 leading-relaxed',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          )}
+        >
+          What if the most effective way to overcome substance abuse… doesn't involve substance abuse treatment?
+        </h1>
+      </div>
       
       <div className="mt-12 flex flex-col md:flex-row gap-16 items-center">
         <div className="md:w-1/2 space-y-6">
