@@ -187,11 +187,49 @@
     }
   }
 
+  @keyframes gentle-pulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    33% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.8;
+    }
+    66% {
+      transform: translateY(10px) translateX(-5px);
+      opacity: 0.6;
+    }
+  }
+
   .compass-breath {
     animation: compass-breath 6s ease-in-out infinite;
   }
 
   .compass-geometry {
     animation: compass-geometry 20s ease-in-out infinite alternate;
+  }
+
+  .gentle-pulse {
+    animation: gentle-pulse 4s ease-in-out infinite;
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 4s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
   }
 }
