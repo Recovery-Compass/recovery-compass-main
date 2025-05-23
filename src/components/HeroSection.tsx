@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import CompassLogo from '@/components/CompassLogo';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ onNavigate }: HeroSectionProps) => {
+  const navigate = useNavigate();
   const [titleVisible, setTitleVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
@@ -33,6 +35,10 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       clearTimeout(buttonTimer);
     };
   }, []);
+
+  const handleBeginJourney = () => {
+    navigate('/pathways');
+  };
 
   return (
     <>
@@ -70,7 +76,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         )}
       >
         <Button 
-          onClick={() => onNavigate('environmental-design')}
+          onClick={handleBeginJourney}
           variant="cta"
           size="cta"
         >
