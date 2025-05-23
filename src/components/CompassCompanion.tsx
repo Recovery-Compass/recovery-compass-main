@@ -1,7 +1,6 @@
-
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
-import { Bed, Car, User } from 'lucide-react';
+import { Bed, Car, User, LucideProps } from 'lucide-react';
 
 const CompassCompanion = () => {
   const [titleVisible, setTitleVisible] = useState(false);
@@ -127,7 +126,7 @@ const CompassCompanion = () => {
 };
 
 interface SpaceTileProps {
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<LucideProps>;
   space: string;
   onSelect: (space: string) => void;
 }
