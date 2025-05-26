@@ -52,7 +52,7 @@
   }
 
   h1 {
-    @apply font-montserrat font-black text-4xl md:text-5xl lg:text-[48px] uppercase tracking-[-0.5px] leading-tight;
+    @apply font-montserrat font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[48px] uppercase tracking-[-0.5px] leading-tight text-center;
   }
   
   h2 {

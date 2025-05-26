@@ -41,16 +41,16 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
       <CompassLogo 
         size="xl" 
         animated={true} 
-        className="mb-10"
+        className="mb-6 sm:mb-8 lg:mb-10"
       />
       
       <h1 
         className={cn(
-          'text-bronze text-shadow-lg',
+          'text-bronze text-shadow-lg text-center max-w-4xl',
           'transition-opacity duration-1000',
           titleVisible ? 'opacity-100' : 'opacity-0'
         )}
@@ -60,7 +60,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <p 
         className={cn(
-          'mt-6 max-w-lg text-center text-moonlight text-xl',
+          'mt-4 sm:mt-6 max-w-lg text-center text-moonlight text-lg sm:text-xl px-4',
           'transition-all duration-1000 delay-300',
           ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
@@ -70,7 +70,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <div 
         className={cn(
-          'mt-10',
+          'mt-8 sm:mt-10 text-center',
           'transition-all duration-1000 delay-700',
           buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
@@ -83,7 +83,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           Begin Your Journey
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 
