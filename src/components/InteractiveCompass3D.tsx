@@ -101,7 +101,11 @@ const CompassBase = () => {
       args={[1.5, 1.5, 0.3, 32]}
       position={[0, -0.15, 0]}
     >
-      <meshPhongMaterial attach="material" color="#148D8D" transparent opacity={0.8} />
+      <meshPhongMaterial 
+        color="#148D8D" 
+        transparent 
+        opacity={0.8} 
+      />
     </Cylinder>
   );
 };
@@ -130,9 +134,9 @@ const EnvironmentalVector = ({
   ] as [number, number, number], [angleRad, vectorLength]);
 
   const riskColors = {
-    low: '#10B981', // Green
-    medium: '#F59E0B', // Yellow
-    high: '#EF4444' // Red
+    low: '#10B981',
+    medium: '#F59E0B',
+    high: '#EF4444'
   };
 
   useFrame(() => {
@@ -145,7 +149,6 @@ const EnvironmentalVector = ({
 
   return (
     <group ref={groupRef}>
-      {/* Vector Line */}
       <mesh
         position={[endPosition[0] / 2, 0, endPosition[2] / 2]}
         rotation={[0, -angleRad, 0]}
@@ -160,10 +163,9 @@ const EnvironmentalVector = ({
         onClick={() => onClick(vector)}
       >
         <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
-        <meshPhongMaterial attach="material" color="#D4AF37" />
+        <meshPhongMaterial color="#D4AF37" />
       </mesh>
       
-      {/* Endpoint Sphere */}
       <Sphere
         args={[0.15]}
         position={endPosition}
@@ -178,21 +180,18 @@ const EnvironmentalVector = ({
         onClick={() => onClick(vector)}
       >
         <meshPhongMaterial 
-          attach="material"
           color={riskColors[vector.riskLevel]} 
           emissive={riskColors[vector.riskLevel]}
           emissiveIntensity={hovered || isSelected ? 0.3 : 0.1}
         />
       </Sphere>
 
-      {/* Vector Label */}
       <Text
         position={[endPosition[0] * 1.2, 0.3, endPosition[2] * 1.2]}
         fontSize={0.2}
         color="#C69C6D"
         anchorX="center"
         anchorY="middle"
-        font="/fonts/montserrat-black.woff"
       >
         {vector.name}
       </Text>
@@ -217,7 +216,6 @@ const CompassNeedle = ({ strongestVector }: { strongestVector: EnvironmentalVect
       <mesh position={[0, 0.2, 1]} rotation={[Math.PI / 2, 0, 0]}>
         <coneGeometry args={[0.1, 0.8, 8]} />
         <meshPhongMaterial 
-          attach="material"
           color="#D4AF37" 
           emissive="#D4AF37" 
           emissiveIntensity={0.2} 
@@ -269,7 +267,6 @@ const InteractiveCompass3D = ({ onVectorClick, selectedVector }: InteractiveComp
         />
       </Canvas>
       
-      {/* Hover Tooltip */}
       {hoveredVector && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
