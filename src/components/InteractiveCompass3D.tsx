@@ -164,17 +164,16 @@ const EnvironmentalVector = ({
 
   return (
     <group ref={groupRef}>
-      {/* Vector Line using Cylinder from drei */}
-      <Cylinder
-        args={[0.02, 0.02, vectorLength, 8]}
+      {/* Vector Line using mesh instead of Cylinder to avoid rotation issues */}
+      <mesh
         position={[endPosition[0] / 2, 0, endPosition[2] / 2]}
-        rotation={[0, -angleRad, Math.PI / 2]}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       >
+        <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
         <meshPhongMaterial attach="material" color="#D4AF37" />
-      </Cylinder>
+      </mesh>
       
       {/* End Point Sphere */}
       <Sphere
@@ -220,18 +219,15 @@ const CompassNeedle = ({ strongestVector }: { strongestVector: EnvironmentalVect
 
   return (
     <group ref={needleRef}>
-      <Cone
-        args={[0.1, 0.8, 8]}
-        position={[0, 0.2, 1]}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
+      <mesh position={[0, 0.2, 1]}>
+        <coneGeometry args={[0.1, 0.8, 8]} />
         <meshPhongMaterial 
           attach="material"
           color="#D4AF37" 
           emissive="#D4AF37" 
           emissiveIntensity={0.2} 
         />
-      </Cone>
+      </mesh>
     </group>
   );
 };
