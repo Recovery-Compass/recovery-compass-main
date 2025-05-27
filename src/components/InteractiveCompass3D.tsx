@@ -147,20 +147,28 @@ const EnvironmentalVector = ({
     }
   });
 
+  const handlePointerEnter = () => {
+    setHovered(true);
+    onHover(vector);
+  };
+
+  const handlePointerLeave = () => {
+    setHovered(false);
+    onHover(null);
+  };
+
+  const handleClick = () => {
+    onClick(vector);
+  };
+
   return (
     <group ref={groupRef}>
       <mesh
         position={[endPosition[0] / 2, 0, endPosition[2] / 2]}
         rotation={[0, -angleRad, 0]}
-        onPointerEnter={() => {
-          setHovered(true);
-          onHover(vector);
-        }}
-        onPointerLeave={() => {
-          setHovered(false);
-          onHover(null);
-        }}
-        onClick={() => onClick(vector)}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onClick={handleClick}
       >
         <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
         <meshPhongMaterial color="#D4AF37" />
@@ -169,15 +177,9 @@ const EnvironmentalVector = ({
       <Sphere
         args={[0.15]}
         position={endPosition}
-        onPointerEnter={() => {
-          setHovered(true);
-          onHover(vector);
-        }}
-        onPointerLeave={() => {
-          setHovered(false);
-          onHover(null);
-        }}
-        onClick={() => onClick(vector)}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onClick={handleClick}
       >
         <meshPhongMaterial 
           color={riskColors[vector.riskLevel]} 
@@ -238,6 +240,9 @@ const InteractiveCompass3D = ({ onVectorClick, selectedVector }: InteractiveComp
       <Canvas
         camera={{ position: [0, 8, 8], fov: 50 }}
         style={{ background: 'transparent' }}
+        onCreated={(state) => {
+          state.gl.setClearColor(0x000000, 0);
+        }}
       >
         <ambientLight intensity={0.6} />
         <pointLight position={[10, 10, 10]} intensity={1} />
@@ -248,7 +253,7 @@ const InteractiveCompass3D = ({ onVectorClick, selectedVector }: InteractiveComp
         
         {environmentalData.map((vector, index) => (
           <EnvironmentalVector
-            key={index}
+            key={`vector-${index}-${vector.name}`}
             vector={vector}
             onHover={setHoveredVector}
             onClick={onVectorClick}
