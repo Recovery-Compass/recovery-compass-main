@@ -1,7 +1,7 @@
 
 import { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Text, Cylinder, Sphere, Cone } from '@react-three/drei';
+import { OrbitControls, Text } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
@@ -96,17 +96,14 @@ const CompassBase = () => {
   });
 
   return (
-    <Cylinder
-      ref={meshRef}
-      args={[1.5, 1.5, 0.3, 32]}
-      position={[0, -0.15, 0]}
-    >
+    <mesh ref={meshRef} position={[0, -0.15, 0]}>
+      <cylinderGeometry args={[1.5, 1.5, 0.3, 32]} />
       <meshPhongMaterial 
         color="#148D8D" 
         transparent 
         opacity={0.8} 
       />
-    </Cylinder>
+    </mesh>
   );
 };
 
@@ -163,32 +160,32 @@ const EnvironmentalVector = ({
 
   return (
     <group ref={groupRef}>
-      {/* Vector Line using Cylinder from drei */}
-      <Cylinder
-        args={[0.02, 0.02, vectorLength, 8]}
+      {/* Vector Line using basic mesh */}
+      <mesh
         position={[endPosition[0] / 2, 0, endPosition[2] / 2]}
         rotation={[0, -angleRad, Math.PI / 2]}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       >
+        <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
         <meshPhongMaterial color="#D4AF37" />
-      </Cylinder>
+      </mesh>
       
-      {/* End Point Sphere */}
-      <Sphere
-        args={[0.15]}
+      {/* End Point Sphere using basic mesh */}
+      <mesh
         position={endPosition}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       >
+        <sphereGeometry args={[0.15]} />
         <meshPhongMaterial 
           color={riskColors[vector.riskLevel]} 
           emissive={riskColors[vector.riskLevel]}
           emissiveIntensity={hovered || isSelected ? 0.3 : 0.1}
         />
-      </Sphere>
+      </mesh>
 
       {/* Label Text */}
       <Text
@@ -218,17 +215,17 @@ const CompassNeedle = ({ strongestVector }: { strongestVector: EnvironmentalVect
 
   return (
     <group ref={needleRef}>
-      <Cone
-        args={[0.1, 0.8, 8]}
+      <mesh 
         position={[0, 0.2, 1]}
         rotation={[Math.PI / 2, 0, 0]}
       >
+        <coneGeometry args={[0.1, 0.8, 8]} />
         <meshPhongMaterial 
           color="#D4AF37" 
           emissive="#D4AF37" 
           emissiveIntensity={0.2} 
         />
-      </Cone>
+      </mesh>
     </group>
   );
 };
