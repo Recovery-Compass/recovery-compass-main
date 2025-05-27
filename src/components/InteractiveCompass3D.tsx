@@ -164,17 +164,19 @@ const EnvironmentalVector = ({
 
   return (
     <group ref={groupRef}>
-      <mesh
+      {/* Vector Line using Cylinder from drei */}
+      <Cylinder
+        args={[0.02, 0.02, vectorLength, 8]}
         position={[endPosition[0] / 2, 0, endPosition[2] / 2]}
-        rotation={[0, -angleRad, 0]}
+        rotation={[0, -angleRad, Math.PI / 2]}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
         onClick={handleClick}
       >
-        <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
         <meshPhongMaterial attach="material" color="#D4AF37" />
-      </mesh>
+      </Cylinder>
       
+      {/* End Point Sphere */}
       <Sphere
         args={[0.15]}
         position={endPosition}
@@ -190,6 +192,7 @@ const EnvironmentalVector = ({
         />
       </Sphere>
 
+      {/* Label Text */}
       <Text
         position={[endPosition[0] * 1.2, 0.3, endPosition[2] * 1.2]}
         fontSize={0.2}
@@ -256,7 +259,7 @@ const InteractiveCompass3D = ({ onVectorClick, selectedVector }: InteractiveComp
         
         {environmentalData.map((vector, index) => (
           <EnvironmentalVector
-            key={`vector-${index}-${vector.name}`}
+            key={`${vector.name}-${index}`}
             vector={vector}
             onHover={setHoveredVector}
             onClick={onVectorClick}
