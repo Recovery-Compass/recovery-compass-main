@@ -1,11 +1,11 @@
-
 import { useState, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import PresenceDetector, { type PresenceData } from './PresenceDetector';
 import AmbientResponseLayer from './AmbientResponseLayer';
-import InteractiveCompass3D, { type EnvironmentalVector } from './InteractiveCompass3D';
+import InteractiveCompass3D from './InteractiveCompass3D';
 import EnvironmentalDetailPanel from './EnvironmentalDetailPanel';
+import { type EnvironmentalVector } from './compass/types';
 
 const CompassCompanion = () => {
   const [presence, setPresence] = useState<PresenceData>({
