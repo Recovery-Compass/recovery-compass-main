@@ -1,7 +1,7 @@
 
 import { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Text, Cylinder, Sphere } from '@react-three/drei';
+import { OrbitControls, Text, Cylinder, Sphere, Cone } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
@@ -220,15 +220,18 @@ const CompassNeedle = ({ strongestVector }: { strongestVector: EnvironmentalVect
 
   return (
     <group ref={needleRef}>
-      <mesh position={[0, 0.2, 1]} rotation={[Math.PI / 2, 0, 0]}>
-        <coneGeometry args={[0.1, 0.8, 8]} />
+      <Cone
+        args={[0.1, 0.8, 8]}
+        position={[0, 0.2, 1]}
+        rotation={[Math.PI / 2, 0, 0]}
+      >
         <meshPhongMaterial 
           attach="material"
           color="#D4AF37" 
           emissive="#D4AF37" 
           emissiveIntensity={0.2} 
         />
-      </mesh>
+      </Cone>
     </group>
   );
 };
@@ -249,6 +252,7 @@ const InteractiveCompass3D = ({ onVectorClick, selectedVector }: InteractiveComp
         onCreated={(state) => {
           state.gl.setClearColor(0x000000, 0);
         }}
+        fallback={<div>Loading compass...</div>}
       >
         <ambientLight intensity={0.6} />
         <pointLight position={[10, 10, 10]} intensity={1} />
