@@ -102,6 +102,7 @@ const CompassBase = () => {
       position={[0, -0.15, 0]}
     >
       <meshPhongMaterial 
+        attach="material"
         color="#148D8D" 
         transparent 
         opacity={0.8} 
@@ -171,7 +172,7 @@ const EnvironmentalVector = ({
         onClick={handleClick}
       >
         <cylinderGeometry args={[0.02, 0.02, vectorLength, 8]} />
-        <meshPhongMaterial color="#D4AF37" />
+        <meshPhongMaterial attach="material" color="#D4AF37" />
       </mesh>
       
       <Sphere
@@ -182,6 +183,7 @@ const EnvironmentalVector = ({
         onClick={handleClick}
       >
         <meshPhongMaterial 
+          attach="material"
           color={riskColors[vector.riskLevel]} 
           emissive={riskColors[vector.riskLevel]}
           emissiveIntensity={hovered || isSelected ? 0.3 : 0.1}
@@ -218,6 +220,7 @@ const CompassNeedle = ({ strongestVector }: { strongestVector: EnvironmentalVect
       <mesh position={[0, 0.2, 1]} rotation={[Math.PI / 2, 0, 0]}>
         <coneGeometry args={[0.1, 0.8, 8]} />
         <meshPhongMaterial 
+          attach="material"
           color="#D4AF37" 
           emissive="#D4AF37" 
           emissiveIntensity={0.2} 
