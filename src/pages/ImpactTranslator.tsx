@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -174,30 +173,30 @@ This program demonstrates clear ROI through participant outcomes and community e
                 <p className="text-moonlight/80 mb-4 sm:mb-6 italic text-sm sm:text-base">
                   Help us understand your work environment
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-4">
                   <Input 
                     value={context.whoServed}
                     onChange={(e) => handleContextChange('whoServed', e.target.value)}
-                    className="bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
+                    className="w-full bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
                     placeholder="Who do you serve?"
                   />
                   <Input 
                     value={context.approach}
                     onChange={(e) => handleContextChange('approach', e.target.value)}
-                    className="bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
-                    placeholder="What's your main approach?"
+                    className="w-full bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
+                    placeholder="What's your main approach to helping them?"
                   />
                   <Input 
                     value={context.successMeasure}
                     onChange={(e) => handleContextChange('successMeasure', e.target.value)}
-                    className="bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
-                    placeholder="How do you measure success?"
+                    className="w-full bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
+                    placeholder="How do you measure success in your work?"
                   />
                   <Input 
                     value={context.uniqueAspect}
                     onChange={(e) => handleContextChange('uniqueAspect', e.target.value)}
-                    className="bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
-                    placeholder="What makes your work unique?"
+                    className="w-full bg-slate-700/50 border border-teal/30 rounded-lg p-3 text-moonlight text-base placeholder-moonlight/40 min-h-[44px] focus:border-bronze/50 focus:outline-none transition-colors duration-300"
+                    placeholder="What makes your work unique or different?"
                   />
                 </div>
               </div>
