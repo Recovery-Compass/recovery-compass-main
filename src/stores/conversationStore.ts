@@ -16,43 +16,61 @@ export interface EnvironmentalInsight {
   interventionOpportunity?: string;
 }
 
-export interface ConversationState {
+interface ConversationState {
   currentQuestion: number;
   responses: ConversationResponse[];
   environmentalInsights: EnvironmentalInsight[];
   conversationPersonality: 'contemplative' | 'energetic' | 'grounded' | 'creative';
   readyForCompass: boolean;
   connectionScore: number;
+  messages: ConversationResponse[];
+  currentDepth: number;
   isComplete: boolean;
+}
+
+interface ConversationActions {
   addResponse: (response: ConversationResponse) => void;
   generateNextQuestion: () => string;
   updateInsights: () => void;
-  resetConversation: () => void;
+  addMessage: (message: ConversationResponse) => void;
+  updateContext: (context: any) => void;
+  completeConversation: () => void;
 }
 
-export const useConversationStore = create<ConversationState>((set, get) => ({
+export const useConversationStore = create<ConversationState & ConversationActions>((set, get) => ({
   currentQuestion: 0,
   responses: [],
   environmentalInsights: [],
   conversationPersonality: 'contemplative',
   readyForCompass: false,
   connectionScore: 0,
+  messages: [],
+  currentDepth: 0,
   isComplete: false,
 
-  addResponse: (response: ConversationResponse) => {
-    const state = get();
-    set({
+  addResponse: (response) => {
+    set(state => ({
       responses: [...state.responses, response],
+      messages: [...state.messages, response],
       currentQuestion: state.currentQuestion + 1,
+      currentDepth: state.currentDepth + 1,
       connectionScore: state.connectionScore + 1
-    });
+    }));
     get().updateInsights();
-    
-    // Check if ready for compass reveal
-    const newState = get();
-    if (newState.responses.length >= 6 && newState.connectionScore >= 4) {
-      set({ readyForCompass: true });
-    }
+  },
+
+  addMessage: (message) => {
+    set(state => ({
+      messages: [...state.messages, message]
+    }));
+  },
+
+  updateContext: (context) => {
+    // Update conversation context if needed
+  },
+
+  completeConversation: () => {
+    set({ isComplete: true, readyForCompass: true });
   },
 
   generateNextQuestion: () => {
@@ -65,19 +83,9 @@ export const useConversationStore = create<ConversationState>((set, get) => ({
     const insights = extractEnvironmentalInsights(state.responses);
     set({ 
       environmentalInsights: insights,
-      isComplete: state.responses.length >= 6
+      readyForCompass: state.responses.length >= 6 && state.connectionScore >= 4
     });
-  },
-
-  resetConversation: () => set({
-    currentQuestion: 0,
-    responses: [],
-    environmentalInsights: [],
-    conversationPersonality: 'contemplative',
-    readyForCompass: false,
-    connectionScore: 0,
-    isComplete: false
-  })
+  }
 }));
 
 // Adaptive Question Generation Logic
@@ -198,35 +206,6 @@ const extractEnvironmentalInsights = (responses: ConversationResponse[]): Enviro
 };
 
 // Utility functions
-export const detectEmotionalTone = (answer: string): 'hopeful' | 'reflective' | 'challenged' | 'content' => {
-  const lowerAnswer = answer.toLowerCase();
-  
-  if (lowerAnswer.includes('hope') || lowerAnswer.includes('excited') || lowerAnswer.includes('looking forward')) {
-    return 'hopeful';
-  }
-  if (lowerAnswer.includes('think') || lowerAnswer.includes('wonder') || lowerAnswer.includes('remember')) {
-    return 'reflective';
-  }
-  if (lowerAnswer.includes('difficult') || lowerAnswer.includes('hard') || lowerAnswer.includes('struggle')) {
-    return 'challenged';
-  }
-  return 'content';
-};
-
-export const extractEnvironmentalClues = (answer: string): string[] => {
-  const clues = [];
-  const lowerAnswer = answer.toLowerCase();
-
-  if (lowerAnswer.includes('car') || lowerAnswer.includes('drive')) clues.push('car');
-  if (lowerAnswer.includes('room') || lowerAnswer.includes('bedroom')) clues.push('room');
-  if (lowerAnswer.includes('outside') || lowerAnswer.includes('nature')) clues.push('nature');
-  if (lowerAnswer.includes('control') || lowerAnswer.includes('decide')) clues.push('control');
-  if (lowerAnswer.includes('friend') || lowerAnswer.includes('family')) clues.push('support');
-  if (lowerAnswer.includes('community') || lowerAnswer.includes('neighborhood')) clues.push('community');
-
-  return clues;
-};
-
 const extractThemes = (responses: ConversationResponse[]): string[] => {
   const allClues = responses.flatMap(r => r.environmentalClues);
   return [...new Set(allClues)];
