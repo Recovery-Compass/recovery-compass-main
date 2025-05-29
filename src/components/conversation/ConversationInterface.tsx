@@ -2,32 +2,28 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ConversationResponse } from '@/stores/conversationStore';
+import { useConversationStore, ConversationResponse } from '@/stores/conversationStore';
 
 interface ConversationInterfaceProps {
-  questionText: string;
-  currentAnswer: string;
-  setCurrentAnswer: (answer: string) => void;
-  onSubmit: () => void;
-  responses: ConversationResponse[];
-  connectionScore: number;
-  isTyping: boolean;
-  setIsTyping: (typing: boolean) => void;
   onComplete: () => void;
 }
 
-const ConversationInterface = ({
-  questionText,
-  currentAnswer,
-  setCurrentAnswer,
-  onSubmit,
-  responses,
-  connectionScore,
-  isTyping,
-  setIsTyping,
-  onComplete
-}: ConversationInterfaceProps) => {
+const ConversationInterface = ({ onComplete }: ConversationInterfaceProps) => {
+  const [currentAnswer, setCurrentAnswer] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const {
+    responses,
+    connectionScore,
+    generateNextQuestion,
+    addResponse
+  } = useConversationStore();
+
+  // Generate current question
+  const currentQuestionText = responses.length === 0 
+    ? "What's one place where you feel most like yourself?"
+    : generateNextQuestion();
 
   // Auto-resize textarea
   useEffect(() => {
@@ -36,6 +32,28 @@ const ConversationInterface = ({
       textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
     }
   }, [currentAnswer]);
+
+  // Handle response submission
+  const handleSubmitResponse = () => {
+    if (!currentAnswer.trim()) return;
+
+    const response: ConversationResponse = {
+      question: currentQuestionText,
+      answer: currentAnswer,
+      emotionalTone: detectEmotionalTone(currentAnswer),
+      environmentalClues: extractEnvironmentalClues(currentAnswer),
+      timestamp: new Date()
+    };
+
+    addResponse(response);
+    setCurrentAnswer('');
+    setIsTyping(false);
+
+    // Check if conversation should complete
+    if (responses.length >= 5) {
+      setTimeout(() => onComplete(), 1000);
+    }
+  };
 
   return (
     <motion.div
@@ -61,7 +79,7 @@ const ConversationInterface = ({
         transition={{ delay: 0.3, duration: 0.5 }}
       >
         <h2 className="text-3xl md:text-4xl font-montserrat font-light text-moonlight leading-relaxed mb-8 text-center">
-          {questionText}
+          {currentQuestionText}
         </h2>
 
         {/* Answer input */}
@@ -86,7 +104,7 @@ const ConversationInterface = ({
           {/* Submit button */}
           <motion.div className="mt-4">
             <Button
-              onClick={onSubmit}
+              onClick={handleSubmitResponse}
               disabled={!currentAnswer.trim()}
               className={`px-8 py-3 rounded-full font-montserrat font-medium text-lg transition-all duration-300 ${
                 currentAnswer.trim()
@@ -188,6 +206,36 @@ const ConversationHistory = ({ responses }: { responses: ConversationResponse[] 
       </div>
     </motion.div>
   );
+};
+
+// Utility functions
+const detectEmotionalTone = (answer: string): 'hopeful' | 'reflective' | 'challenged' | 'content' => {
+  const lowerAnswer = answer.toLowerCase();
+  
+  if (lowerAnswer.includes('hope') || lowerAnswer.includes('excited') || lowerAnswer.includes('looking forward')) {
+    return 'hopeful';
+  }
+  if (lowerAnswer.includes('think') || lowerAnswer.includes('wonder') || lowerAnswer.includes('remember')) {
+    return 'reflective';
+  }
+  if (lowerAnswer.includes('difficult') || lowerAnswer.includes('hard') || lowerAnswer.includes('struggle')) {
+    return 'challenged';
+  }
+  return 'content';
+};
+
+const extractEnvironmentalClues = (answer: string): string[] => {
+  const clues = [];
+  const lowerAnswer = answer.toLowerCase();
+
+  if (lowerAnswer.includes('car') || lowerAnswer.includes('drive')) clues.push('car');
+  if (lowerAnswer.includes('room') || lowerAnswer.includes('bedroom')) clues.push('room');
+  if (lowerAnswer.includes('outside') || lowerAnswer.includes('nature')) clues.push('nature');
+  if (lowerAnswer.includes('control') || lowerAnswer.includes('decide')) clues.push('control');
+  if (lowerAnswer.includes('friend') || lowerAnswer.includes('family')) clues.push('support');
+  if (lowerAnswer.includes('community') || lowerAnswer.includes('neighborhood')) clues.push('community');
+
+  return clues;
 };
 
 export default ConversationInterface;

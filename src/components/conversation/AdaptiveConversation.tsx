@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { useConversationStore } from '@/stores/conversationStore';
+import { useConversationStore, ConversationResponse } from '@/stores/conversationStore';
 import { ConversationLogic } from './ConversationLogic';
 
 const AdaptiveConversation = () => {
@@ -13,39 +13,52 @@ const AdaptiveConversation = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
   const {
-    messages,
+    responses,
     currentDepth,
     isComplete,
-    addMessage,
+    addResponse,
     updateContext,
     completeConversation,
     resetConversation
   } = useConversationStore();
 
   useEffect(() => {
-    // Start with the opening question
-    if (messages.length === 0) {
-      const startingQuestion = conversationLogic.current.getStartingQuestion();
-      addMessage({ text: startingQuestion, type: 'question' });
+    // Start with the opening question if no responses yet
+    if (responses.length === 0 && !isTyping) {
+      // Initial state - waiting for first response
     }
-  }, [messages.length, addMessage]);
+  }, [responses.length]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [responses]);
 
   const handleSubmitResponse = async () => {
     if (!currentInput.trim()) return;
 
-    // Add user response
-    addMessage({ text: currentInput, type: 'response' });
-    
-    // Analyze response and update context
-    const analysis = conversationLogic.current.analyzeResponse(currentInput);
-    analysis.categories.forEach(category => {
-      updateContext(category as any, currentInput);
-    });
+    const currentQuestion = responses.length === 0 
+      ? conversationLogic.current.getStartingQuestion()
+      : conversationLogic.current.generateFollowUpQuestion(
+          responses[responses.length - 1]?.answer || '',
+          {
+            previousResponses: responses.map(r => r.answer),
+            detectedThemes: [],
+            depth: currentDepth
+          }
+        );
 
+    // Create response object matching ConversationResponse interface
+    const response: ConversationResponse = {
+      question: currentQuestion,
+      answer: currentInput,
+      emotionalTone: detectEmotionalTone(currentInput),
+      environmentalClues: extractEnvironmentalClues(currentInput),
+      timestamp: new Date()
+    };
+
+    // Add user response
+    addResponse(response);
+    
     const userResponse = currentInput;
     setCurrentInput('');
     setIsTyping(true);
@@ -60,14 +73,6 @@ const AdaptiveConversation = () => {
       return;
     }
 
-    // Generate follow-up question
-    const followUp = conversationLogic.current.generateFollowUpQuestion(userResponse, {
-      previousResponses: messages.filter(m => m.type === 'response').map(m => m.text),
-      detectedThemes: [],
-      depth: currentDepth
-    });
-
-    addMessage({ text: followUp, type: 'question' });
     setIsTyping(false);
   };
 
@@ -104,6 +109,18 @@ const AdaptiveConversation = () => {
     );
   }
 
+  // Display current question or starting question
+  const currentQuestion = responses.length === 0 
+    ? conversationLogic.current.getStartingQuestion()
+    : conversationLogic.current.generateFollowUpQuestion(
+        responses[responses.length - 1]?.answer || '',
+        {
+          previousResponses: responses.map(r => r.answer),
+          detectedThemes: [],
+          depth: currentDepth
+        }
+      );
+
   return (
     <div className="space-y-6">
       {/* Progress Indicator */}
@@ -115,28 +132,27 @@ const AdaptiveConversation = () => {
         <Progress value={progressValue} className="h-2 bg-navy/50" />
       </div>
 
-      {/* Messages */}
+      {/* Current Question */}
+      <div className="bg-teal/20 border border-teal/30 p-4 rounded-lg">
+        <p className="font-montserrat text-moonlight">
+          {currentQuestion}
+        </p>
+      </div>
+
+      {/* Previous Responses */}
       <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
         <AnimatePresence>
-          {messages.map((message, index) => (
+          {responses.map((response, index) => (
             <motion.div
-              key={message.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`${
-                message.type === 'question' 
-                  ? 'text-left' 
-                  : 'text-right'
-              }`}
+              className="text-right"
             >
-              <div className={`inline-block max-w-xs lg:max-w-md p-4 rounded-lg ${
-                message.type === 'question'
-                  ? 'bg-teal/20 border border-teal/30 text-moonlight'
-                  : 'bg-bronze/20 border border-bronze/30 text-moonlight ml-auto'
-              }`}>
+              <div className="inline-block max-w-xs lg:max-w-md p-4 rounded-lg bg-bronze/20 border border-bronze/30 text-moonlight ml-auto">
                 <p className="font-montserrat text-sm leading-relaxed">
-                  {message.text}
+                  {response.answer}
                 </p>
               </div>
             </motion.div>
@@ -193,6 +209,36 @@ const AdaptiveConversation = () => {
       </div>
     </div>
   );
+};
+
+// Utility functions
+const detectEmotionalTone = (answer: string): 'hopeful' | 'reflective' | 'challenged' | 'content' => {
+  const lowerAnswer = answer.toLowerCase();
+  
+  if (lowerAnswer.includes('hope') || lowerAnswer.includes('excited') || lowerAnswer.includes('looking forward')) {
+    return 'hopeful';
+  }
+  if (lowerAnswer.includes('think') || lowerAnswer.includes('wonder') || lowerAnswer.includes('remember')) {
+    return 'reflective';
+  }
+  if (lowerAnswer.includes('difficult') || lowerAnswer.includes('hard') || lowerAnswer.includes('struggle')) {
+    return 'challenged';
+  }
+  return 'content';
+};
+
+const extractEnvironmentalClues = (answer: string): string[] => {
+  const clues = [];
+  const lowerAnswer = answer.toLowerCase();
+
+  if (lowerAnswer.includes('car') || lowerAnswer.includes('drive')) clues.push('car');
+  if (lowerAnswer.includes('room') || lowerAnswer.includes('bedroom')) clues.push('room');
+  if (lowerAnswer.includes('outside') || lowerAnswer.includes('nature')) clues.push('nature');
+  if (lowerAnswer.includes('control') || lowerAnswer.includes('decide')) clues.push('control');
+  if (lowerAnswer.includes('friend') || lowerAnswer.includes('family')) clues.push('support');
+  if (lowerAnswer.includes('community') || lowerAnswer.includes('neighborhood')) clues.push('community');
+
+  return clues;
 };
 
 export default AdaptiveConversation;

@@ -35,6 +35,7 @@ interface ConversationActions {
   addMessage: (message: ConversationResponse) => void;
   updateContext: (context: any) => void;
   completeConversation: () => void;
+  resetConversation: () => void;
 }
 
 export const useConversationStore = create<ConversationState & ConversationActions>((set, get) => ({
@@ -71,6 +72,20 @@ export const useConversationStore = create<ConversationState & ConversationActio
 
   completeConversation: () => {
     set({ isComplete: true, readyForCompass: true });
+  },
+
+  resetConversation: () => {
+    set({
+      currentQuestion: 0,
+      responses: [],
+      environmentalInsights: [],
+      conversationPersonality: 'contemplative',
+      readyForCompass: false,
+      connectionScore: 0,
+      messages: [],
+      currentDepth: 0,
+      isComplete: false
+    });
   },
 
   generateNextQuestion: () => {
