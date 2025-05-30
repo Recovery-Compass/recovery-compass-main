@@ -1,196 +1,172 @@
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { RefreshCw, TrendingUp, Users, Home, Calendar, Activity, Heart } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from 'react';
+import styles from './StrategicDashboardView.module.css';
+import {
+  RefreshCw,
+  TrendingUp,
+  Users,
+  Home,
+  Clock,
+  Heart,
+  Calendar
+} from 'lucide-react';
 
 interface MetricCardData {
   id: string;
-  name: string;
+  title: string;
   value: string;
-  unit: string;
+  subtitle?: string;
   insightTag: string;
-  status: 'green' | 'yellow' | 'red';
-  icon: any;
+  status: 'excellent' | 'good' | 'attention' | 'neutral';
+  icon: React.ReactNode;
+  unit?: string;
 }
 
-const StrategicDashboardView = () => {
-  const [lastUpdated, setLastUpdated] = useState(new Date());
-  const [isRefreshing, setIsRefreshing] = useState(false);
+const StrategicDashboardView: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  // Sample metrics data - in production, this would come from Google Sheets
-  const [metricsData, setMetricsData] = useState<MetricCardData[]>([
+  const metricsData: MetricCardData[] = [
     {
       id: 'bed-utilization',
-      name: 'Bed Utilization Rate',
+      title: 'Bed Utilization Rate',
       value: '35.1',
-      unit: 'avg nights per resident',
+      subtitle: 'avg nights per resident',
       insightTag: 'Strategic Proof Point',
-      status: 'green',
-      icon: TrendingUp
+      status: 'excellent',
+      icon: <Calendar />
     },
     {
       id: 'meals-served',
-      name: 'Meals Served',
+      title: 'Meals Served',
       value: '24,387',
-      unit: 'total',
       insightTag: 'Community Impact',
-      status: 'green',
-      icon: Users
+      status: 'excellent',
+      icon: <Heart />
     },
     {
       id: 'non-resident-services',
-      name: 'Non-Resident Services',
+      title: 'Non-Resident Services',
       value: '48',
-      unit: 'services provided',
-      insightTag: 'Outreach Depth',
-      status: 'yellow',
-      icon: Heart
+      insightTag: 'Community Reach',
+      status: 'good',
+      icon: <Users />
     },
     {
       id: 'housing-placements',
-      name: 'Housing Placements',
+      title: 'Housing Placements',
       value: '91',
-      unit: '(51.1% success rate)',
-      insightTag: 'Depth-over-Speed',
-      status: 'green',
-      icon: Home
+      subtitle: '51.1% success rate',
+      insightTag: 'Primary Outcome',
+      status: 'excellent',
+      icon: <Home />
     },
     {
       id: 'avg-days-housing',
-      name: 'Avg Days to Housing',
+      title: 'Avg Days to Housing',
       value: '82',
-      unit: 'days',
-      insightTag: 'Process Efficiency',
-      status: 'yellow',
-      icon: Calendar
+      insightTag: 'Efficiency Metric',
+      status: 'good',
+      icon: <Clock />,
+      unit: 'days'
     },
     {
       id: 'clinical-integration',
-      name: 'Clinical Integration',
+      title: 'Clinical Integration',
       value: '196',
-      unit: 'contacts (101 MH + 95 CNA)',
-      insightTag: 'Holistic Care',
-      status: 'green',
-      icon: Activity
+      subtitle: '101 MH + 95 CNA',
+      insightTag: 'Service Integration',
+      status: 'excellent',
+      icon: <TrendingUp />
     }
-  ]);
+  ];
 
   const handleRefresh = async () => {
-    setIsRefreshing(true);
-    
-    // Simulate API call delay
-    setTimeout(() => {
-      setLastUpdated(new Date());
-      setIsRefreshing(false);
-      console.log('Dashboard refreshed from Google Sheets');
-    }, 2000);
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setLastUpdated(new Date());
+    setIsLoading(false);
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'green':
-        return 'bg-green-500';
-      case 'yellow':
-        return 'bg-yellow-500';
-      case 'red':
-        return 'bg-red-500';
+  const getStatusBarClass = (status: string) => `${styles.statusBar} ${styles[status]}`;
+  const getInsightTagClass = (tag: string) => {
+    switch (tag) {
+      case 'Strategic Proof Point':
+        return `${styles.insightTag} ${styles.strategicProofPoint}`;
+      case 'Community Impact':
+        return `${styles.insightTag} ${styles.communityImpact}`;
+      case 'Primary Outcome':
+        return `${styles.insightTag} ${styles.primaryOutcome}`;
+      case 'Service Integration':
+        return `${styles.insightTag} ${styles.serviceIntegration}`;
       default:
-        return 'bg-gray-400';
+        return `${styles.insightTag} ${styles.default}`;
     }
   };
 
   return (
-    <div className="min-h-screen bg-moonlight px-6 py-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="font-montserrat font-semibold text-5xl text-teal mb-4">
-            Whittier First Day Executive Dashboard
-          </h1>
-          <div className="flex items-center justify-center gap-4 text-gray-600">
-            <span className="text-sm">
-              Last Updated: {lastUpdated.toLocaleString()}
-            </span>
-            <Button
+    <div className={styles.dashboard}>
+      {/* Header */}
+      <div className={styles.headerSection}>
+        <div className={styles.headerContainer}>
+          <div className={styles.headerContent}>
+            <div>
+              <h1 className={styles.dashboardHeader}>Whittier First Day Executive Dashboard</h1>
+              <p className={styles.dashboardSubheader}>
+                Clinically Integrated Housing Outcomes — Powered by Recovery Compass
+              </p>
+            </div>
+            <button
               onClick={handleRefresh}
-              disabled={isRefreshing}
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2"
+              disabled={isLoading}
+              className={styles.refreshButton}
             >
-              <RefreshCw className={cn('h-4 w-4', isRefreshing && 'animate-spin')} />
-              Refresh
-            </Button>
+              <RefreshCw className={`${styles.refreshIcon} ${isLoading ? styles.loading : ''}`} />
+              {isLoading ? 'Refreshing...' : 'Refresh Data'}
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          {metricsData.map((metric, index) => {
-            const IconComponent = metric.icon;
-            return (
-              <Card
-                key={metric.id}
-                className={cn(
-                  'hover:shadow-lg transition-all duration-300 hover:scale-105 bg-white border-gray-200',
-                  'animate-fade-in'
+      {/* Metrics Grid */}
+      <div className={styles.metricsContainer}>
+        <div className={styles.metricsGrid}>
+          {metricsData.map((metric, index) => (
+            <div
+              key={metric.id}
+              className={`${styles.metricCard} ${styles.fadeInCard}`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className={getStatusBarClass(metric.status)} />
+              <div className={styles.cardHeader}>
+                <div className={styles.iconContainer}>{metric.icon}</div>
+                <span className={getInsightTagClass(metric.insightTag)}>{metric.insightTag}</span>
+              </div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.metricTitle}>{metric.title}</h3>
+                <div className={styles.metricValueContainer}>
+                  <span className={styles.metricValue}>{metric.value}</span>
+                  {metric.unit && <span className={styles.metricUnit}>{metric.unit}</span>}
+                </div>
+                {metric.subtitle && (
+                  <p className={styles.metricSubtitle}>{metric.subtitle}</p>
                 )}
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="font-montserrat font-semibold text-2xl text-gray-800 mb-2">
-                        {metric.name}
-                      </CardTitle>
-                      <div className="flex items-center gap-2">
-                        <div className={cn('w-3 h-3 rounded-full', getStatusColor(metric.status))}></div>
-                        <span className="text-sm font-medium text-bronze bg-bronze/10 px-2 py-1 rounded-full">
-                          {metric.insightTag}
-                        </span>
-                      </div>
-                    </div>
-                    <IconComponent className="h-8 w-8 text-teal" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center">
-                    <div className="font-montserrat text-4xl font-regular text-gray-800 mb-2">
-                      {metric.value}
-                    </div>
-                    <div className="text-base text-gray-600">
-                      {metric.unit}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Google Sheets Integration Section */}
-        <Card className="bg-white border-gray-200">
-          <CardHeader>
-            <CardTitle className="font-montserrat font-semibold text-xl text-gray-800 flex items-center gap-2">
-              <Activity className="h-5 w-5 text-teal" />
-              Live Data Integration
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-gray-50 rounded-lg p-4 text-center text-gray-600">
-              <p className="mb-2">Google Sheets Integration Ready</p>
-              <p className="text-sm">Data Source: "Donna's Dashboard" tab via Coupler.io</p>
-              {/* Placeholder for iframe when Google Sheets URL is available */}
-              <div className="mt-4 p-8 border-2 border-dashed border-gray-300 rounded-lg">
-                <p className="text-sm text-gray-500">
-                  Replace this section with iframe when Google Sheets URL is configured
-                </p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className={styles.footerSection}>
+        <div className={styles.footerContainer}>
+          <div className={styles.footerContent}>
+            <span className={styles.lastUpdated}>
+              Last Updated: {lastUpdated.toLocaleDateString()} at {lastUpdated.toLocaleTimeString()}
+            </span>
+            <span className={styles.dataSource}>Data integration powered by Coupler.io</span>
+          </div>
+        </div>
       </div>
     </div>
   );

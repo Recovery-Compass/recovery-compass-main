@@ -1,0 +1,355 @@
+
+/* StrategicDashboardView.module.css */
+/* Recovery Compass Brand Colors */
+:root {
+  --compass-teal: #148D8D;
+  --compass-bronze: #C69C6D;
+  --compass-gold: #D4AF37;
+  --background-light: #F7F9F9;
+  --deep-navy: #1a1f2e;
+  --text-primary: #454545;
+  --text-secondary: #666666;
+  --white: #ffffff;
+  --border-light: #e5e7eb;
+}
+
+/* Dashboard Container */
+.dashboard {
+  min-height: 100vh;
+  background: var(--background-light);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-primary);
+}
+
+/* Header Section */
+.headerSection {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  padding: 2rem 0;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dashboardHeader {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--compass-teal);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.dashboardSubheader {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--compass-teal);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refreshButton:hover {
+  background: var(--deep-navy);
+  transform: translateY(-1px);
+}
+
+.refreshButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refreshIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.refreshIcon.loading {
+  animation: spin 1s linear infinite;
+}
+
+/* Metrics Section */
+.metricsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Metric Cards */
+.metricCard {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.metricCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+.fadeInCard {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Status Bars */
+.statusBar {
+  height: 4px;
+  width: 100%;
+}
+
+.statusBar.excellent {
+  background: linear-gradient(90deg, var(--compass-teal), var(--compass-gold));
+}
+
+.statusBar.good {
+  background: linear-gradient(90deg, var(--compass-bronze), var(--compass-gold));
+}
+
+.statusBar.attention {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.statusBar.neutral {
+  background: linear-gradient(90deg, #6b7280, #9ca3af);
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(20, 141, 141, 0.1);
+  border-radius: 8px;
+  color: var(--compass-teal);
+}
+
+.iconContainer svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Insight Tags */
+.insightTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.insightTag.strategicProofPoint {
+  background: rgba(20, 141, 141, 0.1);
+  color: var(--compass-teal);
+}
+
+.insightTag.communityImpact {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--compass-gold);
+}
+
+.insightTag.primaryOutcome {
+  background: rgba(198, 156, 109, 0.1);
+  color: var(--compass-bronze);
+}
+
+.insightTag.serviceIntegration {
+  background: rgba(26, 31, 46, 0.1);
+  color: var(--deep-navy);
+}
+
+.insightTag.default {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 1rem 1.5rem 2rem 1.5rem;
+}
+
+.metricTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.metricValueContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.metricValue {
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--deep-navy);
+  line-height: 1;
+}
+
+.metricUnit {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.metricSubtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Footer Section */
+.footerSection {
+  background: var(--white);
+  border-top: 1px solid var(--border-light);
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.lastUpdated {
+  font-weight: 500;
+}
+
+.dataSource {
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .dashboardHeader {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .dashboardSubheader {
+    text-align: center;
+  }
+
+  .refreshButton {
+    align-self: center;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .metricsContainer {
+    padding: 2rem 1rem;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardHeader {
+    font-size: 1.75rem;
+  }
+
+  .headerContainer,
+  .footerContainer {
+    padding: 0 1rem;
+  }
+
+  .cardContent {
+    padding: 1rem 1rem 1.5rem 1rem;
+  }
+
+  .metricValue {
+    font-size: 2rem;
+  }
+}
