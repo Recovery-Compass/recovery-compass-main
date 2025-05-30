@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import PathwaySelect from "./pages/PathwaySelect";
 import CompassCompanion from "./pages/CompassCompanion";
 import ImpactTranslator from "./pages/ImpactTranslator";
+import StrategicDashboardView from "./components/StrategicDashboardView";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/pathways" element={<PathwaySelect />} />
           <Route path="/compass-companion" element={<CompassCompanion />} />
           <Route path="/impact-translator" element={<ImpactTranslator />} />
+          <Route path="/strategic-dashboard" element={<StrategicDashboardView />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

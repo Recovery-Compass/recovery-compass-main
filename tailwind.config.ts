@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,8 +65,9 @@ export default {
 				},
 				// Recovery Compass custom colors
 				navy: '#1a1f2e', // Deep Navy (updated to match branding)
-				bronze: '#D4AF37', // Gold (updated to match Compass Gold)
+				bronze: '#C69C6D', // Compass Bronze (updated to match spec)
 				teal: '#148D8D', // Compass Teal
+				gold: '#D4AF37', // Compass Gold
 				moonlight: '#F7F9F9', // Background Light
 			},
 			borderRadius: {
@@ -94,8 +96,8 @@ export default {
 					}
 				},
 				'fade-in': {
-					'0%': { opacity: '0' },
-					'100%': { opacity: '1' },
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
 				},
 				'gentle-pulse': {
 					'0%, 100%': { opacity: '0.9' },
@@ -113,7 +115,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 1.5s ease-out forwards',
+				'fade-in': 'fade-in 1s ease-out forwards',
 				'delayed-fade': 'fade-in 1.5s ease-out 1s forwards',
 				'gentle-pulse': 'gentle-pulse 4s infinite',
 				'subtle-sway': 'subtle-sway 6s ease-in-out infinite',
