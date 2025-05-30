@@ -1,18 +1,27 @@
 
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Section from '@/components/Section';
 import HeroSection from '@/components/HeroSection';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState('compass');
   
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({
     compass: null,
   });
 
-  // Handle navigation between sections
+  // Handle navigation between sections and external routes
   const handleNavigate = (sectionId: string) => {
+    // Check if it's an external route (starts with /)
+    if (sectionId.startsWith('/')) {
+      navigate(sectionId);
+      return;
+    }
+    
+    // Handle internal section navigation
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

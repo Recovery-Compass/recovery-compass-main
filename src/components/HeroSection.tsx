@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -83,6 +82,22 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           Begin Your Journey
         </Button>
       </div>
+      
+        {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
+        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
+          <button
+            onClick={() => onNavigate('/strategic-dashboard')}
+            className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
+          >
+            <span className="text-sm font-montserrat font-light tracking-wide">
+              Recovery Compass Dashboard Case Studies
+            </span>
+            <div className="w-4 h-4 rounded-full bg-bronze/20 group-hover:bg-bronze/40 transition-all duration-300" />
+          </button>
+          <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat">
+            live metrics from the field
+          </p>
+        </div>
     </div>
   );
 };
