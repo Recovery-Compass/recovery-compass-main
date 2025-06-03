@@ -274,79 +274,92 @@ const WFDAttachmentSuite = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">WFD Partnership Attachments</h1>
-          <p className="text-gray-600">Visual deliverables for Donna Gallup and Anthony Cianni</p>
-        </div>
-
-        {/* Attachment Selector */}
-        <div className="flex space-x-4 mb-8">
-          <button
-            onClick={() => setActiveAttachment('dashboard')}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              activeAttachment === 'dashboard'
-                ? 'bg-purple-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-            }`}
-          >
-            Executive Dashboard Visuals
-          </button>
-          <button
-            onClick={() => setActiveAttachment('translator')}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              activeAttachment === 'translator'
-                ? 'bg-purple-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-            }`}
-          >
-            Impact Translator Preview
-          </button>
-          <button
-            onClick={() => setActiveAttachment('workflow')}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              activeAttachment === 'workflow'
-                ? 'bg-purple-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-            }`}
-          >
-            Workflow Map
-          </button>
-        </div>
-
-        {/* Active Attachment Display */}
-        <div className="mb-8">
-          {activeAttachment === 'dashboard' && <DashboardVisual />}
-          {activeAttachment === 'translator' && <ImpactTranslatorPreview />}
-          {activeAttachment === 'workflow' && <WorkflowMap />}
-        </div>
-
-        {/* Download Instructions */}
-        <div className="bg-teal-50 border border-teal-200 rounded-lg p-6">
-          <div className="flex items-start">
-            <Download className="w-6 h-6 text-teal-600 mr-3 mt-1" />
+    <div className="min-h-screen bg-gray-50">
+      {/* Header with Logo */}
+      <div className="bg-white border-b border-gray-200 px-8 py-6">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <img 
+              src="/lovable-uploads/79be2f59-3fd4-403b-a86b-f6cf9a29d1e9.png" 
+              alt="Whittier First Day Logo" 
+              className="h-16 w-auto object-contain"
+            />
             <div>
-              <h3 className="text-lg font-semibold text-teal-900 mb-2">Attachment Instructions</h3>
-              <p className="text-teal-700 mb-3">
-                To include these visuals in your email to Donna and Anthony:
-              </p>
-              <ol className="list-decimal list-inside text-sm text-teal-700 space-y-1">
-                <li>Screenshot each attachment view at full resolution</li>
-                <li>Save as PNG files with descriptive names</li>
-                <li>Attach to your email with the provided subject line</li>
-                <li>Reference the attachments in your email body as demonstrated</li>
-              </ol>
+              <h1 className="text-2xl font-bold text-gray-900">Strategic Intelligence Suite</h1>
+              <p className="text-gray-600 text-sm">Data-driven insights for organizational excellence</p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Recovery Compass Branding */}
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg">
-            <span className="font-bold mr-2">RC</span>
-            <span>Recovery Compass Strategic Intelligence</span>
+      <div className="p-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Attachment Selector */}
+          <div className="flex space-x-4 mb-8">
+            <button
+              onClick={() => setActiveAttachment('dashboard')}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                activeAttachment === 'dashboard'
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+              }`}
+            >
+              Executive Dashboard Visuals
+            </button>
+            <button
+              onClick={() => setActiveAttachment('translator')}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                activeAttachment === 'translator'
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+              }`}
+            >
+              Impact Translator Preview
+            </button>
+            <button
+              onClick={() => setActiveAttachment('workflow')}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                activeAttachment === 'workflow'
+                  ? 'bg-purple-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+              }`}
+            >
+              Workflow Map
+            </button>
+          </div>
+
+          {/* Active Attachment Display */}
+          <div className="mb-8">
+            {activeAttachment === 'dashboard' && <DashboardVisual />}
+            {activeAttachment === 'translator' && <ImpactTranslatorPreview />}
+            {activeAttachment === 'workflow' && <WorkflowMap />}
+          </div>
+
+          {/* Download Instructions */}
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-6">
+            <div className="flex items-start">
+              <Download className="w-6 h-6 text-teal-600 mr-3 mt-1" />
+              <div>
+                <h3 className="text-lg font-semibold text-teal-900 mb-2">Export Instructions</h3>
+                <p className="text-teal-700 mb-3">
+                  To capture these visuals for presentations or documentation:
+                </p>
+                <ol className="list-decimal list-inside text-sm text-teal-700 space-y-1">
+                  <li>Screenshot each view at full resolution</li>
+                  <li>Save as PNG files with descriptive names</li>
+                  <li>Include in presentations, reports, or grant applications</li>
+                  <li>Reference metrics as evidence of organizational effectiveness</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          {/* Recovery Compass Branding */}
+          <div className="mt-8 text-center">
+            <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg">
+              <span className="font-bold mr-2">RC</span>
+              <span>Recovery Compass Strategic Intelligence</span>
+            </div>
           </div>
         </div>
       </div>
