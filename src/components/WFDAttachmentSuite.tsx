@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Download, Users, TrendingUp, BarChart3, FileText, Workflow, ArrowRight, Database, Settings } from 'lucide-react';
 
@@ -86,8 +85,7 @@ const WFDAttachmentSuite = () => {
         </div>
         
         <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <div className="font-semibold text-gray-900">Ted's Place</div>
-          <div className="text-sm text-gray-500 mb-2">Q4 2025 expansion</div>
+          <div className="font-semibold text-gray-500 mb-2">Q4 2025 expansion</div>
           <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
             PLANNING
           </span>
