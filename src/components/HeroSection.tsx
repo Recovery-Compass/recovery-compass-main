@@ -86,7 +86,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
         <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
           <button
-            onClick={() => onNavigate('/strategic-dashboard')}
+            onClick={() => onNavigate('/wfd-attachments')}
             className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
           >
             <span className="text-sm font-montserrat font-light tracking-wide">
