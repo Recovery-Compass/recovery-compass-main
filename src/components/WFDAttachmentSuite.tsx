@@ -304,7 +304,7 @@ const WFDAttachmentSuite = () => {
                   : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
               }`}
             >
-              Executive Dashboard Visuals
+              Executive Dashboard
             </button>
             <button
               onClick={() => setActiveAttachment('translator')}
@@ -314,7 +314,7 @@ const WFDAttachmentSuite = () => {
                   : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
               }`}
             >
-              Impact Translator Preview
+              Impact Translator
             </button>
             <button
               onClick={() => setActiveAttachment('workflow')}
