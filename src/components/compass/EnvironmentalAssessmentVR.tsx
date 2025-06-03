@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
@@ -40,13 +39,13 @@ const assessmentQuestions = [
     id: 'control',
     text: 'In this space, how much control do you feel over your environment?',
     type: 'scale' as const,
-    range: [1, 10]
+    range: [1, 10] as [number, number]
   },
   {
     id: 'safety',
     text: 'How safe and secure does this environment feel to you?',
     type: 'scale' as const,
-    range: [1, 10]
+    range: [1, 10] as [number, number]
   },
   {
     id: 'agency',
