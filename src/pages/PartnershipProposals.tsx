@@ -2,141 +2,140 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const PartnershipProposals = () => {
-  const [activePhase, setActivePhase] = useState(0);
-  const [expandedTimeline, setExpandedTimeline] = useState(-1);
+// Type definitions
+interface MetricCard {
+  title: string;
+  value: string;
+  description: string;
+  icon: string;
+}
 
-  const metrics = [
+interface TimelinePhase {
+  period: string;
+  title: string;
+  deliverables: string[];
+  successMetrics: string[];
+}
+
+const PartnershipProposals: React.FC = () => {
+  const [activePhase, setActivePhase] = useState(0);
+  const [expandedTimeline, setExpandedTimeline] = useState(0);
+
+  // Metrics data
+  const metrics: MetricCard[] = [
     {
-      icon: '💰',
-      value: '$2,750',
       title: 'Monthly Investment',
-      description: 'Complete strategic infrastructure'
+      value: '$2,750',
+      description: 'Complete strategic infrastructure',
+      icon: '💰'
     },
     {
-      icon: '📈',
-      value: '40%',
       title: 'Efficiency Gain',
-      description: 'Operational optimization'
+      value: '40%',
+      description: 'Operational optimization',
+      icon: '📈'
     },
     {
-      icon: '🚀',
-      value: '30 Days',
       title: 'Deployment Timeline',
-      description: 'Rapid implementation'
+      value: '30 Days',
+      description: 'Rapid implementation',
+      icon: '🚀'
     },
     {
-      icon: '⚡',
-      value: '24 Hours',
       title: 'Response Time',
-      description: 'Strategic support availability'
+      value: '24 Hours',
+      description: 'Strategic support guarantee',
+      icon: '⚡'
     }
   ];
 
+  // Framework phases
   const frameworkPhases = [
     {
       title: 'Foundation',
-      description: 'Comprehensive organizational assessment and strategic framework development.',
+      description: 'Comprehensive organizational assessment and strategic framework development',
       details: [
-        'Organizational needs assessment and gap analysis',
+        'Organizational needs assessment',
         'Strategic framework customization',
-        'Leadership alignment and stakeholder engagement',
-        'Cultural preparation for sustainable change'
+        'Leadership alignment',
+        'Cultural preparation'
       ]
     },
     {
       title: 'Implementation',
-      description: 'Structured implementation with measurable outcomes and transparent progress tracking.',
+      description: 'Structured deployment with measurable outcomes and transparent progress tracking',
       details: [
-        'Detailed implementation roadmap creation',
+        'Implementation roadmap creation',
         'Performance metrics establishment',
         'Quality assurance protocols',
-        'Stakeholder communication systems'
+        'Communication systems'
       ]
     },
     {
       title: 'Optimization',
-      description: 'Continuous optimization that transforms initial investment into sustained organizational excellence.',
+      description: 'Continuous improvement that transforms investment into sustained excellence',
       details: [
-        'Continuous improvement and refinement',
-        'Success story documentation and sharing',
-        'Expanded partnership opportunities',
-        'Long-term strategic evolution planning'
+        'Continuous improvement',
+        'Success documentation',
+        'Partnership expansion',
+        'Strategic evolution'
       ]
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#101534] to-[#045295] text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#101534] to-[#045295] text-white font-['Montserrat',sans-serif]">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#101534] via-[#045295] to-[#101534]" />
-        </div>
-
-        <div className="relative z-10 text-center px-8 max-w-7xl mx-auto">
-          {/* Prominent Organization Logos */}
+      <section className="relative min-h-screen flex items-center justify-center px-8">
+        <div className="text-center max-w-6xl mx-auto">
+          {/* Prominent Logos */}
           <motion.div
-            className="flex items-center justify-center gap-16 mb-20"
+            className="flex items-center justify-center gap-16 mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex flex-col items-center gap-6">
-              <img 
-                src="/lovable-uploads/48dc4660-99d4-45e5-8dbe-e1e80483d4d9.png" 
-                alt="Recovery Compass" 
-                className="w-64 h-64 object-contain"
-              />
-              <span className="text-3xl font-inter font-semibold text-white">Recovery Compass</span>
+            <div className="flex flex-col items-center">
+              <div className="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center mb-4">
+                <span className="text-4xl font-bold text-[#D4AF37]">RC</span>
+              </div>
+              <span className="text-2xl font-semibold">Recovery Compass</span>
             </div>
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-            <div className="flex flex-col items-center gap-6">
-              <img 
-                src="/lovable-uploads/5fb9fb69-169a-443a-888d-c72d8e05e597.png" 
-                alt="First Day" 
-                className="w-64 h-64 object-contain"
-              />
-              <span className="text-3xl font-inter font-semibold text-white">First Day</span>
+            
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+            
+            <div className="flex flex-col items-center">
+              <div className="w-48 h-48 bg-white rounded-lg flex items-center justify-center mb-4 p-4">
+                <div className="text-center">
+                  <div className="text-6xl text-[#D4AF37] mb-2">☀️</div>
+                  <div className="text-2xl font-bold text-[#045295]">First</div>
+                  <div className="text-2xl font-bold text-[#045295]">Day</div>
+                </div>
+              </div>
+              <span className="text-2xl font-semibold">First Day</span>
             </div>
           </motion.div>
 
-          {/* Main Title */}
+          {/* Title */}
           <motion.h1
-            className="text-5xl md:text-7xl font-playfair font-bold mb-12 text-white"
+            className="text-6xl md:text-8xl font-bold mb-8 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Strategic Partnership
-            <span className="block text-[#D4AF37] mt-6">Framework</span>
+            <span className="block text-[#D4AF37] mt-4">Framework</span>
           </motion.h1>
 
-          {/* Clean Tagline */}
+          {/* Clean Subtitle - NO SYMBOLS */}
           <motion.p
-            className="text-xl md:text-2xl font-inter text-gray-300 mb-20 max-w-4xl mx-auto leading-relaxed"
+            className="text-2xl font-light text-gray-300 mb-16 font-['Montserrat',sans-serif] font-300"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Collaborative Excellence Through Strategic Integration
           </motion.p>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <motion.div
-              className="w-6 h-10 border-2 border-[#D4AF37] rounded-full flex justify-center"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <div className="w-1 h-3 bg-[#D4AF37] rounded-full mt-2" />
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
@@ -144,7 +143,7 @@ const PartnershipProposals = () => {
       <section className="py-24 px-8">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-5xl font-serif font-bold text-center mb-16"
+            className="text-5xl font-bold text-center mb-16 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -165,9 +164,9 @@ const PartnershipProposals = () => {
                 whileHover={{ scale: 1.05, y: -10 }}
               >
                 <div className="text-4xl mb-4">{metric.icon}</div>
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">{metric.value}</div>
-                <div className="text-xl font-semibold mb-2">{metric.title}</div>
-                <div className="text-gray-300 text-sm">{metric.description}</div>
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2 font-['Montserrat',sans-serif] font-700">{metric.value}</div>
+                <div className="text-xl font-semibold mb-2 font-['Montserrat',sans-serif] font-600">{metric.title}</div>
+                <div className="text-gray-300 text-sm font-['Montserrat',sans-serif] font-400">{metric.description}</div>
               </motion.div>
             ))}
           </div>
@@ -178,7 +177,7 @@ const PartnershipProposals = () => {
       <section className="py-24 px-8 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-5xl font-serif font-bold text-center mb-16"
+            className="text-5xl font-bold text-center mb-16 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -194,7 +193,7 @@ const PartnershipProposals = () => {
                 <button
                   key={index}
                   onClick={() => setActivePhase(index)}
-                  className={`px-8 py-4 rounded-full transition-all duration-300 ${
+                  className={`px-8 py-4 rounded-full transition-all duration-300 font-['Montserrat',sans-serif] ${
                     activePhase === index
                       ? 'bg-[#D4AF37] text-[#101534] font-bold'
                       : 'text-white hover:bg-white/10'
@@ -216,14 +215,14 @@ const PartnershipProposals = () => {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-3xl font-bold mb-6">{frameworkPhases[activePhase].title}</h3>
-              <p className="text-xl text-gray-300 mb-8">{frameworkPhases[activePhase].description}</p>
+              <h3 className="text-3xl font-bold mb-6 font-['Montserrat',sans-serif] font-700">{frameworkPhases[activePhase].title}</h3>
+              <p className="text-xl text-gray-300 mb-8 font-['Montserrat',sans-serif] font-400">{frameworkPhases[activePhase].description}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {frameworkPhases[activePhase].details.map((detail, index) => (
                   <div key={index} className="flex items-center">
                     <div className="w-2 h-2 bg-[#D4AF37] rounded-full mr-4"></div>
-                    <span className="text-lg">{detail}</span>
+                    <span className="text-lg font-['Montserrat',sans-serif] font-400">{detail}</span>
                   </div>
                 ))}
               </div>
@@ -236,7 +235,7 @@ const PartnershipProposals = () => {
       <section className="py-24 px-8">
         <div className="max-w-6xl mx-auto">
           <motion.h2
-            className="text-5xl font-serif font-bold text-center mb-16"
+            className="text-5xl font-bold text-center mb-16 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -280,8 +279,8 @@ const PartnershipProposals = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[#D4AF37] text-xl font-bold">{phase.period}</span>
-                      <h3 className="text-2xl font-bold mt-2">{phase.title}</h3>
+                      <span className="text-[#D4AF37] text-xl font-bold font-['Montserrat',sans-serif] font-700">{phase.period}</span>
+                      <h3 className="text-2xl font-bold mt-2 font-['Montserrat',sans-serif] font-700">{phase.title}</h3>
                     </div>
                     <div className={`text-2xl transition-transform duration-300 ${
                       expandedTimeline === index ? 'rotate-180' : ''
@@ -302,10 +301,10 @@ const PartnershipProposals = () => {
                     >
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37]">Deliverables</h4>
+                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37] font-['Montserrat',sans-serif] font-700">Deliverables</h4>
                           <ul className="space-y-2">
                             {phase.deliverables.map((item, i) => (
-                              <li key={i} className="flex items-center">
+                              <li key={i} className="flex items-center font-['Montserrat',sans-serif] font-400">
                                 <span className="text-[#D4AF37] mr-3">✓</span>
                                 {item}
                               </li>
@@ -313,10 +312,10 @@ const PartnershipProposals = () => {
                           </ul>
                         </div>
                         <div>
-                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37]">Success Metrics</h4>
+                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37] font-['Montserrat',sans-serif] font-700">Success Metrics</h4>
                           <ul className="space-y-2">
                             {phase.successMetrics.map((metric, i) => (
-                              <li key={i} className="flex items-center">
+                              <li key={i} className="flex items-center font-['Montserrat',sans-serif] font-400">
                                 <span className="text-[#D4AF37] mr-3">📊</span>
                                 {metric}
                               </li>
@@ -337,7 +336,7 @@ const PartnershipProposals = () => {
       <section className="py-24 px-8 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-5xl font-serif font-bold text-center mb-16"
+            className="text-5xl font-bold text-center mb-16 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -355,7 +354,7 @@ const PartnershipProposals = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold mb-8 text-center">
+              <h3 className="text-3xl font-bold mb-8 text-center font-['Montserrat',sans-serif] font-700">
                 Recovery Compass <span className="text-[#D4AF37]">Provides</span>
               </h3>
               <div className="space-y-4">
@@ -371,7 +370,7 @@ const PartnershipProposals = () => {
                     <div className="w-6 h-6 bg-[#D4AF37] rounded-full flex items-center justify-center mr-4">
                       <span className="text-[#101534] text-sm font-bold">✓</span>
                     </div>
-                    <span className="text-lg">{benefit}</span>
+                    <span className="text-lg font-['Montserrat',sans-serif] font-400">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -385,7 +384,7 @@ const PartnershipProposals = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold mb-8 text-center">
+              <h3 className="text-3xl font-bold mb-8 text-center font-['Montserrat',sans-serif] font-700">
                 First Day <span className="text-[#D4AF37]">Receives</span>
               </h3>
               <div className="space-y-4">
@@ -401,7 +400,7 @@ const PartnershipProposals = () => {
                     <div className="w-6 h-6 bg-[#D4AF37] rounded-full flex items-center justify-center mr-4">
                       <span className="text-[#101534] text-sm font-bold">✓</span>
                     </div>
-                    <span className="text-lg">{benefit}</span>
+                    <span className="text-lg font-['Montserrat',sans-serif] font-400">{benefit}</span>
                   </div>
                 ))}
               </div>
@@ -414,7 +413,7 @@ const PartnershipProposals = () => {
       <section className="py-24 px-8">
         <div className="max-w-6xl mx-auto">
           <motion.h2
-            className="text-5xl font-serif font-bold text-center mb-16"
+            className="text-5xl font-bold text-center mb-16 font-['Montserrat',sans-serif] font-700"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -461,12 +460,12 @@ const PartnershipProposals = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold mb-6 text-[#D4AF37]">{section.title}</h3>
+                <h3 className="text-2xl font-bold mb-6 text-[#D4AF37] font-['Montserrat',sans-serif] font-700">{section.title}</h3>
                 <ul className="space-y-3">
                   {section.items.map((item, i) => (
                     <li key={i} className="flex items-start">
                       <span className="text-[#D4AF37] mr-3 mt-1">•</span>
-                      <span>{item}</span>
+                      <span className="font-['Montserrat',sans-serif] font-400">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -476,63 +475,72 @@ const PartnershipProposals = () => {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="py-24 px-8 bg-gradient-to-t from-[#101534] to-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-5xl font-serif font-bold mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Ready to Begin Your <span className="text-[#D4AF37]">Strategic Partnership</span>?
-          </motion.h2>
-
-          <motion.p
-            className="text-xl text-gray-300 mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Schedule a comprehensive partnership discussion to explore how Recovery Compass
-            can serve as your strategic infrastructure partner.
-          </motion.p>
-
+      {/* Ultra-Classy Closing Section */}
+      <section className="py-32 px-8 bg-gradient-to-b from-transparent to-[#101534]">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            className="space-y-6"
+            className="text-center space-y-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 1.2 }}
             viewport={{ once: true }}
           >
-            <button className="bg-[#D4AF37] text-[#101534] px-12 py-4 rounded-full text-xl font-bold hover:bg-[#D4AF37]/90 transition-colors duration-300">
-              Schedule Partnership Discussion
-            </button>
-            
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-8">
-              <div className="flex items-center">
-                <span className="text-[#D4AF37] mr-3">📧</span>
-                <span>partnerships@recoverycompass.com</span>
+            {/* Elegant Quote */}
+            <div className="border-l-4 border-[#D4AF37] pl-8 text-left max-w-2xl mx-auto">
+              <p className="text-2xl font-light italic text-gray-200 leading-relaxed font-['Montserrat',sans-serif] font-300">
+                "True partnership is built on mutual respect, shared vision, and unwavering commitment to excellence. 
+                It's not about what we can take, but what we can build together."
+              </p>
+            </div>
+
+            {/* Professional Divider */}
+            <div className="flex items-center justify-center space-x-4">
+              <div className="w-16 h-px bg-[#D4AF37]"></div>
+              <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+              <div className="w-16 h-px bg-[#D4AF37]"></div>
+            </div>
+
+            {/* Eric's Signature Section */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <h3 className="text-4xl font-light text-[#D4AF37] mb-2 font-['Montserrat',sans-serif] font-300">
+                  Eric Dornan
+                </h3>
+                <p className="text-lg text-gray-300 font-['Montserrat',sans-serif] font-400">
+                  Founder & Strategic Partner, MSW
+                </p>
+                <p className="text-sm text-gray-400 mt-2 font-['Montserrat',sans-serif] font-300">
+                  Recovery Compass
+                </p>
               </div>
-              <div className="flex items-center">
-                <span className="text-[#D4AF37] mr-3">📞</span>
-                <span>(555) 123-4567</span>
+
+              {/* Professional Tagline */}
+              <div className="bg-white/5 rounded-lg py-6 px-8 border border-white/10">
+                <p className="text-xl font-medium text-white font-['Montserrat',sans-serif] font-600">
+                  "We attract easier; we don't apply harder"
+                </p>
+              </div>
+
+              {/* Contact Information */}
+              <div className="pt-8">
+                <p className="text-gray-400 text-sm mb-3 font-['Montserrat',sans-serif] font-400">
+                  Strategic Partnership Inquiries
+                </p>
+                <a 
+                  href="mailto:eric@recoverycompass.org"
+                  className="text-[#D4AF37] text-lg font-medium hover:text-[#D4AF37]/80 transition-colors duration-300 font-['Montserrat',sans-serif] font-600"
+                >
+                  eric@recoverycompass.org
+                </a>
               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            className="mt-16 pt-8 border-t border-white/20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-[#D4AF37] text-lg font-semibold">
-              "Building Strategic Partnerships That Transform Organizations"
-            </p>
+            {/* Final Professional Touch */}
+            <div className="pt-12 border-t border-white/20">
+              <p className="text-sm text-gray-500 font-['Montserrat',sans-serif] font-300">
+                Building partnerships that honor both organizations and the communities we serve
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
