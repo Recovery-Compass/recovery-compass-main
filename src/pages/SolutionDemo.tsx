@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -76,7 +75,7 @@ const SolutionDemo = () => {
             >
               <CardHeader>
                 <Brain className={`h-8 w-8 mb-2 ${activeDemo === 'environmental-design' ? 'text-bronze' : 'text-moonlight'}`} />
-                <CardTitle className="text-moonlight">Environmental Design™</CardTitle>
+                <CardTitle className="text-moonlight">Environmental Response Design™</CardTitle>
                 <CardDescription className="text-moonlight/70">
                   AI removes barriers instead of requiring individuals to overcome them
                 </CardDescription>
