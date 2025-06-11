@@ -38,7 +38,7 @@ const CompassLogo = ({
         animated && 'animate-gentle-pulse'
       )}>
         <img 
-          src="/lovable-uploads/275ee0ea-ff3f-4774-893b-47a6be303f95.png" 
+          src="/lovable-uploads/b58fecf5-5250-412d-b11c-e29a4e090138.png" 
           alt="Recovery Compass Logo" 
           className={cn(
             'object-contain w-full h-full',
