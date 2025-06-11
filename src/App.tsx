@@ -11,6 +11,7 @@ import ImpactTranslator from "./pages/ImpactTranslator";
 import StrategicDashboardView from "./components/StrategicDashboardView";
 import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
 import MakeIntegrationPage from "./pages/MakeIntegration";
+import PartnershipProposals from "./pages/PartnershipProposals";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/strategic-dashboard" element={<StrategicDashboardView />} />
           <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
           <Route path="/make-integration" element={<MakeIntegrationPage />} />
+          <Route path="/partnership-proposals" element={<PartnershipProposals />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

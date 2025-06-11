@@ -77,6 +77,8 @@ export default {
 			},
 			fontFamily: {
 				montserrat: ['Montserrat', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
+				playfair: ['Playfair Display', 'serif'],
 			},
 			keyframes: {
 				'accordion-down': {
