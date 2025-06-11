@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -103,7 +102,7 @@ const PartnershipProposals: React.FC = () => {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-2xl font-semibold">Recovery Compass</span>
+              <span className="text-2xl font-black">Recovery Compass</span>
             </div>
             
             <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
@@ -112,11 +111,11 @@ const PartnershipProposals: React.FC = () => {
               <div className="w-48 h-48 flex items-center justify-center mb-4">
                 <img 
                   src="/lovable-uploads/65a65ff0-be2f-4c63-ba8d-b74745f07a46.png" 
-                  alt="First Day" 
+                  alt="Whittier First Day" 
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-2xl font-semibold">First Day</span>
+              <span className="text-2xl font-black">Whittier First Day</span>
             </div>
           </motion.div>
 
@@ -380,7 +379,7 @@ const PartnershipProposals: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* First Day Receives */}
+            {/* Whittier First Day Receives */}
             <motion.div
               className="bg-white/10 rounded-3xl p-8"
               initial={{ opacity: 0, x: 30 }}
@@ -389,7 +388,7 @@ const PartnershipProposals: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-3xl font-bold mb-8 text-center font-['Montserrat',sans-serif] font-700">
-                First Day <span className="text-[#D4AF37]">Receives</span>
+                Whittier First Day <span className="text-[#D4AF37]">Receives</span>
               </h3>
               <div className="space-y-4">
                 {[
