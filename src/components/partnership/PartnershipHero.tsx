@@ -32,7 +32,7 @@ const PartnershipHero = () => {
         >
           <div className="flex items-center gap-4">
             <img 
-              src="/lovable-uploads/2f68c383-db0e-4e5d-a87b-9f1b4772bcf5.png" 
+              src="/lovable-uploads/48dc4660-99d4-45e5-8dbe-e1e80483d4d9.png" 
               alt="Recovery Compass" 
               className="w-16 h-16 object-contain"
             />
