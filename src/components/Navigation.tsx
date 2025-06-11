@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ExternalLink } from 'lucide-react';
-import { CompassLogo } from './CompassLogo';
+import CompassLogo from './CompassLogo';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { CompassLogo } from './CompassLogo';
+import CompassLogo from './CompassLogo';
 
 const InvestorNavigation = () => {
   const location = useLocation();
