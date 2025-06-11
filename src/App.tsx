@@ -68,12 +68,7 @@ function App() {
             } />
 
             {/* Main Recovery Compass Routes */}
-            <Route path="/" element={
-              <>
-                <Navigation />
-                <Index />
-              </>
-            } />
+            <Route path="/" element={<Index />} />
             <Route path="/compass-companion" element={
               <>
                 <Navigation />

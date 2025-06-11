@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Navigation } from '@/components/Navigation';
 import Section from '@/components/Section';
 import HeroSection from '@/components/HeroSection';
 
@@ -40,8 +39,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-navy">
-      <Navigation />
-      
       {/* Compass/Home Section */}
       <Section id="compass" className="relative">
         <HeroSection onNavigate={handleNavigate} />
