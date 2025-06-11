@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -31,11 +30,14 @@ const BusinessModel = () => {
             Back to Overview
           </Link>
           
-          <h1 className="text-moonlight mb-6">Sustainable Business Model</h1>
-          <p className="text-xl text-moonlight/80 max-w-3xl">
-            SaaS platform with recurring revenue, high gross margins, and 
-            proven unit economics that scale without grant dependency.
-          </p>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              HEALTHCARE REIMBURSEMENT PATHWAY
+            </h1>
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto">
+              Evidence-based practice model with guaranteed Medi-Cal reimbursement pathway that eliminates donation dependency through sustainable healthcare funding.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -339,7 +341,7 @@ const BusinessModel = () => {
             <CardHeader>
               <CardTitle className="text-moonlight text-center">Unit Economics</CardTitle>
               <CardDescription className="text-center text-moonlight/70">
-                SaaS metrics demonstrating sustainable growth model
+                Healthcare reimbursement metrics demonstrating sustainable growth model
               </CardDescription>
             </CardHeader>
             <CardContent>

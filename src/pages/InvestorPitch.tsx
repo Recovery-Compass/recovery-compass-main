@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -295,23 +294,23 @@ const InvestorPitch = () => {
                     <div className="flex items-center justify-between mb-4">
                       <DollarSign className="h-8 w-8 text-gold" />
                       <Badge variant="secondary" className="bg-gold/20 text-gold text-xs">
-                        SaaS Metrics
+                        Healthcare Metrics
                       </Badge>
                     </div>
                     <CardTitle className="text-moonlight text-xl">Business Model</CardTitle>
                     <CardDescription className="text-moonlight/70">
-                      Unit economics, SaaS metrics, and revenue projections
+                      Healthcare reimbursement pathway, evidence-based practice validation, and sustainable funding projections
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between text-sm">
-                        <span className="text-moonlight/60">Gross Margin Target</span>
+                        <span className="text-moonlight/60">Reimbursement Target</span>
                         <span className="text-gold font-semibold">85%+</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-moonlight/60">Revenue Model</span>
-                        <span className="text-gold font-semibold">B2B SaaS</span>
+                        <span className="text-gold font-semibold">Medi-Cal Pathway</span>
                       </div>
                     </div>
                     <div className="text-sm text-gold group-hover:translate-x-1 transition-transform inline-flex items-center">
@@ -373,11 +372,11 @@ const InvestorPitch = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-teal mb-4">Technology Advantage</h3>
+                  <h3 className="text-2xl font-bold text-teal mb-4">Clinical Innovation</h3>
                   <p className="text-moonlight/80 leading-relaxed">
                     Environmental Response Design™ removes barriers through AI rather than requiring 
-                    individuals to overcome them. This represents a fundamental shift from 
-                    treatment-focused to environment-focused solutions.
+                    individuals to overcome them. This clinical innovation creates measurable outcomes that qualify for Medi-Cal reimbursement while representing a fundamental shift from 
+                    treatment-focused to environment-focused healthcare solutions.
                   </p>
                 </div>
               </div>
@@ -385,9 +384,8 @@ const InvestorPitch = () => {
                 <div>
                   <h3 className="text-2xl font-bold text-gold mb-4">Business Model</h3>
                   <p className="text-moonlight/80 leading-relaxed">
-                    SaaS platform generates recurring revenue with 85%+ gross margins. 
-                    The "curb cut effect" means solutions for recovery benefit the broader 
-                    healthcare ecosystem, multiplying market opportunity.
+                    Healthcare reimbursement pathway generates sustainable revenue through evidence-based practice validation with guaranteed Medi-Cal coverage. The "curb cut effect" means solutions for recovery benefit the broader 
+                    healthcare ecosystem, multiplying reimbursement opportunities.
                   </p>
                 </div>
                 <div>
