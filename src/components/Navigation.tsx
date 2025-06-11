@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ExternalLink } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import CompassLogo from './CompassLogo';
 
 export const Navigation = () => {
@@ -46,17 +46,6 @@ export const Navigation = () => {
                 </Button>
               </Link>
             ))}
-            
-            {/* Investor Relations Link */}
-            <Link to="/investor-pitch">
-              <Button
-                variant="ghost"
-                className="text-sm text-moonlight hover:text-bronze hover:bg-bronze/10"
-              >
-                <ExternalLink className="w-4 h-4 mr-1" />
-                Investors
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -92,19 +81,6 @@ export const Navigation = () => {
                   </Button>
                 </Link>
               ))}
-              
-              <Link
-                to="/investor-pitch"
-                onClick={() => setIsOpen(false)}
-              >
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-moonlight hover:text-bronze hover:bg-bronze/10"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Investor Relations
-                </Button>
-              </Link>
             </div>
           </div>
         )}
