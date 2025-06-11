@@ -96,8 +96,12 @@ const PartnershipProposals: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="flex flex-col items-center">
-              <div className="w-48 h-48 bg-white/10 rounded-full flex items-center justify-center mb-4">
-                <span className="text-4xl font-bold text-[#D4AF37]">RC</span>
+              <div className="w-48 h-48 flex items-center justify-center mb-4">
+                <img 
+                  src="/lovable-uploads/95effcc8-1040-400d-ae6d-a6bec88d761a.png" 
+                  alt="Recovery Compass" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-2xl font-semibold">Recovery Compass</span>
             </div>
@@ -105,12 +109,12 @@ const PartnershipProposals: React.FC = () => {
             <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
             
             <div className="flex flex-col items-center">
-              <div className="w-48 h-48 bg-white rounded-lg flex items-center justify-center mb-4 p-4">
-                <div className="text-center">
-                  <div className="text-6xl text-[#D4AF37] mb-2">☀️</div>
-                  <div className="text-2xl font-bold text-[#045295]">First</div>
-                  <div className="text-2xl font-bold text-[#045295]">Day</div>
-                </div>
+              <div className="w-48 h-48 flex items-center justify-center mb-4">
+                <img 
+                  src="/lovable-uploads/65a65ff0-be2f-4c63-ba8d-b74745f07a46.png" 
+                  alt="First Day" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-2xl font-semibold">First Day</span>
             </div>
@@ -504,7 +508,7 @@ const PartnershipProposals: React.FC = () => {
             <div className="space-y-6">
               <div className="text-center">
                 <h3 className="text-4xl font-light text-[#D4AF37] mb-2 font-['Montserrat',sans-serif] font-300">
-                  Eric Dornan
+                  Eric B. Jones
                 </h3>
                 <p className="text-lg text-gray-300 font-['Montserrat',sans-serif] font-400">
                   Founder & Strategic Partner, MSW
