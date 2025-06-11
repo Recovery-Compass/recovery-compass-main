@@ -2,7 +2,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
 import Index from "./pages/Index";
@@ -19,6 +20,19 @@ import SolutionDemo from "./pages/SolutionDemo";
 import BusinessModel from "./pages/BusinessModel";
 import ImpactMetrics from "./pages/ImpactMetrics";
 import Roadmap from "./pages/Roadmap";
+import { trackPageView } from "./lib/analytics";
+
+// Analytics wrapper component to track page views
+const AnalyticsWrapper = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Track page view on every route change
+    trackPageView(document.title);
+  }, [location]);
+
+  return null;
+};
 
 const queryClient = new QueryClient();
 
@@ -28,6 +42,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <BrowserRouter>
+          <AnalyticsWrapper />
           <Routes>
             {/* Investor Relations Routes */}
             <Route path="/investor-pitch" element={
