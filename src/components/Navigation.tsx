@@ -1,72 +1,114 @@
 
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Menu, X, ExternalLink } from 'lucide-react';
+import { CompassLogo } from './CompassLogo';
 
-interface NavigationProps {
-  currentSection: string;
-  onNavigate: (section: string) => void;
-}
+export const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-const Navigation = ({ currentSection, onNavigate }: NavigationProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const isActive = (path: string) => location.pathname === path;
 
-  const sections = [
-    { id: 'compass', label: 'Compass' },
-    { id: 'environmental-design', label: 'Environmental Design' },
-    { id: 'compass-companion', label: 'Compass Companion' },
-    { id: 'stories', label: 'Stories' },
-    { id: 'options', label: 'Options' },
-    { id: 'memorial', label: 'Memorial Space' },
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/compass-companion', label: 'Compass Companion' },
+    { path: '/impact-translator', label: 'Impact Translator' },
+    { path: '/partnership-proposals', label: 'Partnership' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
-      setIsVisible(scrollPosition > window.innerHeight * 0.7);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <nav 
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none',
-        isScrolled ? 'bg-navy/90 backdrop-blur-md' : 'bg-transparent'
-      )}
-    >
-      <div className="flex justify-center items-center h-16 px-6">
-        <ul className="flex space-x-1 md:space-x-3">
-          {sections.map((section) => (
-            <li key={section.id}>
-              <button
-                onClick={() => onNavigate(section.id)}
-                className={cn(
-                  'px-2 md:px-3 py-2 text-sm md:text-base transition-all duration-300',
-                  'relative font-montserrat tracking-wide',
-                  currentSection === section.id
-                    ? 'text-bronze'
-                    : 'text-moonlight/70 hover:text-moonlight'
-                )}
+    <nav className="bg-navy/95 backdrop-blur-sm border-b border-bronze/20 sticky top-0 z-50">
+      <div className="content-container">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <CompassLogo className="w-10 h-10" />
+            <span className="text-bronze font-black text-xl tracking-tight">
+              Recovery Compass
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item) => (
+              <Link key={item.path} to={item.path}>
+                <Button
+                  variant={isActive(item.path) ? "default" : "ghost"}
+                  className={`text-sm ${
+                    isActive(item.path) 
+                      ? 'bg-bronze text-navy' 
+                      : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
+                  }`}
+                >
+                  {item.label}
+                </Button>
+              </Link>
+            ))}
+            
+            {/* Investor Relations Link */}
+            <Link to="/investor-pitch">
+              <Button
+                variant="ghost"
+                className="text-sm text-moonlight hover:text-bronze hover:bg-bronze/10"
               >
-                {section.label}
-                <span 
-                  className={cn(
-                    'absolute bottom-0 left-0 w-full h-0.5 bg-bronze scale-x-0 transition-transform duration-300 origin-center',
-                    currentSection === section.id && 'scale-x-100'
-                  )}
-                />
-              </button>
-            </li>
-          ))}
-        </ul>
+                <ExternalLink className="w-4 h-4 mr-1" />
+                Investors
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden text-moonlight"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-bronze/20">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Button
+                    variant={isActive(item.path) ? "default" : "ghost"}
+                    className={`w-full justify-start ${
+                      isActive(item.path) 
+                        ? 'bg-bronze text-navy' 
+                        : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
+                    }`}
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
+              ))}
+              
+              <Link
+                to="/investor-pitch"
+                onClick={() => setIsOpen(false)}
+              >
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-moonlight hover:text-bronze hover:bg-bronze/10"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Investor Relations
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
 };
-
-export default Navigation;
