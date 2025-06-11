@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -530,10 +531,10 @@ const PartnershipProposals: React.FC = () => {
                   Strategic Partnership Inquiries
                 </p>
                 <a 
-                  href="mailto:eric@recoverycompass.org"
+                  href="mailto:eric@recovery-compass.org"
                   className="text-[#D4AF37] text-lg font-medium hover:text-[#D4AF37]/80 transition-colors duration-300 font-['Montserrat',sans-serif] font-600"
                 >
-                  eric@recoverycompass.org
+                  eric@recovery-compass.org
                 </a>
               </div>
             </div>
