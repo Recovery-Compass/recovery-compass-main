@@ -2,7 +2,7 @@
 import React from 'react';
 import PartnershipHero from '@/components/partnership/PartnershipHero';
 import PartnershipOverview from '@/components/partnership/PartnershipOverview';
-import SCLMethodology from '@/components/partnership/SCLMethodology';
+import StrategicFramework from '@/components/partnership/StrategicFramework';
 import ImplementationTimeline from '@/components/partnership/ImplementationTimeline';
 import PartnershipBenefits from '@/components/partnership/PartnershipBenefits';
 import TermsInvestment from '@/components/partnership/TermsInvestment';
@@ -13,7 +13,7 @@ const PartnershipProposals = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#101534] to-[#045295] text-white">
       <PartnershipHero />
       <PartnershipOverview />
-      <SCLMethodology />
+      <StrategicFramework />
       <ImplementationTimeline />
       <PartnershipBenefits />
       <TermsInvestment />

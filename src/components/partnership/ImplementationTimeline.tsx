@@ -65,16 +65,16 @@ const ImplementationTimeline = () => {
   ];
 
   return (
-    <section className="py-24 px-8 relative">
+    <section className="py-32 px-8 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-24"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-8">
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-12">
             Implementation <span className="text-[#D4AF37]">Timeline</span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -83,7 +83,7 @@ const ImplementationTimeline = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="space-y-12">
           {timeline.map((phase, index) => (
             <motion.div
               key={index}
@@ -96,27 +96,27 @@ const ImplementationTimeline = () => {
                 <CardContent className="p-0">
                   <button
                     onClick={() => setExpandedPhase(expandedPhase === index ? -1 : index)}
-                    className="w-full p-8 text-left flex items-center justify-between hover:bg-white/5 transition-colors duration-300"
+                    className="w-full p-12 text-left flex items-center justify-between hover:bg-white/5 transition-colors duration-300"
                   >
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-12">
                       <div className="relative">
-                        <div className="w-20 h-20 bg-gradient-to-br from-[#D4AF37] to-[#045295] rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                        <div className="w-24 h-24 bg-gradient-to-br from-[#D4AF37] to-[#045295] rounded-full flex items-center justify-center text-white font-bold text-3xl">
                           {index + 1}
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-[#D4AF37] rounded-full flex items-center justify-center">
-                          <div className="w-3 h-3 bg-[#101534] rounded-full animate-pulse" />
+                        <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-[#D4AF37] rounded-full flex items-center justify-center">
+                          <div className="w-4 h-4 bg-[#101534] rounded-full animate-pulse" />
                         </div>
                       </div>
                       <div>
-                        <div className="flex items-center gap-4 mb-3">
-                          <h3 className="text-3xl font-playfair font-bold text-white">
+                        <div className="flex items-center gap-6 mb-4">
+                          <h3 className="text-4xl font-playfair font-bold text-white">
                             {phase.title}
                           </h3>
-                          <span className="px-4 py-2 bg-[#D4AF37]/20 text-[#D4AF37] text-base font-inter rounded-full">
+                          <span className="px-6 py-3 bg-[#D4AF37]/20 text-[#D4AF37] text-lg font-inter rounded-full">
                             {phase.status}
                           </span>
                         </div>
-                        <p className="text-xl text-[#D4AF37] font-inter font-semibold">
+                        <p className="text-2xl text-[#D4AF37] font-inter font-semibold">
                           {phase.period}
                         </p>
                       </div>
@@ -125,7 +125,7 @@ const ImplementationTimeline = () => {
                       animate={{ rotate: expandedPhase === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown className="w-8 h-8 text-[#D4AF37]" />
+                      <ChevronDown className="w-10 h-10 text-[#D4AF37]" />
                     </motion.div>
                   </button>
 
@@ -138,43 +138,43 @@ const ImplementationTimeline = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="p-8 pt-0 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div className="p-12 pt-0 grid grid-cols-1 lg:grid-cols-2 gap-16">
                           <div>
-                            <h4 className="text-2xl font-inter font-semibold text-[#D4AF37] mb-6">
+                            <h4 className="text-3xl font-inter font-semibold text-[#D4AF37] mb-8">
                               Key Deliverables
                             </h4>
-                            <ul className="space-y-3">
+                            <ul className="space-y-4">
                               {phase.deliverables.map((deliverable, idx) => (
                                 <motion.li
                                   key={idx}
-                                  className="flex items-start gap-4"
+                                  className="flex items-start gap-6"
                                   initial={{ opacity: 0, x: 20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ duration: 0.3, delay: idx * 0.1 }}
                                 >
-                                  <div className="w-3 h-3 bg-[#D4AF37] rounded-full mt-2 flex-shrink-0" />
-                                  <span className="text-gray-300 text-lg">{deliverable}</span>
+                                  <div className="w-4 h-4 bg-[#D4AF37] rounded-full mt-3 flex-shrink-0" />
+                                  <span className="text-gray-300 text-xl">{deliverable}</span>
                                 </motion.li>
                               ))}
                             </ul>
                           </div>
                           <div>
-                            <h4 className="text-2xl font-inter font-semibold text-[#D4AF37] mb-6">
+                            <h4 className="text-3xl font-inter font-semibold text-[#D4AF37] mb-8">
                               Success Metrics
                             </h4>
-                            <ul className="space-y-3">
+                            <ul className="space-y-4">
                               {phase.successMetrics.map((metric, idx) => (
                                 <motion.li
                                   key={idx}
-                                  className="flex items-start gap-4"
+                                  className="flex items-start gap-6"
                                   initial={{ opacity: 0, x: 20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ duration: 0.3, delay: idx * 0.1 }}
                                 >
-                                  <div className="w-6 h-6 border-2 border-[#D4AF37] rounded flex items-center justify-center mt-0.5 flex-shrink-0">
-                                    <div className="w-2 h-2 bg-[#D4AF37] rounded-full" />
+                                  <div className="w-8 h-8 border-2 border-[#D4AF37] rounded flex items-center justify-center mt-1 flex-shrink-0">
+                                    <div className="w-3 h-3 bg-[#D4AF37] rounded-full" />
                                   </div>
-                                  <span className="text-gray-300 text-lg">{metric}</span>
+                                  <span className="text-gray-300 text-xl">{metric}</span>
                                 </motion.li>
                               ))}
                             </ul>

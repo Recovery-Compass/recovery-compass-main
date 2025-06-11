@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
-const SCLMethodology = () => {
+const StrategicFramework = () => {
   const [activePhase, setActivePhase] = useState(0);
 
   const phases = [
@@ -22,7 +22,7 @@ const SCLMethodology = () => {
     },
     {
       title: 'Implementation',
-      subtitle: 'Precision Execution',
+      subtitle: 'Systematic Execution',
       description: 'Structured implementation with measurable outcomes and transparent progress tracking.',
       details: [
         'Detailed implementation roadmap creation',
@@ -49,32 +49,32 @@ const SCLMethodology = () => {
   ];
 
   return (
-    <section className="py-24 px-8 relative">
+    <section className="py-32 px-8 relative">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-24"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-8">
+          <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-12">
             Strategic <span className="text-[#D4AF37]">Framework</span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Our three-phase approach ensures sustainable transformation through 
-            strategic foundation, precise implementation, and continuous optimization.
+            Our systematic three-phase approach ensures sustainable transformation through 
+            strategic foundation, systematic implementation, and continuous optimization.
           </p>
         </motion.div>
 
         {/* Phase Navigation */}
-        <div className="flex justify-center mb-16">
-          <div className="flex gap-6 p-3 bg-white/5 rounded-full backdrop-blur-sm">
+        <div className="flex justify-center mb-20">
+          <div className="flex gap-8 p-4 bg-white/5 rounded-full backdrop-blur-sm">
             {phases.map((phase, index) => (
               <button
                 key={index}
                 onClick={() => setActivePhase(index)}
-                className={`px-8 py-4 rounded-full font-inter font-semibold transition-all duration-300 text-lg ${
+                className={`px-10 py-5 rounded-full font-inter font-semibold transition-all duration-300 text-lg ${
                   activePhase === index
                     ? 'bg-[#D4AF37] text-[#101534]'
                     : 'text-gray-300 hover:text-white'
@@ -92,41 +92,42 @@ const SCLMethodology = () => {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          className="mb-24"
         >
           <Card className="bg-white/5 backdrop-blur-sm border-white/10">
-            <CardContent className="p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <CardContent className="p-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <div className="flex items-center gap-6 mb-8">
-                    <div className="text-7xl">{phases[activePhase].icon}</div>
+                  <div className="flex items-center gap-8 mb-12">
+                    <div className="text-8xl">{phases[activePhase].icon}</div>
                     <div>
-                      <h3 className="text-4xl font-playfair font-bold text-[#D4AF37]">
+                      <h3 className="text-5xl font-playfair font-bold text-[#D4AF37]">
                         {phases[activePhase].title}
                       </h3>
-                      <p className="text-xl text-gray-300 mt-2">
+                      <p className="text-2xl text-gray-300 mt-4">
                         {phases[activePhase].subtitle}
                       </p>
                     </div>
                   </div>
-                  <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                  <p className="text-xl text-gray-300 mb-10 leading-relaxed">
                     {phases[activePhase].description}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-2xl font-inter font-semibold mb-6 text-[#D4AF37]">
+                  <h4 className="text-3xl font-inter font-semibold mb-8 text-[#D4AF37]">
                     Key Deliverables
                   </h4>
-                  <ul className="space-y-4">
+                  <ul className="space-y-6">
                     {phases[activePhase].details.map((detail, index) => (
                       <motion.li
                         key={index}
-                        className="flex items-start gap-4"
+                        className="flex items-start gap-6"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                       >
-                        <div className="w-3 h-3 bg-[#D4AF37] rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-gray-300 text-lg">{detail}</span>
+                        <div className="w-4 h-4 bg-[#D4AF37] rounded-full mt-3 flex-shrink-0" />
+                        <span className="text-gray-300 text-xl">{detail}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -137,8 +138,8 @@ const SCLMethodology = () => {
         </motion.div>
 
         {/* Visual Flow */}
-        <div className="mt-20 flex justify-center">
-          <div className="flex items-center gap-12">
+        <div className="flex justify-center">
+          <div className="flex items-center gap-16">
             {phases.map((phase, index) => (
               <div key={index} className="flex items-center">
                 <motion.div
@@ -147,7 +148,7 @@ const SCLMethodology = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div 
-                    className={`w-20 h-20 rounded-full flex items-center justify-center text-3xl ${
+                    className={`w-24 h-24 rounded-full flex items-center justify-center text-4xl ${
                       index <= activePhase ? 'bg-[#D4AF37] text-[#101534]' : 'bg-white/10 text-gray-400'
                     }`}
                   >
@@ -163,7 +164,7 @@ const SCLMethodology = () => {
                   )}
                 </motion.div>
                 {index < phases.length - 1 && (
-                  <div className={`w-20 h-2 mx-6 ${
+                  <div className={`w-24 h-3 mx-8 ${
                     index < activePhase ? 'bg-[#D4AF37]' : 'bg-white/10'
                   }`} />
                 )}
@@ -176,4 +177,4 @@ const SCLMethodology = () => {
   );
 };
 
-export default SCLMethodology;
+export default StrategicFramework;
