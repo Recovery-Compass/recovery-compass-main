@@ -55,15 +55,17 @@ const InvestorNavigation = () => {
             </div>
           </div>
 
-          {/* CTA Button - Right aligned with professional styling */}
+          {/* CTA Button - Right aligned with functional contact */}
           <div className="hidden lg:flex items-center min-w-[200px] justify-end">
-            <Button 
-              variant="cta" 
-              size="default"
-              className="bg-bronze text-navy hover:bg-bronze/90 font-semibold px-6 py-2.5 transition-all duration-200"
-            >
-              Partner With Us
-            </Button>
+            <a href="mailto:partnerships@recovery-compass.org?subject=Partnership%20Discussion%20Request">
+              <Button 
+                variant="cta" 
+                size="default"
+                className="bg-bronze text-navy hover:bg-bronze/90 font-semibold px-6 py-2.5 transition-all duration-200"
+              >
+                Partner With Us
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Navigation Toggle */}
@@ -97,13 +99,15 @@ const InvestorNavigation = () => {
               </Link>
             ))}
             <div className="pt-4 px-4">
-              <Button 
-                variant="cta" 
-                size="default"
-                className="w-full bg-bronze text-navy hover:bg-bronze/90 font-semibold"
-              >
-                Partner With Us
-              </Button>
+              <a href="mailto:partnerships@recovery-compass.org?subject=Partnership%20Discussion%20Request">
+                <Button 
+                  variant="cta" 
+                  size="default"
+                  className="w-full bg-bronze text-navy hover:bg-bronze/90 font-semibold"
+                >
+                  Partner With Us
+                </Button>
+              </a>
             </div>
           </div>
         </div>

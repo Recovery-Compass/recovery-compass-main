@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Brain, Shield, Zap, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import InvestorContactSection from '../components/partnership/InvestorContactSection';
 
 const SolutionDemo = () => {
   const [activeDemo, setActiveDemo] = useState('environmental-design');
@@ -209,6 +211,9 @@ const SolutionDemo = () => {
           </div>
         </div>
       </section>
+
+      {/* Contact Section */}
+      <InvestorContactSection />
     </div>
   );
 };

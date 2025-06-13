@@ -46,13 +46,15 @@ const ContactCTA = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button 
-                      size="lg" 
-                      className="bg-[#D4AF37] hover:bg-[#D4AF37]/90 text-[#101534] font-inter font-semibold px-8 py-4 text-lg"
-                    >
-                      <Calendar className="w-5 h-5 mr-2" />
-                      Schedule Call
-                    </Button>
+                    <a href="mailto:partnerships@recovery-compass.org?subject=Partnership%20Discussion%20Request&body=I%20would%20like%20to%20schedule%20a%20partnership%20discussion%20to%20explore%20collaboration%20opportunities.">
+                      <Button 
+                        size="lg" 
+                        className="bg-[#D4AF37] hover:bg-[#D4AF37]/90 text-[#101534] font-inter font-semibold px-8 py-4 text-lg"
+                      >
+                        <Calendar className="w-5 h-5 mr-2" />
+                        Schedule Call
+                      </Button>
+                    </a>
                   </motion.div>
                 </div>
 
@@ -69,7 +71,9 @@ const ContactCTA = () => {
                     <Mail className="w-5 h-5 text-[#D4AF37]" />
                     <div>
                       <div className="font-inter font-semibold text-white">Direct Email</div>
-                      <div className="text-sm text-gray-400">partnerships@recoverycompass.org</div>
+                      <a href="mailto:partnerships@recovery-compass.org" className="text-sm text-gray-400 hover:text-[#D4AF37] transition-colors">
+                        partnerships@recovery-compass.org
+                      </a>
                     </div>
                   </motion.div>
 
@@ -80,7 +84,9 @@ const ContactCTA = () => {
                     <Phone className="w-5 h-5 text-[#D4AF37]" />
                     <div>
                       <div className="font-inter font-semibold text-white">Strategic Hotline</div>
-                      <div className="text-sm text-gray-400">(555) 123-ALLIANCE</div>
+                      <a href="tel:310-776-5741" className="text-sm text-gray-400 hover:text-[#D4AF37] transition-colors">
+                        310-776-5741
+                      </a>
                     </div>
                   </motion.div>
 
