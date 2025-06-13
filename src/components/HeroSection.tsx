@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -36,7 +37,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   }, []);
 
   const handleBeginJourney = () => {
-    navigate('/pathways');
+    navigate('/pathway-select');
   };
 
   return (
