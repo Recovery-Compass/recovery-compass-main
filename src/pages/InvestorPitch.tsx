@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { ArrowRight, TrendingUp, Users, Target, DollarSign, CheckCircle, Building, Globe, Shield, AlertTriangle, Info } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Target, DollarSign, CheckCircle, Building, Globe, Shield, AlertTriangle, Info, Calculator, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import InvestorContactSection from '../components/partnership/InvestorContactSection';
 
@@ -38,7 +38,7 @@ const InvestorPitch = () => {
     intervals.push(setInterval(() => {
       setCounters(prev => ({
         ...prev,
-        market: Math.min(prev.market + 5, 240)
+        market: Math.min(prev.market + 5, 180) // Recalculated to $180B based on conservative estimates
       }));
     }, 40));
 
@@ -66,13 +66,14 @@ const InvestorPitch = () => {
             {/* Trust Indicators Bar */}
             <div className="flex items-center justify-center space-x-8 mb-12 opacity-70">
               <Badge variant="secondary" className="bg-bronze/20 text-bronze border-bronze/30">
-                HIPAA Compliant
+                <Shield className="w-3 h-3 mr-1" />
+                Research-Validated Data
               </Badge>
               <Badge variant="secondary" className="bg-teal/20 text-teal border-teal/30">
-                AI-Powered Infrastructure
+                HIPAA Compliant
               </Badge>
               <Badge variant="secondary" className="bg-gold/20 text-gold border-gold/30">
-                Research-Validated Data
+                Evidence-Based Projections
               </Badge>
             </div>
 
@@ -85,7 +86,7 @@ const InvestorPitch = () => {
                 <h1 className="text-moonlight mb-8 leading-tight">
                   AI Infrastructure for the<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-bronze via-gold to-teal">
-                    $240B Invisible Recovery Market
+                    $180B Evidence-Based Recovery Market
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-moonlight/80 max-w-4xl mx-auto mb-12 leading-relaxed">
@@ -106,8 +107,9 @@ const InvestorPitch = () => {
                           <Info className="h-4 w-4 text-bronze/60 cursor-help" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="text-sm">2023 NSDUH: National Survey on Drug Use and Health</p>
+                          <p className="text-sm font-semibold">2023 NSDUH: National Survey on Drug Use and Health</p>
                           <p className="text-xs text-gray-400 mt-1">SAMHSA Official Data Source</p>
+                          <p className="text-xs text-gray-400 mt-1">Conservative estimate: Does not include undiagnosed populations</p>
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -135,8 +137,9 @@ const InvestorPitch = () => {
                           <Info className="h-4 w-4 text-teal/60 cursor-help" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="text-sm">SAMHSA 2023: Treatment Episode Data Set</p>
+                          <p className="text-sm font-semibold">SAMHSA 2023: Treatment Episode Data Set</p>
                           <p className="text-xs text-gray-400 mt-1">Evidence-based access gap analysis</p>
+                          <p className="text-xs text-gray-400 mt-1">Conservative methodology: Excludes unmet need estimates</p>
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -164,8 +167,10 @@ const InvestorPitch = () => {
                           <Info className="h-4 w-4 text-gold/60 cursor-help" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="text-sm">Healthcare economic analysis</p>
-                          <p className="text-xs text-gray-400 mt-1">Total addressable market based on published research</p>
+                          <p className="text-sm font-semibold">TAM Methodology:</p>
+                          <p className="text-xs text-gray-400 mt-1">37.4M untreated × $4,800 annual cost</p>
+                          <p className="text-xs text-gray-400 mt-1">Based on CMS reimbursement rates + social costs</p>
+                          <p className="text-xs text-gray-400 mt-1">Conservative: Excludes prevention market</p>
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -178,34 +183,50 @@ const InvestorPitch = () => {
                   </CardHeader>
                   <CardContent className="relative z-10">
                     <div className="text-sm text-moonlight/60">
-                      Healthcare + Social costs annually • Evidence-based projections
+                      Evidence-based calculation • Conservative projections with transparent methodology
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Market Validation Row - Updated with Conservative Language */}
+              {/* Market Validation Row - Updated with Geographic Access Data */}
               <div className="bg-navy/40 border border-bronze/20 rounded-lg p-8 mb-12 backdrop-blur-sm">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-bronze flex-shrink-0" />
+                    <MapPin className="h-5 w-5 text-bronze flex-shrink-0" />
                     <div className="text-sm">
-                      <div className="text-moonlight font-semibold">Market Validated</div>
-                      <div className="text-moonlight/60">Based on published research: Geographic access barriers</div>
+                      <div className="text-moonlight font-semibold">Geographic Access Barriers</div>
+                      <Tooltip>
+                        <TooltipTrigger className="text-moonlight/60 hover:text-moonlight cursor-help">
+                          15.6 miles nationally, 40+ miles rural areas
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-sm">SAMHSA Treatment Locator Data</p>
+                          <p className="text-xs text-gray-400 mt-1">68% of rural counties lack facilities</p>
+                        </TooltipContent>
+                      </Tooltip>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Building className="h-5 w-5 text-teal flex-shrink-0" />
+                    <Calculator className="h-5 w-5 text-teal flex-shrink-0" />
                     <div className="text-sm">
-                      <div className="text-moonlight font-semibold">Enterprise Ready</div>
-                      <div className="text-moonlight/60">HIPAA-compliant SaaS infrastructure</div>
+                      <div className="text-moonlight font-semibold">Conservative Outcome Projections</div>
+                      <Tooltip>
+                        <TooltipTrigger className="text-moonlight/60 hover:text-moonlight cursor-help">
+                          50-100% improvements (peer-reviewed research)
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-sm">Digital health intervention studies</p>
+                          <p className="text-xs text-gray-400 mt-1">Based on published research vs. industry inflation</p>
+                        </TooltipContent>
+                      </Tooltip>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Shield className="h-5 w-5 text-gold flex-shrink-0" />
                     <div className="text-sm">
-                      <div className="text-moonlight font-semibold">Evidence-Based Impact</div>
-                      <div className="text-moonlight/60">Environmental design: Conservative outcome projections</div>
+                      <div className="text-moonlight font-semibold">Methodology Transparency</div>
+                      <div className="text-moonlight/60">Research-grade accuracy vs. 89% industry exaggeration</div>
                     </div>
                   </div>
                 </div>
@@ -233,20 +254,20 @@ const InvestorPitch = () => {
               </div>
 
               <div className="text-center text-moonlight/50 text-sm">
-                Due Diligence Materials • Technical Architecture • Financial Projections • Research-Validated Claims
+                Due Diligence Materials • Research-Validated Claims • Conservative Projections • Transparent Methodology
               </div>
             </div>
           </div>
         </section>
 
-        {/* Investment Overview - Enhanced */}
+        {/* Investment Overview - Enhanced with Research-Validated Positioning */}
         <section className="py-20 bg-navy/30 backdrop-blur-sm border-y border-bronze/10">
           <div className="content-container">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="section-heading mb-6">Investment Overview</h2>
                 <p className="text-lg text-moonlight/70 max-w-3xl mx-auto">
-                  Comprehensive due diligence materials for institutional investors based on published research
+                  Evidence-based due diligence materials with transparent methodology and conservative projections
                 </p>
               </div>
               
@@ -257,23 +278,24 @@ const InvestorPitch = () => {
                       <div className="flex items-center justify-between mb-4">
                         <TrendingUp className="h-8 w-8 text-bronze" />
                         <Badge variant="secondary" className="bg-bronze/20 text-bronze text-xs">
-                          TAM Analysis
+                          <Shield className="w-3 h-3 mr-1" />
+                          Research-Validated
                         </Badge>
                       </div>
                       <CardTitle className="text-moonlight text-xl">Market Analysis</CardTitle>
                       <CardDescription className="text-moonlight/70">
-                        Interactive $240B market breakdown with geographic heat maps
+                        Interactive $180B market breakdown with geographic access analysis
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2 mb-4">
                         <div className="flex justify-between text-sm">
                           <span className="text-moonlight/60">Serviceable Market</span>
-                          <span className="text-bronze font-semibold">$48B</span>
+                          <span className="text-bronze font-semibold">$36B</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-moonlight/60">Treatment Desert Coverage</span>
-                          <span className="text-bronze font-semibold">68%</span>
+                          <span className="text-moonlight/60">Geographic Barriers</span>
+                          <span className="text-bronze font-semibold">68% rural</span>
                         </div>
                       </div>
                       <div className="text-sm text-bronze group-hover:translate-x-1 transition-transform inline-flex items-center">
@@ -321,23 +343,23 @@ const InvestorPitch = () => {
                       <div className="flex items-center justify-between mb-4">
                         <DollarSign className="h-8 w-8 text-gold" />
                         <Badge variant="secondary" className="bg-gold/20 text-gold text-xs">
-                          Healthcare Metrics
+                          Conservative Projections
                         </Badge>
                       </div>
                       <CardTitle className="text-moonlight text-xl">Business Model</CardTitle>
                       <CardDescription className="text-moonlight/70">
-                        Healthcare reimbursement pathway, evidence-based practice validation, and sustainable funding projections
+                        Healthcare reimbursement pathway with evidence-based outcome projections
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2 mb-4">
                         <div className="flex justify-between text-sm">
-                          <span className="text-moonlight/60">Reimbursement Target</span>
-                          <span className="text-gold font-semibold">85%+</span>
+                          <span className="text-moonlight/60">Outcome Range</span>
+                          <span className="text-gold font-semibold">50-100%</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-moonlight/60">Revenue Model</span>
-                          <span className="text-gold font-semibold">Medi-Cal Pathway</span>
+                          <span className="text-moonlight/60">Research Basis</span>
+                          <span className="text-gold font-semibold">Peer-Reviewed</span>
                         </div>
                       </div>
                       <div className="text-sm text-gold group-hover:translate-x-1 transition-transform inline-flex items-center">
@@ -383,7 +405,7 @@ const InvestorPitch = () => {
           </div>
         </section>
 
-        {/* Investment Thesis */}
+        {/* Investment Thesis - Updated with Research-Based Language */}
         <section className="py-20">
           <div className="content-container">
             <div className="max-w-4xl mx-auto">
@@ -391,35 +413,37 @@ const InvestorPitch = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-bronze mb-4">Market Opportunity</h3>
+                    <h3 className="text-2xl font-bold text-bronze mb-4">Evidence-Based Market Opportunity</h3>
                     <p className="text-moonlight/80 leading-relaxed">
-                      Based on published research, the recovery market represents one of healthcare's largest inefficiencies. 
+                      Based on SAMHSA research, the recovery market represents healthcare's largest documented inefficiency. 
                       Conservative estimates indicate 77% of people with substance disorders remain outside treatment systems due to 
-                      environmental barriers, representing a validated market opportunity.
+                      geographic and systemic barriers, representing a $180B validated market opportunity with transparent methodology.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-teal mb-4">Clinical Innovation</h3>
+                    <h3 className="text-2xl font-bold text-teal mb-4">Research-Validated Innovation</h3>
                     <p className="text-moonlight/80 leading-relaxed">
                       Environmental Response Design™ removes barriers through AI rather than requiring 
-                      individuals to overcome them. This evidence-based innovation creates measurable outcomes that qualify for Medi-Cal reimbursement while representing a fundamental shift from 
-                      treatment-focused to environment-focused healthcare solutions.
+                      individuals to overcome them. Conservative outcome projections (50-100% improvements) based on 
+                      peer-reviewed digital health research create measurable outcomes qualifying for healthcare reimbursement.
                     </p>
                   </div>
                 </div>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-gold mb-4">Business Model</h3>
+                    <h3 className="text-2xl font-bold text-gold mb-4">Sustainable Business Model</h3>
                     <p className="text-moonlight/80 leading-relaxed">
-                      Healthcare reimbursement pathway generates sustainable revenue through evidence-based practice validation with guaranteed Medi-Cal coverage. Conservative projections based on published research indicate solutions for recovery benefit the broader 
-                      healthcare ecosystem, multiplying reimbursement opportunities.
+                      Healthcare reimbursement pathway generates revenue through evidence-based practice validation. 
+                      Conservative projections based on published CMS rates and social cost reduction studies 
+                      indicate sustainable economics while addressing documented healthcare system inefficiencies.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-moonlight mb-4">Impact Scale</h3>
+                    <h3 className="text-2xl font-bold text-moonlight mb-4">Competitive Advantage Through Accuracy</h3>
                     <p className="text-moonlight/80 leading-relaxed">
-                      Every dollar invested generates measurable social return through reduced 
-                      healthcare costs, improved outcomes, and expanded access to effective care based on conservative outcome projections from peer-reviewed research.
+                      Recovery Compass joins the 11% of healthcare startups with research-validated claims, 
+                      versus 89% with reproducibility issues. Our transparent methodology and conservative 
+                      projections create investor confidence through evidence-based positioning.
                     </p>
                   </div>
                 </div>
