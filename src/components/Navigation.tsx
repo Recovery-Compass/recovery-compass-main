@@ -2,7 +2,15 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 import CompassLogo from './CompassLogo';
 
 export const Navigation = () => {
@@ -10,12 +18,22 @@ export const Navigation = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
+  const isHomePage = location.pathname === '/';
 
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/compass-companion', label: 'Compass Companion' },
     { path: '/impact-translator', label: 'Impact Translator' },
     { path: '/partnership-proposals', label: 'Partnership' },
+  ];
+
+  const investorPages = [
+    { path: '/investor-pitch', label: 'Overview' },
+    { path: '/market-analysis', label: 'Market Analysis' },
+    { path: '/solution-demo', label: 'Solution Demo' },
+    { path: '/business-model', label: 'Business Model' },
+    { path: '/impact-metrics', label: 'Impact Metrics' },
+    { path: '/roadmap', label: 'Roadmap' }
   ];
 
   return (
@@ -46,6 +64,32 @@ export const Navigation = () => {
                 </Button>
               </Link>
             ))}
+            
+            {/* Investors Dropdown - Only show if not on home page */}
+            {!isHomePage && (
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm text-moonlight hover:text-bronze hover:bg-bronze/10 bg-transparent border-none">
+                      Investors
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        {investorPages.map((page) => (
+                          <Link key={page.path} to={page.path}>
+                            <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-bronze/10 hover:text-bronze focus:bg-bronze/10 focus:text-bronze">
+                              <div className="text-sm font-medium leading-none text-moonlight">
+                                {page.label}
+                              </div>
+                            </NavigationMenuLink>
+                          </Link>
+                        ))}
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -81,6 +125,31 @@ export const Navigation = () => {
                   </Button>
                 </Link>
               ))}
+              
+              {/* Mobile Investors Section - Only show if not on home page */}
+              {!isHomePage && (
+                <>
+                  <div className="pt-2 pb-1">
+                    <div className="text-moonlight/60 text-sm font-medium px-4">
+                      Investors
+                    </div>
+                  </div>
+                  {investorPages.map((page) => (
+                    <Link
+                      key={page.path}
+                      to={page.path}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-moonlight/80 hover:text-bronze hover:bg-bronze/10 pl-8"
+                      >
+                        {page.label}
+                      </Button>
+                    </Link>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         )}
