@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -22,64 +21,64 @@ const PartnershipProposals: React.FC = () => {
   const [activePhase, setActivePhase] = useState(0);
   const [expandedTimeline, setExpandedTimeline] = useState(0);
 
-  // Metrics data
+  // Generic metrics data - NO CLIENT-SPECIFIC PRICING
   const metrics: MetricCard[] = [
     {
-      title: 'Monthly Investment',
-      value: '$2,750',
-      description: 'Complete strategic infrastructure',
+      title: 'Custom Investment',
+      value: 'Tailored',
+      description: 'Strategic solutions designed for your organization',
       icon: '💰'
     },
     {
       title: 'Efficiency Gain',
-      value: '40%',
-      description: 'Operational optimization',
+      value: '30-50%',
+      description: 'Typical operational optimization range',
       icon: '📈'
     },
     {
-      title: 'Deployment Timeline',
-      value: '30 Days',
-      description: 'Rapid implementation',
+      title: 'Implementation',
+      value: '30-90 Days',
+      description: 'Depends on organizational scope',
       icon: '🚀'
     },
     {
-      title: 'Response Time',
-      value: '24 Hours',
-      description: 'Strategic support guarantee',
+      title: 'Support Response',
+      value: '24-48 Hours',
+      description: 'Strategic support availability',
       icon: '⚡'
     }
   ];
 
-  // Framework phases
+  // Generic framework phases
   const frameworkPhases = [
     {
-      title: 'Foundation',
-      description: 'Comprehensive organizational assessment and strategic framework development',
+      title: 'Assessment',
+      description: 'Comprehensive organizational evaluation and strategic framework development',
       details: [
         'Organizational needs assessment',
         'Strategic framework customization',
-        'Leadership alignment',
-        'Cultural preparation'
+        'Leadership alignment sessions',
+        'Implementation planning'
       ]
     },
     {
       title: 'Implementation',
-      description: 'Structured deployment with measurable outcomes and transparent progress tracking',
+      description: 'Structured deployment with measurable outcomes and progress tracking',
       details: [
-        'Implementation roadmap creation',
+        'Phased implementation approach',
         'Performance metrics establishment',
         'Quality assurance protocols',
-        'Communication systems'
+        'Team training and onboarding'
       ]
     },
     {
       title: 'Optimization',
-      description: 'Continuous improvement that transforms investment into sustained excellence',
+      description: 'Continuous improvement and partnership evolution',
       details: [
-        'Continuous improvement',
-        'Success documentation',
-        'Partnership expansion',
-        'Strategic evolution'
+        'Performance monitoring',
+        'Continuous improvement processes',
+        'Strategic partnership development',
+        'Long-term growth planning'
       ]
     }
   ];
@@ -89,9 +88,9 @@ const PartnershipProposals: React.FC = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-6xl mx-auto">
-          {/* Prominent Logos */}
+          {/* Recovery Compass Branding */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 mb-12 sm:mb-16"
+            className="flex justify-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -106,19 +105,6 @@ const PartnershipProposals: React.FC = () => {
               </div>
               <span className="text-lg sm:text-2xl font-black">Recovery Compass</span>
             </div>
-            
-            <div className="w-16 sm:w-32 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 sm:w-48 sm:h-48 flex items-center justify-center mb-4">
-                <img 
-                  src="/lovable-uploads/65a65ff0-be2f-4c63-ba8d-b74745f07a46.png" 
-                  alt="Whittier First Day" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-lg sm:text-2xl font-black">Whittier First Day</span>
-            </div>
           </motion.div>
 
           {/* Title */}
@@ -132,19 +118,19 @@ const PartnershipProposals: React.FC = () => {
             <span className="block text-[#D4AF37] mt-2 sm:mt-4">Framework</span>
           </motion.h1>
 
-          {/* Clean Subtitle - NO SYMBOLS */}
+          {/* Subtitle */}
           <motion.p
             className="text-lg sm:text-xl md:text-2xl font-light text-gray-300 mb-12 sm:mb-16 font-['Montserrat',sans-serif] font-300 px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Collaborative Excellence Through Strategic Integration
+            Transforming Organizations Through Strategic AI Integration
           </motion.p>
         </div>
       </section>
 
-      {/* Partnership Overview Metrics */}
+      {/* Partnership Overview */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -154,7 +140,7 @@ const PartnershipProposals: React.FC = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Partnership <span className="text-[#D4AF37]">Overview</span>
+            Partnership <span className="text-[#D4AF37]">Approach</span>
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -236,109 +222,8 @@ const PartnershipProposals: React.FC = () => {
         </div>
       </section>
 
-      {/* Implementation Timeline */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 font-['Montserrat',sans-serif] font-700"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Implementation <span className="text-[#D4AF37]">Timeline</span>
-          </motion.h2>
-
-          <div className="space-y-6 sm:space-y-8">
-            {[
-              {
-                period: '30 Days',
-                title: 'Foundation Phase',
-                deliverables: ['Strategic assessment completion', 'Framework customization', 'Team onboarding', 'Initial metrics baseline'],
-                successMetrics: ['100% assessment coverage', 'Framework approval', 'Team certification']
-              },
-              {
-                period: '60 Days',
-                title: 'Implementation Phase',
-                deliverables: ['Full system deployment', 'Process optimization', 'Performance tracking', 'Quality assurance'],
-                successMetrics: ['System operational', '90% process compliance', 'Metrics tracking active']
-              },
-              {
-                period: '90 Days',
-                title: 'Optimization Phase',
-                deliverables: ['Performance review', 'Continuous improvement', 'Expansion planning', 'Partnership evolution'],
-                successMetrics: ['Target metrics achieved', 'Improvement plan active', 'Partnership expansion ready']
-              }
-            ].map((phase, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/10 rounded-2xl overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <button
-                  onClick={() => setExpandedTimeline(expandedTimeline === index ? -1 : index)}
-                  className="w-full p-6 sm:p-8 text-left hover:bg-white/5 transition-colors duration-300"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[#D4AF37] text-lg sm:text-xl font-bold font-['Montserrat',sans-serif] font-700">{phase.period}</span>
-                      <h3 className="text-xl sm:text-2xl font-bold mt-2 font-['Montserrat',sans-serif] font-700">{phase.title}</h3>
-                    </div>
-                    <div className={`text-xl sm:text-2xl transition-transform duration-300 ${
-                      expandedTimeline === index ? 'rotate-180' : ''
-                    }`}>
-                      ⌄
-                    </div>
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {expandedTimeline === index && (
-                    <motion.div
-                      className="px-6 sm:px-8 pb-6 sm:pb-8"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                        <div>
-                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37] font-['Montserrat',sans-serif] font-700">Deliverables</h4>
-                          <ul className="space-y-2">
-                            {phase.deliverables.map((item, i) => (
-                              <li key={i} className="flex items-start font-['Montserrat',sans-serif] font-400 text-sm sm:text-base">
-                                <span className="text-[#D4AF37] mr-3 mt-1 flex-shrink-0">✓</span>
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-bold mb-4 text-[#D4AF37] font-['Montserrat',sans-serif] font-700">Success Metrics</h4>
-                          <ul className="space-y-2">
-                            {phase.successMetrics.map((metric, i) => (
-                              <li key={i} className="flex items-start font-['Montserrat',sans-serif] font-400 text-sm sm:text-base">
-                                <span className="text-[#D4AF37] mr-3 mt-1 flex-shrink-0">📊</span>
-                                {metric}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Partnership Benefits */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white/5">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 font-['Montserrat',sans-serif] font-700"
@@ -360,15 +245,15 @@ const PartnershipProposals: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center font-['Montserrat',sans-serif] font-700">
-                Recovery Compass <span className="text-[#D4AF37]">Provides</span>
+                Recovery Compass <span className="text-[#D4AF37]">Delivers</span>
               </h3>
               <div className="space-y-3 sm:space-y-4">
                 {[
-                  'Strategic framework development',
-                  'Implementation expertise',
-                  'Performance optimization',
-                  'Continuous improvement',
-                  '24/7 strategic support',
+                  'Custom AI integration strategies',
+                  'Implementation expertise and support',
+                  'Performance optimization systems',
+                  'Continuous improvement frameworks',
+                  'Strategic consulting and guidance',
                   'Quality assurance protocols'
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center">
@@ -381,7 +266,7 @@ const PartnershipProposals: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Whittier First Day Receives */}
+            {/* Partner Organizations Receive */}
             <motion.div
               className="bg-white/10 rounded-3xl p-6 sm:p-8"
               initial={{ opacity: 0, x: 30 }}
@@ -390,16 +275,16 @@ const PartnershipProposals: React.FC = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center font-['Montserrat',sans-serif] font-700">
-                Whittier First Day <span className="text-[#D4AF37]">Receives</span>
+                Your Organization <span className="text-[#D4AF37]">Receives</span>
               </h3>
               <div className="space-y-3 sm:space-y-4">
                 {[
-                  'Operational excellence framework',
-                  'Measurable efficiency gains',
-                  'Reduced operational complexity',
-                  'Enhanced strategic capability',
-                  'Competitive market advantage',
-                  'Sustainable growth foundation'
+                  'Operational excellence transformation',
+                  'Measurable efficiency improvements',
+                  'Reduced complexity and overhead',
+                  'Enhanced strategic capabilities',
+                  'Competitive market advantages',
+                  'Sustainable growth foundations'
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-center">
                     <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#D4AF37] rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
@@ -414,8 +299,8 @@ const PartnershipProposals: React.FC = () => {
         </div>
       </section>
 
-      {/* Terms & Investment */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      {/* Contact Section - Generic */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 font-['Montserrat',sans-serif] font-700"
@@ -424,36 +309,36 @@ const PartnershipProposals: React.FC = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Terms & <span className="text-[#D4AF37]">Investment</span>
+            Ready to <span className="text-[#D4AF37]">Partner</span>?
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                title: 'Financial Framework',
+                title: 'Discovery Call',
                 items: [
-                  '$2,750 monthly investment',
-                  'Complete infrastructure included',
-                  'No hidden fees or charges',
-                  'Transparent pricing model'
+                  'Initial consultation',
+                  'Needs assessment',
+                  'Strategic alignment',
+                  'Custom proposal development'
                 ]
               },
               {
-                title: 'Governance Structure',
+                title: 'Partnership Structure',
                 items: [
-                  'Joint steering committee',
-                  'Quarterly business reviews',
-                  'Performance dashboards',
-                  'Strategic planning sessions'
+                  'Flexible engagement models',
+                  'Transparent communication',
+                  'Performance-based outcomes',
+                  'Long-term strategic relationships'
                 ]
               },
               {
-                title: 'Risk Mitigation',
+                title: 'Implementation',
                 items: [
-                  '30-day notice termination',
-                  'Data protection guarantee',
-                  'Service level agreements',
-                  'Continuous monitoring'
+                  'Phased deployment approach',
+                  'Dedicated support team',
+                  'Continuous monitoring',
+                  'Success measurement'
                 ]
               }
             ].map((section, index) => (
@@ -480,7 +365,7 @@ const PartnershipProposals: React.FC = () => {
         </div>
       </section>
 
-      {/* Ultra-Classy Closing Section */}
+      {/* Professional Closing Section */}
       <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-[#101534]">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -490,11 +375,11 @@ const PartnershipProposals: React.FC = () => {
             transition={{ duration: 1.2 }}
             viewport={{ once: true }}
           >
-            {/* Elegant Quote */}
+            {/* Professional Quote */}
             <div className="border-l-4 border-[#D4AF37] pl-6 sm:pl-8 text-left max-w-2xl mx-auto">
               <p className="text-lg sm:text-xl md:text-2xl font-light italic text-gray-200 leading-relaxed font-['Montserrat',sans-serif] font-300">
-                "True partnership is built on mutual respect, shared vision, and unwavering commitment to excellence. 
-                It's not about what we can take, but what we can build together."
+                "Strategic partnerships are built on trust, expertise, and shared commitment to excellence. 
+                Every collaboration is unique, designed specifically for your organization's goals."
               </p>
             </div>
 
@@ -505,7 +390,7 @@ const PartnershipProposals: React.FC = () => {
               <div className="w-12 sm:w-16 h-px bg-[#D4AF37]"></div>
             </div>
 
-            {/* Eric's Signature Section */}
+            {/* Eric's Professional Section */}
             <div className="space-y-4 sm:space-y-6">
               <div className="text-center">
                 <h3 className="text-3xl sm:text-4xl font-light text-[#D4AF37] mb-2 font-['Montserrat',sans-serif] font-300">
@@ -532,10 +417,10 @@ const PartnershipProposals: React.FC = () => {
                   Strategic Partnership Inquiries
                 </p>
                 <a 
-                  href="mailto:eric@recovery-compass.org"
+                  href="mailto:partnerships@recovery-compass.org"
                   className="text-[#D4AF37] text-lg font-medium hover:text-[#D4AF37]/80 transition-colors duration-300 font-['Montserrat',sans-serif] font-600 break-all"
                 >
-                  eric@recovery-compass.org
+                  partnerships@recovery-compass.org
                 </a>
               </div>
             </div>
@@ -543,7 +428,7 @@ const PartnershipProposals: React.FC = () => {
             {/* Final Professional Touch */}
             <div className="pt-8 sm:pt-12 border-t border-white/20">
               <p className="text-sm text-gray-500 font-['Montserrat',sans-serif] font-300 px-4">
-                Building partnerships that honor both organizations and the communities we serve
+                All partnership discussions are confidential and tailored to your organization's specific needs
               </p>
             </div>
           </motion.div>
@@ -554,4 +439,3 @@ const PartnershipProposals: React.FC = () => {
 };
 
 export default PartnershipProposals;
-
