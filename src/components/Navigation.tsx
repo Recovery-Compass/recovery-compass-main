@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -36,14 +35,23 @@ export const Navigation = () => {
     { path: '/roadmap', label: 'Roadmap' }
   ];
 
+  // Close mobile menu when clicking outside
+  const handleMobileMenuClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="bg-navy/95 backdrop-blur-sm border-b border-bronze/20 sticky top-0 z-50">
       <div className="content-container">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <CompassLogo className="w-10 h-10" />
-            <span className="text-bronze font-black text-xl tracking-tight">
+          <Link 
+            to="/" 
+            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-bronze rounded-lg p-1"
+            aria-label="Recovery Compass Home"
+          >
+            <CompassLogo className="w-8 h-8 sm:w-10 sm:h-10" size="sm" priority />
+            <span className="text-bronze font-black text-lg sm:text-xl tracking-tight">
               Recovery Compass
             </span>
           </Link>
@@ -59,6 +67,7 @@ export const Navigation = () => {
                       ? 'bg-bronze text-navy' 
                       : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
                   }`}
+                  aria-current={isActive(item.path) ? 'page' : undefined}
                 >
                   {item.label}
                 </Button>
@@ -96,8 +105,11 @@ export const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden text-moonlight"
+            className="md:hidden text-moonlight focus:ring-2 focus:ring-bronze"
             onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -105,13 +117,18 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-bronze/20">
+          <div 
+            id="mobile-menu"
+            className="md:hidden py-4 border-t border-bronze/20"
+            role="menu"
+          >
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleMobileMenuClose}
+                  role="menuitem"
                 >
                   <Button
                     variant={isActive(item.path) ? "default" : "ghost"}
@@ -120,6 +137,7 @@ export const Navigation = () => {
                         ? 'bg-bronze text-navy' 
                         : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
                     }`}
+                    aria-current={isActive(item.path) ? 'page' : undefined}
                   >
                     {item.label}
                   </Button>
@@ -138,7 +156,8 @@ export const Navigation = () => {
                     <Link
                       key={page.path}
                       to={page.path}
-                      onClick={() => setIsOpen(false)}
+                      onClick={handleMobileMenuClose}
+                      role="menuitem"
                     >
                       <Button
                         variant="ghost"

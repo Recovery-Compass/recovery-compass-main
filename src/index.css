@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,23 +43,45 @@
 
   html {
     @apply scroll-smooth;
+    /* Prevent horizontal scroll issues */
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-navy text-foreground font-montserrat;
+    /* Prevent horizontal scroll issues */
     overflow-x: hidden;
+    /* Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
+  /* Improved heading hierarchy */
   h1 {
     @apply font-montserrat font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[48px] uppercase tracking-[-0.5px] leading-tight text-center;
+    /* Better text rendering for large headings */
+    text-rendering: optimizeLegibility;
   }
   
   h2 {
-    @apply font-montserrat font-black text-3xl md:text-4xl lg:text-[36px] leading-tight;
+    @apply font-montserrat font-black text-xl sm:text-2xl md:text-3xl lg:text-[36px] leading-tight;
   }
   
   h3 {
-    @apply font-montserrat font-black text-2xl md:text-3xl lg:text-[28px] leading-tight;
+    @apply font-montserrat font-black text-lg sm:text-xl md:text-2xl lg:text-[28px] leading-tight;
+  }
+
+  /* Improve focus accessibility */
+  *:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Better button focus states */
+  button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
@@ -70,15 +91,15 @@
   }
   
   .section-padding {
-    @apply py-24 md:py-32;
+    @apply py-16 sm:py-20 md:py-24 lg:py-32;
   }
   
   .section-heading {
-    @apply font-montserrat font-black text-3xl md:text-4xl lg:text-[36px] mb-6 text-bronze leading-tight;
+    @apply font-montserrat font-black text-2xl sm:text-3xl md:text-4xl lg:text-[36px] mb-6 text-bronze leading-tight;
   }
   
   .section-subheading {
-    @apply font-montserrat text-xl md:text-2xl mb-10 text-moonlight/90;
+    @apply font-montserrat text-lg sm:text-xl md:text-2xl mb-10 text-moonlight/90;
   }
   
   .transition-all-slow {
@@ -93,6 +114,7 @@
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
 
+  /* Improved animation utilities */
   .vertical-reveal {
     overflow: hidden;
   }
@@ -112,7 +134,7 @@
     box-shadow: 0 0 15px rgba(179, 153, 111, 0.5);
   }
   
-  /* Quote-specific animations */
+  /* Improved quote animations */
   .quote-fade-in {
     animation: quote-fade 1.5s forwards;
   }
@@ -157,7 +179,7 @@
     }
   }
 
-  /* Compass Companion specific animations */
+  /* Improved compass animations */
   @keyframes draw-circle {
     0% {
       stroke-dashoffset: 283;
@@ -231,5 +253,27 @@
 
   .animate-float {
     animation: float 8s ease-in-out infinite;
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Better responsive typography */
+  @media (max-width: 640px) {
+    .section-heading {
+      @apply text-xl;
+    }
+    
+    .section-subheading {
+      @apply text-base;
+    }
   }
 }
