@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -88,7 +87,7 @@ const PartnershipProposals: React.FC = () => {
       {/* Hero Section - Significantly larger logo and better spacing */}
       <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-6xl mx-auto">
-          {/* Recovery Compass Branding - Much larger logo */}
+          {/* Recovery Compass Branding - Much larger logo with enhanced typography */}
           <motion.div
             className="flex justify-center mb-12"
             initial={{ opacity: 0, y: 30 }}
@@ -96,21 +95,31 @@ const PartnershipProposals: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="flex flex-col items-center">
-              <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 flex items-center justify-center mb-8">
+              {/* Enlarged Logo Container - 300% scale */}
+              <div className="w-72 h-72 sm:w-96 sm:h-96 lg:w-[32rem] lg:h-[32rem] flex items-center justify-center mb-12">
                 <img 
                   src="/lovable-uploads/95effcc8-1040-400d-ae6d-a6bec88d761a.png" 
                   alt="Recovery Compass" 
                   className="w-full h-full object-contain"
+                  style={{
+                    filter: 'contrast(1.1) brightness(1.05)',
+                    imageRendering: 'crisp-edges'
+                  }}
                 />
               </div>
+              {/* Enhanced Typography - Montserrat Black with OpenType Features */}
               <span 
-                className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-wider"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-wider"
                 style={{ 
                   fontFamily: 'Montserrat, sans-serif',
                   fontWeight: 900,
-                  letterSpacing: '0.1em',
+                  letterSpacing: '0.15em',
                   fontKerning: 'auto',
-                  fontFeatureSettings: '"liga" 1'
+                  fontFeatureSettings: '"liga" 1, "kern" 1, "ss02" 1',
+                  fontVariantLigatures: 'common-ligatures',
+                  textRendering: 'optimizeLegibility',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale'
                 }}
               >
                 RECOVERY COMPASS
