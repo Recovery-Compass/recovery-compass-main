@@ -59,7 +59,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-montserrat">
       <CompassLogo 
         size="xl" 
         animated={true} 
@@ -70,7 +70,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       <h1 
         className={cn(
           'font-montserrat font-black text-moonlight text-shadow-lg text-center max-w-4xl',
-          'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl',
+          'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl',
           'tracking-tight leading-none',
           'transition-opacity duration-1000',
           titleVisible ? 'opacity-100' : 'opacity-0'
@@ -84,7 +84,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <p 
         className={cn(
-          'mt-4 sm:mt-6 max-w-lg text-center text-moonlight text-lg sm:text-xl px-4',
+          'mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-montserrat font-medium text-lg sm:text-xl px-4',
           'transition-all duration-1000 delay-300',
           ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
@@ -109,7 +109,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       </div>
       
       {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
-      <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
+      <div className="mt-16 text-center animate-fade-in font-montserrat" style={{ animationDelay: '1.8s' }}>
         <button
           onClick={handleDashboardClick}
           className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
@@ -119,7 +119,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
           </span>
           <div className="w-4 h-4 rounded-full bg-bronze/20 group-hover:bg-bronze/40 transition-all duration-300" />
         </button>
-        <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat">
+        <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat font-light">
           live metrics from the field
         </p>
       </div>

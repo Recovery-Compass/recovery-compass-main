@@ -44,7 +44,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-montserrat;
     scroll-behavior: smooth;
   }
 
@@ -118,11 +118,11 @@
 
 @layer components {
   .content-container {
-    @apply max-w-7xl mx-auto px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 lg:px-8 font-montserrat;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-moonlight mb-8;
+    @apply text-4xl md:text-5xl lg:text-6xl font-black text-moonlight mb-8 font-montserrat;
   }
 
   .card-shadow {
