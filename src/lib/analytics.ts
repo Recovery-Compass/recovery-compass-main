@@ -1,17 +1,32 @@
-// Analytics tracking utility with error handling and privacy considerations
+
+// Enhanced analytics service with privacy compliance and launch-ready features
 interface AnalyticsEvent {
   name: string;
   properties?: Record<string, any>;
   timestamp?: string;
+  userId?: string;
+  sessionId?: string;
+}
+
+interface PageViewData {
+  title: string;
+  path: string;
+  referrer?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
 }
 
 class AnalyticsService {
   private isEnabled: boolean;
   private events: AnalyticsEvent[] = [];
+  private sessionId: string;
+  private userId: string | null = null;
 
   constructor() {
-    // Check if analytics should be enabled (respecting user privacy)
     this.isEnabled = this.shouldEnableAnalytics();
+    this.sessionId = this.generateSessionId();
+    this.initializeAnalytics();
   }
 
   private shouldEnableAnalytics(): boolean {
@@ -20,41 +35,103 @@ class AnalyticsService {
       return false;
     }
 
-    // Check if we're in development mode
-    if (import.meta.env.DEV) {
-      return false; // Disable in development
+    // Check for consent (you can extend this with a proper consent management system)
+    const consent = localStorage.getItem('analytics_consent');
+    if (consent === 'false') {
+      return false;
+    }
+
+    // Enable in production, disable in development unless explicitly enabled
+    if (import.meta.env.DEV && !import.meta.env.VITE_ENABLE_DEV_ANALYTICS) {
+      return false;
     }
 
     return true;
   }
 
+  private generateSessionId(): string {
+    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  private initializeAnalytics(): void {
+    if (!this.isEnabled) return;
+
+    // Extract UTM parameters for campaign tracking
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmData = {
+      utm_source: urlParams.get('utm_source'),
+      utm_medium: urlParams.get('utm_medium'),
+      utm_campaign: urlParams.get('utm_campaign'),
+      utm_content: urlParams.get('utm_content'),
+      utm_term: urlParams.get('utm_term'),
+    };
+
+    // Store UTM data for session
+    if (Object.values(utmData).some(val => val !== null)) {
+      sessionStorage.setItem('utm_data', JSON.stringify(utmData));
+    }
+  }
+
+  private getUTMData(): Record<string, string | null> {
+    try {
+      const stored = sessionStorage.getItem('utm_data');
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  }
+
   trackPageView(title: string, path?: string): void {
+    const currentPath = path || window.location.pathname;
+    
     if (!this.isEnabled) {
-      console.log('Analytics disabled - Page view:', title, path || window.location.pathname);
+      if (import.meta.env.DEV) {
+        console.log('📊 Analytics disabled - Page view:', title, currentPath);
+      }
       return;
     }
 
     try {
+      const utmData = this.getUTMData();
+      const pageViewData: PageViewData = {
+        title,
+        path: currentPath,
+        referrer: document.referrer,
+        ...utmData,
+      };
+
       const event: AnalyticsEvent = {
         name: 'page_view',
         properties: {
-          title,
-          path: path || window.location.pathname,
-          referrer: document.referrer,
-          userAgent: navigator.userAgent,
+          ...pageViewData,
+          screen_resolution: `${screen.width}x${screen.height}`,
+          viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+          user_agent: navigator.userAgent,
+          language: navigator.language,
         },
         timestamp: new Date().toISOString(),
+        sessionId: this.sessionId,
+        userId: this.userId,
       };
 
       this.events.push(event);
       
-      // Update document title if provided
+      // Update document title
       if (title && title !== document.title) {
         document.title = title;
       }
 
-      // In production, you would send this to your analytics service
-      console.log('Page view tracked:', event);
+      // Special tracking for Devansh campaign
+      if (utmData.utm_source === 'devansh') {
+        this.trackEvent('devansh_referral', {
+          medium: utmData.utm_medium,
+          campaign: utmData.utm_campaign,
+        });
+      }
+
+      if (import.meta.env.DEV) {
+        console.log('📊 Page view tracked:', event);
+      }
       
     } catch (error) {
       console.error('Failed to track page view:', error);
@@ -63,7 +140,9 @@ class AnalyticsService {
 
   trackEvent(eventName: string, properties?: Record<string, any>): void {
     if (!this.isEnabled) {
-      console.log('Analytics disabled - Event:', eventName, properties);
+      if (import.meta.env.DEV) {
+        console.log('📊 Analytics disabled - Event:', eventName, properties);
+      }
       return;
     }
 
@@ -73,21 +152,38 @@ class AnalyticsService {
         properties: {
           ...properties,
           path: window.location.pathname,
+          ...this.getUTMData(),
         },
         timestamp: new Date().toISOString(),
+        sessionId: this.sessionId,
+        userId: this.userId,
       };
 
       this.events.push(event);
       
-      // In production, you would send this to your analytics service
-      console.log('Event tracked:', event);
+      if (import.meta.env.DEV) {
+        console.log('📊 Event tracked:', event);
+      }
       
     } catch (error) {
       console.error('Failed to track event:', error);
     }
   }
 
-  // Get stored events (useful for debugging or batch sending)
+  // Track business-critical events for Recovery Compass
+  trackBusinessEvent(eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request', data?: Record<string, any>): void {
+    this.trackEvent(`business_${eventType}`, {
+      ...data,
+      business_critical: true,
+    });
+  }
+
+  // Set user ID for tracking (privacy-compliant)
+  setUserId(userId: string): void {
+    this.userId = userId;
+  }
+
+  // Get analytics data for debugging
   getEvents(): AnalyticsEvent[] {
     return [...this.events];
   }
@@ -95,6 +191,16 @@ class AnalyticsService {
   // Clear stored events
   clearEvents(): void {
     this.events = [];
+  }
+
+  // Get session analytics summary
+  getSessionSummary(): { sessionId: string; eventCount: number; pageViews: number } {
+    const pageViews = this.events.filter(e => e.name === 'page_view').length;
+    return {
+      sessionId: this.sessionId,
+      eventCount: this.events.length,
+      pageViews,
+    };
   }
 }
 
@@ -108,6 +214,14 @@ export const trackPageView = (title: string, path?: string) => {
 
 export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
   analytics.trackEvent(eventName, properties);
+};
+
+export const trackBusinessEvent = (eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request', data?: Record<string, any>) => {
+  analytics.trackBusinessEvent(eventType, data);
+};
+
+export const setUserId = (userId: string) => {
+  analytics.setUserId(userId);
 };
 
 export default analytics;

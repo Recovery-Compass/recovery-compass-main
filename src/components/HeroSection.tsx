@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import CompassLogo from '@/components/CompassLogo';
 import { Button } from '@/components/ui/button';
+import { trackBusinessEvent } from '@/lib/analytics';
 
 interface HeroSectionProps {
   onNavigate: (sectionId: string) => void;
@@ -37,7 +38,24 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   }, []);
 
   const handleBeginJourney = () => {
+    // Track critical business event
+    trackBusinessEvent('journey_started', {
+      entry_point: 'hero_cta',
+      timestamp: new Date().toISOString(),
+    });
+    
     navigate('/pathway-select');
+  };
+
+  const handleDashboardClick = () => {
+    // Track demo request
+    trackBusinessEvent('demo_request', {
+      demo_type: 'dashboard_case_studies',
+      entry_point: 'hero_section',
+      timestamp: new Date().toISOString(),
+    });
+    
+    onNavigate('/wfd-attachments');
   };
 
   return (
@@ -46,6 +64,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         size="xl" 
         animated={true} 
         className="mb-6 sm:mb-8 lg:mb-10"
+        priority={true}
       />
       
       <h1 
@@ -84,21 +103,21 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         </Button>
       </div>
       
-        {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
-        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
-          <button
-            onClick={() => onNavigate('/wfd-attachments')}
-            className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
-          >
-            <span className="text-sm font-montserrat font-light tracking-wide">
-              Recovery Compass Dashboard Case Studies
-            </span>
-            <div className="w-4 h-4 rounded-full bg-bronze/20 group-hover:bg-bronze/40 transition-all duration-300" />
-          </button>
-          <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat">
-            live metrics from the field
-          </p>
-        </div>
+      {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
+      <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
+        <button
+          onClick={handleDashboardClick}
+          className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
+        >
+          <span className="text-sm font-montserrat font-light tracking-wide">
+            Recovery Compass Dashboard Case Studies
+          </span>
+          <div className="w-4 h-4 rounded-full bg-bronze/20 group-hover:bg-bronze/40 transition-all duration-300" />
+        </button>
+        <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat">
+          live metrics from the field
+        </p>
+      </div>
     </div>
   );
 };

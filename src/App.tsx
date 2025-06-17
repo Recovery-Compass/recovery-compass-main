@@ -21,21 +21,71 @@ import SolutionDemo from "./pages/SolutionDemo";
 import BusinessModel from "./pages/BusinessModel";
 import ImpactMetrics from "./pages/ImpactMetrics";
 import Roadmap from "./pages/Roadmap";
-import { trackPageView } from "./lib/analytics";
+import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 
-// Analytics wrapper component to track page views
+// Enhanced analytics wrapper with business event tracking
 const AnalyticsWrapper = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Track page view on every route change
-    trackPageView(document.title);
+    // Get page title for tracking
+    const getPageTitle = (pathname: string): string => {
+      const titleMap: Record<string, string> = {
+        '/': 'Recovery Compass - AI-Powered Addiction Recovery Platform',
+        '/compass-companion': 'Compass Companion - Recovery Compass',
+        '/impact-translator': 'Impact Translator - Recovery Compass',
+        '/partnership-proposals': 'Partnership Proposals - Recovery Compass',
+        '/pathway-select': 'Pathway Select - Recovery Compass',
+        '/make-integration': 'Make Integration - Recovery Compass',
+        '/investor-pitch': 'Investor Pitch - Recovery Compass',
+        '/market-analysis': 'Market Analysis - Recovery Compass',
+        '/solution-demo': 'Solution Demo - Recovery Compass',
+        '/business-model': 'Business Model - Recovery Compass',
+        '/impact-metrics': 'Impact Metrics - Recovery Compass',
+        '/roadmap': 'Roadmap - Recovery Compass',
+        '/wfd-attachments': 'Dashboard Case Studies - Recovery Compass',
+      };
+      return titleMap[pathname] || 'Recovery Compass';
+    };
+
+    const title = getPageTitle(location.pathname);
+    trackPageView(title);
+
+    // Track business-critical page views
+    if (location.pathname.startsWith('/investor-')) {
+      trackBusinessEvent('investor_page_view', {
+        page: location.pathname,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    if (location.pathname === '/pathway-select') {
+      trackBusinessEvent('journey_started', {
+        entry_point: 'pathway_select',
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    if (location.pathname === '/partnership-proposals') {
+      trackBusinessEvent('partnership_inquiry', {
+        page_view: true,
+        timestamp: new Date().toISOString(),
+      });
+    }
+
   }, [location]);
 
   return null;
 };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+  },
+});
 
 function App() {
   return (
