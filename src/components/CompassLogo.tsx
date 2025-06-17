@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -55,7 +56,7 @@ const CompassLogo = ({
           </div>
         ) : (
           <img 
-            src="/lovable-uploads/b58fecf5-5250-412d-b11c-e29a4e090138.png" 
+            src="/lovable-uploads/1b1ade82-316a-4759-895a-c7b3015b3a27.png" 
             alt="Recovery Compass Logo" 
             className={cn(
               'object-contain w-full h-full',
