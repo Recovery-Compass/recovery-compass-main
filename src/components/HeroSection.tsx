@@ -69,10 +69,15 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <h1 
         className={cn(
-          'text-bronze text-shadow-lg text-center max-w-4xl',
+          'font-montserrat font-black text-moonlight text-shadow-lg text-center max-w-4xl',
+          'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl',
+          'tracking-tight leading-none',
           'transition-opacity duration-1000',
           titleVisible ? 'opacity-100' : 'opacity-0'
         )}
+        style={{
+          letterSpacing: '-0.02em'
+        }}
       >
         RECOVERY COMPASS
       </h1>
