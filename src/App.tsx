@@ -13,6 +13,7 @@ import PartnershipProposals from "./pages/PartnershipProposals";
 import PathwaySelect from "./pages/PathwaySelect";
 import MakeIntegration from "./pages/MakeIntegration";
 import NotFound from "./pages/NotFound";
+import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
 // Investor Pages
 import InvestorPitch from "./pages/InvestorPitch";
 import MarketAnalysis from "./pages/MarketAnalysis";
@@ -114,6 +115,7 @@ function App() {
                 <MakeIntegration />
               </>
             } />
+            <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

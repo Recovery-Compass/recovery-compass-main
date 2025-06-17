@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -80,6 +79,13 @@ export default {
 				inter: ['Inter', 'sans-serif'],
 				playfair: ['Playfair Display', 'serif'],
 			},
+			// Enhanced spacing for larger logos
+			spacing: {
+				'72': '18rem',
+				'80': '20rem',
+				'96': '24rem',
+				'128': '32rem',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -112,6 +118,10 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
+				},
+				'logo-enhance': {
+					'0%': { transform: 'scale(1)', filter: 'brightness(1)' },
+					'100%': { transform: 'scale(1.02)', filter: 'brightness(1.1) contrast(1.1)' },
 				}
 			},
 			animation: {
@@ -122,6 +132,7 @@ export default {
 				'gentle-pulse': 'gentle-pulse 4s infinite',
 				'subtle-sway': 'subtle-sway 6s ease-in-out infinite',
 				'float': 'float 6s ease-in-out infinite',
+				'logo-enhance': 'logo-enhance 0.3s ease-out forwards',
 			}
 		}
 	},

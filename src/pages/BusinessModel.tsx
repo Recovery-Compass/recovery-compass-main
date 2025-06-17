@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, DollarSign, TrendingUp, Users, ArrowRight } from 'lucide-react';
+import { ArrowLeft, DollarSign, TrendingUp, Users, ArrowRight, Award, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const BusinessModel = () => {
@@ -31,11 +30,14 @@ const BusinessModel = () => {
             Back to Overview
           </Link>
           
-          <h1 className="text-moonlight mb-6">Sustainable Business Model</h1>
-          <p className="text-xl text-moonlight/80 max-w-3xl">
-            SaaS platform with recurring revenue, high gross margins, and 
-            proven unit economics that scale without grant dependency.
-          </p>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              HEALTHCARE REIMBURSEMENT PATHWAY
+            </h1>
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto">
+              Evidence-based practice model with guaranteed Medi-Cal reimbursement pathway that eliminates donation dependency through sustainable healthcare funding.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -44,84 +46,200 @@ const BusinessModel = () => {
         <div className="content-container">
           <h2 className="section-heading text-center mb-16">Revenue Streams</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <Card className="bg-bronze/20 border-bronze">
-              <CardHeader>
-                <DollarSign className="h-8 w-8 text-bronze mb-2" />
-                <CardTitle className="text-moonlight">B2B2C Partnerships</CardTitle>
-                <CardDescription className="text-moonlight/70">
-                  Healthcare systems and payers
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-black text-bronze mb-2">60%</div>
-                <div className="text-moonlight/80 text-sm">
-                  Primary revenue from institutional partnerships
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+        
+            {/* Strategic Partnership Revenue */}
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-bronze-500 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <DollarSign className="h-8 w-8 text-bronze-400 mr-3" />
+                <h3 className="text-xl font-semibold text-white">Strategic Partnership Revenue</h3>
+              </div>
+              <p className="text-slate-300 mb-4">
+                Getting paid to provide data services while accelerating evidence-based practice pathway
+              </p>
+              <div className="text-bronze-400 text-3xl font-bold mb-2">60%</div>
+              <div className="text-sm text-slate-400 mb-4">$150K-$400K annually</div>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  Data analytics partnerships
                 </div>
-                <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Per Member Per Month</span>
-                    <span className="text-bronze">$15-45</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Typical Contract</span>
-                    <span className="text-bronze">3-5 years</span>
-                  </div>
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  Clinical integration services
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="bg-teal/20 border-teal">
-              <CardHeader>
-                <Users className="h-8 w-8 text-teal mb-2" />
-                <CardTitle className="text-moonlight">Enterprise Licenses</CardTitle>
-                <CardDescription className="text-moonlight/70">
-                  Recovery organizations and clinics
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-black text-teal mb-2">30%</div>
-                <div className="text-moonlight/80 text-sm">
-                  Direct B2B software licensing
+            {/* Evidence-Based Practice Pipeline */}
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-bronze-500 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <TrendingUp className="h-8 w-8 text-bronze-400 mr-3" />
+                <h3 className="text-xl font-semibold text-white">Evidence-Based Practice Pipeline</h3>
+              </div>
+              <p className="text-slate-300 mb-4">
+                Medi-Cal/Medicaid reimbursement pathway through clinical validation
+              </p>
+              <div className="text-bronze-400 text-3xl font-bold mb-2">30%</div>
+              <div className="text-sm text-slate-400 mb-4">$75K-$200K pathway</div>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  Clinical outcome tracking
                 </div>
-                <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Annual License</span>
-                    <span className="text-teal">$50K-200K</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Implementation</span>
-                    <span className="text-teal">$25K-75K</span>
-                  </div>
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  Reimbursement documentation
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="bg-gold/20 border-gold">
-              <CardHeader>
-                <TrendingUp className="h-8 w-8 text-gold mb-2" />
-                <CardTitle className="text-moonlight">Outcome-Based Pricing</CardTitle>
-                <CardDescription className="text-moonlight/70">
-                  Performance bonuses and shared savings
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-black text-gold mb-2">10%</div>
-                <div className="text-moonlight/80 text-sm">
-                  Premium revenue from proven outcomes
+            {/* Research & Validation Revenue */}
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-bronze-500 transition-all duration-300 transform hover:-translate-y-1">
+              <div className="flex items-center mb-4">
+                <Award className="h-8 w-8 text-bronze-400 mr-3" />
+                <h3 className="text-xl font-semibold text-white">Research & Validation Revenue</h3>
+              </div>
+              <p className="text-slate-300 mb-4">
+                Academic partnerships generating validation data for reimbursement pathway
+              </p>
+              <div className="text-bronze-400 text-3xl font-bold mb-2">10%</div>
+              <div className="text-sm text-slate-400 mb-4">$25K-$80K grants</div>
+              <div className="space-y-2">
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  University collaborations
                 </div>
-                <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Success Fee</span>
-                    <span className="text-gold">10-20%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-moonlight/70">Shared Savings</span>
-                    <span className="text-gold">30-50%</span>
-                  </div>
+                <div className="flex items-center text-sm text-slate-300">
+                  <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                  Evidence generation studies
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Evidence-Based Practice Timeline */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 mb-16">
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">
+              Evidence-Based Practice Timeline to Medi-Cal Reimbursement
+            </h2>
+              
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-bronze-400 transform -translate-y-1/2"></div>
+                
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                {/* Year 1 */}
+                <div className="text-center">
+                  <div className="bg-bronze-400 w-4 h-4 rounded-full mx-auto mb-4 relative z-10"></div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Year 1</h3>
+                  <p className="text-bronze-400 text-xl font-bold mb-2">$150K</p>
+                  <p className="text-sm text-slate-300">Strategic partnerships established</p>
+                </div>
+                  
+                {/* Year 2 */}
+                <div className="text-center">
+                  <div className="bg-bronze-400 w-4 h-4 rounded-full mx-auto mb-4 relative z-10"></div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Year 2</h3>
+                  <p className="text-bronze-400 text-xl font-bold mb-2">$450K</p>
+                  <p className="text-sm text-slate-300">Clinical validation data collection</p>
+                </div>
+                  
+                {/* Year 3 */}
+                <div className="text-center">
+                  <div className="bg-bronze-400 w-4 h-4 rounded-full mx-auto mb-4 relative z-10"></div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Year 3</h3>
+                  <p className="text-bronze-400 text-xl font-bold mb-2">$1.2M</p>
+                  <p className="text-sm text-slate-300">Evidence-based practice designation</p>
+                </div>
+                  
+                {/* Year 5 */}
+                <div className="text-center">
+                  <div className="bg-green-400 w-4 h-4 rounded-full mx-auto mb-4 relative z-10"></div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Year 5</h3>
+                  <p className="text-green-400 text-xl font-bold mb-2">$8M</p>
+                  <p className="text-sm text-slate-300">Full Medi-Cal reimbursement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Strategic Multiplication Effect */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 mb-16">
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">
+              Strategic Multiplication Effect
+            </h2>
+              
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="bg-bronze-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Single Partnership</h3>
+                <p className="text-slate-300">One strategic healthcare partner provides multiple revenue streams</p>
+              </div>
+                
+              <div className="text-center">
+                <div className="bg-bronze-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Data + Evidence</h3>
+                <p className="text-slate-300">Simultaneous revenue generation and clinical validation</p>
+              </div>
+                
+              <div className="text-center">
+                <div className="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Guaranteed ROI</h3>
+                <p className="text-slate-300">Evidence-based pathway ensures Medi-Cal reimbursement</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why This Excites Impact Investors */}
+          <div className="bg-gradient-to-r from-bronze-900 to-slate-800 border border-bronze-500 rounded-lg p-8">
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">
+              Why This Model Excites Impact Investors
+            </h2>
+              
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold text-bronze-400 mb-4">Sustainable Impact</h3>
+                <ul className="space-y-2 text-slate-300">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Self-funding eliminates donation dependency
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Healthcare reimbursement provides long-term stability
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Evidence-based approach ensures clinical validity
+                  </li>
+                </ul>
+              </div>
+                
+              <div>
+                <h3 className="text-lg font-semibold text-bronze-400 mb-4">Scalable Returns</h3>
+                <ul className="space-y-2 text-slate-300">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Multiple revenue streams from single partnerships
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Clear pathway to guaranteed reimbursement
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
+                    Medi-Cal coverage ensures market expansion
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -223,7 +341,7 @@ const BusinessModel = () => {
             <CardHeader>
               <CardTitle className="text-moonlight text-center">Unit Economics</CardTitle>
               <CardDescription className="text-center text-moonlight/70">
-                SaaS metrics demonstrating sustainable growth model
+                Healthcare reimbursement metrics demonstrating sustainable growth model
               </CardDescription>
             </CardHeader>
             <CardContent>

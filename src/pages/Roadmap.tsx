@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Target, Users, Zap, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import InvestorContactSection from '../components/partnership/InvestorContactSection';
 
 const Roadmap = () => {
   const [activePhase, setActivePhase] = useState('30-day');
@@ -241,22 +242,11 @@ const Roadmap = () => {
               </div>
             </CardContent>
           </Card>
-
-          <div className="text-center mt-12">
-            <p className="text-moonlight/70 mb-6 text-lg">
-              Ready to partner with Recovery Compass in transforming recovery infrastructure?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="cta" size="cta">
-                Schedule Partnership Discussion
-              </Button>
-              <Button variant="outline" size="cta" className="border-moonlight text-moonlight hover:bg-moonlight hover:text-navy">
-                Download Executive Summary
-              </Button>
-            </div>
-          </div>
         </div>
       </section>
+
+      {/* Contact Section */}
+      <InvestorContactSection />
     </div>
   );
 };
