@@ -1,5 +1,5 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,36 +31,38 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    /* Custom Recovery Compass Colors */
+    /* Recovery Compass Brand Colors */
     --navy: #101534;
     --bronze: #D4AF37;
     --teal: #5DADE2;
     --gold: #F4D03F;
     --moonlight: #F8F9FA;
+
+    /* Unified Design System */
+    --radius: 12px;
   }
 
-  /* Universal Montserrat font application */
+  /* Force Montserrat universally */
   * {
-    @apply border-border font-montserrat;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   }
 
-  html {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  html, body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    background-color: var(--navy);
+    color: var(--moonlight);
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
-  /* Force Montserrat on all text elements */
-  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label, a {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
-  }
+  /* Unified border radius */
+  .rounded-sm { border-radius: 6px; }
+  .rounded-md { border-radius: 12px; }
+  .rounded-lg { border-radius: 18px; }
+  .rounded-xl { border-radius: 24px; }
 
-  /* Custom classes for Recovery Compass */
+  /* Brand color utilities */
   .bg-navy { background-color: var(--navy); }
   .bg-bronze { background-color: var(--bronze); }
   .bg-teal { background-color: var(--teal); }
@@ -78,141 +80,108 @@
   .border-gold { border-color: var(--gold); }
   .border-moonlight { border-color: var(--moonlight); }
 
-  /* Accessibility improvements */
+  /* Typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700;
+    color: var(--moonlight);
+  }
+
+  p, span, div, button, input, textarea, label, a {
+    font-family: 'Montserrat', sans-serif !important;
+  }
+
+  /* Focus states with unified design */
   .focus-visible:focus {
-    @apply outline-none ring-2 ring-bronze ring-offset-2 ring-offset-navy;
-  }
-
-  /* Mobile optimization */
-  @media (max-width: 640px) {
-    html {
-      font-size: 14px;
-    }
-  }
-
-  /* Prevent horizontal scroll */
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .text-moonlight\/80 {
-      @apply text-moonlight;
-    }
-    .text-moonlight\/70 {
-      @apply text-moonlight;
-    }
-    .text-moonlight\/60 {
-      @apply text-moonlight;
-    }
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Print styles */
-  @media print {
-    .bg-gradient-to-b,
-    .bg-gradient-to-br {
-      background: white !important;
-      color: black !important;
-    }
+    outline: none;
+    ring: 2px solid var(--bronze);
+    ring-offset: 2px;
+    ring-offset-color: var(--navy);
+    border-radius: 12px;
   }
 }
 
 @layer components {
   .content-container {
-    @apply max-w-7xl mx-auto px-6 lg:px-8;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     font-family: 'Montserrat', sans-serif !important;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-black text-moonlight mb-8;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900;
+    color: var(--moonlight);
+    margin-bottom: 2rem;
+    line-height: 1.1;
   }
 
   .card-shadow {
-    @apply shadow-lg shadow-navy/20;
+    box-shadow: 0 10px 25px -3px rgba(16, 21, 52, 0.3), 0 4px 6px -2px rgba(16, 21, 52, 0.1);
   }
 
-  /* Enhanced Montserrat font classes */
-  .font-montserrat {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
-  }
-
-  .font-montserrat-light {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 300;
-  }
-
-  .font-montserrat-regular {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 400;
-  }
-
-  .font-montserrat-medium {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 500;
-  }
-
-  .font-montserrat-semibold {
+  /* Unified button styles */
+  .btn-primary {
+    background-color: var(--bronze);
+    color: var(--navy);
+    border-radius: 12px;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 600;
+    transition: all 0.2s ease;
   }
 
-  .font-montserrat-bold {
+  .btn-primary:hover {
+    background-color: #b8941f;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--bronze);
+    border: 2px solid var(--bronze);
+    border-radius: 12px;
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 700;
+    font-weight: 600;
+    transition: all 0.2s ease;
   }
 
-  .font-montserrat-black {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900;
+  .btn-secondary:hover {
+    background-color: var(--bronze);
+    color: var(--navy);
   }
 
-  /* 8px grid system for consistent spacing */
-  .space-grid-1 { @apply space-y-2; } /* 8px */
-  .space-grid-2 { @apply space-y-4; } /* 16px */
-  .space-grid-3 { @apply space-y-6; } /* 24px */
-  .space-grid-4 { @apply space-y-8; } /* 32px */
-  .space-grid-5 { @apply space-y-10; } /* 40px */
-  .space-grid-6 { @apply space-y-12; } /* 48px */
-
-  .p-grid-1 { @apply p-2; } /* 8px */
-  .p-grid-2 { @apply p-4; } /* 16px */
-  .p-grid-3 { @apply p-6; } /* 24px */
-  .p-grid-4 { @apply p-8; } /* 32px */
-  .p-grid-5 { @apply p-10; } /* 40px */
-  .p-grid-6 { @apply p-12; } /* 48px */
-
-  /* Enhanced focus states */
-  .btn-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy transition-all duration-200;
+  /* Unified card styles */
+  .unified-card {
+    background-color: rgba(247, 249, 249, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
   }
 
-  /* Loading states */
-  .loading {
-    @apply animate-pulse;
-  }
-
-  .loading-spinner {
-    @apply animate-spin rounded-full border-2 border-bronze border-t-transparent;
-  }
+  /* Typography helpers */
+  .font-montserrat-light { font-family: 'Montserrat', sans-serif !important; font-weight: 300; }
+  .font-montserrat-regular { font-family: 'Montserrat', sans-serif !important; font-weight: 400; }
+  .font-montserrat-medium { font-family: 'Montserrat', sans-serif !important; font-weight: 500; }
+  .font-montserrat-semibold { font-family: 'Montserrat', sans-serif !important; font-weight: 600; }
+  .font-montserrat-bold { font-family: 'Montserrat', sans-serif !important; font-weight: 700; }
+  .font-montserrat-black { font-family: 'Montserrat', sans-serif !important; font-weight: 900; }
 }
 
 @layer utilities {
-  /* Text utilities with proper contrast */
-  .text-contrast-high {
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  /* Accessibility improvements */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   /* Animation utilities */
@@ -221,45 +190,17 @@
   }
 
   @keyframes gentle-pulse {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
+    0%, 100% { opacity: 0.9; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.02); }
   }
 
-  /* Safe area padding for mobile devices */
-  .safe-area-top {
-    padding-top: env(safe-area-inset-top);
-  }
-
-  .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  /* Touch target improvements for mobile */
+  /* Touch target improvements */
   .touch-target {
     min-height: 44px;
     min-width: 44px;
   }
 
-  /* Improved scrollbar styling */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: var(--bronze) transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: var(--bronze);
-    border-radius: 3px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: #b8941f;
-  }
+  /* Safe area support */
+  .safe-area-top { padding-top: env(safe-area-inset-top); }
+  .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
 }

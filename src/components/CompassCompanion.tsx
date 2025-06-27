@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shield, Home, Users, Heart, ArrowRight, Phone, ExternalLink, Compass } from 'lucide-react';
+import { Shield, Home, Users, Heart, ArrowRight, Phone, Compass } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const CompassCompanion = () => {
@@ -12,7 +11,6 @@ const CompassCompanion = () => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
   const handleQuickExit = () => {
-    // Clear any stored data and redirect
     localStorage.clear();
     window.location.href = 'https://www.google.com';
   };
@@ -27,7 +25,7 @@ const CompassCompanion = () => {
       title: 'Environmental Assessment',
       description: 'Understand your environment and identify support needs',
       icon: Compass,
-      color: 'bg-bronze/10 border-bronze/30 hover:bg-bronze/20',
+      color: 'unified-card hover:bg-bronze/10',
       iconColor: 'text-bronze',
       action: handleTakeAssessment
     },
@@ -36,7 +34,7 @@ const CompassCompanion = () => {
       title: 'Housing & Safety',
       description: 'Find safe places to live and resources for immediate safety needs',
       icon: Home,
-      color: 'bg-teal/10 border-teal/30 hover:bg-teal/20',
+      color: 'unified-card hover:bg-teal/10',
       iconColor: 'text-teal'
     },
     {
@@ -44,7 +42,7 @@ const CompassCompanion = () => {
       title: 'Community & Support',
       description: 'Connect with people who understand and supportive communities',
       icon: Users,
-      color: 'bg-gold/10 border-gold/30 hover:bg-gold/20',
+      color: 'unified-card hover:bg-gold/10',
       iconColor: 'text-gold'
     },
     {
@@ -52,8 +50,8 @@ const CompassCompanion = () => {
       title: 'Personal Growth',
       description: 'Tools and resources for healing at your own pace',
       icon: Heart,
-      color: 'bg-navy/10 border-navy/30 hover:bg-navy/20',
-      iconColor: 'text-navy'
+      color: 'unified-card hover:bg-navy/20',
+      iconColor: 'text-moonlight'
     }
   ];
 
@@ -76,13 +74,13 @@ const CompassCompanion = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-navy relative font-montserrat">
-      {/* Safety header with just exit button */}
-      <header className="bg-navy/95 backdrop-blur-sm border-b border-teal/20 sticky top-0 z-50 p-4">
-        <div className="max-w-6xl mx-auto flex justify-end items-center">
+    <div className="min-h-screen bg-navy font-montserrat">
+      {/* Safety header */}
+      <header className="bg-navy/95 backdrop-blur-sm border-b border-bronze/20 sticky top-0 z-50 p-4">
+        <div className="content-container flex justify-end items-center">
           <Button
             onClick={() => setShowExitConfirm(true)}
-            className="bg-red-500 hover:bg-red-600 text-white font-montserrat font-medium"
+            className="bg-red-500 hover:bg-red-600 text-white font-montserrat-semibold rounded-md"
           >
             Exit Safely
           </Button>
@@ -90,19 +88,20 @@ const CompassCompanion = () => {
       </header>
 
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="content-container py-8">
         {/* Welcome section */}
         <div className="text-center mb-12">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-montserrat font-bold text-moonlight mb-4"
+          <motion.h1 
+            className="section-heading font-montserrat-black"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             You're not alone in this journey
-          </motion.h2>
+          </motion.h1>
+          
           <motion.p 
-            className="text-lg text-moonlight/80 max-w-2xl mx-auto mb-8 font-montserrat"
+            className="text-xl text-moonlight/80 max-w-3xl mx-auto mb-8 font-montserrat-regular leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -112,16 +111,16 @@ const CompassCompanion = () => {
           </motion.p>
           
           <motion.div 
-            className="bg-teal/10 border border-teal/30 rounded-lg p-4 max-w-lg mx-auto"
+            className="unified-card max-w-lg mx-auto border-teal/30"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="flex items-center space-x-2 text-teal">
-              <Shield className="w-5 h-5" />
-              <span className="font-montserrat font-medium">Your privacy is protected</span>
+            <div className="flex items-center space-x-3 text-teal">
+              <Shield className="w-6 h-6" />
+              <span className="font-montserrat-semibold">Your privacy is protected</span>
             </div>
-            <p className="text-sm text-moonlight/70 mt-1 font-montserrat">
+            <p className="text-moonlight/70 mt-2 font-montserrat-regular">
               No personal information is required or stored
             </p>
           </motion.div>
@@ -136,24 +135,25 @@ const CompassCompanion = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
             >
-              <Card className={`${area.color} border-2 transition-all duration-300 cursor-pointer h-full`}>
+              <Card className={`${area.color} transition-all duration-300 cursor-pointer h-full card-shadow hover:transform hover:scale-105`}>
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 ${area.iconColor} mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center`}>
+                  <div className={`w-16 h-16 ${area.iconColor} mx-auto mb-4 rounded-xl bg-moonlight/10 flex items-center justify-center`}>
                     <area.icon className="w-8 h-8" />
                   </div>
-                  <CardTitle className="text-moonlight font-montserrat text-xl">
+                  <CardTitle className="text-moonlight font-montserrat-bold text-xl">
                     {area.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-moonlight/80 text-center mb-4 font-montserrat">
+                  <CardDescription className="text-moonlight/80 text-center mb-6 font-montserrat-regular leading-relaxed">
                     {area.description}
                   </CardDescription>
                   <Button 
-                    className="w-full bg-white/10 text-moonlight hover:bg-white/20 border-0 font-montserrat"
+                    className="w-full btn-secondary font-montserrat-semibold"
                     onClick={area.action || (() => setSelectedArea(area.id))}
                   >
-                    {area.id === 'assessment' ? 'Start Assessment' : 'Explore'} <ArrowRight className="w-4 h-4 ml-2" />
+                    {area.id === 'assessment' ? 'Start Assessment' : 'Explore'} 
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
               </Card>
@@ -163,25 +163,25 @@ const CompassCompanion = () => {
 
         {/* Crisis resources */}
         <motion.div 
-          className="bg-navy/40 border border-red-500/30 rounded-lg p-6"
+          className="unified-card border-red-500/30 bg-red-500/5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
         >
-          <h3 className="text-xl font-montserrat font-bold text-red-400 mb-4 flex items-center">
-            <Phone className="w-5 h-5 mr-2" />
+          <h2 className="text-2xl font-montserrat-bold text-red-400 mb-6 flex items-center">
+            <Phone className="w-6 h-6 mr-3" />
             Crisis Support - Available 24/7
-          </h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
             {crisisResources.map((resource, index) => (
-              <div key={index} className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
-                <h4 className="font-montserrat font-medium text-moonlight mb-1">
+              <div key={index} className="unified-card border-red-500/20 bg-red-500/10">
+                <h3 className="font-montserrat-semibold text-moonlight mb-2 text-lg">
                   {resource.name}
-                </h4>
-                <p className="text-lg font-bold text-red-400 mb-2 font-montserrat">
+                </h3>
+                <p className="text-xl font-montserrat-bold text-red-400 mb-3">
                   {resource.number}
                 </p>
-                <p className="text-sm text-moonlight/70 font-montserrat">
+                <p className="text-moonlight/70 font-montserrat-regular">
                   {resource.description}
                 </p>
               </div>
@@ -196,9 +196,9 @@ const CompassCompanion = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <p className="text-moonlight/60 font-montserrat italic">
+          <blockquote className="text-moonlight/60 font-montserrat-regular italic text-lg">
             "Every journey begins with a single step. You've already taken yours by being here."
-          </p>
+          </blockquote>
         </motion.div>
       </main>
 
@@ -212,27 +212,27 @@ const CompassCompanion = () => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-navy border border-teal/30 rounded-xl p-6 max-w-md w-full"
+              className="unified-card border-teal/30 max-w-md w-full"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              <h3 className="text-lg font-montserrat font-medium mb-4 text-moonlight">
+              <h3 className="text-xl font-montserrat-semibold mb-4 text-moonlight">
                 Leave safely?
               </h3>
-              <p className="text-moonlight/70 mb-6 font-montserrat">
+              <p className="text-moonlight/70 mb-6 font-montserrat-regular">
                 This will take you to Google and clear any information from this session.
               </p>
               <div className="flex space-x-3">
                 <Button
                   onClick={handleQuickExit}
-                  className="flex-1 bg-red-500 hover:bg-red-600 text-white font-montserrat"
+                  className="flex-1 bg-red-500 hover:bg-red-600 text-white font-montserrat-semibold"
                 >
                   Yes, exit now
                 </Button>
                 <Button
                   onClick={() => setShowExitConfirm(false)}
-                  className="flex-1 bg-moonlight/20 text-moonlight hover:bg-moonlight/30 font-montserrat"
+                  className="flex-1 btn-secondary font-montserrat-semibold"
                 >
                   Stay here
                 </Button>
@@ -252,13 +252,13 @@ const CompassCompanion = () => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-navy border border-teal/30 rounded-xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
+              className="unified-card border-teal/30 max-w-lg w-full max-h-[80vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-montserrat font-medium text-moonlight">
+                <h3 className="text-xl font-montserrat-semibold text-moonlight">
                   {navigationAreas.find(area => area.id === selectedArea)?.title}
                 </h3>
                 <Button
@@ -270,23 +270,23 @@ const CompassCompanion = () => {
               </div>
               
               <div className="space-y-4">
-                <p className="text-moonlight/80 font-montserrat">
+                <p className="text-moonlight/80 font-montserrat-regular">
                   Resources and support for {navigationAreas.find(area => area.id === selectedArea)?.title.toLowerCase()} 
                   are being prepared. This section will connect you with:
                 </p>
                 
-                <ul className="space-y-2 text-moonlight/70 font-montserrat">
+                <ul className="space-y-2 text-moonlight/70 font-montserrat-regular">
                   <li>• Local resources and services</li>
                   <li>• Peer support networks</li>
                   <li>• Professional assistance options</li>
                   <li>• Self-guided tools and information</li>
                 </ul>
                 
-                <div className="bg-teal/10 border border-teal/30 rounded-lg p-4 mt-6">
-                  <p className="text-teal font-montserrat font-medium mb-2">
+                <div className="unified-card border-teal/30 mt-6">
+                  <p className="text-teal font-montserrat-semibold mb-2">
                     Coming Soon
                   </p>
-                  <p className="text-moonlight/70 text-sm font-montserrat">
+                  <p className="text-moonlight/70 font-montserrat-regular">
                     This area is currently in development. Check back soon for comprehensive resources.
                   </p>
                 </div>
