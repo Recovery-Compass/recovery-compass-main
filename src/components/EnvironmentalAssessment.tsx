@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { trackBusinessEvent } from '@/lib/analytics';
+import { trackEvent } from '@/lib/analytics';
 import AssessmentQuestion from './assessment/AssessmentQuestion';
 import TierSelector from './assessment/TierSelector';
 import AssessmentResults from './assessment/AssessmentResults';
@@ -50,7 +50,15 @@ const EnvironmentalAssessment = () => {
         .order('question_order');
 
       if (error) throw error;
-      setQuestions(data || []);
+      
+      // Transform the data to match our Question interface
+      const transformedQuestions = (data || []).map(question => ({
+        ...question,
+        options: Array.isArray(question.options) ? question.options : 
+                typeof question.options === 'string' ? JSON.parse(question.options) : []
+      }));
+      
+      setQuestions(transformedQuestions);
     } catch (error) {
       console.error('Error loading questions:', error);
     }
@@ -61,7 +69,7 @@ const EnvironmentalAssessment = () => {
     setCurrentStep('questions');
     
     // Track tier selection
-    trackBusinessEvent('tier_selected', {
+    trackEvent('tier_selected', {
       tier,
       timestamp: new Date().toISOString(),
     });
@@ -130,7 +138,7 @@ const EnvironmentalAssessment = () => {
       }
 
       // Track completion
-      trackBusinessEvent('assessment_completed', {
+      trackEvent('assessment_completed', {
         tier: selectedTier,
         email_provided: !!email,
         timestamp: new Date().toISOString(),

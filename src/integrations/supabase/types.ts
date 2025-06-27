@@ -374,7 +374,12 @@ export type Database = {
         | "health"
         | "nature"
         | "time_routine"
-      user_role: "patient" | "provider" | "admin" | "crisis_counselor"
+      user_role:
+        | "patient"
+        | "provider"
+        | "admin"
+        | "crisis_counselor"
+        | "anonymous"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -500,7 +505,13 @@ export const Constants = {
         "nature",
         "time_routine",
       ],
-      user_role: ["patient", "provider", "admin", "crisis_counselor"],
+      user_role: [
+        "patient",
+        "provider",
+        "admin",
+        "crisis_counselor",
+        "anonymous",
+      ],
     },
   },
 } as const
