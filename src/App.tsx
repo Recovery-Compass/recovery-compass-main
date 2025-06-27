@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,6 +6,7 @@ import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
 import Index from "./pages/Index";
+import Assessment from "./pages/Assessment";
 import CompassCompanion from "./pages/CompassCompanion";
 import ImpactTranslator from "./pages/ImpactTranslator";
 import PartnershipProposals from "./pages/PartnershipProposals";
@@ -135,6 +135,7 @@ function App() {
 
             {/* Main Recovery Compass Routes */}
             <Route path="/" element={<Index />} />
+            <Route path="/assessment" element={<Assessment />} />
             <Route path="/compass-companion" element={
               <>
                 <Navigation />
