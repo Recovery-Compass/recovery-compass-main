@@ -39,13 +39,25 @@
     --moonlight: #F8F9FA;
   }
 
+  /* Universal Montserrat font application */
   * {
-    @apply border-border;
+    @apply border-border font-montserrat;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  }
+
+  html {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
     scroll-behavior: smooth;
+  }
+
+  /* Force Montserrat on all text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label, a {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   }
 
   /* Custom classes for Recovery Compass */
@@ -118,15 +130,52 @@
 
 @layer components {
   .content-container {
-    @apply max-w-7xl mx-auto px-6 lg:px-8 font-montserrat;
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+    font-family: 'Montserrat', sans-serif !important;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-black text-moonlight mb-8 font-montserrat;
+    @apply text-4xl md:text-5xl lg:text-6xl font-black text-moonlight mb-8;
+    font-family: 'Montserrat', sans-serif !important;
   }
 
   .card-shadow {
     @apply shadow-lg shadow-navy/20;
+  }
+
+  /* Enhanced Montserrat font classes */
+  .font-montserrat {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  }
+
+  .font-montserrat-light {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 300;
+  }
+
+  .font-montserrat-regular {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400;
+  }
+
+  .font-montserrat-medium {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 500;
+  }
+
+  .font-montserrat-semibold {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600;
+  }
+
+  .font-montserrat-bold {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700;
+  }
+
+  .font-montserrat-black {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900;
   }
 
   /* 8px grid system for consistent spacing */

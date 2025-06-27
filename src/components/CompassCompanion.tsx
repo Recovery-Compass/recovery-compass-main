@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shield, Home, Users, Heart, ArrowRight, Phone, ExternalLink } from 'lucide-react';
+import { Shield, Home, Users, Heart, ArrowRight, Phone, ExternalLink, Compass } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CompassCompanion = () => {
+  const navigate = useNavigate();
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
@@ -15,7 +17,20 @@ const CompassCompanion = () => {
     window.location.href = 'https://www.google.com';
   };
 
+  const handleTakeAssessment = () => {
+    navigate('/assessment');
+  };
+
   const navigationAreas = [
+    {
+      id: 'assessment',
+      title: 'Environmental Assessment',
+      description: 'Understand your environment and identify support needs',
+      icon: Compass,
+      color: 'bg-bronze/10 border-bronze/30 hover:bg-bronze/20',
+      iconColor: 'text-bronze',
+      action: handleTakeAssessment
+    },
     {
       id: 'housing',
       title: 'Housing & Safety',
@@ -37,8 +52,8 @@ const CompassCompanion = () => {
       title: 'Personal Growth',
       description: 'Tools and resources for healing at your own pace',
       icon: Heart,
-      color: 'bg-bronze/10 border-bronze/30 hover:bg-bronze/20',
-      iconColor: 'text-bronze'
+      color: 'bg-navy/10 border-navy/30 hover:bg-navy/20',
+      iconColor: 'text-navy'
     }
   ];
 
@@ -61,7 +76,7 @@ const CompassCompanion = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-navy relative">
+    <div className="min-h-screen bg-navy relative font-montserrat">
       {/* Safety header with just exit button */}
       <header className="bg-navy/95 backdrop-blur-sm border-b border-teal/20 sticky top-0 z-50 p-4">
         <div className="max-w-6xl mx-auto flex justify-end items-center">
@@ -87,7 +102,7 @@ const CompassCompanion = () => {
             You're not alone in this journey
           </motion.h2>
           <motion.p 
-            className="text-lg text-moonlight/80 max-w-2xl mx-auto mb-8"
+            className="text-lg text-moonlight/80 max-w-2xl mx-auto mb-8 font-montserrat"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -106,14 +121,14 @@ const CompassCompanion = () => {
               <Shield className="w-5 h-5" />
               <span className="font-montserrat font-medium">Your privacy is protected</span>
             </div>
-            <p className="text-sm text-moonlight/70 mt-1">
+            <p className="text-sm text-moonlight/70 mt-1 font-montserrat">
               No personal information is required or stored
             </p>
           </motion.div>
         </div>
 
         {/* Navigation areas */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {navigationAreas.map((area, index) => (
             <motion.div
               key={area.id}
@@ -131,14 +146,14 @@ const CompassCompanion = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-moonlight/80 text-center mb-4">
+                  <CardDescription className="text-moonlight/80 text-center mb-4 font-montserrat">
                     {area.description}
                   </CardDescription>
                   <Button 
-                    className="w-full bg-white/10 text-moonlight hover:bg-white/20 border-0"
-                    onClick={() => setSelectedArea(area.id)}
+                    className="w-full bg-white/10 text-moonlight hover:bg-white/20 border-0 font-montserrat"
+                    onClick={area.action || (() => setSelectedArea(area.id))}
                   >
-                    Explore <ArrowRight className="w-4 h-4 ml-2" />
+                    {area.id === 'assessment' ? 'Start Assessment' : 'Explore'} <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
               </Card>
@@ -163,10 +178,10 @@ const CompassCompanion = () => {
                 <h4 className="font-montserrat font-medium text-moonlight mb-1">
                   {resource.name}
                 </h4>
-                <p className="text-lg font-bold text-red-400 mb-2">
+                <p className="text-lg font-bold text-red-400 mb-2 font-montserrat">
                   {resource.number}
                 </p>
-                <p className="text-sm text-moonlight/70">
+                <p className="text-sm text-moonlight/70 font-montserrat">
                   {resource.description}
                 </p>
               </div>
@@ -248,19 +263,19 @@ const CompassCompanion = () => {
                 </h3>
                 <Button
                   onClick={() => setSelectedArea(null)}
-                  className="text-moonlight/60 hover:text-moonlight bg-transparent hover:bg-moonlight/10 p-2"
+                  className="text-moonlight/60 hover:text-moonlight bg-transparent hover:bg-moonlight/10 p-2 font-montserrat"
                 >
                   ✕
                 </Button>
               </div>
               
               <div className="space-y-4">
-                <p className="text-moonlight/80">
+                <p className="text-moonlight/80 font-montserrat">
                   Resources and support for {navigationAreas.find(area => area.id === selectedArea)?.title.toLowerCase()} 
                   are being prepared. This section will connect you with:
                 </p>
                 
-                <ul className="space-y-2 text-moonlight/70">
+                <ul className="space-y-2 text-moonlight/70 font-montserrat">
                   <li>• Local resources and services</li>
                   <li>• Peer support networks</li>
                   <li>• Professional assistance options</li>
@@ -271,7 +286,7 @@ const CompassCompanion = () => {
                   <p className="text-teal font-montserrat font-medium mb-2">
                     Coming Soon
                   </p>
-                  <p className="text-moonlight/70 text-sm">
+                  <p className="text-moonlight/70 text-sm font-montserrat">
                     This area is currently in development. Check back soon for comprehensive resources.
                   </p>
                 </div>
