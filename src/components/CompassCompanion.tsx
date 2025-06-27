@@ -62,23 +62,9 @@ const CompassCompanion = () => {
 
   return (
     <div className="min-h-screen bg-navy relative">
-      {/* Always-visible safety header */}
+      {/* Safety header with just exit button */}
       <header className="bg-navy/95 backdrop-blur-sm border-b border-teal/20 sticky top-0 z-50 p-4">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
-              <img 
-                src="/lovable-uploads/128d0532-ac37-4fe5-99a3-e4657e51a4bb.png" 
-                alt="Recovery Compass Logo" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h1 className="text-xl font-montserrat font-medium text-moonlight">Recovery Compass</h1>
-              <p className="text-xs text-moonlight/60">You control what you share</p>
-            </div>
-          </div>
-
+        <div className="max-w-6xl mx-auto flex justify-end items-center">
           <Button
             onClick={() => setShowExitConfirm(true)}
             className="bg-red-500 hover:bg-red-600 text-white font-montserrat font-medium"
