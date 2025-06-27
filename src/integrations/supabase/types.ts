@@ -51,6 +51,78 @@ export type Database = {
         }
         Relationships: []
       }
+      assessment_questions: {
+        Row: {
+          created_at: string | null
+          domain: string | null
+          id: string
+          options: Json | null
+          privacy_level: string | null
+          question_order: number
+          question_text: string
+          question_type: string
+          tier: string
+        }
+        Insert: {
+          created_at?: string | null
+          domain?: string | null
+          id?: string
+          options?: Json | null
+          privacy_level?: string | null
+          question_order: number
+          question_text: string
+          question_type: string
+          tier: string
+        }
+        Update: {
+          created_at?: string | null
+          domain?: string | null
+          id?: string
+          options?: Json | null
+          privacy_level?: string | null
+          question_order?: number
+          question_text?: string
+          question_type?: string
+          tier?: string
+        }
+        Relationships: []
+      }
+      assessments: {
+        Row: {
+          completed_at: string | null
+          design_sent: boolean | null
+          design_sent_at: string | null
+          email: string | null
+          email_confirmed: boolean | null
+          id: string
+          responses: Json
+          tier: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          design_sent?: boolean | null
+          design_sent_at?: string | null
+          email?: string | null
+          email_confirmed?: boolean | null
+          id?: string
+          responses: Json
+          tier: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          design_sent?: boolean | null
+          design_sent_at?: string | null
+          email?: string | null
+          email_confirmed?: boolean | null
+          id?: string
+          responses?: Json
+          tier?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       crisis_resources: {
         Row: {
           address: string | null
@@ -110,6 +182,44 @@ export type Database = {
           zip_code?: string | null
         }
         Relationships: []
+      }
+      email_captures: {
+        Row: {
+          assessment_id: string | null
+          confirmed_at: string | null
+          created_at: string | null
+          design_sent_at: string | null
+          email: string
+          id: string
+          tier: string
+        }
+        Insert: {
+          assessment_id?: string | null
+          confirmed_at?: string | null
+          created_at?: string | null
+          design_sent_at?: string | null
+          email: string
+          id?: string
+          tier: string
+        }
+        Update: {
+          assessment_id?: string | null
+          confirmed_at?: string | null
+          created_at?: string | null
+          design_sent_at?: string | null
+          email?: string
+          id?: string
+          tier?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_captures_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       environment_assessments: {
         Row: {
