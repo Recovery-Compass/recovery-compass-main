@@ -136,12 +136,7 @@ function App() {
             {/* Main Recovery Compass Routes */}
             <Route path="/" element={<Index />} />
             <Route path="/assessment" element={<Assessment />} />
-            <Route path="/compass-companion" element={
-              <>
-                <Navigation />
-                <CompassCompanion />
-              </>
-            } />
+            <Route path="/compass-companion" element={<CompassCompanion />} />
             <Route path="/impact-translator" element={
               <>
                 <Navigation />
