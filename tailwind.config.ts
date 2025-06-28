@@ -71,6 +71,7 @@ export default {
 				moonlight: '#F8F9FA',
 			},
 			borderRadius: {
+				DEFAULT: '12px',
 				sm: '6px',
 				md: '12px',
 				lg: '18px',
@@ -79,9 +80,16 @@ export default {
 				'3xl': '36px',
 			},
 			fontFamily: {
+				sans: ['Montserrat', 'system-ui', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				inter: ['Inter', 'sans-serif'],
 				playfair: ['Playfair Display', 'serif'],
+			},
+			fontWeight: {
+				regular: '400',
+				medium: '500',
+				semibold: '600',
+				bold: '700',
 			},
 			spacing: {
 				'72': '18rem',

@@ -47,6 +47,16 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
     navigate('/pathway-select');
   };
 
+  const handleTakeAssessment = () => {
+    // Track assessment start from hero
+    trackBusinessEvent('assessment_started', {
+      entry_point: 'hero_cta',
+      timestamp: new Date().toISOString(),
+    });
+    
+    navigate('/assessment');
+  };
+
   const handleDashboardClick = () => {
     // Track demo request
     trackBusinessEvent('demo_request', {
@@ -59,7 +69,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-montserrat">
+    <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-sans">
       <CompassLogo 
         size="xl" 
         animated={true} 
@@ -69,7 +79,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <h1 
         className={cn(
-          'font-montserrat font-black text-moonlight text-shadow-lg text-center max-w-4xl',
+          'font-sans font-bold text-moonlight text-shadow-lg text-center max-w-4xl',
           'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl',
           'tracking-tight leading-none',
           'transition-opacity duration-1000',
@@ -84,7 +94,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <p 
         className={cn(
-          'mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-montserrat font-medium text-lg sm:text-xl px-4',
+          'mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-sans font-medium text-lg sm:text-xl px-4',
           'transition-all duration-1000 delay-300',
           ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
@@ -94,7 +104,7 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
       
       <div 
         className={cn(
-          'mt-8 sm:mt-10 text-center',
+          'mt-8 sm:mt-10 text-center flex flex-col sm:flex-row gap-4 justify-center items-center',
           'transition-all duration-1000 delay-700',
           buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
@@ -106,20 +116,29 @@ const HeroSection = ({ onNavigate }: HeroSectionProps) => {
         >
           Begin Your Journey
         </Button>
+        
+        <Button 
+          onClick={handleTakeAssessment}
+          variant="secondary"
+          size="cta"
+          className="bg-transparent border-2 border-teal text-teal hover:bg-teal hover:text-navy transition-all duration-300 font-semibold"
+        >
+          Take Assessment
+        </Button>
       </div>
       
       {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
-      <div className="mt-16 text-center animate-fade-in font-montserrat" style={{ animationDelay: '1.8s' }}>
+      <div className="mt-16 text-center animate-fade-in font-sans" style={{ animationDelay: '1.8s' }}>
         <button
           onClick={handleDashboardClick}
           className="group relative inline-flex items-center gap-2 px-6 py-3 text-bronze/80 hover:text-bronze transition-all duration-500 hover:scale-105"
         >
-          <span className="text-sm font-montserrat font-light tracking-wide">
+          <span className="text-sm font-sans font-light tracking-wide">
             Recovery Compass Dashboard Case Studies
           </span>
           <div className="w-4 h-4 rounded-full bg-bronze/20 group-hover:bg-bronze/40 transition-all duration-300" />
         </button>
-        <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat font-light">
+        <p className="text-moonlight/40 text-xs mt-2 italic font-sans font-light">
           live metrics from the field
         </p>
       </div>

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,7 @@ export const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
+    { path: '/assessment', label: 'Assessment' },
     { path: '/compass-companion', label: 'Compass Companion' },
     { path: '/impact-translator', label: 'Impact Translator' },
     { path: '/partnership-proposals', label: 'Partnership' },
@@ -47,11 +49,11 @@ export const Navigation = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-bronze rounded-lg p-1"
+            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-bronze rounded-xl p-1"
             aria-label="Recovery Compass Home"
           >
             <CompassLogo className="w-8 h-8 sm:w-10 sm:h-10" size="sm" priority />
-            <span className="text-bronze font-black text-lg sm:text-xl tracking-tight">
+            <span className="text-bronze font-bold text-lg sm:text-xl tracking-tight">
               Recovery Compass
             </span>
           </Link>
@@ -62,7 +64,7 @@ export const Navigation = () => {
               <Link key={item.path} to={item.path}>
                 <Button
                   variant={isActive(item.path) ? "default" : "ghost"}
-                  className={`text-sm ${
+                  className={`text-sm rounded-xl ${
                     isActive(item.path) 
                       ? 'bg-bronze text-navy' 
                       : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
@@ -79,14 +81,14 @@ export const Navigation = () => {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-sm text-moonlight hover:text-bronze hover:bg-bronze/10 bg-transparent border-none">
+                    <NavigationMenuTrigger className="text-sm text-moonlight hover:text-bronze hover:bg-bronze/10 bg-transparent border-none rounded-xl">
                       Investors
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                         {investorPages.map((page) => (
                           <Link key={page.path} to={page.path}>
-                            <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-bronze/10 hover:text-bronze focus:bg-bronze/10 focus:text-bronze">
+                            <NavigationMenuLink className="block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-bronze/10 hover:text-bronze focus:bg-bronze/10 focus:text-bronze">
                               <div className="text-sm font-medium leading-none text-moonlight">
                                 {page.label}
                               </div>
@@ -105,7 +107,7 @@ export const Navigation = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden text-moonlight focus:ring-2 focus:ring-bronze"
+            className="md:hidden text-moonlight focus:ring-2 focus:ring-bronze rounded-xl"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -132,7 +134,7 @@ export const Navigation = () => {
                 >
                   <Button
                     variant={isActive(item.path) ? "default" : "ghost"}
-                    className={`w-full justify-start ${
+                    className={`w-full justify-start rounded-xl ${
                       isActive(item.path) 
                         ? 'bg-bronze text-navy' 
                         : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
@@ -161,7 +163,7 @@ export const Navigation = () => {
                     >
                       <Button
                         variant="ghost"
-                        className="w-full justify-start text-moonlight/80 hover:text-bronze hover:bg-bronze/10 pl-8"
+                        className="w-full justify-start text-moonlight/80 hover:text-bronze hover:bg-bronze/10 pl-8 rounded-xl"
                       >
                         {page.label}
                       </Button>
