@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Brand System Configuration
 const BRAND_COLORS = {
   deepOcean: '#045295',
   midnightFoundation: '#101534', 
@@ -13,21 +14,21 @@ const BRAND_COLORS = {
 
 const CORE_PATHWAYS = [
   {
-    id: 'compass-companion',
-    title: 'Compass Companion',
-    subtitle: 'Environmental Response Design™',
-    description: 'No diagnosis. No intake. Just space to begin, on your terms.',
-    subtext: 'This isn\'t treatment. This is restoration.',
-    ctaText: 'Begin Your Journey',
+    id: 'assessment',
+    title: 'Environmental Assessment',
+    subtitle: 'Environmental Mastery Design™',
+    description: 'Discover your unique environmental strengths and optimization opportunities.',
+    subtext: 'Complete your assessment and receive your personalized Environmental Mastery Design™ within 72 hours.',
+    ctaText: 'Start Assessment',
     color: 'teal',
-    icon: '🧭'
+    icon: '🌳'
   },
   {
     id: 'impact-translator', 
     title: 'Impact Translator',
-    subtitle: 'Funding Success Engine',
-    description: 'You keep caring. We make sure your story gets funded.',
-    subtext: 'Built for people like Randall — who give shoes to foster kids, not spreadsheets to grant panels.',
+    subtitle: 'Success Documentation Engine',
+    description: 'Transform your environmental mastery journey into compelling impact stories.',
+    subtext: 'Perfect for organizations, grants, and partnerships that need data-driven success narratives.',
     ctaText: 'Launch Translator',
     color: 'gold',
     icon: '💫'
@@ -37,6 +38,7 @@ const CORE_PATHWAYS = [
 const Index = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [currentSection, setCurrentSection] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -51,41 +53,43 @@ const Index = () => {
     }
   }, [navigate]);
 
-  const handleCrisisSupport = useCallback(() => {
-    window.open('tel:988', '_self');
-  }, []);
+  const handleStartAssessment = useCallback(() => {
+    navigate('/assessment');
+  }, [navigate]);
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: BRAND_COLORS.midnightFoundation }}>
+      {/* Environmental Mastery Promise - Top Right */}
       <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={handleCrisisSupport}
-          className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        <div
+          className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300"
           style={{ 
-            backgroundColor: '#DC2626',
-            color: 'white',
-            border: '2px solid #DC2626'
+            backgroundColor: BRAND_COLORS.compassGold,
+            color: BRAND_COLORS.midnightFoundation,
+            border: `2px solid ${BRAND_COLORS.compassGold}`
           }}
-          aria-label="Crisis Support - Call 988"
         >
-          🆘 Crisis Support: 988
-        </button>
+          ✨ Unique Design Within 72 Hours
+        </div>
       </div>
 
+      {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16">
+        {/* Recovery Compass Logo */}
         <div className={`mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-          <div 
-            className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center text-4xl md:text-5xl border-4 mx-auto"
-            style={{ 
-              backgroundColor: BRAND_COLORS.deepOcean,
-              borderColor: BRAND_COLORS.compassGold,
-              boxShadow: `0 0 30px ${BRAND_COLORS.compassGold}40`
-            }}
-          >
-            🧭
+          <div className="w-32 h-32 md:w-40 md:h-40 mx-auto">
+            <img 
+              src="/recovery-compass-logo.png" 
+              alt="Recovery Compass - Tree of Life Navigation" 
+              className="w-full h-full object-contain drop-shadow-2xl"
+              style={{ 
+                filter: `drop-shadow(0 0 20px ${BRAND_COLORS.compassGold}60)`
+              }}
+            />
           </div>
         </div>
 
+        {/* Main Heading */}
         <div className={`text-center max-w-4xl mx-auto mb-12 transition-all duration-1200 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h1 
             className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
@@ -112,13 +116,14 @@ const Index = () => {
               fontFamily: 'Inter, system-ui, sans-serif'
             }}
           >
-            Navigate your environment. Transform your life.<br/>
+            Master your environment. Design your flourishing.<br/>
             <span className="text-base opacity-90">
-              Built for human flourishing through trauma-informed environmental assessment.
+              Receive your personalized Environmental Mastery Design™ within 72 hours.
             </span>
           </p>
         </div>
 
+        {/* Pathway Selection */}
         <div className={`max-w-6xl w-full transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {CORE_PATHWAYS.map((pathway, index) => (
@@ -132,19 +137,20 @@ const Index = () => {
           </div>
         </div>
 
+        {/* Trust Indicators */}
         <div className={`mt-16 text-center max-w-3xl mx-auto transition-all duration-1000 delay-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
             <div style={{ color: BRAND_COLORS.moonlight }}>
-              <div className="font-semibold mb-1">🔒 Privacy First</div>
-              <div className="opacity-80">Your data stays yours</div>
+              <div className="font-semibold mb-1">⚡ 72-Hour Delivery</div>
+              <div className="opacity-80">Your unique design guaranteed</div>
             </div>
             <div style={{ color: BRAND_COLORS.moonlight }}>
-              <div className="font-semibold mb-1">🤝 Trauma-Informed</div>
-              <div className="opacity-80">Built by lived experience</div>
+              <div className="font-semibold mb-1">🎯 Personalized Design</div>
+              <div className="opacity-80">Tailored to your environment</div>
             </div>
             <div style={{ color: BRAND_COLORS.moonlight }}>
-              <div className="font-semibold mb-1">🌱 Evidence-Based</div>
-              <div className="opacity-80">Rooted in research</div>
+              <div className="font-semibold mb-1">🌟 Mastery Focused</div>
+              <div className="opacity-80">Strength-based optimization</div>
             </div>
           </div>
         </div>
@@ -169,6 +175,7 @@ const PathwayCard = ({ pathway, delay, onSelect }: PathwayCardProps) => {
 
   const isGold = pathway.color === 'gold';
   const primaryColor = isGold ? BRAND_COLORS.compassGold : BRAND_COLORS.deepOcean;
+  const hoverColor = isGold ? BRAND_COLORS.treeCopper : '#0369A1';
 
   return (
     <div
@@ -189,15 +196,18 @@ const PathwayCard = ({ pathway, delay, onSelect }: PathwayCardProps) => {
       role="button"
       aria-label={`Access ${pathway.title}`}
     >
+      {/* Card Background Glow Effect */}
       <div 
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
         style={{ backgroundColor: primaryColor }}
       />
       
+      {/* Icon */}
       <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
         {pathway.icon}
       </div>
 
+      {/* Content */}
       <div className="relative z-10">
         <h3 
           className="font-black text-2xl md:text-3xl mb-2"
@@ -230,6 +240,7 @@ const PathwayCard = ({ pathway, delay, onSelect }: PathwayCardProps) => {
           {pathway.subtext}
         </p>
         
+        {/* CTA Button */}
         <button
           className="w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform group-hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
           style={{
