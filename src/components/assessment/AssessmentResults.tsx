@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-type Tier = 'crisis' | 'struggling' | 'seeking' | 'thriving' | 'limitless';
+type Tier = 'struggling' | 'seeking' | 'thriving' | 'limitless';
 
 interface AssessmentResultsProps {
   tier: Tier;
@@ -13,71 +13,57 @@ interface AssessmentResultsProps {
 }
 
 const tierResults = {
-  crisis: {
-    title: 'Crisis Support Design',
-    description: 'Your environment should prioritize immediate safety, calm, and accessible support.',
-    recommendations: [
-      'Create a dedicated quiet space for grounding and breathing',
-      'Keep crisis hotline numbers and emergency contacts visible',
-      'Remove or secure items that might be harmful during difficult moments',
-      'Have comfort items easily accessible (blanket, water, snacks)',
-      'Consider soft lighting and calming colors in your primary spaces'
-    ],
-    color: 'text-red-300',
-    bgColor: 'bg-red-900/20',
-    borderColor: 'border-red-500/50'
-  },
   struggling: {
-    title: 'Stability-Building Design',
-    description: 'Your environment should support routine, reduce overwhelm, and provide gentle structure.',
+    title: 'Foundation Environmental Design',
+    description: 'Your environment should establish stable systems that reduce overwhelm and create supportive structure.',
     recommendations: [
-      'Organize spaces to reduce daily decision fatigue',
-      'Create visual reminders for healthy routines (sleep, meals, self-care)',
-      'Designate specific areas for different activities (rest, work, meals)',
-      'Keep supportive resources visible but not overwhelming',
-      'Use natural elements to create a sense of peace'
+      'Design organized spaces that minimize daily decision fatigue',
+      'Create visual systems for consistent routines and habits',
+      'Establish distinct zones for different life activities',
+      'Incorporate natural elements to promote calm and focus',
+      'Build in flexibility while maintaining supportive structure'
     ],
     color: 'text-orange-300',
     bgColor: 'bg-orange-900/20',
     borderColor: 'border-orange-500/50'
   },
   seeking: {
-    title: 'Growth-Oriented Design',
-    description: 'Your environment should inspire reflection, learning, and positive change.',
+    title: 'Growth-Oriented Environmental Design',
+    description: 'Your environment should inspire development, learning, and positive transformation.',
     recommendations: [
-      'Create a dedicated space for journaling, meditation, or reflection',
-      'Display inspirational books, quotes, or artwork that motivate you',
-      'Organize your space to support new healthy habits',
-      'Include plants or natural elements to represent growth',
-      'Design areas that encourage connection with supportive people'
+      'Create dedicated spaces for reflection, planning, and skill development',
+      'Design inspiration zones with visual reminders of your goals and values',
+      'Organize environments to naturally support emerging positive habits',
+      'Include growth-oriented elements like plants, books, and learning materials',
+      'Design connection areas that facilitate meaningful relationships and collaboration'
     ],
     color: 'text-teal-300',
     bgColor: 'bg-teal-900/20',
     borderColor: 'border-teal-500/50'
   },
   thriving: {
-    title: 'Expansion-Focused Design',
-    description: 'Your environment should support creativity, purpose, and meaningful contribution.',
+    title: 'Mastery-Focused Environmental Design',
+    description: 'Your environment should amplify your strengths, support peak performance, and enable meaningful contribution.',
     recommendations: [
-      'Create spaces that reflect your values and aspirations',
-      'Design areas for creative expression and meaningful work',
-      'Include elements that connect you to your community and purpose',
-      'Organize for both productivity and inspiration',
-      'Create spaces for mentoring or supporting others in their journey'
+      'Design signature spaces that reflect your unique values and expertise',
+      'Create optimized work environments for creative expression and high-impact activities',
+      'Include elements that connect your environment to your broader purpose and community',
+      'Balance productivity zones with inspiration and renewal areas',
+      'Design mentorship and collaboration spaces that allow you to share your mastery with others'
     ],
     color: 'text-bronze',
     bgColor: 'bg-bronze/20',
     borderColor: 'border-bronze/50'
   },
   limitless: {
-    title: 'Visionary Impact Design',
-    description: 'Your environment should reflect your highest vision and support world-changing work.',
+    title: 'Visionary Environmental Mastery Design',
+    description: 'Your environment should embody your highest vision and support transformation at scale.',
     recommendations: [
-      'Design spaces that embody the change you want to see in the world',
-      'Create environments that inspire breakthrough thinking and innovation',
-      'Include elements that connect you to your legacy and long-term impact',
-      'Design for collaboration and systems-level thinking',
-      'Create spaces that serve as examples of the transformation you envision'
+      'Design revolutionary spaces that model the change you want to create in the world',
+      'Create environments that facilitate breakthrough thinking and paradigm-shifting innovation',
+      'Include legacy elements that connect your daily environment to your long-term impact',
+      'Design for systems-level thinking and large-scale collaboration',
+      'Create demonstration environments that inspire and teach others about environmental mastery'
     ],
     color: 'text-gold',
     bgColor: 'bg-gold/20',
@@ -127,14 +113,14 @@ const AssessmentResults = ({ tier, responses, assessmentId, onStartJourney }: As
 
       <div className="text-center space-y-4">
         <p className="text-moonlight/80">
-          Ready to begin implementing your personalized environmental design?
+          Ready to begin implementing your personalized Environmental Mastery Design™?
         </p>
         
         <Button
           onClick={onStartJourney}
           className="bg-bronze text-navy hover:bg-bronze/90 px-8 py-3 text-lg"
         >
-          Start Your Recovery Journey
+          Start Your Environmental Mastery Journey
         </Button>
         
         <p className="text-moonlight/60 text-sm">

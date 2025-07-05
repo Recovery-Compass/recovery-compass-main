@@ -7,7 +7,7 @@ CREATE TABLE public.assessments (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id TEXT NOT NULL, -- Can be auth.uid() or anonymous identifier
   email TEXT,
-  tier TEXT NOT NULL CHECK (tier IN ('crisis', 'struggling', 'seeking', 'thriving', 'limitless')),
+  tier TEXT NOT NULL CHECK (tier IN ('struggling', 'seeking', 'thriving', 'limitless')),
   responses JSONB NOT NULL,
   completed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   email_confirmed BOOLEAN DEFAULT FALSE,
@@ -20,7 +20,7 @@ CREATE TABLE public.email_captures (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   email TEXT UNIQUE NOT NULL,
   assessment_id UUID REFERENCES assessments(id) ON DELETE CASCADE,
-  tier TEXT NOT NULL CHECK (tier IN ('crisis', 'struggling', 'seeking', 'thriving', 'limitless')),
+  tier TEXT NOT NULL CHECK (tier IN ('struggling', 'seeking', 'thriving', 'limitless')),
   confirmed_at TIMESTAMP WITH TIME ZONE,
   design_sent_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -77,42 +77,34 @@ CREATE POLICY "Anyone can read questions" ON assessment_questions
 
 -- Insert the assessment questions
 INSERT INTO assessment_questions (tier, question_order, question_text, question_type, options, domain, privacy_level) VALUES
--- Crisis tier
-('crisis', 1, 'What kind of support feels most needed right now?', 'multiple_choice', 
-  '["Someone to talk to who understands", "A safe place to rest and reset", "Help finding immediate resources", "Connection without judgment"]'::jsonb,
-  'social', 'high'),
-('crisis', 2, 'What would help you feel safer today?', 'multiple_choice',
-  '["Knowing I''m not alone", "Having a clear next step", "Feeling heard and validated", "Access to practical support"]'::jsonb,
-  'social', 'high'),
-
 -- Struggling tier
-('struggling', 1, 'What''s your biggest challenge right now?', 'multiple_choice',
-  '["Managing daily stress and overwhelm", "Finding consistent support", "Breaking old patterns", "Building new routines"]'::jsonb,
-  'health', 'moderate'),
-('struggling', 2, 'What small win would make tomorrow better?', 'multiple_choice',
-  '["Better sleep or rest", "One meaningful connection", "Completing something I''ve been avoiding", "A moment of genuine peace"]'::jsonb,
-  'time_routine', 'moderate'),
+('struggling', 1, 'What environmental factors need the most optimization in your life?', 'multiple_choice',
+  '["Physical space organization and flow", "Daily routine and time structure", "Social connections and support systems", "Work and productivity environment"]'::jsonb,
+  'environment', 'moderate'),
+('struggling', 2, 'What would make your environment more supportive tomorrow?', 'multiple_choice',
+  '["Better organization and systems", "Improved lighting and comfort", "Clearer boundaries and structure", "Enhanced focus and calm"]'::jsonb,
+  'environment', 'moderate'),
 
 -- Seeking tier
-('seeking', 1, 'What area of growth calls to you most?', 'multiple_choice',
-  '["Understanding myself more deeply", "Building healthier relationships", "Finding my purpose and direction", "Creating sustainable change"]'::jsonb,
-  'social', 'low'),
-('seeking', 2, 'What would authentic success look like for you?', 'multiple_choice',
-  '["Inner peace and self-acceptance", "Meaningful work and contribution", "Deep, genuine connections", "Freedom to be fully myself"]'::jsonb,
-  'health', 'low'),
+('seeking', 1, 'What environmental design area calls to you most?', 'multiple_choice',
+  '["Creating spaces that inspire growth", "Designing systems that support goals", "Building environments for connection", "Optimizing for creativity and flow"]'::jsonb,
+  'environment', 'low'),
+('seeking', 2, 'What would your ideal environmental design achieve?', 'multiple_choice',
+  '["Effortless daily routines", "Inspiring and energizing spaces", "Natural support for your goals", "Perfect balance of structure and freedom"]'::jsonb,
+  'environment', 'low'),
 
 -- Thriving tier
-('thriving', 1, 'What''s emerging in your journey now?', 'multiple_choice',
-  '["New levels of self-understanding", "Desire to help others on their path", "Creative expression and innovation", "Deeper spiritual connection"]'::jsonb,
-  'nature', 'low'),
-('thriving', 2, 'How do you want to expand your impact?', 'multiple_choice',
-  '["Mentoring and supporting others", "Creating something meaningful", "Building community and connection", "Exploring new frontiers of growth"]'::jsonb,
-  'social', 'low'),
+('thriving', 1, 'What environmental mastery opportunities excite you most?', 'multiple_choice',
+  '["Designing signature spaces that reflect your values", "Creating systems that amplify your strengths", "Building environments that inspire others", "Mastering the integration of all life domains"]'::jsonb,
+  'environment', 'low'),
+('thriving', 2, 'How do you want to expand your environmental influence?', 'multiple_choice',
+  '["Sharing your design principles with others", "Creating environments that transform communities", "Building systems that scale positive impact", "Pioneering new approaches to environmental mastery"]'::jsonb,
+  'environment', 'low'),
 
 -- Limitless tier
-('limitless', 1, 'What impossible dream is becoming possible?', 'multiple_choice',
-  '["Transforming entire systems", "Living in complete alignment", "Creating generational change", "Embodying my highest vision"]'::jsonb,
-  'nature', 'low'),
-('limitless', 2, 'What legacy do you want to create?', 'multiple_choice',
-  '["A new paradigm of healing", "Inspiration for future generations", "Systems that honor human dignity", "A world where everyone can thrive"]'::jsonb,
-  'time_routine', 'low');
+('limitless', 1, 'What environmental mastery vision is becoming reality?', 'multiple_choice',
+  '["Transforming entire spaces and systems", "Living in perfect environmental alignment", "Creating breakthrough design innovations", "Embodying ultimate environmental mastery"]'::jsonb,
+  'environment', 'low'),
+('limitless', 2, 'What environmental legacy do you want to create?', 'multiple_choice',
+  '["Revolutionary approaches to environmental design", "Spaces that inspire generational transformation", "Systems that honor human flourishing", "Environments where everyone can achieve mastery"]'::jsonb,
+  'environment', 'low');

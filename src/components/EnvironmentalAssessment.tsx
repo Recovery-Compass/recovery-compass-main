@@ -21,7 +21,7 @@ interface Question {
   privacy_level: string;
 }
 
-type Tier = 'crisis' | 'struggling' | 'seeking' | 'thriving' | 'limitless';
+type Tier = 'struggling' | 'seeking' | 'thriving' | 'limitless';
 
 const EnvironmentalAssessment = () => {
   const navigate = useNavigate();
@@ -161,10 +161,10 @@ const EnvironmentalAssessment = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-montserrat font-black text-moonlight mb-4">
-            Environmental Response Design Assessment
+            Environmental Mastery Design™ Assessment
           </h1>
           <p className="text-moonlight/80 text-lg max-w-2xl mx-auto">
-            Discover your personalized environmental design based on where you are in your recovery journey.
+            Discover your personalized Environmental Mastery Design™ based on your environmental optimization journey.
           </p>
         </div>
 
@@ -222,10 +222,10 @@ const EnvironmentalAssessment = () => {
         {currentStep === 'email' && (
           <Card className="bg-navy/50 border-bronze/30 p-8">
             <h2 className="text-2xl font-montserrat font-bold text-moonlight mb-4">
-              Get Your Personalized Design
+              Get Your Personalized Environmental Mastery Design™
             </h2>
             <p className="text-moonlight/80 mb-6">
-              Enter your email to receive your personalized Environmental Response Design report.
+              Enter your email to receive your personalized Environmental Mastery Design™ within 72 hours.
             </p>
             
             <div className="space-y-4">

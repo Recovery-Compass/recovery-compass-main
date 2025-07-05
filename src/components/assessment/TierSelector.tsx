@@ -4,48 +4,40 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-type Tier = 'crisis' | 'struggling' | 'seeking' | 'thriving' | 'limitless';
+type Tier = 'struggling' | 'seeking' | 'thriving' | 'limitless';
 
 interface TierSelectorProps {
   onTierSelect: (tier: Tier) => void;
 }
 
 const tierInfo = {
-  crisis: {
-    title: 'Crisis',
-    description: 'Need immediate support and safety',
-    color: 'red',
-    bgColor: 'bg-red-900/20',
-    borderColor: 'border-red-500/50',
-    textColor: 'text-red-300'
-  },
   struggling: {
-    title: 'Struggling',
-    description: 'Working through daily challenges',
+    title: 'Building Foundation',
+    description: 'Creating stable environmental systems',
     color: 'orange',
     bgColor: 'bg-orange-900/20',
     borderColor: 'border-orange-500/50',
     textColor: 'text-orange-300'
   },
   seeking: {
-    title: 'Seeking',
-    description: 'Ready for growth and change',
+    title: 'Designing Growth',
+    description: 'Optimizing environment for development',
     color: 'teal',
     bgColor: 'bg-teal-900/20',
     borderColor: 'border-teal-500/50',
     textColor: 'text-teal-300'
   },
   thriving: {
-    title: 'Thriving',
-    description: 'Building on existing strengths',
+    title: 'Mastering Systems',
+    description: 'Refining environmental excellence',
     color: 'bronze',
     bgColor: 'bg-bronze/20',
     borderColor: 'border-bronze/50',
     textColor: 'text-bronze'
   },
   limitless: {
-    title: 'Limitless',
-    description: 'Creating transformational impact',
+    title: 'Limitless Impact',
+    description: 'Creating transformational environments',
     color: 'gold',
     bgColor: 'bg-gold/20',
     borderColor: 'border-gold/50',
@@ -60,10 +52,10 @@ const TierSelector = ({ onTierSelect }: TierSelectorProps) => {
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-montserrat font-bold text-moonlight mb-4">
-          Where are you in your journey?
+          Where are you in your environmental mastery journey?
         </h2>
         <p className="text-moonlight/80">
-          Choose the description that best fits where you are right now.
+          Choose the environmental optimization level that best fits your current situation.
         </p>
       </div>
 
