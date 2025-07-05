@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,34 +62,24 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Recovery Compass Unified Brand Colors
-				navy: '#101534',
-				bronze: '#D4AF37',
-				teal: '#5DADE2',
-				gold: '#F4D03F',
-				moonlight: '#F8F9FA',
+				// Recovery Compass custom colors
+				navy: '#1a1f2e', // Deep Navy (updated to match branding)
+				bronze: '#C69C6D', // Compass Bronze (updated to match spec)
+				teal: '#148D8D', // Compass Teal
+				gold: '#D4AF37', // Compass Gold
+				moonlight: '#F7F9F9', // Background Light
 			},
 			borderRadius: {
-				DEFAULT: '12px',
-				sm: '6px',
-				md: '12px',
-				lg: '18px',
-				xl: '24px',
-				'2xl': '30px',
-				'3xl': '36px',
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['Montserrat', 'system-ui', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				inter: ['Inter', 'sans-serif'],
 				playfair: ['Playfair Display', 'serif'],
 			},
-			fontWeight: {
-				regular: '400',
-				medium: '500',
-				semibold: '600',
-				bold: '700',
-			},
+			// Enhanced spacing for larger logos
 			spacing: {
 				'72': '18rem',
 				'80': '20rem',
@@ -99,12 +88,20 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' }
+					from: {
+						height: '0'
+					},
+					to: {
+						height: 'var(--radix-accordion-content-height)'
+					}
 				},
 				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' }
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
 				},
 				'fade-in': {
 					'0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -114,17 +111,28 @@ export default {
 					'0%, 100%': { opacity: '0.9' },
 					'50%': { opacity: '1', filter: 'brightness(1.1)' },
 				},
+				'subtle-sway': {
+					'0%, 100%': { transform: 'rotate(-1deg)' },
+					'50%': { transform: 'rotate(1deg)' },
+				},
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
 				},
+				'logo-enhance': {
+					'0%': { transform: 'scale(1)', filter: 'brightness(1)' },
+					'100%': { transform: 'scale(1.02)', filter: 'brightness(1.1) contrast(1.1)' },
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 1s ease-out forwards',
+				'delayed-fade': 'fade-in 1.5s ease-out 1s forwards',
 				'gentle-pulse': 'gentle-pulse 4s infinite',
+				'subtle-sway': 'subtle-sway 6s ease-in-out infinite',
 				'float': 'float 6s ease-in-out infinite',
+				'logo-enhance': 'logo-enhance 0.3s ease-out forwards',
 			}
 		}
 	},
