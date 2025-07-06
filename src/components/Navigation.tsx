@@ -51,9 +51,6 @@ export const Navigation = () => {
             aria-label="Recovery Compass Home"
           >
             <CompassLogo className="w-8 h-8 sm:w-10 sm:h-10" size="sm" priority />
-            <span className="text-bronze font-black text-lg sm:text-xl tracking-tight">
-              Recovery Compass
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

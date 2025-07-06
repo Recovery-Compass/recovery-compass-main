@@ -26,9 +26,6 @@ const InvestorNavigation = () => {
           <Link to="/investor-pitch" className="flex items-center space-x-4 group min-w-[280px]">
             <CompassLogo className="w-12 h-12 flex-shrink-0" />
             <div className="flex flex-col">
-              <div className="text-bronze font-black text-xl leading-tight tracking-tight">
-                Recovery Compass
-              </div>
               <div className="text-moonlight/60 text-sm font-medium leading-tight">
                 Investor Relations
               </div>

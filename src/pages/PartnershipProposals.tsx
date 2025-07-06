@@ -153,7 +153,7 @@ const PartnershipProposals: React.FC = () => {
                   MozOsxFontSmoothing: 'grayscale'
                 }}
               >
-                RECOVERY COMPASS
+                
               </h1>
             </div>
           </motion.div>
