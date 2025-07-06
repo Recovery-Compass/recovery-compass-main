@@ -46,6 +46,8 @@
   body {
     @apply bg-background text-foreground font-montserrat;
     scroll-behavior: smooth;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
   }
 
   /* Custom classes for Recovery Compass */

@@ -22,35 +22,25 @@ const PathwaySelect = () => {
   };
 
   return (
-    <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-8 py-20">
       <div 
         className={cn(
-          'max-w-6xl w-full transition-all duration-1000',
+          'max-w-4xl w-full transition-all duration-1000',
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-          {/* Compass Companion Panel */}
-          <RitualPanel 
-            title="Compass Companion"
-            description="No diagnosis. No intake. Just space to begin, on your terms."
-            subtext="This isn't treatment. This is restoration."
-            ctaText="Enter Companion"
-            colorScheme="teal"
-            delay={300}
-            onSelect={() => handlePathwaySelect('compass-companion')}
-          />
-
-          {/* Impact Translator Panel */}
-          <RitualPanel 
-            title="Impact Translator"
-            description="You keep caring. I'll make sure your story gets funded."
-            subtext="Built for people like Randall — who give shoes to foster kids, not spreadsheets to grant panels."
-            ctaText="Launch Translator"
-            colorScheme="gold"
-            delay={500}
-            onSelect={() => handlePathwaySelect('impact-translator')}
-          />
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl">
+            <RitualPanel 
+              title="Environmental Response Design™"
+              description="An environmental design optimized for thriving"
+              subtext=""
+              ctaText="Begin Design"
+              colorScheme="gold"
+              delay={300}
+              onSelect={() => handlePathwaySelect('environmental-design')}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -89,33 +79,35 @@ const RitualPanel = ({
   return (
     <Card 
       className={cn(
-        'bg-navy/50 border border-bronze/30 p-8 rounded-lg',
+        'bg-navy/50 border border-bronze/30 p-10 rounded-lg',
         'hover:border-bronze/60 hover:bg-navy/70',
         'transition-all duration-500 hover:shadow-lg',
         colorScheme === 'teal' ? 'hover:shadow-teal/20' : 'hover:shadow-bronze/20',
-        'flex flex-col h-full',
+        'flex flex-col h-full min-h-[280px]',
         'transition-all duration-1200',
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       )}
     >
       <h3 className={cn(
-        'font-montserrat font-black text-2xl md:text-[24px] mb-4',
+        'font-montserrat font-black text-3xl md:text-4xl mb-6 tracking-tight',
         colorScheme === 'teal' ? 'text-teal' : 'text-bronze'
       )}>
         {title}
       </h3>
       
-      <p className="text-moonlight text-lg mb-4 font-medium">
+      <p className="text-moonlight text-xl mb-8 font-medium leading-relaxed">
         {description}
       </p>
       
-      <p className="text-moonlight/70 text-[16px] italic mb-8 mt-auto">
-        {subtext}
-      </p>
+      {subtext && (
+        <p className="text-moonlight/70 text-lg italic mb-8 mt-auto leading-relaxed">
+          {subtext}
+        </p>
+      )}
       
       <Button 
         className={cn(
-          'mt-auto text-[16px] font-semibold border-2',
+          'mt-auto text-lg font-semibold border-2 py-4 px-8',
           'transition-all duration-300 hover:translate-y-[-3px]',
           colorScheme === 'teal' 
             ? 'border-teal text-teal hover:bg-teal hover:text-navy' 
