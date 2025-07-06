@@ -3,44 +3,53 @@ import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Home, Users, DollarSign, Clock, Heart, UsersRound, BookOpen } from 'lucide-react';
 interface AssessmentCategory {
   id: string;
   title: string;
   description: string;
+  icon: React.ComponentType<{ className?: string }>;
 }
 const assessmentCategories: AssessmentCategory[] = [{
   id: 'living-environment',
   title: 'Living Environment & Space Design',
-  description: 'How your physical surroundings support or hinder your daily thriving'
+  description: 'How your physical surroundings support or hinder your daily thriving',
+  icon: Home
 }, {
   id: 'social-connections',
   title: 'Social Connections & Relationships',
-  description: 'The people and community networks that influence your wellbeing'
+  description: 'The people and community networks that influence your wellbeing',
+  icon: Users
 }, {
   id: 'work-life-integration',
-  title: 'Work-Life Integration',
-  description: 'How your professional environment aligns with your personal values and needs'
+  title: 'Work-Life Harmony',
+  description: 'How your professional environment aligns with your personal values and needs',
+  icon: Heart
 }, {
   id: 'financial-security',
-  title: 'Financial Security & Planning',
-  description: 'Economic factors affecting your sense of safety and future planning'
+  title: 'Financial Wellness & Security',
+  description: 'Economic factors affecting your sense of safety and future planning',
+  icon: DollarSign
 }, {
   id: 'time-management',
   title: 'Time Management & Routines',
-  description: 'Daily and weekly patterns that either energize or drain you'
+  description: 'Daily and weekly patterns that either energize or drain you',
+  icon: Clock
 }, {
   id: 'physical-health',
   title: 'Physical Health & Movement',
-  description: 'How your body\'s needs are supported by your current environment'
+  description: 'How your body\'s needs are supported by your current environment',
+  icon: Heart
 }, {
   id: 'community-support',
   title: 'Community & Support Systems',
-  description: 'External resources and networks available during both routine and challenging times'
+  description: 'External resources and networks available during both routine and challenging times',
+  icon: UsersRound
 }, {
   id: 'personal-growth',
   title: 'Personal Growth & Learning',
-  description: 'Opportunities for development and meaningful engagement in your current setup'
+  description: 'Opportunities for development and meaningful engagement in your current setup',
+  icon: BookOpen
 }];
 const EnvironmentalWellnessAssessment = () => {
   const navigate = useNavigate();
@@ -83,13 +92,15 @@ const EnvironmentalWellnessAssessment = () => {
 
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="font-montserrat font-black text-4xl md:text-5xl text-bronze mb-6 tracking-tight lg:text-5xl text-center">Choose Your Environmental 
+          <h1 className="font-montserrat font-black text-4xl md:text-5xl text-bronze mb-6 tracking-tight lg:text-5xl text-center">Choose Your Environmental 
 Focus</h1>
+          <p className="font-montserrat font-medium text-moonlight/70 text-lg">
+            Evidence-based environmental optimization
+          </p>
         </div>
 
         {/* Assessment Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {assessmentCategories.map((category, index) => <CategoryCard key={category.id} category={category} isVisible={visibleCards.includes(category.id)} delay={500 + index * 100} onSelect={() => handleCategorySelect(category.id)} />)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">{assessmentCategories.map((category, index) => <CategoryCard key={category.id} category={category} isVisible={visibleCards.includes(category.id)} delay={500 + index * 100} onSelect={() => handleCategorySelect(category.id)} />)}
         </div>
       </div>
     </div>;
@@ -105,16 +116,36 @@ const CategoryCard = ({
   isVisible,
   onSelect
 }: CategoryCardProps) => {
-  return <Card className={cn('bg-navy/50 border border-bronze/30 p-8 rounded-lg cursor-pointer text-center', 'hover:border-bronze/60 hover:bg-navy/70 hover:shadow-lg hover:shadow-bronze/20', 'transition-all duration-300 hover:translate-y-[-2px]', 'min-h-[200px] flex flex-col justify-center', 'transition-all duration-700', isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12')} onClick={onSelect}>
-      <div className="space-y-4">
-        <button className="font-montserrat font-bold text-xl text-bronze tracking-tight leading-tight hover:text-bronze/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy" onClick={e => {
-        e.stopPropagation();
-        onSelect();
-      }}>
-          {category.title}
-        </button>
+  const IconComponent = category.icon;
+  
+  return <Card className={cn(
+    'bg-navy/50 border border-bronze/30 p-8 rounded-lg cursor-pointer text-center group',
+    'hover:border-bronze/60 hover:bg-navy/70 hover:shadow-xl hover:shadow-bronze/30',
+    'transition-all duration-300 hover:translate-y-[-4px]',
+    'min-h-[220px] flex flex-col justify-center',
+    'transition-all duration-700',
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+  )} onClick={onSelect}>
+      <div className="space-y-6">
+        {/* Icon */}
+        <div className="flex justify-center">
+          <IconComponent className="w-8 h-8 text-bronze/80 group-hover:text-bronze transition-colors duration-200" />
+        </div>
         
-        <p className="font-montserrat font-medium text-moonlight text-lg leading-relaxed">
+        {/* Title with Explore indicator */}
+        <div className="relative">
+          <button className="font-montserrat font-bold text-xl text-bronze tracking-tight leading-tight hover:text-bronze/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy" onClick={e => {
+            e.stopPropagation();
+            onSelect();
+          }}>
+            {category.title}
+          </button>
+          <span className="text-xs text-moonlight/50 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 mt-1 block">
+            Explore →
+          </span>
+        </div>
+        
+        <p className="font-montserrat font-medium text-moonlight text-base leading-relaxed">
           {category.description}
         </p>
       </div>
