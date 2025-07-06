@@ -115,9 +115,6 @@ const EnvironmentalWellnessAssessment = () => {
           <h1 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-bronze mb-6 tracking-tight">
             Choose Your Environmental Focus
           </h1>
-          <p className="font-montserrat font-medium text-moonlight text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto">
-            Select the area where you'd like to optimize your environment for thriving
-          </p>
         </div>
 
         {/* Assessment Categories Grid */}
