@@ -89,13 +89,13 @@ const RitualPanel = ({
       )}
     >
       <h3 className={cn(
-        'font-montserrat font-black text-3xl md:text-4xl mb-6 tracking-tight',
+        'font-montserrat font-black text-3xl md:text-4xl mb-6 tracking-tight text-center',
         colorScheme === 'teal' ? 'text-teal' : 'text-bronze'
       )}>
         {title}
       </h3>
       
-      <p className="text-moonlight text-xl mb-8 font-medium leading-relaxed">
+      <p className="text-moonlight text-xl mb-8 font-medium leading-relaxed text-center">
         {description}
       </p>
       
