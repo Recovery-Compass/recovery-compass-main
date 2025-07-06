@@ -115,7 +115,7 @@ const EnvironmentalWellnessAssessment = () => {
           <h1 className="font-montserrat font-black text-4xl md:text-5xl lg:text-6xl text-bronze mb-6 tracking-tight">
             Choose Your Environmental Focus
           </h1>
-          <p className="text-moonlight text-xl md:text-2xl font-medium leading-relaxed max-w-4xl mx-auto">
+          <p className="font-montserrat font-medium text-moonlight text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto">
             Select the area where you'd like to optimize your environment for thriving
           </p>
         </div>
@@ -148,29 +148,29 @@ const CategoryCard = ({ category, isVisible, onSelect }: CategoryCardProps) => {
   return (
     <Card 
       className={cn(
-        'bg-navy/50 border border-bronze/30 p-8 rounded-lg cursor-pointer',
+        'bg-navy/50 border border-bronze/30 p-8 rounded-lg cursor-pointer text-center',
         'hover:border-bronze/60 hover:bg-navy/70 hover:shadow-lg hover:shadow-bronze/20',
         'transition-all duration-300 hover:translate-y-[-2px]',
-        'min-h-[200px] flex flex-col justify-between',
+        'min-h-[200px] flex flex-col justify-center',
         'transition-all duration-700',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       )}
       onClick={onSelect}
     >
-      <div>
-        <h3 className="font-montserrat font-bold text-xl text-bronze mb-4 tracking-tight leading-tight">
+      <div className="space-y-4">
+        <button 
+          className="font-montserrat font-bold text-xl text-bronze tracking-tight leading-tight hover:text-bronze/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect();
+          }}
+        >
           {category.title}
-        </h3>
+        </button>
         
-        <p className="text-moonlight text-lg leading-relaxed">
+        <p className="font-montserrat font-medium text-moonlight text-lg leading-relaxed">
           {category.description}
         </p>
-      </div>
-      
-      <div className="mt-6 pt-4 border-t border-bronze/20">
-        <span className="text-bronze/70 text-sm font-medium">
-          Click to begin assessment →
-        </span>
       </div>
     </Card>
   );
