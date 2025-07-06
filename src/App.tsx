@@ -11,6 +11,7 @@ import CompassCompanion from "./pages/CompassCompanion";
 import ImpactTranslator from "./pages/ImpactTranslator";
 import PartnershipProposals from "./pages/PartnershipProposals";
 import PathwaySelect from "./pages/PathwaySelect";
+import EnvironmentalDesign from "./pages/EnvironmentalDesign";
 import MakeIntegration from "./pages/MakeIntegration";
 import NotFound from "./pages/NotFound";
 import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
@@ -36,6 +37,7 @@ const AnalyticsWrapper = () => {
         '/impact-translator': 'Impact Translator - Recovery Compass',
         '/partnership-proposals': 'Partnership Proposals - Recovery Compass',
         '/pathway-select': 'Pathway Select - Recovery Compass',
+        '/environmental-design': 'Environmental Design - Recovery Compass',
         '/make-integration': 'Make Integration - Recovery Compass',
         '/investor-pitch': 'Investor Pitch - Recovery Compass',
         '/market-analysis': 'Market Analysis - Recovery Compass',
@@ -157,6 +159,12 @@ function App() {
               <>
                 <Navigation />
                 <PathwaySelect />
+              </>
+            } />
+            <Route path="/environmental-design" element={
+              <>
+                <Navigation />
+                <EnvironmentalDesign />
               </>
             } />
             <Route path="/make-integration" element={
