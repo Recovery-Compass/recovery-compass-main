@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft, Home, Users, DollarSign, Clock, Heart, UsersRound, BookOpen } from 'lucide-react';
+import LivingEnvironmentQuiz from './LivingEnvironmentQuiz';
 interface AssessmentCategory {
   id: string;
   title: string;
@@ -55,6 +56,7 @@ const EnvironmentalWellnessAssessment = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [visibleCards, setVisibleCards] = useState<string[]>([]);
+  const [showQuiz, setShowQuiz] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -74,12 +76,24 @@ const EnvironmentalWellnessAssessment = () => {
     }
   }, [isVisible]);
   const handleCategorySelect = (categoryId: string) => {
-    // Future implementation for individual assessment pages
-    console.log('Selected category:', categoryId);
+    if (categoryId === 'living-environment') {
+      setShowQuiz(true);
+    } else {
+      // Future implementation for other assessment pages
+      console.log('Selected category:', categoryId);
+    }
   };
   const handleBack = () => {
     navigate('/pathway-select');
   };
+
+  const handleQuizBack = () => {
+    setShowQuiz(false);
+  };
+
+  if (showQuiz) {
+    return <LivingEnvironmentQuiz onBack={handleQuizBack} />;
+  }
   return <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-20">
       <div className={cn('max-w-6xl w-full transition-all duration-1000', isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         {/* Back Button */}
