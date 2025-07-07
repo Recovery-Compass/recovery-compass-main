@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
+import LivingEnvironmentResult from './LivingEnvironmentResult';
 
 interface LivingEnvironmentQuizProps {
   onBack: () => void;
@@ -107,30 +108,65 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     );
   }
 
+  // Calculate results data
+  const calculateResults = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const demoMode = urlParams.get('demo');
+    
+    // Demo mode mock data
+    if (demoMode === 'safety') {
+      return {
+        score: 48,
+        branch: 'safety' as const,
+        topWin: 'Secure Entry',
+        topGap: 'Lighting'
+      };
+    } else if (demoMode === 'optimize') {
+      return {
+        score: 76,
+        branch: 'optimization' as const,
+        topWin: 'Privacy',
+        topGap: 'Evening Light'
+      };
+    }
+
+    // Calculate actual results from responses
+    const averageScore = responses.length > 0 ? Math.round((responses.reduce((sum, r) => sum + r, 0) / responses.length) * 20) : 50;
+    
+    const safetyFactors = ['Secure Entry', 'Basic Needs', 'Housing Stability', 'Privacy Boundaries'];
+    const optimizationFactors = ['Daily Routines', 'Relaxation Space', 'Lighting Quality', 'Inspiration'];
+    
+    const factors = branch === 'safety' ? safetyFactors : optimizationFactors;
+    const factorScores = responses.slice(1); // Skip first question
+    
+    let topWin = 'Space Layout';
+    let topGap = 'Lighting';
+    
+    if (factorScores.length > 0) {
+      const maxIndex = factorScores.indexOf(Math.max(...factorScores));
+      const minIndex = factorScores.indexOf(Math.min(...factorScores));
+      topWin = factors[maxIndex] || 'Space Layout';
+      topGap = factors[minIndex] || 'Lighting';
+    }
+
+    return {
+      score: averageScore,
+      branch: branch!,
+      topWin,
+      topGap
+    };
+  };
+
   if (showResults) {
+    const results = calculateResults();
     return (
-      <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6">
-        <div className="max-w-2xl w-full">
-          <Card className="bg-navy/50 border border-bronze/30 p-12 rounded-lg text-center">
-            <div className="space-y-8">
-              <h2 className="font-montserrat font-black text-3xl text-bronze mb-6">
-                Your Environmental Assessment
-              </h2>
-              <p className="text-moonlight text-lg font-montserrat leading-relaxed">
-                Your environmental assessment reveals strong foundations with targeted opportunities in lighting optimization and acoustic comfort to enhance your daily restoration.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <Button 
-                  onClick={onBack}
-                  className="border-2 border-bronze text-bronze hover:bg-bronze hover:text-navy font-montserrat font-bold uppercase tracking-wide px-8 py-3"
-                >
-                  Explore Other Areas
-                </Button>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
+      <LivingEnvironmentResult
+        score={results.score}
+        branch={results.branch}
+        topWin={results.topWin}
+        topGap={results.topGap}
+        onBack={onBack}
+      />
     );
   }
 
