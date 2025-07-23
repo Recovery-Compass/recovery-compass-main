@@ -24,6 +24,7 @@ export const Navigation = () => {
     { path: '/compass-companion', label: 'Compass Companion' },
     { path: '/impact-translator', label: 'Impact Translator' },
     { path: '/partnership-proposals', label: 'Partnership' },
+    { path: '/whittier-dashboard', label: 'Whittier Dashboard' },
   ];
 
   const investorPages = [

@@ -13,6 +13,7 @@ import PartnershipProposals from "./pages/PartnershipProposals";
 import PathwaySelect from "./pages/PathwaySelect";
 import EnvironmentalDesign from "./pages/EnvironmentalDesign";
 import MakeIntegration from "./pages/MakeIntegration";
+import WhittierDashboard from "./pages/WhittierDashboard";
 import NotFound from "./pages/NotFound";
 import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
 // Investor Pages
@@ -171,6 +172,12 @@ function App() {
               <>
                 <Navigation />
                 <MakeIntegration />
+              </>
+            } />
+            <Route path="/whittier-dashboard" element={
+              <>
+                <Navigation />
+                <WhittierDashboard />
               </>
             } />
             <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
