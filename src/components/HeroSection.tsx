@@ -15,17 +15,17 @@ const HeroSection = ({
   const [ctaVisible, setCtaVisible] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
 
-  // Initial animation sequence
+  // Optimized animation sequence for faster load
   useEffect(() => {
     const titleTimer = setTimeout(() => {
       setTitleVisible(true);
-    }, 2000);
+    }, 800);
     const ctaTimer = setTimeout(() => {
       setCtaVisible(true);
-    }, 3000);
+    }, 1200);
     const buttonTimer = setTimeout(() => {
       setButtonVisible(true);
-    }, 4000);
+    }, 1600);
     return () => {
       clearTimeout(titleTimer);
       clearTimeout(ctaTimer);
@@ -58,15 +58,15 @@ const HeroSection = ({
         RECOVERY COMPASS
       </h1>
       
-      <p className={cn('mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-1000 delay-300', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>Can you honestly say you've experienced the best best version of yourself yet?</p>
+      <p className={cn('mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>Can you honestly say you've experienced the best best version of yourself yet?</p>
       
-      <div className={cn('mt-8 sm:mt-10 text-center', 'transition-all duration-1000 delay-700', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+      <div className={cn('mt-8 sm:mt-10 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         <Button onClick={handleBeginJourney} variant="cta" size="cta">BEGIN YOUR JOURNEY</Button>
       </div>
       
       {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
       <div className="mt-16 text-center animate-fade-in font-montserrat" style={{
-      animationDelay: '1.8s'
+      animationDelay: '0.8s'
     }}>
         
         <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat font-light">
