@@ -125,17 +125,27 @@ const WhittierDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header with Story Mode Toggle & Manager Filter */}
-      <div className="border-b bg-white">
+    <div className="min-h-screen bg-moonlight">
+      {/* Header with Whittier First Day Branding */}
+      <div className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-3xl font-bold text-navy">Whittier First Day KPI Dashboard</h1>
-              <p className="text-muted-foreground mt-1">County Transition Readiness & Performance Monitoring</p>
-              <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                <Award className="w-4 h-4" />
-                <span>Culture Transformation: {kpiData.culturalImprovement.turnoverReduction}% turnover reduction since new leadership</span>
+            <div className="flex items-center gap-6">
+              {/* Whittier First Day Logo */}
+              <div className="flex items-center gap-4">
+                <img 
+                  src="/lovable-uploads/d313db44-330d-4859-85fe-a1a7502f6b87.png" 
+                  alt="Whittier First Day Logo" 
+                  className="h-16 w-auto object-contain"
+                />
+                <div>
+                  <h1 className="text-3xl font-bold text-navy">Strategic Intelligence Dashboard</h1>
+                  <p className="text-muted-foreground mt-1">County Transition Readiness & Performance Monitoring</p>
+                  <div className="flex items-center gap-2 mt-2 text-sm text-bronze">
+                    <Award className="w-4 h-4" />
+                    <span className="font-medium">Culture Transformation: {kpiData.culturalImprovement.turnoverReduction}% turnover reduction since new leadership</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -197,20 +207,20 @@ const WhittierDashboard = () => {
       </div>
 
       {/* Real-Time Alerts Bar (Feature 8) */}
-      <div className="bg-orange-50 border-b border-orange-200">
+      <div className="bg-bronze/10 border-b border-bronze/20">
         <div className="container mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-orange-700">
-              <Bell className="w-4 h-4 animate-pulse" />
+            <div className="flex items-center gap-2 text-navy">
+              <Bell className="w-4 h-4 animate-pulse text-bronze" />
               <span className="font-medium">{getCurrentAlert().message}</span>
               <span className="text-xs opacity-75">• {getCurrentAlert().time}</span>
             </div>
             <div className="flex gap-2">
-              <Button size="sm" variant="outline" className="text-xs">
+              <Button size="sm" variant="outline" className="text-xs border-bronze text-bronze hover:bg-bronze hover:text-white">
                 <Mail className="w-3 h-3 mr-1" />
                 Email Managers
               </Button>
-              <Button size="sm" variant="outline" className="text-xs">
+              <Button size="sm" variant="outline" className="text-xs border-bronze text-bronze hover:bg-bronze hover:text-white">
                 <Calendar className="w-3 h-3 mr-1" />
                 Schedule Review
               </Button>
