@@ -37,6 +37,12 @@
     --compass-gold: #D4AF37;
     --tree-copper: #B87333;
     --moon-glow: #F5F5DC;
+    /* Legacy support */
+    --navy: #101534;
+    --bronze: #D4AF37;
+    --teal: #148D8D;
+    --gold: #D4AF37;
+    --moonlight: #F5F5DC;
   }
 
   * {
@@ -108,6 +114,24 @@
   .border-compass-gold { border-color: var(--compass-gold); }
   .border-tree-copper { border-color: var(--tree-copper); }
   .border-moon-glow { border-color: var(--moon-glow); }
+
+  /* Legacy support */
+  .bg-navy { background-color: var(--navy); }
+  .bg-bronze { background-color: var(--bronze); }
+  .bg-teal { background-color: var(--teal); }
+  .bg-gold { background-color: var(--gold); }
+  .bg-moonlight { background-color: var(--moonlight); }
+  
+  .text-navy { color: var(--navy); }
+  .text-bronze { color: var(--bronze); }
+  .text-teal { color: var(--teal); }
+  .text-gold { color: var(--gold); }
+  .text-moonlight { color: var(--moonlight); }
+  
+  .border-bronze { border-color: var(--bronze); }
+  .border-teal { border-color: var(--teal); }
+  .border-gold { border-color: var(--gold); }
+  .border-moonlight { border-color: var(--moonlight); }
 
   /* Primary Button Standard */
   .btn-primary {

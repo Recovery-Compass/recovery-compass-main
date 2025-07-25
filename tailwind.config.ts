@@ -68,6 +68,12 @@ export default {
 				'compass-gold': '#D4AF37', // CTAs, highlights, accents
 				'tree-copper': '#B87333', // Metallic accents, premium touches
 				'moon-glow': '#F5F5DC', // Text on dark, clean contrast
+				// Legacy support for existing components
+				navy: '#101534',
+				bronze: '#D4AF37',
+				teal: '#148D8D',
+				gold: '#D4AF37',
+				moonlight: '#F5F5DC',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
