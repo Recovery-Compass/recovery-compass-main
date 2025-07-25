@@ -18,14 +18,14 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        cta: "bg-transparent border-2 border-bronze text-bronze hover:bg-bronze hover:text-navy transition-all duration-300 font-semibold text-lg focus:ring-2 focus:ring-bronze focus:ring-offset-2",
+        cta: "bg-gradient-to-r from-deep-ocean to-midnight-foundation text-moon-glow hover:transform hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 font-semibold text-lg focus:ring-2 focus:ring-compass-gold focus:ring-offset-2 rounded-xl shadow-lg",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
-        cta: "h-14 px-8 py-4",
+        cta: "h-14 px-8 py-4 rounded-xl",
       },
     },
     defaultVariants: {

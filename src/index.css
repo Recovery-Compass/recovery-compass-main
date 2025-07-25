@@ -1,5 +1,5 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* Inter font is already loaded in index.html */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -31,12 +31,12 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    /* Custom Recovery Compass Colors */
-    --navy: #101534;
-    --bronze: #D4AF37;
-    --teal: #5DADE2;
-    --gold: #F4D03F;
-    --moonlight: #F8F9FA;
+    /* Recovery Compass Brand Colors - Refined 2025 */
+    --deep-ocean: #045295;
+    --midnight-foundation: #101534;
+    --compass-gold: #D4AF37;
+    --tree-copper: #B87333;
+    --moon-glow: #F5F5DC;
   }
 
   * {
@@ -44,33 +44,98 @@
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--midnight-foundation);
     scroll-behavior: smooth;
     font-feature-settings: "kern" 1, "liga" 1;
     text-rendering: optimizeLegibility;
   }
 
-  /* Custom classes for Recovery Compass */
-  .bg-navy { background-color: var(--navy); }
-  .bg-bronze { background-color: var(--bronze); }
-  .bg-teal { background-color: var(--teal); }
-  .bg-gold { background-color: var(--gold); }
-  .bg-moonlight { background-color: var(--moonlight); }
+  /* Typography Hierarchy - STRICT */
+  h1 {
+    font-size: 3.5rem; /* 56px */
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--deep-ocean);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h2 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--deep-ocean);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--deep-ocean);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .metric {
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--compass-gold);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Recovery Compass Brand Classes */
+  .bg-deep-ocean { background-color: var(--deep-ocean); }
+  .bg-midnight-foundation { background-color: var(--midnight-foundation); }
+  .bg-compass-gold { background-color: var(--compass-gold); }
+  .bg-tree-copper { background-color: var(--tree-copper); }
+  .bg-moon-glow { background-color: var(--moon-glow); }
   
-  .text-navy { color: var(--navy); }
-  .text-bronze { color: var(--bronze); }
-  .text-teal { color: var(--teal); }
-  .text-gold { color: var(--gold); }
-  .text-moonlight { color: var(--moonlight); }
+  .text-deep-ocean { color: var(--deep-ocean); }
+  .text-midnight-foundation { color: var(--midnight-foundation); }
+  .text-compass-gold { color: var(--compass-gold); }
+  .text-tree-copper { color: var(--tree-copper); }
+  .text-moon-glow { color: var(--moon-glow); }
   
-  .border-bronze { border-color: var(--bronze); }
-  .border-teal { border-color: var(--teal); }
-  .border-gold { border-color: var(--gold); }
-  .border-moonlight { border-color: var(--moonlight); }
+  .border-deep-ocean { border-color: var(--deep-ocean); }
+  .border-midnight-foundation { border-color: var(--midnight-foundation); }
+  .border-compass-gold { border-color: var(--compass-gold); }
+  .border-tree-copper { border-color: var(--tree-copper); }
+  .border-moon-glow { border-color: var(--moon-glow); }
+
+  /* Primary Button Standard */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--deep-ocean), var(--midnight-foundation));
+    color: var(--moon-glow);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(4, 82, 149, 0.25);
+    transition: all 200ms ease-in-out;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(4, 82, 149, 0.35);
+  }
+
+  /* Design Standards */
+  .brand-radius { border-radius: 12px; }
+  .brand-shadow { box-shadow: 0 4px 12px rgba(4, 82, 149, 0.08); }
+  .brand-transition { transition: all 200ms ease-in-out; }
+  .brand-spacing { margin-bottom: 24px; }
 
   /* Accessibility improvements */
   .focus-visible:focus {
-    @apply outline-none ring-2 ring-bronze ring-offset-2 ring-offset-navy;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--compass-gold), 0 0 0 4px var(--midnight-foundation);
   }
 
   /* Mobile optimization */
@@ -120,15 +185,25 @@
 
 @layer components {
   .content-container {
-    @apply max-w-7xl mx-auto px-6 lg:px-8 font-montserrat;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-black text-moonlight mb-8 font-montserrat;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--moon-glow);
+    margin-bottom: 2rem;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   .card-shadow {
-    @apply shadow-lg shadow-navy/20;
+    box-shadow: 0 4px 12px rgba(4, 82, 149, 0.08);
+    border-radius: 12px;
   }
 
   /* 8px grid system for consistent spacing */
@@ -148,16 +223,24 @@
 
   /* Enhanced focus states */
   .btn-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy transition-all duration-200;
+    outline: none;
+    transition: all 200ms ease-in-out;
+  }
+  
+  .btn-focus:focus {
+    box-shadow: 0 0 0 2px var(--compass-gold), 0 0 0 4px var(--midnight-foundation);
   }
 
   /* Loading states */
   .loading {
-    @apply animate-pulse;
+    animation: pulse 2s infinite;
   }
 
   .loading-spinner {
-    @apply animate-spin rounded-full border-2 border-bronze border-t-transparent;
+    animation: spin 1s linear infinite;
+    border-radius: 12px;
+    border: 2px solid var(--compass-gold);
+    border-top-color: transparent;
   }
 }
 

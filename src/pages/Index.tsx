@@ -38,7 +38,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-navy">
+    <div className="min-h-screen bg-gradient-to-b from-deep-ocean to-midnight-foundation">
       {/* Compass/Home Section */}
       <Section id="compass" className="relative">
         <HeroSection onNavigate={handleNavigate} />

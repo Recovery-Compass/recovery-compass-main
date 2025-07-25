@@ -62,12 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Recovery Compass custom colors
-				navy: '#1a1f2e', // Deep Navy (updated to match branding)
-				bronze: '#C69C6D', // Compass Bronze (updated to match spec)
-				teal: '#148D8D', // Compass Teal
-				gold: '#D4AF37', // Compass Gold
-				moonlight: '#F7F9F9', // Background Light
+				// Recovery Compass Brand Colors - Refined 2025
+				'deep-ocean': '#045295', // Primary backgrounds, headers
+				'midnight-foundation': '#101534', // Deep backgrounds, contrast
+				'compass-gold': '#D4AF37', // CTAs, highlights, accents
+				'tree-copper': '#B87333', // Metallic accents, premium touches
+				'moon-glow': '#F5F5DC', // Text on dark, clean contrast
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -75,9 +75,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				montserrat: ['Montserrat', 'sans-serif'],
-				inter: ['Inter', 'sans-serif'],
-				playfair: ['Playfair Display', 'serif'],
+				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'], // legacy support
+				playfair: ['Playfair Display', 'serif'], // legacy support
 			},
 			// Enhanced spacing for larger logos
 			spacing: {

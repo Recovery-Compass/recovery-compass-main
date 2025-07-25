@@ -49,27 +49,27 @@ const HeroSection = ({
     });
     onNavigate('/wfd-attachments');
   };
-  return <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-montserrat">
+  return <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-inter">
       <CompassLogo size="xl" animated={true} className="mb-6 sm:mb-8 lg:mb-10" priority={true} />
       
-      <h1 className={cn('font-montserrat font-black text-moonlight text-shadow-lg text-center max-w-4xl', 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl', 'tracking-tight leading-none', 'transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')} style={{
+      <h1 className={cn('font-inter font-black text-moon-glow text-shadow-lg text-center max-w-4xl', 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl', 'tracking-tight leading-none', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')} style={{
       letterSpacing: '-0.02em'
     }}>
         RECOVERY COMPASS
       </h1>
       
-      <p className={cn('mt-4 sm:mt-6 max-w-lg text-center text-moonlight font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>Can you honestly say you've experienced the best best version of yourself yet?</p>
+      <p className={cn('mt-4 sm:mt-6 max-w-lg text-center text-moon-glow font-inter font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>Can you honestly say you've experienced the best best version of yourself yet?</p>
       
       <div className={cn('mt-8 sm:mt-10 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         <Button onClick={handleBeginJourney} variant="cta" size="cta">BEGIN YOUR JOURNEY</Button>
       </div>
       
       {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
-      <div className="mt-16 text-center animate-fade-in font-montserrat" style={{
+      <div className="mt-16 text-center animate-fade-in font-inter" style={{
       animationDelay: '0.8s'
     }}>
         
-        <p className="text-moonlight/40 text-xs mt-2 italic font-montserrat font-light">
+        <p className="text-moon-glow/40 text-xs mt-2 italic font-inter font-light">
       </p>
       </div>
     </div>;
