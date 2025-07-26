@@ -145,18 +145,18 @@
   }
 
   .golden-pulse-glow {
-    filter: drop-shadow(0 0 20px #D4AF37) drop-shadow(0 0 40px #B87333);
-    animation: refined-pulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    animation: refined-pulse 6s ease-in-out infinite;
   }
 
   @keyframes refined-pulse {
     0%, 100% { 
-      filter: drop-shadow(0 0 20px #D4AF37) drop-shadow(0 0 40px #B87333);
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
       transform: scale(1);
     }
     50% { 
-      filter: drop-shadow(0 0 30px #D4AF37) drop-shadow(0 0 60px #B87333);
-      transform: scale(1.02);
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+      transform: scale(1.005);
     }
   }
 

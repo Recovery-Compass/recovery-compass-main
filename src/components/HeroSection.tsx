@@ -54,20 +54,12 @@ const HeroSection = ({
         <CompassLogo size="xl" animated={true} className="golden-pulse-glow" priority={true} />
       </div>
       
-      <h1 className={cn('font-montserrat font-bold text-moon-glow text-center max-w-4xl', 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl', 'tracking-[0.15em] leading-[1.1] -mb-2', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
+      <h1 className={cn('font-montserrat text-white text-center max-w-4xl', 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl', 'font-black tracking-[0.15em] leading-[1.1] -mb-2', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
         RECOVERY COMPASS
       </h1>
       
-      <h2 className={cn('mt-12 max-w-4xl text-center text-moon-glow/95 font-montserrat font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl px-4', 'tracking-[0.08em] leading-[1.2]', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        Where Safe Space Creates Infinite Possibility
-      </h2>
-      
-      <p className={cn('mt-8 max-w-3xl text-center text-moon-glow/85 font-montserrat font-normal text-xl sm:text-2xl px-4', 'tracking-[0.02em] leading-[1.4]', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        When you feel safe, you stop surviving and start becoming
-      </p>
-      
       <div className={cn('mt-12 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta">DISCOVER YOUR SAFE SPACE</Button>
+        <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta font-black tracking-[0.1em]">DISCOVER YOUR SAFE SPACE</Button>
       </div>
       
       {/* Safe Space Manifesto */}
