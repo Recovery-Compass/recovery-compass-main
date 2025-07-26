@@ -75,7 +75,7 @@ const HeroSection = ({
       
       {/* Title - Pure White */}
       <h1 className={cn(
-        'font-montserrat font-black text-white text-7xl tracking-wider mb-6 relative z-10',
+        'font-montserrat font-black text-white text-6xl tracking-wider mb-6 relative z-10',
         'transition-opacity duration-300',
         titleVisible ? 'opacity-100' : 'opacity-0'
       )}>
