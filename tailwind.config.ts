@@ -81,9 +81,10 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
+				sans: ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'], // Default to Montserrat
+				montserrat: ['Montserrat', 'sans-serif'],
 				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				montserrat: ['Montserrat', 'sans-serif'], // legacy support
-				playfair: ['Playfair Display', 'serif'], // legacy support
+				playfair: ['Playfair Display', 'serif'],
 			},
 			// Enhanced spacing for larger logos
 			spacing: {

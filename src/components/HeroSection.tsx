@@ -49,29 +49,40 @@ const HeroSection = ({
     });
     onNavigate('/wfd-attachments');
   };
-  return <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-inter">
-      <CompassLogo size="xl" animated={true} className="mb-6 sm:mb-8 lg:mb-10" priority={true} />
+  return <div className="hero-sanctuary flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-montserrat relative">
+      <div className="tree-of-life-container mb-6 sm:mb-8 lg:mb-10">
+        <CompassLogo size="xl" animated={true} className="golden-pulse-glow" priority={true} />
+      </div>
       
-      <h1 className={cn('font-inter font-black text-moon-glow text-shadow-lg text-center max-w-4xl', 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl', 'tracking-tight leading-none', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')} style={{
-      letterSpacing: '-0.02em'
-    }}>
+      <h1 className={cn('font-montserrat font-black text-white text-shadow-lg text-center max-w-4xl', 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl', 'tracking-wider leading-none', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
         RECOVERY COMPASS
       </h1>
       
-      <p className={cn('mt-4 sm:mt-6 max-w-lg text-center text-moon-glow font-inter font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>Can you honestly say you've experienced the best best version of yourself yet?</p>
+      <h2 className={cn('mt-8 max-w-4xl text-center text-white/90 font-montserrat font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+        Where Safe Space Creates Infinite Possibility
+      </h2>
       
-      <div className={cn('mt-8 sm:mt-10 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        <Button onClick={handleBeginJourney} variant="cta" size="cta">BEGIN YOUR JOURNEY</Button>
-      </div>
-      
-      {/* Strategic Dashboard Link - positioned subtly below the main pathways */}
-      <div className="mt-16 text-center animate-fade-in font-inter" style={{
-      animationDelay: '0.8s'
-    }}>
-        
-        <p className="text-moon-glow/40 text-xs mt-2 italic font-inter font-light">
+      <p className={cn('mt-6 max-w-2xl text-center text-white/80 font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+        When you feel safe, you stop surviving and start becoming
       </p>
+      
+      <div className={cn('mt-12 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+        <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta">DISCOVER YOUR SAFE SPACE</Button>
       </div>
+      
+      {/* Safe Space Manifesto */}
+      <section className="safe-space-manifesto mt-20 text-center animate-fade-in font-montserrat" style={{
+        animationDelay: '0.8s'
+      }}>
+        <blockquote className="font-montserrat text-2xl sm:text-3xl text-center max-w-4xl mx-auto">
+          <span className="gradient-text text-white/95">
+            "The magic happens when someone feels safe enough to stop defending and start discovering."
+          </span>
+        </blockquote>
+        <p className="text-center mt-6 text-white/70 font-montserrat text-sm">
+          In loving memory of a mother who created infinite safe spaces • April 4, 2025
+        </p>
+      </section>
     </div>;
 };
 export default HeroSection;
