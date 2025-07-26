@@ -42,35 +42,35 @@ export const Navigation = () => {
   };
 
   return (
-    <nav className="bg-navy/95 backdrop-blur-sm border-b border-bronze/20 sticky top-0 z-50">
-      <div className="content-container">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+    <nav className="fixed w-full bg-black/90 backdrop-blur-sm border-b border-white/10 z-50">
+      <div className="max-w-7xl mx-auto px-8 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-bronze rounded-lg p-1"
+            className="flex items-center group focus:outline-none focus:ring-2 focus:ring-compass-gold rounded-lg p-1"
             aria-label="Recovery Compass Home"
           >
-            <CompassLogo className="w-8 h-8 sm:w-10 sm:h-10" size="sm" priority />
+            <CompassLogo className="w-10 h-10" size="sm" priority />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <Button
-                  variant={isActive(item.path) ? "default" : "ghost"}
-                  className={`text-sm ${
-                    isActive(item.path) 
-                      ? 'bg-bronze text-navy' 
-                      : 'text-moonlight hover:text-bronze hover:bg-bronze/10'
-                  }`}
-                  aria-current={isActive(item.path) ? 'page' : undefined}
-                >
-                  {item.label}
-                </Button>
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            <Link to="/compliance-compass" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+              The Compliance Compass™
+            </Link>
+            <Link to="/case-studies" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+              Case Studies
+            </Link>
+            <Link to="/impact" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+              Impact
+            </Link>
+            <Link to="/investors" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+              Investors
+            </Link>
+            <Button className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-montserrat font-semibold">
+              Get Started
+            </Button>
             
             {/* Investors Dropdown - Only show if not on home page */}
             {!isHomePage && (

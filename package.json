@@ -4,7 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Recovery Compass - AI-powered recovery support platform",
-  "keywords": ["recovery", "ai", "healthcare", "nonprofit"],
+  "keywords": [
+    "recovery",
+    "ai",
+    "healthcare",
+    "nonprofit"
+  ],
   "author": "Eric B. Jones <partnerships@recovery-compass.org>",
   "license": "UNLICENSED",
   "scripts": {
@@ -47,6 +52,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
+    "@stripe/stripe-js": "^7.6.1",
     "@tanstack/react-query": "^5.56.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

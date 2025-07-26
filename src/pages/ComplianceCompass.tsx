@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { trackBusinessEvent } from '@/lib/analytics';
+import { DashboardPreview } from '@/components/DashboardPreview';
+import { StripeCheckoutButton } from '@/components/StripeCheckoutButton';
 
 const ComplianceCompass = () => {
   const navigate = useNavigate();
@@ -131,28 +132,19 @@ const ComplianceCompass = () => {
             in 90 days using Environmental Response Design™
           </p>
           
-          <div className="bg-midnight-foundation/50 rounded-lg p-8 max-w-4xl mx-auto border border-compass-gold/20">
-            <div className="bg-black/50 p-4 text-center border-b border-compass-gold/10">
-              <span className="text-sm text-moon-glow/60">Live Dashboard Preview</span>
-            </div>
-            <div className="aspect-video bg-deep-ocean/30 rounded-lg flex items-center justify-center">
-              <p className="text-compass-gold font-montserrat text-lg">
-                Strategic Intelligence Dashboard
-              </p>
-            </div>
-          </div>
+          <DashboardPreview />
         </section>
 
         {/* CTA Section */}
         <section className="text-center">
-          <Button 
-            onClick={handleExecutiveBriefing}
-            className="px-16 py-8 text-xl font-montserrat font-black tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-md uppercase"
-          >
-            Schedule Executive Briefing
-          </Button>
+          <StripeCheckoutButton 
+            productName="Compliance Assessment"
+            amount={49900}
+            description="Environmental Response Design™ Assessment"
+            buttonText="Purchase Assessment - $499"
+          />
           <p className="text-moon-glow/60 font-montserrat text-sm mt-4">
-            Exclusive presentation for healthcare leadership teams
+            Comprehensive organizational assessment with ERD™ recommendations
           </p>
         </section>
       </div>
