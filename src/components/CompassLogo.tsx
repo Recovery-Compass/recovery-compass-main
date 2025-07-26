@@ -51,13 +51,13 @@ const CompassLogo = ({
       )}>
         {error ? (
           // Fallback content if image fails to load
-          <div className="w-full h-full bg-bronze/20 rounded-full flex items-center justify-center border-2 border-bronze">
-            <span className="text-bronze font-bold text-lg">RC</span>
+          <div className="w-full h-full bg-tree-copper/20 rounded-full flex items-center justify-center border-2 border-tree-copper">
+            <span className="text-tree-copper font-bold text-lg">RC</span>
           </div>
         ) : (
           <img 
-            src="/lovable-uploads/a7e0e3f1-c714-46d4-881b-19f04e6e20ec.png" 
-            alt="Recovery Compass Logo" 
+            src="/lovable-uploads/0743c496-9005-4d78-a5be-6a9b6f6ce365.png" 
+            alt="Recovery Compass - Tree of Life Logo" 
             className={cn(
               'object-contain w-full h-full',
               loaded ? 'opacity-100' : 'opacity-0',

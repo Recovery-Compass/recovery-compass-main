@@ -54,15 +54,15 @@ const HeroSection = ({
         <CompassLogo size="xl" animated={true} className="golden-pulse-glow" priority={true} />
       </div>
       
-      <h1 className={cn('font-montserrat font-black text-white text-shadow-lg text-center max-w-4xl', 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl', 'tracking-wider leading-none', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
+      <h1 className={cn('font-montserrat font-bold text-moon-glow text-center max-w-4xl', 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl', 'tracking-[0.15em] leading-[1.1] -mb-2', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
         RECOVERY COMPASS
       </h1>
       
-      <h2 className={cn('mt-8 max-w-4xl text-center text-white/90 font-montserrat font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+      <h2 className={cn('mt-12 max-w-4xl text-center text-moon-glow/95 font-montserrat font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl px-4', 'tracking-[0.08em] leading-[1.2]', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         Where Safe Space Creates Infinite Possibility
       </h2>
       
-      <p className={cn('mt-6 max-w-2xl text-center text-white/80 font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+      <p className={cn('mt-8 max-w-3xl text-center text-moon-glow/85 font-montserrat font-normal text-xl sm:text-2xl px-4', 'tracking-[0.02em] leading-[1.4]', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         When you feel safe, you stop surviving and start becoming
       </p>
       

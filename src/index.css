@@ -133,43 +133,49 @@
   .border-gold { border-color: var(--gold); }
   .border-moonlight { border-color: var(--moonlight); }
 
-  /* Sanctuary Aesthetic Classes */
+  /* Refined Sanctuary Aesthetic Classes */
   .twilight-aurora-bg {
-    background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+    background: linear-gradient(135deg, #045295 0%, #101534 100%);
     animation: breathe 8s ease-in-out infinite;
   }
 
   @keyframes breathe {
-    0%, 100% { opacity: 0.9; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.02); }
+    0%, 100% { opacity: 0.95; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.01); }
   }
 
   .golden-pulse-glow {
-    filter: drop-shadow(0 0 30px #F59E0B);
-    animation: golden-pulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px #D4AF37) drop-shadow(0 0 40px #B87333);
+    animation: refined-pulse 4s ease-in-out infinite;
   }
 
-  @keyframes golden-pulse {
-    0%, 100% { filter: drop-shadow(0 0 30px #F59E0B); }
-    50% { filter: drop-shadow(0 0 50px #F59E0B); }
+  @keyframes refined-pulse {
+    0%, 100% { 
+      filter: drop-shadow(0 0 20px #D4AF37) drop-shadow(0 0 40px #B87333);
+      transform: scale(1);
+    }
+    50% { 
+      filter: drop-shadow(0 0 30px #D4AF37) drop-shadow(0 0 60px #B87333);
+      transform: scale(1.02);
+    }
   }
 
   .sanctuary-cta {
-    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
-    color: white !important;
-    padding: 20px 40px !important;
-    border-radius: 50px !important;
+    background: linear-gradient(135deg, #D4AF37, #B87333) !important;
+    color: #F5F5DC !important;
+    padding: 16px 32px !important;
+    border-radius: 12px !important;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 600 !important;
-    letter-spacing: 0.1em !important;
-    transition: all 0.5s ease !important;
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3) !important;
+    letter-spacing: 0.06em !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25) !important;
     border: none !important;
   }
 
   .sanctuary-cta:hover {
-    transform: translateY(-2px) scale(1.05) !important;
-    box-shadow: 0 15px 40px rgba(245, 158, 11, 0.5) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.35) !important;
   }
 
   .safety-card {
