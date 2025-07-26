@@ -6,7 +6,10 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
+import Footer from "./components/Footer";
 import Index from "./pages/Index";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import CompassCompanion from "./pages/CompassCompanion";
 import ImpactTranslator from "./pages/ImpactTranslator";
 import PartnershipProposals from "./pages/PartnershipProposals";
@@ -188,8 +191,11 @@ function App() {
               </>
             } />
             <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
