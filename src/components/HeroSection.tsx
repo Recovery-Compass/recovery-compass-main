@@ -98,7 +98,7 @@ const HeroSection = ({
       )}>
         <Button 
           onClick={handleComplianceDemo}
-          className="px-12 py-6 text-lg font-montserrat font-black tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-md uppercase"
+          className="px-8 py-6 text-lg font-montserrat font-black tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-md uppercase"
         >
           TRANSFORM YOUR ORGANIZATION
         </Button>
@@ -106,7 +106,7 @@ const HeroSection = ({
         <Button 
           onClick={handleBeginJourney}
           variant="outline"
-          className="px-12 py-6 text-lg font-montserrat tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 rounded-md"
+          className="px-8 py-6 text-lg font-montserrat tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 rounded-md"
         >
           Individual Journey
         </Button>
