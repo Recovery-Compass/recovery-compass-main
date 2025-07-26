@@ -52,7 +52,7 @@ const ComplianceCompass = () => {
         {/* Hero Section */}
         <section className="text-center py-20">
           <h1 className="text-moon-glow font-montserrat font-black text-[3.5rem] tracking-wide mb-4">
-            The Compliance Compass™
+            The Compliance Compass<span className="text-[1.75rem] align-top">™</span>
           </h1>
           <p className="text-moon-glow/70 font-montserrat text-lg max-w-3xl mx-auto leading-relaxed">
             Environmental Response Design™ achieving 95% KPI compliance 
