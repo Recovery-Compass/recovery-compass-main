@@ -16,6 +16,7 @@ import MakeIntegration from "./pages/MakeIntegration";
 import WhittierDashboard from "./pages/WhittierDashboard";
 import NotFound from "./pages/NotFound";
 import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
+import ComplianceCompass from "./pages/ComplianceCompass";
 // Investor Pages
 import InvestorPitch from "./pages/InvestorPitch";
 import MarketAnalysis from "./pages/MarketAnalysis";
@@ -178,6 +179,12 @@ function App() {
               <>
                 <Navigation />
                 <WhittierDashboard />
+              </>
+            } />
+            <Route path="/compliance-compass" element={
+              <>
+                <Navigation />
+                <ComplianceCompass />
               </>
             } />
             <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
