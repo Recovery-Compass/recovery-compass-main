@@ -135,17 +135,53 @@ const ComplianceCompass = () => {
           <DashboardPreview />
         </section>
 
-        {/* CTA Section */}
-        <section className="text-center">
-          <StripeCheckoutButton 
-            productName="Compliance Assessment"
-            amount={49900}
-            description="Environmental Response Design™ Assessment"
-            buttonText="Purchase Assessment - $499"
-          />
-          <p className="text-moon-glow/60 font-montserrat text-sm mt-4">
-            Comprehensive organizational assessment with ERD™ recommendations
-          </p>
+        {/* Intelligence Exchange Section */}
+        <section className="text-center mb-20">
+          <div className="intelligence-exchange">
+            <h2 className="text-[2.25rem] font-inter font-bold text-moon-glow mb-6">
+              Compliance Intelligence Exchange
+            </h2>
+            
+            <p className="text-xl text-moon-glow/80 mb-8 max-w-3xl mx-auto">
+              Get our proprietary AI compliance audit prompt. 
+              Share your results. Receive personalized insights.
+            </p>
+            
+            <button 
+              onClick={() => {/* TODO: Open exchange modal */}}
+              className="bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-inter font-bold px-12 py-4 rounded-[12px] hover:transform hover:translateY(-2px) transition-all duration-300 shadow-[0_4px_12px_rgba(212,175,55,0.25)]"
+            >
+              Get Your Free AI Compliance Audit
+            </button>
+            
+            <p className="text-sm text-moon-glow/60 mt-4">
+              Join 50+ organizations uncovering hidden compliance gaps
+            </p>
+          </div>
+        </section>
+
+        {/* Intelligence Value Prop */}
+        <section className="intelligence-value-prop mb-20">
+          <h2 className="text-[2.25rem] font-inter font-bold text-moon-glow text-center mb-12">
+            Why 50+ Organizations Trust Our Intelligence Exchange
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="value-point text-center p-8">
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Immediate Insight</h3>
+              <p className="text-moon-glow/80 font-inter">AI-powered compliance gaps revealed in minutes</p>
+            </div>
+            
+            <div className="value-point text-center p-8">
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Custom Roadmap</h3>
+              <p className="text-moon-glow/80 font-inter">Personalized pathway based on your specific gaps</p>
+            </div>
+            
+            <div className="value-point text-center p-8">
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Ongoing Intelligence</h3>
+              <p className="text-moon-glow/80 font-inter">Weekly insights from aggregated compliance data</p>
+            </div>
+          </div>
         </section>
       </div>
     </div>
