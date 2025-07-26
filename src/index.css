@@ -6,6 +6,25 @@
 
 @layer base {
   :root {
+    /* Typography Hierarchy - SYSTEMATIC APPLICATION */
+    --h1: 3.5rem;      /* Page titles only */
+    --h2: 2.25rem;     /* Section headers */
+    --h3: 1.5rem;      /* Subsection headers */
+    --h4: 1.25rem;     /* Card headers */
+    
+    /* Body Text */
+    --body-lg: 1.125rem;  /* Important text */
+    --body: 1rem;         /* Standard text */
+    --body-sm: 0.875rem;  /* Supporting text */
+    
+    /* Spacing System */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    /* Design System Colors */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -61,31 +80,35 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Typography Hierarchy - MONTSERRAT SANCTUARY */
-  h1 {
-    font-size: 3.5rem; /* 56px */
-    font-weight: 700;
+  /* Typography System - SYSTEMATIC APPLICATION EVERYWHERE */
+  h1 { 
+    font-size: var(--h1); 
+    font-weight: 900;
+    letter-spacing: -0.02em;
     line-height: 1.1;
-    letter-spacing: 0.05em; /* Wide tracking for sanctuary feel */
-    color: var(--deep-ocean);
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  h2 {
-    font-size: 2.25rem; /* 36px */
-    font-weight: 600;
+  h2 { 
+    font-size: var(--h2); 
+    font-weight: 700;
+    letter-spacing: -0.01em;
     line-height: 1.2;
-    letter-spacing: 0.02em; /* Gentle tracking */
-    color: var(--deep-ocean);
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  h3 {
-    font-size: 1.5rem; /* 24px */
+  h3 { 
+    font-size: var(--h3); 
     font-weight: 600;
     line-height: 1.3;
-    color: var(--deep-ocean);
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h4 { 
+    font-size: var(--h4); 
+    font-weight: 600;
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .metric {

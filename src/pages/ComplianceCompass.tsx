@@ -28,13 +28,13 @@ const ComplianceCompass = () => {
 
   const MetricCard = ({ value, label, detail }: { value: string; label: string; detail: string }) => (
     <Card className="bg-midnight-foundation/50 backdrop-blur border border-compass-gold/20 p-8 text-center hover:border-compass-gold/40 transition-all duration-300">
-      <div className="text-4xl font-montserrat font-black text-compass-gold mb-2 metric">
+      <div className="text-[3rem] font-montserrat font-black text-compass-gold mb-2">
         {value}
       </div>
-      <h3 className="text-xl font-montserrat font-semibold text-moon-glow mb-2">
+      <h3 className="text-[1.5rem] font-montserrat font-semibold text-moon-glow mb-2">
         {label}
       </h3>
-      <p className="text-moon-glow/70 font-montserrat">
+      <p className="text-moon-glow/70 font-montserrat text-[0.875rem]">
         {detail}
       </p>
     </Card>
@@ -49,22 +49,22 @@ const ComplianceCompass = () => {
         )}
       >
         {/* Hero Section */}
-        <section className="text-center mb-20">
-          <h1 className="font-montserrat font-black text-5xl text-moon-glow mb-6 tracking-wide">
+        <section className="text-center py-20">
+          <h1 className="text-moon-glow font-montserrat font-black text-[3.5rem] tracking-wide mb-4">
             The Compliance Compass™
           </h1>
-          <p className="text-xl text-moon-glow/70 mt-4 max-w-3xl mx-auto font-montserrat leading-relaxed">
+          <p className="text-moon-glow/70 font-montserrat text-lg max-w-3xl mx-auto leading-relaxed">
             Environmental Response Design™ achieving 95% KPI compliance 
             for healthcare organizations ready to lead, not follow.
           </p>
         </section>
 
         {/* Evidence Section */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-16 mb-20">
           <MetricCard 
             value="95%" 
             label="KPI Compliance Rate"
-            detail="Whittier First Day case study"
+            detail="Healthcare case study"
           />
           <MetricCard 
             value="65→95" 
@@ -123,18 +123,21 @@ const ComplianceCompass = () => {
 
         {/* Case Study Teaser */}
         <section className="text-center mb-20">
-          <h2 className="font-montserrat font-bold text-3xl text-moon-glow mb-6">
-            Whittier First Day: From Crisis to Excellence
+          <h2 className="font-montserrat font-bold text-[2.25rem] text-moon-glow mb-6">
+            Healthcare Transformation: From Crisis to Excellence
           </h2>
           <p className="text-moon-glow/80 font-montserrat text-lg mb-8 max-w-3xl mx-auto">
-            See how a struggling healthcare facility achieved 95% compliance 
+            See how a Los Angeles healthcare facility achieved 95% compliance 
             in 90 days using Environmental Response Design™
           </p>
           
           <div className="bg-midnight-foundation/50 rounded-lg p-8 max-w-4xl mx-auto border border-compass-gold/20">
-            <div className="aspect-video bg-deep-ocean/30 rounded-lg flex items-center justify-center border border-compass-gold/20">
+            <div className="bg-black/50 p-4 text-center border-b border-compass-gold/10">
+              <span className="text-sm text-moon-glow/60">Live Dashboard Preview</span>
+            </div>
+            <div className="aspect-video bg-deep-ocean/30 rounded-lg flex items-center justify-center">
               <p className="text-compass-gold font-montserrat text-lg">
-                Dashboard Preview Coming Soon
+                Strategic Intelligence Dashboard
               </p>
             </div>
           </div>
