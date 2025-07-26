@@ -49,25 +49,52 @@ const HeroSection = ({
     });
     onNavigate('/wfd-attachments');
   };
-  return <div className="hero-sanctuary flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 font-montserrat relative">
-      <div className="tree-of-life-container mb-6 sm:mb-8 lg:mb-10">
-        <CompassLogo size="xl" animated={true} className="golden-pulse-glow" priority={true} />
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center relative">
+      {/* Breathing background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-ocean to-midnight-foundation animate-breathe" />
+      
+      {/* Golden Pulsing Tree of Life */}
+      <div className="relative z-10 mb-8">
+        <CompassLogo 
+          size="xl" 
+          animated={true} 
+          className="drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] animate-pulse-glow" 
+          priority={true} 
+        />
       </div>
       
-      <h1 className={cn('font-montserrat text-white text-center max-w-4xl', 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl', 'font-black tracking-[0.15em] leading-[1.1] -mb-2', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
+      {/* Title - Pure White */}
+      <h1 className={cn(
+        'font-montserrat font-black text-white text-6xl md:text-7xl tracking-wide mb-8 relative z-10',
+        'transition-opacity duration-300',
+        titleVisible ? 'opacity-100' : 'opacity-0'
+      )}>
         RECOVERY COMPASS
       </h1>
-
-      <h2 className={cn('mt-4 sm:mt-6 max-w-2xl text-center text-moonlight font-montserrat font-bold text-2xl sm:text-3xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+      
+      {/* Single Powerful Tagline */}
+      <h2 className={cn(
+        'font-montserrat font-light text-white/90 text-2xl md:text-3xl mb-16 tracking-wider relative z-10',
+        'transition-all duration-500',
+        ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      )}>
         Where Safe Space Creates Infinite Possibility
       </h2>
-      <p className={cn('mt-3 max-w-xl text-center text-moonlight/80 font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        When you feel safe, you stop surviving and start becoming
-      </p>
       
-      <div className={cn('mt-12 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
-        <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta font-black tracking-[0.1em]">DISCOVER YOUR SAFE SPACE</Button>
+      {/* Single CTA - Floating */}
+      <div className={cn(
+        'relative z-10 transition-all duration-500',
+        buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      )}>
+        <Button 
+          onClick={handleBeginJourney} 
+          className="px-12 py-6 text-lg font-montserrat tracking-wider bg-gradient-to-r from-compass-gold to-amber-600 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-500 hover:scale-105 cta-float"
+        >
+          DISCOVER YOUR SAFE SPACE
+        </Button>
       </div>
-    </div>;
+    </div>
+  );
 };
 export default HeroSection;

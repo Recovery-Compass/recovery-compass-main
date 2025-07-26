@@ -356,9 +356,23 @@
   }
 
   /* Animation utilities */
-  .animate-gentle-pulse {
-    animation: gentle-pulse 3s ease-in-out infinite;
-  }
+.animate-gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+/* Floating CTA hover */
+.cta-float:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(212,175,55,0.4);
+}
 
   @keyframes gentle-pulse {
     0%, 100% { opacity: 0.8; transform: scale(1); }
