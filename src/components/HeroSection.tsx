@@ -91,9 +91,9 @@ const HeroSection = ({
         Where Safe Space Creates Infinite Possibility
       </h2>
       
-      {/* Dual Pathway - B2B Primary */}
+      {/* Dual Pathway - Vertical Layout */}
       <div className={cn(
-        'relative z-10 flex gap-8 transition-all duration-500',
+        'relative z-10 flex flex-col items-center gap-4 transition-all duration-500',
         buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}>
         <Button 
