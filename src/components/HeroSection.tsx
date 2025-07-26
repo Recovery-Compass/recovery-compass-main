@@ -61,20 +61,6 @@ const HeroSection = ({
       <div className={cn('mt-12 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta font-black tracking-[0.1em]">DISCOVER YOUR SAFE SPACE</Button>
       </div>
-      
-      {/* Safe Space Manifesto */}
-      <section className="safe-space-manifesto mt-20 text-center animate-fade-in font-montserrat" style={{
-        animationDelay: '0.8s'
-      }}>
-        <blockquote className="font-montserrat text-2xl sm:text-3xl text-center max-w-4xl mx-auto">
-          <span className="gradient-text text-white/95">
-            "The magic happens when someone feels safe enough to stop defending and start discovering."
-          </span>
-        </blockquote>
-        <p className="text-center mt-6 text-white/70 font-montserrat text-sm">
-          In loving memory of a mother who created infinite safe spaces • April 4, 2025
-        </p>
-      </section>
     </div>;
 };
 export default HeroSection;
