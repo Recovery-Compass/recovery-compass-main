@@ -99,8 +99,8 @@ export default function TermsOfService() {
             <section>
               <h2 className="text-[2.25rem] font-inter font-semibold text-deep-ocean mb-4">9. Governing Law</h2>
               <div className="space-y-4 text-moon-glow/90">
-                <p>These terms are governed by the laws of [Your State/Country] without regard to conflict of law principles.</p>
-                <p>Any disputes shall be resolved in the courts of [Your Jurisdiction].</p>
+                <p>These terms are governed by the laws of California, United States without regard to conflict of law principles.</p>
+                <p>Any disputes shall be resolved in the courts of California, United States.</p>
               </div>
             </section>
 
@@ -118,8 +118,8 @@ export default function TermsOfService() {
                 <p>For questions about these Terms of Service, please contact us:</p>
                 <p>
                   <strong>Recovery Compass</strong><br />
-                  Email: legal@recoverycompass.com<br />
-                  Address: [Your Business Address]
+                  Email: eric@recovery-compass.org<br />
+                  Address: 5634 Noel Drive, Temple City, CA 91780 United States
                 </p>
               </div>
             </section>

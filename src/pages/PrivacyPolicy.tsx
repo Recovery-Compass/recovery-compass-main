@@ -85,14 +85,14 @@ export default function PrivacyPolicy() {
               </div>
             </section>
 
-            <section>
+              <section>
               <h2 className="text-[2.25rem] font-inter font-semibold text-deep-ocean mb-4">8. Contact Us</h2>
               <div className="space-y-4 text-moon-glow/90">
                 <p>If you have questions about this Privacy Policy or your personal information, please contact us:</p>
                 <p>
                   <strong>Recovery Compass</strong><br />
-                  Email: privacy@recoverycompass.com<br />
-                  Address: [Your Business Address]
+                  Email: eric@recovery-compass.org<br />
+                  Address: 5634 Noel Drive, Temple City, CA 91780 United States
                 </p>
               </div>
             </section>
