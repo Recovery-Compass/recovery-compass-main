@@ -57,6 +57,13 @@ const HeroSection = ({
       <h1 className={cn('font-montserrat text-white text-center max-w-4xl', 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl', 'font-black tracking-[0.15em] leading-[1.1] -mb-2', 'transition-opacity duration-300', titleVisible ? 'opacity-100' : 'opacity-0')}>
         RECOVERY COMPASS
       </h1>
+
+      <h2 className={cn('mt-4 sm:mt-6 max-w-2xl text-center text-moonlight font-montserrat font-bold text-2xl sm:text-3xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+        Where Safe Space Creates Infinite Possibility
+      </h2>
+      <p className={cn('mt-3 max-w-xl text-center text-moonlight/80 font-montserrat font-medium text-lg sm:text-xl px-4', 'transition-all duration-500', ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
+        When you feel safe, you stop surviving and start becoming
+      </p>
       
       <div className={cn('mt-12 text-center', 'transition-all duration-500', buttonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8')}>
         <Button onClick={handleBeginJourney} variant="cta" size="cta" className="sanctuary-cta font-black tracking-[0.1em]">DISCOVER YOUR SAFE SPACE</Button>
