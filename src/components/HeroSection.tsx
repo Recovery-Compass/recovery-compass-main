@@ -110,6 +110,16 @@ const HeroSection = ({
         >
           Individual Journey
         </Button>
+        
+        {/* Privacy Policy Link for Google Verification */}
+        <div className="mt-8 text-center">
+          <a 
+            href="/privacy-policy"
+            className="text-moon-glow/60 hover:text-compass-gold font-inter text-sm transition-colors underline"
+          >
+            Privacy Policy
+          </a>
+        </div>
       </div>
     </div>
   );
