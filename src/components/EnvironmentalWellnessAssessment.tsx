@@ -106,9 +106,8 @@ const EnvironmentalWellnessAssessment = () => {
 
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="font-montserrat font-black text-4xl md:text-5xl text-bronze mb-6 tracking-tight lg:text-5xl text-center">Choose Your Environmental 
-Focus</h1>
-          <p className="font-montserrat font-medium text-moonlight/70 text-lg">
+          <h1 className="font-heading heading-welcoming text-4xl md:text-5xl text-bronze mb-6 tracking-tight lg:text-5xl text-center">Choose Your Environmental Focus</h1>
+          <p className="font-body text-moonlight/70 text-lg">
             Evidence-based environmental optimization
           </p>
         </div>
@@ -148,7 +147,7 @@ const CategoryCard = ({
         
         {/* Title with Explore indicator */}
         <div className="relative">
-          <button className="font-montserrat font-bold text-xl text-bronze tracking-tight leading-tight hover:text-bronze/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy" onClick={e => {
+          <button className="font-body font-bold text-xl text-bronze tracking-tight leading-tight hover:text-bronze/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bronze focus:ring-offset-2 focus:ring-offset-navy min-h-[48px]" onClick={e => {
             e.stopPropagation();
             onSelect();
           }}>
@@ -159,7 +158,7 @@ const CategoryCard = ({
           </span>
         </div>
         
-        <p className="font-montserrat font-medium text-moonlight text-base leading-relaxed">
+        <p className="font-body text-moonlight text-base leading-relaxed">
           {category.description}
         </p>
       </div>

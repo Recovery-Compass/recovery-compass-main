@@ -27,38 +27,38 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
         <Card className="bg-navy/50 border border-bronze/30 p-8 rounded-lg">
           <div className="space-y-8">
             {/* Headline */}
-            <h1 className="font-montserrat font-black text-3xl text-bronze text-center tracking-tightest">
+            <h1 className="font-heading heading-celebrating text-3xl text-bronze text-center tracking-tightest">
               Your Living-Environment Profile
             </h1>
 
             {/* Metrics Strip */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
               <div className="space-y-2">
-                <div className="text-bronze font-montserrat font-bold text-sm">
+                <div className="text-bronze font-body font-bold text-sm">
                   Wellness Score: {score}/100
                 </div>
-                <div className="text-bronze font-montserrat font-bold text-sm">
+                <div className="text-bronze font-body font-bold text-sm">
                   Top Win: {topWin}
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-bronze font-montserrat font-bold text-sm">
+                <div className="text-bronze font-body font-bold text-sm">
                   Branch: {branch}
                 </div>
-                <div className="text-bronze font-montserrat font-bold text-sm">
+                <div className="text-bronze font-body font-bold text-sm">
                   Key Gap: {topGap}
                 </div>
               </div>
             </div>
 
             {/* Persona Sentence */}
-            <p className="text-moonlight text-lg font-montserrat text-center leading-relaxed">
+            <p className="text-moonlight text-lg font-body text-center leading-relaxed">
               {personaSentence}
             </p>
 
             {/* Social Proof Line */}
             <div className="text-center">
-              <p className="text-moonlight/80 font-montserrat text-sm">
+              <p className="text-moonlight/80 font-body text-sm">
                 ⭐ 4.8/5 from 23 {socialProofClients} clients this month
               </p>
             </div>
@@ -67,7 +67,7 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
             <div className="relative w-full max-w-md mx-auto my-6">
               <div className="relative">
                 <div className="w-full h-48 bg-gradient-to-br from-bronze/20 to-navy/40 rounded-lg blur-sm flex items-center justify-center">
-                  <div className="text-moonlight/60 font-montserrat font-medium text-sm">
+                  <div className="text-moonlight/60 font-body font-bold text-sm">
                     Custom Design Preview
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
                   $99 VALUE PACK
                 </span>
               </div>
-              <ul className="mt-4 space-y-1 text-moonlight/80 text-sm font-montserrat">
+              <ul className="mt-4 space-y-1 text-moonlight/80 text-sm font-body">
                 <li>✔ Custom light-map for calmer evenings</li>
                 <li>✔ Privacy & flow mini-layout</li>
                 <li>✔ Product links & checklist</li>
@@ -86,11 +86,11 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
             <div className="text-center space-y-2">
               <Button
                 onClick={handleUpgrade}
-                className="w-full bg-bronze text-navy hover:bg-bronze/80 font-montserrat font-bold uppercase tracking-wide text-lg py-4 rounded-lg transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-bronze/30"
+                className="w-full bg-bronze text-navy hover:bg-bronze/80 font-body font-bold uppercase tracking-wide text-lg py-4 rounded-lg transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-bronze/30 min-h-[48px]"
               >
                 Unlock My 72-Hour Design – $99
               </Button>
-              <p className="text-moonlight/60 text-xs font-montserrat">
+              <p className="text-moonlight/60 text-xs font-body">
                 Next 3 spots available for Tuesday delivery • Love it or full refund
               </p>
             </div>
@@ -99,7 +99,7 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
             <div className="text-center">
               <a 
                 href="/environmental-design" 
-                className="text-moonlight/60 text-sm underline font-montserrat hover:text-moonlight/80 transition-colors duration-200"
+                className="text-moonlight/60 text-sm underline font-body hover:text-moonlight/80 transition-colors duration-200"
               >
                 Maybe later – explore free tools →
               </a>
@@ -110,7 +110,7 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
               <Button 
                 onClick={onBack}
                 variant="ghost"
-                className="text-moonlight/60 hover:text-bronze hover:bg-bronze/10 font-montserrat font-medium"
+                className="text-moonlight/60 hover:text-bronze hover:bg-bronze/10 font-body font-bold"
               >
                 Back to Categories
               </Button>

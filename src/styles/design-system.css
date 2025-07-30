@@ -1,0 +1,369 @@
+/* Recovery Compass Design System - Brand Transformation 2025 */
+
+@layer base {
+  :root {
+    /* Typography System - Complete Type Scale */
+    --font-size-xs: 14px;
+    --font-size-sm: 16px;
+    --font-size-base: 18px;  /* 18px minimum for cognitive accessibility */
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 40px;
+    --font-size-4xl: 48px;
+
+    /* Font Families - Recovery Compass Typography */
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Atkinson Hyperlegible', sans-serif;
+
+    /* Fraunces Variable Font Settings */
+    --font-heading-weight-soft: 400;
+    --font-heading-weight-regular: 600;
+    --font-heading-weight-strong: 900;
+    --font-heading-optical-min: 9;
+    --font-heading-optical-max: 144;
+    --font-heading-soft-min: 0;
+    --font-heading-soft-max: 100;
+    --font-heading-wonk-min: 0;
+    --font-heading-wonk-max: 1;
+
+    /* Body Font Settings */
+    --font-body-weight-regular: 400;
+    --font-body-weight-bold: 700;
+
+    /* Line Heights - Optimized for Accessibility */
+    --line-height-body: 1.7;     /* Trauma-informed design principle */
+    --line-height-heading: 1.2;
+    --line-height-ui: 1.5;
+
+    /* Logo-Derived Color Palette */
+    --color-navy: #1a1f3a;       /* Primary background */
+    --color-navy-dark: #020203;  /* Text on light */
+    --color-gold: #c1a537;       /* Primary CTA */
+    --color-brown: #62451e;      /* Secondary accent */
+    --color-cream: #dbe3d1;      /* Light surfaces */
+    --color-sky: #126ac6;        /* Links and highlights */
+
+    /* Semantic Colors - WCAG AA Compliant */
+    --color-success: #059669;
+    --color-error: #dc2626;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+
+    /* 8-Point Spacing System */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-10: 80px;
+
+    /* Responsive Breakpoints */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    /* Component Standards */
+    --border-radius-base: 8px;
+    --border-radius-lg: 12px;
+    --shadow-base: 0 4px 12px rgba(26, 31, 58, 0.08);
+    --transition-base: all 200ms ease-in-out;
+  }
+
+  /* Typography Classes - Recovery Journey States */
+  .heading-welcoming {
+    font-family: var(--font-heading);
+    font-variation-settings: 'opsz' 72, 'wght' 400, 'SOFT' 100, 'WONK' 0;
+    line-height: var(--line-height-heading);
+  }
+
+  .heading-confident {
+    font-family: var(--font-heading);
+    font-variation-settings: 'opsz' 72, 'wght' 700, 'SOFT' 0, 'WONK' 0.3;
+    line-height: var(--line-height-heading);
+  }
+
+  .heading-celebrating {
+    font-family: var(--font-heading);
+    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 50, 'WONK' 1;
+    line-height: var(--line-height-heading);
+  }
+
+  /* Body Text - Atkinson Hyperlegible */
+  .text-body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    font-weight: var(--font-body-weight-regular);
+  }
+
+  .text-body-bold {
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-bold);
+  }
+
+  /* Type Scale Utilities */
+  .text-xs { font-size: var(--font-size-xs); }
+  .text-sm { font-size: var(--font-size-sm); }
+  .text-base { font-size: var(--font-size-base); }
+  .text-lg { font-size: var(--font-size-lg); }
+  .text-xl { font-size: var(--font-size-xl); }
+  .text-2xl { font-size: var(--font-size-2xl); }
+  .text-3xl { font-size: var(--font-size-3xl); }
+  .text-4xl { font-size: var(--font-size-4xl); }
+
+  /* Color Utilities */
+  .text-navy { color: var(--color-navy); }
+  .text-navy-dark { color: var(--color-navy-dark); }
+  .text-gold { color: var(--color-gold); }
+  .text-brown { color: var(--color-brown); }
+  .text-cream { color: var(--color-cream); }
+  .text-sky { color: var(--color-sky); }
+
+  .bg-navy { background-color: var(--color-navy); }
+  .bg-navy-dark { background-color: var(--color-navy-dark); }
+  .bg-gold { background-color: var(--color-gold); }
+  .bg-brown { background-color: var(--color-brown); }
+  .bg-cream { background-color: var(--color-cream); }
+  .bg-sky { background-color: var(--color-sky); }
+
+  .border-navy { border-color: var(--color-navy); }
+  .border-gold { border-color: var(--color-gold); }
+  .border-brown { border-color: var(--color-brown); }
+  .border-cream { border-color: var(--color-cream); }
+  .border-sky { border-color: var(--color-sky); }
+
+  /* Spacing Utilities */
+  .space-1 { margin: var(--space-1); }
+  .space-2 { margin: var(--space-2); }
+  .space-3 { margin: var(--space-3); }
+  .space-4 { margin: var(--space-4); }
+  .space-5 { margin: var(--space-5); }
+  .space-6 { margin: var(--space-6); }
+  .space-8 { margin: var(--space-8); }
+  .space-10 { margin: var(--space-10); }
+
+  .p-1 { padding: var(--space-1); }
+  .p-2 { padding: var(--space-2); }
+  .p-3 { padding: var(--space-3); }
+  .p-4 { padding: var(--space-4); }
+  .p-5 { padding: var(--space-5); }
+  .p-6 { padding: var(--space-6); }
+  .p-8 { padding: var(--space-8); }
+  .p-10 { padding: var(--space-10); }
+
+  .gap-1 { gap: var(--space-1); }
+  .gap-2 { gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .gap-5 { gap: var(--space-5); }
+  .gap-6 { gap: var(--space-6); }
+  .gap-8 { gap: var(--space-8); }
+  .gap-10 { gap: var(--space-10); }
+
+  /* Accessibility - High Contrast Mode */
+  .high-contrast-mode {
+    filter: contrast(1.5);
+  }
+
+  .high-contrast-mode .text-gold {
+    color: #FFD700; /* Higher contrast gold */
+  }
+
+  .high-contrast-mode .text-sky {
+    color: #0066CC; /* Higher contrast blue */
+  }
+}
+
+@layer components {
+  /* Button Components - Recovery Compass Standards */
+  .btn-primary {
+    background-color: var(--color-gold);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-bold);
+    min-height: 48px;
+    min-width: 120px;
+    padding: 12px 24px;
+    border-radius: var(--border-radius-base);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-ui);
+  }
+
+  .btn-primary:hover {
+    background-color: #a68a2f; /* 10% darker */
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    background-color: #8f7828; /* 15% darker */
+    transform: translateY(0);
+  }
+
+  .btn-primary:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-bold);
+    min-height: 48px;
+    min-width: 120px;
+    padding: 12px 24px;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-ui);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:focus {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+  }
+
+  .btn-tertiary {
+    background-color: transparent;
+    color: var(--color-sky);
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-regular);
+    min-height: 40px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-ui);
+    text-decoration: none;
+  }
+
+  .btn-tertiary:hover {
+    text-decoration: underline;
+  }
+
+  .btn-tertiary:focus {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Form Controls */
+  .form-input {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm); /* 16px minimum prevents mobile zoom */
+    height: 48px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 16px;
+    transition: var(--transition-base);
+    background: white;
+    color: var(--color-navy-dark);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border: 2px solid var(--color-sky);
+    box-shadow: 0 0 0 3px rgba(18, 106, 198, 0.1);
+  }
+
+  .form-label {
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-bold);
+    font-size: var(--font-size-sm);
+    color: var(--color-navy);
+    margin-bottom: var(--space-1);
+    display: block;
+  }
+
+  /* Touch Targets - 48x48px minimum */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .interactive-spacing {
+    margin: var(--space-1); /* 8px spacing between interactive elements */
+  }
+
+  /* Grid System */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-3);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+      padding: 0 var(--space-2);
+    }
+  }
+
+  /* Brand Standards */
+  .brand-radius { border-radius: var(--border-radius-lg); }
+  .brand-shadow { box-shadow: var(--shadow-base); }
+  .brand-transition { transition: var(--transition-base); }
+}
+
+@layer utilities {
+  /* Focus Management */
+  .focus-visible:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Skip to Content (Accessibility) */
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-gold);
+    color: var(--color-navy-dark);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-weight: var(--font-body-weight-bold);
+  }
+
+  .skip-to-content:focus {
+    top: 6px;
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Print Optimization */
+  @media print {
+    .text-gold { color: #000 !important; }
+    .text-sky { color: #000 !important; }
+    .bg-navy { background: #fff !important; color: #000 !important; }
+  }
+}

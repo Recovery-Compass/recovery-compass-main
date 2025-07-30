@@ -81,10 +81,9 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'], // Default to Montserrat
-				montserrat: ['Montserrat', 'sans-serif'],
-				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				playfair: ['Playfair Display', 'serif'],
+				sans: ['Atkinson Hyperlegible', 'system-ui', '-apple-system', 'sans-serif'], // Primary body font
+				body: ['Atkinson Hyperlegible', 'system-ui', '-apple-system', 'sans-serif'],
+				heading: ['Fraunces', 'serif'],
 			},
 			// Enhanced spacing for larger logos
 			spacing: {

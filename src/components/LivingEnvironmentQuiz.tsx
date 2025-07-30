@@ -96,10 +96,10 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
         <Card className="bg-navy/50 border border-bronze/30 p-12 rounded-lg text-center max-w-md">
           <div className="space-y-6">
             <div className="w-16 h-16 border-4 border-bronze/30 border-t-bronze rounded-full animate-spin mx-auto"></div>
-            <h2 className="font-montserrat font-black text-2xl text-bronze">
+            <h2 className="font-heading heading-confident text-2xl text-bronze">
               Analyzing your responses...
             </h2>
-            <p className="text-moonlight/70 font-montserrat">
+            <p className="text-moonlight/70 font-body">
               Generating your personalized insights
             </p>
           </div>
@@ -185,7 +185,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
             <ArrowLeft className="w-4 h-4" />
             Back
           </Button>
-          <div className="text-moonlight/60 font-montserrat font-medium">
+          <div className="text-moonlight/60 font-body font-bold">
             Question {currentQuestion + 1} of 5
           </div>
         </div>
@@ -203,7 +203,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
         {/* Question Card */}
         <Card className="bg-navy/50 border border-bronze/30 p-8 rounded-lg">
           <div className="space-y-8">
-            <h2 className="font-montserrat font-black text-2xl md:text-3xl text-bronze text-center leading-tight">
+            <h2 className="font-heading heading-confident text-2xl md:text-3xl text-bronze text-center leading-tight">
               {question.text}
             </h2>
             
@@ -212,7 +212,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
                 <Button
                   key={index}
                   onClick={() => handleAnswer(index)}
-                  className="w-full p-6 text-left justify-start border-2 border-bronze/30 bg-navy/30 text-moonlight hover:border-bronze hover:bg-bronze/10 hover:translate-y-[-4px] transition-all duration-300 font-montserrat font-bold uppercase tracking-wide text-lg"
+                  className="w-full p-6 text-left justify-start border-2 border-bronze/30 bg-navy/30 text-moonlight hover:border-bronze hover:bg-bronze/10 hover:translate-y-[-4px] transition-all duration-300 font-body font-bold uppercase tracking-wide text-lg min-h-[48px]"
                 >
                   {option}
                 </Button>

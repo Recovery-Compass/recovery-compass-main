@@ -75,7 +75,7 @@ const HeroSection = ({
       
       {/* Title - Pure White */}
       <h1 className={cn(
-        'font-montserrat font-black text-white text-6xl tracking-normal mb-6 relative z-10 px-8',
+        'font-heading text-white text-6xl tracking-normal mb-6 relative z-10 px-8 heading-welcoming',
         'transition-opacity duration-300',
         titleVisible ? 'opacity-100' : 'opacity-0'
       )}>
@@ -84,7 +84,7 @@ const HeroSection = ({
       
       {/* Sophisticated Tagline */}
       <h2 className={cn(
-        'font-montserrat font-light text-white/80 text-2xl mb-16 tracking-wide relative z-10 max-w-2xl text-center',
+        'font-body text-white/80 text-2xl mb-16 tracking-wide relative z-10 max-w-2xl text-center',
         'transition-all duration-500',
         ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}>
@@ -98,7 +98,7 @@ const HeroSection = ({
       )}>
         <Button 
           onClick={handleComplianceDemo}
-          className="px-8 py-6 text-lg font-montserrat font-black tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-md uppercase"
+          className="px-8 py-6 text-lg font-body font-bold tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-white hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-md uppercase min-h-[48px]"
         >
           TRANSFORM YOUR ORGANIZATION
         </Button>
@@ -106,7 +106,7 @@ const HeroSection = ({
         <Button 
           onClick={handleBeginJourney}
           variant="outline"
-          className="px-8 py-6 text-lg font-montserrat tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 rounded-md"
+          className="px-8 py-6 text-lg font-body tracking-wide border-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300 rounded-md min-h-[48px]"
         >
           Individual Journey
         </Button>
@@ -115,7 +115,7 @@ const HeroSection = ({
         <div className="mt-8 text-center">
           <a 
             href="/privacy-policy"
-            className="text-moon-glow/60 hover:text-compass-gold font-inter text-sm transition-colors underline"
+            className="text-moon-glow/60 hover:text-compass-gold font-body text-sm transition-colors underline"
           >
             Privacy Policy
           </a>
