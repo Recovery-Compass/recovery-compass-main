@@ -48,7 +48,7 @@ const Index = () => {
       
       {/* Three Pillars of Safety */}
       <section className="three-pillars-safety py-20 relative z-10">
-        <h2 className="text-3xl sm:text-4xl font-montserrat text-center mb-16 text-white">
+        <h2 className="text-3xl sm:text-4xl font-heading heading-welcoming text-center mb-16 text-white">
           Every Transformation Begins With Safety
         </h2>
         
@@ -56,22 +56,22 @@ const Index = () => {
           {/* Physical Safety Card */}
           <div className="safety-card">
             <div className="icon-glow text-6xl mb-6">🏠</div>
-            <h3 className="text-xl font-montserrat font-semibold text-white mb-4">Physical Safety</h3>
-            <p className="text-white/80 font-montserrat">A stable foundation where basic needs are met</p>
+            <h3 className="text-xl font-heading heading-welcoming text-white mb-4">Physical Safety</h3>
+            <p className="text-white/80 font-body">A stable foundation where basic needs are met</p>
           </div>
           
           {/* Emotional Safety Card */}
           <div className="safety-card">
             <div className="icon-glow text-6xl mb-6">❤️</div>
-            <h3 className="text-xl font-montserrat font-semibold text-white mb-4">Emotional Safety</h3>
-            <p className="text-white/80 font-montserrat">Freedom to feel without judgment or shame</p>
+            <h3 className="text-xl font-heading heading-welcoming text-white mb-4">Emotional Safety</h3>
+            <p className="text-white/80 font-body">Freedom to feel without judgment or shame</p>
           </div>
           
           {/* Psychological Safety Card */}
           <div className="safety-card">
             <div className="icon-glow text-6xl mb-6">🧠</div>
-            <h3 className="text-xl font-montserrat font-semibold text-white mb-4">Psychological Safety</h3>
-            <p className="text-white/80 font-montserrat">Space to explore, fail, and grow without fear</p>
+            <h3 className="text-xl font-heading heading-welcoming text-white mb-4">Psychological Safety</h3>
+            <p className="text-white/80 font-body">Space to explore, fail, and grow without fear</p>
           </div>
         </div>
       </section>

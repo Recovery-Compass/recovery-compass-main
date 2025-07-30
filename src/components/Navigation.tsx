@@ -56,19 +56,19 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/compliance-compass" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+            <Link to="/compliance-compass" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               The Compliance Compass™
             </Link>
-            <Link to="/case-studies" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+            <Link to="/case-studies" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Case Studies
             </Link>
-            <Link to="/impact" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+            <Link to="/impact" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Impact
             </Link>
-            <Link to="/investors" className="text-moon-glow hover:text-compass-gold font-montserrat transition-colors">
+            <Link to="/investors" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Investors
             </Link>
-            <Button className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-montserrat font-semibold">
+            <Button className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-body font-semibold">
               Get Started
             </Button>
             

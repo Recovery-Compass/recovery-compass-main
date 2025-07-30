@@ -29,13 +29,13 @@ const ComplianceCompass = () => {
 
   const MetricCard = ({ value, label, detail }: { value: string; label: string; detail: string }) => (
     <Card className="bg-midnight-foundation/50 backdrop-blur border border-compass-gold/20 p-8 text-center hover:border-compass-gold/40 transition-all duration-300">
-      <div className="text-[3rem] font-montserrat font-black text-compass-gold mb-2">
+      <div className="text-[3rem] font-heading heading-confident text-compass-gold mb-2">
         {value}
       </div>
-      <h3 className="text-[1.5rem] font-montserrat font-semibold text-moon-glow mb-2">
+      <h3 className="text-[1.5rem] font-heading heading-welcoming text-moon-glow mb-2">
         {label}
       </h3>
-      <p className="text-moon-glow/70 font-montserrat text-[0.875rem]">
+      <p className="text-moon-glow/70 font-body text-[0.875rem]">
         {detail}
       </p>
     </Card>
@@ -51,10 +51,10 @@ const ComplianceCompass = () => {
       >
         {/* Hero Section */}
         <section className="text-center py-20">
-          <h1 className="text-moon-glow font-montserrat font-black text-[3.5rem] tracking-wide mb-4">
+          <h1 className="text-moon-glow font-heading heading-confident text-[3.5rem] tracking-wide mb-4">
             The Compliance Compass<span className="text-[1.75rem] align-top">™</span>
           </h1>
-          <p className="text-moon-glow/70 font-montserrat text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-moon-glow/70 font-body text-lg max-w-3xl mx-auto leading-relaxed">
             Environmental Response Design™ achieving 95% KPI compliance 
             for healthcare organizations ready to lead, not follow.
           </p>
@@ -82,35 +82,35 @@ const ComplianceCompass = () => {
         {/* Methodology Section */}
         <section className="mb-20">
           <Card className="bg-deep-ocean/30 backdrop-blur border border-compass-gold/30 p-12">
-            <h2 className="font-montserrat font-bold text-3xl text-compass-gold mb-8 text-center">
+            <h2 className="font-heading heading-confident text-3xl text-compass-gold mb-8 text-center">
               Environmental Response Design™
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                <h3 className="font-montserrat font-semibold text-xl text-moon-glow mb-4">
+                <h3 className="font-heading heading-welcoming text-xl text-moon-glow mb-4">
                   The Problem
                 </h3>
-                <p className="text-moon-glow/80 font-montserrat leading-relaxed mb-6">
+                <p className="text-moon-glow/80 font-body leading-relaxed mb-6">
                   Healthcare organizations struggle with compliance not because of lack of effort, 
                   but because environments aren't designed for success. Traditional approaches 
                   treat symptoms, not root causes.
                 </p>
                 
-                <h3 className="font-montserrat font-semibold text-xl text-moon-glow mb-4">
+                <h3 className="font-heading heading-welcoming text-xl text-moon-glow mb-4">
                   The Solution
                 </h3>
-                <p className="text-moon-glow/80 font-montserrat leading-relaxed">
+                <p className="text-moon-glow/80 font-body leading-relaxed">
                   ERD™ transforms organizational environments to naturally support compliance. 
                   When the environment changes, behavior follows—without resistance.
                 </p>
               </div>
               
               <div>
-                <h3 className="font-montserrat font-semibold text-xl text-moon-glow mb-4">
+                <h3 className="font-heading heading-welcoming text-xl text-moon-glow mb-4">
                   The Results
                 </h3>
-                <ul className="space-y-3 text-moon-glow/80 font-montserrat">
+                <ul className="space-y-3 text-moon-glow/80 font-body">
                   <li>• 95% sustained KPI compliance rates</li>
                   <li>• 30% reduction in staff turnover</li>
                   <li>• 40% improvement in patient satisfaction</li>
@@ -124,10 +124,10 @@ const ComplianceCompass = () => {
 
         {/* Case Study Teaser */}
         <section className="text-center mb-20">
-          <h2 className="font-montserrat font-bold text-[2.25rem] text-moon-glow mb-6">
+          <h2 className="font-heading heading-confident text-[2.25rem] text-moon-glow mb-6">
             Healthcare Transformation: From Crisis to Excellence
           </h2>
-          <p className="text-moon-glow/80 font-montserrat text-lg mb-8 max-w-3xl mx-auto">
+          <p className="text-moon-glow/80 font-body text-lg mb-8 max-w-3xl mx-auto">
             See how a Los Angeles healthcare facility achieved 95% compliance 
             in 90 days using Environmental Response Design™
           </p>

@@ -139,7 +139,7 @@ This integrated model demonstrates how embedded clinical services create measura
             <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-gold rounded-full flex items-center justify-center mr-4">
               <span className="text-2xl font-bold text-navy">RC</span>
             </div>
-            <h1 className="text-bronze text-2xl sm:text-3xl lg:text-4xl font-light tracking-widest font-montserrat">
+            <h1 className="text-bronze text-2xl sm:text-3xl lg:text-4xl font-light tracking-widest font-heading heading-welcoming">
               IMPACT TRANSLATOR
             </h1>
           </div>
@@ -157,7 +157,7 @@ This integrated model demonstrates how embedded clinical services create measura
             {/* Story Collection with Enhanced UI */}
             <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-teal/30 p-6 sm:p-8 transition-all duration-500 hover:border-teal/50 hover:bg-slate-800/60 hover:shadow-2xl">
-                <h2 className="text-bronze text-lg sm:text-xl mb-4 font-montserrat flex items-center gap-3">
+                <h2 className="text-bronze text-lg sm:text-xl mb-4 font-heading heading-welcoming flex items-center gap-3">
                   <Sparkles className="w-6 h-6 text-gold" />
                   Share Your Authentic Story
                 </h2>
@@ -182,7 +182,7 @@ This integrated model demonstrates how embedded clinical services create measura
             {/* Enhanced Data Upload */}
             <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-teal/30 p-6 sm:p-8 transition-all duration-500 hover:border-teal/50 hover:bg-slate-800/60">
-                <h2 className="text-bronze text-lg sm:text-xl mb-4 font-montserrat flex items-center gap-3">
+                <h2 className="text-bronze text-lg sm:text-xl mb-4 font-heading heading-welcoming flex items-center gap-3">
                   <Upload className="w-6 h-6 text-gold" />
                   Upload Supporting Data
                 </h2>
@@ -261,12 +261,12 @@ This integrated model demonstrates how embedded clinical services create measura
                 {/* Enhanced Transformed Content Display */}
                 <div className="animate-fade-in">
                   <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm rounded-2xl border border-bronze/30 p-6 sm:p-8 shadow-2xl">
-                    <h2 className="text-bronze text-lg sm:text-xl mb-6 font-montserrat flex items-center gap-3">
+                    <h2 className="text-bronze text-lg sm:text-xl mb-6 font-heading heading-welcoming flex items-center gap-3">
                       <Sparkles className="w-6 h-6 text-gold" />
                       Grant-Ready Content
                     </h2>
                     <div className="bg-slate-700/30 rounded-xl p-6 max-h-96 overflow-y-auto border border-bronze/20">
-                      <div className="text-moonlight/90 text-sm whitespace-pre-wrap font-montserrat leading-relaxed">
+                      <div className="text-moonlight/90 text-sm whitespace-pre-wrap font-body leading-relaxed">
                         {transformedContent}
                       </div>
                     </div>
@@ -280,7 +280,7 @@ This integrated model demonstrates how embedded clinical services create measura
                 {/* Enhanced Export Options */}
                 <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-teal/30 p-6 sm:p-8">
-                    <h2 className="text-bronze text-lg sm:text-xl mb-6 font-montserrat flex items-center gap-3">
+                    <h2 className="text-bronze text-lg sm:text-xl mb-6 font-heading heading-welcoming flex items-center gap-3">
                       <Download className="w-6 h-6 text-gold" />
                       Professional Export Options
                     </h2>
@@ -324,7 +324,7 @@ This integrated model demonstrates how embedded clinical services create measura
                     <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-teal/20 to-gold/20 rounded-full flex items-center justify-center">
                       <Sparkles className="w-12 h-12 opacity-50" />
                     </div>
-                    <p className="text-xl font-montserrat mb-3">AI Transformation Engine Ready</p>
+                    <p className="text-xl font-heading heading-welcoming mb-3">AI Transformation Engine Ready</p>
                     <p className="text-base italic">Share your authentic story to begin the professional transformation</p>
                   </div>
                   <div className="text-xs text-moonlight/30 italic">

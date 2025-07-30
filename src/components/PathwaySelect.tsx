@@ -24,11 +24,11 @@ const PathwaySelect = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         )}
       >
-        <h1 className="font-montserrat font-black text-white text-5xl text-center mb-16">
+        <h1 className="font-heading heading-welcoming text-white text-5xl text-center mb-16">
           Your Journey Begins Here
         </h1>
         
-        <p className="font-montserrat text-white/70 text-xl text-center mb-20 max-w-2xl mx-auto">
+        <p className="font-body text-white/70 text-xl text-center mb-20 max-w-2xl mx-auto">
           A personalized path to recovery, designed for you.
         </p>
         

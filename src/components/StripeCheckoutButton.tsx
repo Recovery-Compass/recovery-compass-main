@@ -39,7 +39,7 @@ export const StripeCheckoutButton = ({
       onClick={handleCheckout}
       disabled={loading}
       className={cn(
-        'px-16 py-8 text-xl font-montserrat font-black tracking-wide',
+        'px-16 py-8 text-xl font-body font-bold tracking-wide',
         'bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation',
         'hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105',
         'rounded-md uppercase disabled:opacity-50',
