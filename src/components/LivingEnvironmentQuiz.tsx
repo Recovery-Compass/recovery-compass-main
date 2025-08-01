@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 import LivingEnvironmentResult from './LivingEnvironmentResult';
+import { BreathSync } from './individual/BreathSync';
 
 interface LivingEnvironmentQuizProps {
   onBack: () => void;
@@ -69,10 +70,6 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     } else {
       // Quiz complete
       setIsAnalyzing(true);
-      setTimeout(() => {
-        setIsAnalyzing(false);
-        setShowResults(true);
-      }, 2000);
     }
   };
 
@@ -93,16 +90,16 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
   if (isAnalyzing) {
     return (
       <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6">
-        <Card className="bg-navy/50 border border-bronze/30 p-12 rounded-lg text-center max-w-md">
-          <div className="space-y-6">
-            <div className="w-16 h-16 border-4 border-bronze/30 border-t-bronze rounded-full animate-spin mx-auto"></div>
-            <h2 className="font-heading heading-confident text-2xl text-bronze">
-              Analyzing your responses...
-            </h2>
-            <p className="text-moonlight/70 font-body">
-              Generating your personalized insights
-            </p>
-          </div>
+        <Card className="bg-navy/50 border border-bronze/30 p-12 rounded-lg max-w-2xl w-full">
+          <BreathSync 
+            pattern="4-7-8" 
+            duration={15}
+            onComplete={() => {
+              setIsAnalyzing(false);
+              setShowResults(true);
+            }}
+            className="w-full"
+          />
         </Card>
       </div>
     );
