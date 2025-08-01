@@ -15,6 +15,8 @@ import ImpactTranslator from "./pages/ImpactTranslator";
 import PartnershipProposals from "./pages/PartnershipProposals";
 import PathwaySelect from "./pages/PathwaySelect";
 import EnvironmentalDesign from "./pages/EnvironmentalDesign";
+import EnvironmentalDesignAdaptive from "./pages/EnvironmentalDesignAdaptive";
+import AssessmentTransition from "./components/AssessmentTransition";
 import MakeIntegration from "./pages/MakeIntegration";
 import WhittierDashboard from "./pages/WhittierDashboard";
 import NotFound from "./pages/NotFound";
@@ -170,9 +172,16 @@ function App() {
             <Route path="/environmental-design" element={
               <>
                 <Navigation />
+                <EnvironmentalDesignAdaptive />
+              </>
+            } />
+            <Route path="/environmental-design-static" element={
+              <>
+                <Navigation />
                 <EnvironmentalDesign />
               </>
             } />
+            <Route path="/assessment-transition" element={<AssessmentTransition />} />
             <Route path="/make-integration" element={
               <>
                 <Navigation />

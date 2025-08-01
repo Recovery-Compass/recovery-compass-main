@@ -57,10 +57,22 @@ const EnvironmentalWellnessAssessment = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [visibleCards, setVisibleCards] = useState<string[]>([]);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [journeyContext, setJourneyContext] = useState<any>(null);
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
+    
+    // Check for journey context
+    const context = JSON.parse(sessionStorage.getItem('journeyContext') || '{}');
+    if (context.category) {
+      setJourneyContext(context);
+      // Auto-start living environment quiz if that's what they selected
+      if (context.category === 'living-environment') {
+        setShowQuiz(true);
+      }
+    }
+    
     return () => clearTimeout(timer);
   }, []);
   useEffect(() => {
@@ -112,8 +124,19 @@ const EnvironmentalWellnessAssessment = () => {
           </p>
         </div>
 
+        {/* Show personalized message if from adaptive journey */}
+        {journeyContext && (
+          <div className="mb-8 max-w-2xl mx-auto">
+            <div className="bg-gold/10 border border-gold/30 rounded-lg p-4">
+              <p className="text-moonlight/80 text-center">
+                Based on your responses, we recommend starting with <strong className="text-gold">{assessmentCategories.find(cat => cat.id === journeyContext.category)?.title}</strong>
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Assessment Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">{assessmentCategories.map((category, index) => <CategoryCard key={category.id} category={category} isVisible={visibleCards.includes(category.id)} delay={500 + index * 100} onSelect={() => handleCategorySelect(category.id)} />)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">{assessmentCategories.map((category, index) => <CategoryCard key={category.id} category={category} isVisible={visibleCards.includes(category.id)} delay={500 + index * 100} onSelect={() => handleCategorySelect(category.id)} isRecommended={journeyContext?.category === category.id} />)}
         </div>
       </div>
     </div>;
@@ -123,26 +146,36 @@ interface CategoryCardProps {
   isVisible: boolean;
   delay: number;
   onSelect: () => void;
+  isRecommended?: boolean;
 }
 const CategoryCard = ({
   category,
   isVisible,
-  onSelect
+  onSelect,
+  isRecommended = false
 }: CategoryCardProps) => {
   const IconComponent = category.icon;
   
   return <Card className={cn(
-    'bg-navy/50 border border-bronze/30 p-8 rounded-lg cursor-pointer text-center group',
+    'bg-navy/50 border p-8 rounded-lg cursor-pointer text-center group',
     'hover:border-bronze/60 hover:bg-navy/70 hover:shadow-xl hover:shadow-bronze/30',
     'transition-all duration-300 hover:translate-y-[-4px]',
     'min-h-[220px] flex flex-col justify-center',
     'transition-all duration-700',
-    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12',
+    isRecommended 
+      ? 'border-gold/50 bg-gold/5 ring-2 ring-gold/20' 
+      : 'border-bronze/30'
   )} onClick={onSelect}>
       <div className="space-y-6">
-        {/* Icon */}
-        <div className="flex justify-center">
+        {/* Icon and Recommended Badge */}
+        <div className="flex justify-center items-center gap-2">
           <IconComponent className="w-8 h-8 text-bronze/80 group-hover:text-bronze transition-colors duration-200" />
+          {isRecommended && (
+            <span className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
+              Recommended
+            </span>
+          )}
         </div>
         
         {/* Title with Explore indicator */}
