@@ -17,6 +17,20 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
   const [showResults, setShowResults] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  // Debug mode: force show BreathSync with ?debug=breathsync
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('debug') === 'breathsync') {
+      console.log('🐛 Debug mode: Forcing BreathSync display');
+      setIsAnalyzing(true);
+    }
+  }, []);
+
+  // Track state changes for debugging
+  useEffect(() => {
+    console.log('🔄 Quiz state - isAnalyzing:', isAnalyzing, 'showResults:', showResults);
+  }, [isAnalyzing, showResults]);
+
   // Question data
   const initialQuestion = {
     text: "How would you describe your current living space?",
@@ -56,19 +70,23 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
   }, []);
 
   const handleAnswer = (answerIndex: number) => {
+    console.log(`📝 Quiz Answer: Q${currentQuestion + 1} = ${answerIndex + 1}`);
     const newResponses = [...responses, answerIndex + 1];
     setResponses(newResponses);
 
     if (currentQuestion === 0) {
       // First question determines branch
       const selectedBranch = answerIndex <= 1 ? 'safety' : 'optimization';
+      console.log(`🔀 Branch selected: ${selectedBranch}`);
       setBranch(selectedBranch);
     }
 
     if (currentQuestion < 4) {
+      console.log(`➡️ Moving to question ${currentQuestion + 2}`);
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Quiz complete
+      console.log('✅ Quiz complete! Triggering BreathSync...');
       setIsAnalyzing(true);
     }
   };

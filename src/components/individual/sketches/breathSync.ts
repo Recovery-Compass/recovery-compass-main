@@ -1,7 +1,9 @@
 import type { P5CanvasInstance } from '@p5-wrapper/react'
 import type { BreathSyncSketchProps } from './types'
 
-export const breathSyncSketch = (p5: P5CanvasInstance) => {
+export const breathSyncSketch = (p5: P5CanvasInstance<BreathSyncSketchProps>) => {
+  console.log('🎨 P5 sketch initializing');
+  
   let circleSize = 100
   let targetSize = 100
   let props: BreathSyncSketchProps = {
@@ -11,15 +13,22 @@ export const breathSyncSketch = (p5: P5CanvasInstance) => {
   }
 
   p5.setup = () => {
-    const canvas = p5.createCanvas(
-      Math.min(600, p5.windowWidth), 
-      Math.min(400, p5.windowHeight * 0.4)
-    )
-    p5.noStroke()
-    p5.frameRate(60) // Target 60fps
+    console.log('🖼️ P5 setup called');
+    try {
+      const canvas = p5.createCanvas(
+        Math.min(600, p5.windowWidth - 40), 
+        Math.min(400, p5.windowHeight * 0.4)
+      )
+      p5.noStroke()
+      p5.frameRate(60)
+      console.log('✅ Canvas created successfully');
+    } catch (error) {
+      console.error('❌ Canvas creation failed:', error);
+    }
   }
 
-  p5.updateWithProps = (newProps: any) => {
+  p5.updateWithProps = (newProps: BreathSyncSketchProps) => {
+    console.log('📊 Props updated:', newProps);
     props = newProps
     
     if (!props.isPlaying) {
@@ -42,48 +51,51 @@ export const breathSyncSketch = (p5: P5CanvasInstance) => {
   }
 
   p5.draw = () => {
-    // Deep navy background from design system
-    p5.background('#101534')
+    // Dark navy background
+    p5.background(16, 21, 52) // #101534 in RGB
     
     // Smooth size transition
     circleSize = p5.lerp(circleSize, targetSize, 0.05)
     
-    // Golden glow effect
-    p5.push()
-    p5.drawingContext.shadowBlur = 40
-    p5.drawingContext.shadowColor = '#D4AF37'
+    // Create glow effect with multiple circles (no shadowBlur)
+    p5.noStroke()
     
-    // Outer glow circles with compass gold
-    for (let i = 5; i > 0; i--) {
-      p5.fill(212, 175, 55, 15) // Gold with transparency
-      p5.circle(p5.width/2, p5.height/2, circleSize + (i * 30))
+    // Draw multiple circles for glow effect
+    for (let i = 8; i > 0; i--) {
+      const alpha = p5.map(i, 0, 8, 40, 5)
+      p5.fill(212, 175, 55, alpha) // Gold with decreasing transparency
+      const size = circleSize + (i * 20)
+      p5.circle(p5.width/2, p5.height/2, size)
     }
     
     // Main breathing circle
-    p5.fill('#D4AF37') // Compass gold
+    p5.fill(212, 175, 55) // #D4AF37 in RGB
     p5.circle(p5.width/2, p5.height/2, circleSize)
     
     // Inner navy circle for contrast
-    p5.fill('#101534') // Midnight foundation
+    p5.fill(16, 21, 52) // #101534 in RGB
     p5.circle(p5.width/2, p5.height/2, circleSize * 0.85)
-    p5.pop()
     
     // Phase text
-    p5.fill('#D4AF37') // Compass gold
+    p5.fill(212, 175, 55) // Gold
     p5.textAlign(p5.CENTER, p5.CENTER)
-    p5.textSize(20)
-    p5.textFont('Inter, system-ui, sans-serif')
+    p5.textSize(24)
+    try {
+      p5.textFont('Inter, -apple-system, BlinkMacSystemFont, sans-serif')
+    } catch (e) {
+      // Fallback if font fails
+    }
     p5.text(props.phase.toUpperCase(), p5.width/2, p5.height/2)
     
     // Instruction text
-    p5.fill('#F5F5DC') // Moon glow
+    p5.fill(245, 245, 220) // #F5F5DC in RGB
     p5.textSize(16)
     p5.text(getInstruction(props.phase), p5.width/2, p5.height - 40)
   }
   
   p5.windowResized = () => {
     p5.resizeCanvas(
-      Math.min(600, p5.windowWidth), 
+      Math.min(600, p5.windowWidth - 40), 
       Math.min(400, p5.windowHeight * 0.4)
     )
   }

@@ -2,9 +2,17 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { useBreathingPattern } from '../../hooks/useBreathingPattern'
 import { breathSyncSketch } from './sketches/breathSync'
 
-// Lazy load p5 wrapper for code splitting
-const ReactP5Wrapper = React.lazy(
-  () => import('@p5-wrapper/react').then(mod => ({ default: mod.ReactP5Wrapper }))
+// Lazy load p5 wrapper with error handling
+const ReactP5Wrapper = React.lazy(() => 
+  import('@p5-wrapper/react')
+    .then(mod => {
+      console.log('✅ P5 wrapper loaded successfully');
+      return { default: mod.ReactP5Wrapper };
+    })
+    .catch(err => {
+      console.error('❌ Failed to load @p5-wrapper/react:', err);
+      throw err;
+    })
 )
 
 interface BreathSyncProps {
@@ -20,11 +28,19 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
   onComplete,
   className = ''
 }) => {
+  console.log('🌟 BreathSync component mounted with pattern:', pattern);
+  
   const [isPlaying, setIsPlaying] = useState(true)
+  const [hasError, setHasError] = useState(false)
   const { phase, cycles } = useBreathingPattern(pattern, isPlaying)
 
   useEffect(() => {
+    console.log('🔄 Phase changed:', phase, 'Cycles:', cycles);
+  }, [phase, cycles]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
+      console.log('⏰ Duration complete, calling onComplete');
       onComplete?.()
     }, duration * 1000)
 
@@ -55,6 +71,21 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [isPlaying, onComplete])
 
+  // Error boundary for p5
+  const handleError = () => {
+    console.error('❌ P5 rendering failed, showing fallback');
+    setHasError(true);
+  };
+
+  if (hasError) {
+    // CSS Fallback
+    return (
+      <div className={`relative ${className}`}>
+        <BreathSyncCSS pattern={pattern} phase={phase} onComplete={onComplete} />
+      </div>
+    );
+  }
+
   return (
     <div className={`relative ${className}`} role="region" aria-label="Breathing exercise">
       <div className="mb-6 text-center">
@@ -74,15 +105,17 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
       <div className="relative">
         <Suspense fallback={
           <div className="flex items-center justify-center h-64">
-            <div className="w-16 h-16 border-4 border-bronze/30 border-t-bronze rounded-full animate-spin"></div>
+            <div className="text-gold animate-pulse">Loading breathing exercise...</div>
           </div>
         }>
-          <ReactP5Wrapper 
-            sketch={breathSyncSketch} 
-            pattern={pattern}
-            isPlaying={isPlaying}
-            phase={phase}
-          />
+          <div className="w-full" onError={handleError}>
+            <ReactP5Wrapper 
+              sketch={breathSyncSketch} 
+              pattern={pattern}
+              isPlaying={isPlaying}
+              phase={phase}
+            />
+          </div>
         </Suspense>
       </div>
       
@@ -120,6 +153,36 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
     </div>
   )
 }
+
+// CSS Fallback Component
+const BreathSyncCSS: React.FC<any> = ({ phase, onComplete }) => {
+  const phaseConfig = {
+    inhale: { scale: 'scale-150', duration: '4s' },
+    hold: { scale: 'scale-150', duration: '7s' },
+    exhale: { scale: 'scale-100', duration: '8s' },
+    rest: { scale: 'scale-100', duration: '0s' }
+  };
+
+  const config = phaseConfig[phase] || phaseConfig.inhale;
+
+  return (
+    <div className="flex flex-col items-center justify-center p-8">
+      <div 
+        className={`relative w-48 h-48 rounded-full bg-gold shadow-2xl transition-transform ${config.scale}`}
+        style={{ transitionDuration: config.duration }}
+      >
+        <div className="absolute inset-4 rounded-full bg-navy flex items-center justify-center">
+          <span className="text-gold font-bold text-2xl">
+            {phase.toUpperCase()}
+          </span>
+        </div>
+      </div>
+      <p className="mt-8 text-moonlight text-lg">
+        {getPhaseDescription(phase)}
+      </p>
+    </div>
+  );
+};
 
 function getPhaseDescription(phase: string): string {
   switch(phase) {

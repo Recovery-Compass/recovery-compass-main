@@ -27,6 +27,7 @@ import SolutionDemo from "./pages/SolutionDemo";
 import BusinessModel from "./pages/BusinessModel";
 import ImpactMetrics from "./pages/ImpactMetrics";
 import Roadmap from "./pages/Roadmap";
+import { TestBreathSync } from "./pages/TestBreathSync";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 
 // Enhanced analytics wrapper with business event tracking
@@ -191,6 +192,7 @@ function App() {
               </>
             } />
             <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
+            <Route path="/test-breathsync" element={<TestBreathSync />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
