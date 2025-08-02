@@ -2,16 +2,19 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
 import { ActualizationFinale } from './achievements/ActualizationFinale';
+import type { KPIMetrics, ArchetypeData } from '@/types/assessment';
 
 interface ResultProps {
   score: number;           // 0-100 overall
   branch: 'safety' | 'optimization';
   topWin: string;          // highest-scoring factor label
   topGap: string;          // lowest-scoring factor label
+  kpiMetrics?: KPIMetrics; // IPE enhancement
+  archetypeData?: ArchetypeData; // IPE enhancement
   onBack: () => void;
 }
 
-const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: ResultProps) => {
+const LivingEnvironmentResult = ({ score, branch, topWin, topGap, kpiMetrics, archetypeData, onBack }: ResultProps) => {
   const [showFinale, setShowFinale] = useState(false);
   
   const personaSentence = branch === 'safety' 

@@ -1,0 +1,125 @@
+# IPE Pillar 7: Implementation-ready CI/CD guardrails
+name: Assessment Quality Assurance
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths: 
+      - 'src/data/assessmentQuestions.ts'
+      - 'src/types/assessment.ts'
+      - 'src/components/LivingEnvironment*.tsx'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/data/assessmentQuestions.ts'
+      - 'src/types/assessment.ts'
+      - 'src/components/LivingEnvironment*.tsx'
+
+jobs:
+  assessment-lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run TypeScript check
+      run: npm run type-check
+    
+    - name: Lint assessment questions
+      run: |
+        node -e "
+        const fs = require('fs');
+        const path = require('path');
+        
+        // Read assessment questions file
+        const questionsPath = 'src/data/assessmentQuestions.ts';
+        const questionsContent = fs.readFileSync(questionsPath, 'utf8');
+        
+        console.log('🔍 Linting assessment questions for IPE compliance...');
+        
+        let errors = [];
+        
+        // Check for empty question arrays
+        if (questionsContent.includes('options: []')) {
+          errors.push('ERROR: Found empty options array - questions must have valid choices');
+        }
+        
+        // Check for duplicate question IDs
+        const idMatches = questionsContent.match(/'[a-z-0-9]+'/g);
+        if (idMatches) {
+          const ids = idMatches.map(id => id.replace(/'/g, ''));
+          const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+          if (duplicates.length > 0) {
+            errors.push('ERROR: Duplicate question IDs found: ' + duplicates.join(', '));
+          }
+        }
+        
+        // Check for KPI tag presence
+        if (!questionsContent.includes('kpiTag:')) {
+          errors.push('WARNING: Questions missing KPI tags - analytics integration will fail');
+        }
+        
+        // Check for adaptive trigger completeness
+        const adaptiveTriggerCount = (questionsContent.match(/adaptiveTriggers/g) || []).length;
+        const questionCount = (questionsContent.match(/id: '/g) || []).length;
+        
+        if (adaptiveTriggerCount < questionCount * 0.5) {
+          errors.push('WARNING: Less than 50% of questions have adaptive triggers - user experience may feel scripted');
+        }
+        
+        // Report results
+        if (errors.length > 0) {
+          console.log('❌ Assessment quality issues found:');
+          errors.forEach(error => console.log('  ' + error));
+          
+          // Fail on errors, warn on warnings
+          const hasErrors = errors.some(e => e.startsWith('ERROR'));
+          if (hasErrors) {
+            process.exit(1);
+          }
+        } else {
+          console.log('✅ All assessment quality checks passed!');
+        }
+        
+        console.log('📊 Assessment Statistics:');
+        console.log('  Questions with adaptive triggers: ' + adaptiveTriggerCount);
+        console.log('  Total questions: ' + questionCount);
+        console.log('  Adaptive coverage: ' + Math.round((adaptiveTriggerCount / questionCount) * 100) + '%');
+        "
+    
+    - name: Validate assessment types
+      run: |
+        # Ensure TypeScript compilation succeeds for assessment components
+        npx tsc --noEmit --project tsconfig.json src/components/LivingEnvironmentQuiz.tsx
+        npx tsc --noEmit --project tsconfig.json src/types/assessment.ts
+        echo "✅ Assessment TypeScript validation passed"
+    
+    - name: Check component integration
+      run: |
+        node -e "
+        const fs = require('fs');
+        
+        // Verify SafetyOutlet integration
+        const quizContent = fs.readFileSync('src/components/LivingEnvironmentQuiz.tsx', 'utf8');
+        if (!quizContent.includes('SafetyOutlet')) {
+          console.log('❌ SafetyOutlet not integrated - IPE Pillar 2 compliance missing');
+          process.exit(1);
+        }
+        
+        // Verify KPI tracking
+        if (!quizContent.includes('kpiCategory')) {
+          console.log('❌ KPI tracking not implemented - IPE Pillar 6 compliance missing');
+          process.exit(1);
+        }
+        
+        console.log('✅ Component integration checks passed');
+        "

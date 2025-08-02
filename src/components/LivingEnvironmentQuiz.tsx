@@ -4,18 +4,26 @@ import { Card } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 import LivingEnvironmentResult from './LivingEnvironmentResult';
 import { BreathSync } from './individual/BreathSync';
+import { SafetyOutlet } from './SafetyOutlet';
+import { ASSESSMENT_QUESTIONS, UNIVERSAL_QUESTIONS } from '@/data/assessmentQuestions';
+import type { AssessmentResponse, AssessmentSession, KPIMetrics, ArchetypeData } from '@/types/assessment';
 
 interface LivingEnvironmentQuizProps {
   onBack: () => void;
 }
 
 const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [responses, setResponses] = useState<number[]>([]);
+  // Enhanced state for IPE-compliant assessment
+  const [currentQuestionId, setCurrentQuestionId] = useState('foundation-01');
+  const [questionPath, setQuestionPath] = useState<string[]>(['foundation-01']);
+  const [responses, setResponses] = useState<AssessmentResponse[]>([]);
   const [branch, setBranch] = useState<'safety' | 'optimization' | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [showSafety, setShowSafety] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [userId] = useState(() => sessionStorage.getItem('userId') || `user_${Date.now()}`);
 
   // Debug mode: force show BreathSync with ?debug=breathsync
   useEffect(() => {
@@ -31,79 +39,172 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     console.log('🔄 Quiz state - isAnalyzing:', isAnalyzing, 'showResults:', showResults);
   }, [isAnalyzing, showResults]);
 
-  // Question data
-  const initialQuestion = {
-    text: "How would you describe your current living space?",
-    options: ["Challenging", "Needs Work", "Adequate", "Comfortable", "Thriving"]
+  // IPE-compliant adaptive question logic
+  const getCurrentQuestion = () => {
+    const question = ASSESSMENT_QUESTIONS[currentQuestionId];
+    if (!question) {
+      // Fallback to universal questions if current ID not found
+      const fallbackIndex = Math.min(questionPath.length - 1, UNIVERSAL_QUESTIONS.length - 1);
+      return UNIVERSAL_QUESTIONS[fallbackIndex];
+    }
+    return question;
   };
 
-  const safetyQuestions = [
-    "Do you feel physically safe in your living environment?",
-    "Are your basic needs (shelter, warmth, security) consistently met?",
-    "How often do you worry about housing stability or safety?",
-    "Does your living space provide adequate privacy and personal boundaries?"
-  ];
+  const determineNextQuestion = (currentId: string, answerIndex: number) => {
+    const currentQuestion = ASSESSMENT_QUESTIONS[currentId];
+    if (!currentQuestion?.adaptiveTriggers) return null;
 
-  const optimizationQuestions = [
-    "How well does your space support your daily routines and productivity?",
-    "Does your environment promote relaxation and stress relief?",
-    "How satisfied are you with the lighting and air quality in your space?",
-    "Does your living area inspire and energize you?"
-  ];
+    for (const trigger of currentQuestion.adaptiveTriggers) {
+      const matchesPattern = Array.isArray(trigger.responsePattern) 
+        ? trigger.responsePattern.includes(answerIndex)
+        : trigger.responsePattern === answerIndex;
+      
+      if (matchesPattern) {
+        return trigger.followUpQuestionId;
+      }
+    }
+    return null;
+  };
 
-  // Demo mode handling
+  const calculateKPIMetrics = (responses: AssessmentResponse[]): KPIMetrics => {
+    const metrics: KPIMetrics = {};
+    
+    responses.forEach(response => {
+      const category = response.kpiCategory;
+      if (!metrics[category]) {
+        metrics[category] = {
+          score: 0,
+          category,
+          insights: []
+        };
+      }
+      metrics[category].score += response.answer * 20; // Convert 1-5 to percentage
+    });
+
+    // Average scores and generate insights
+    Object.keys(metrics).forEach(key => {
+      const categoryResponses = responses.filter(r => r.kpiCategory === key);
+      metrics[key].score = Math.round(metrics[key].score / categoryResponses.length);
+      
+      // Generate contextual insights
+      if (metrics[key].score >= 80) {
+        metrics[key].insights.push(`Strong ${key.replace('-', ' ')} foundation`);
+      } else if (metrics[key].score >= 60) {
+        metrics[key].insights.push(`Developing ${key.replace('-', ' ')} capacity`);
+      } else {
+        metrics[key].insights.push(`Growth opportunity in ${key.replace('-', ' ')}`);
+      }
+    });
+
+    return metrics;
+  };
+
+  const generateArchetypeData = (responses: AssessmentResponse[], branch: string): ArchetypeData => {
+    const strengthAreas: string[] = [];
+    const growthOpportunities: string[] = [];
+    
+    // Analyze response patterns for archetype classification
+    const creativeResponses = responses.filter(r => r.kpiCategory === 'creative-expression');
+    const futureResponses = responses.filter(r => r.kpiCategory === 'future-orientation');
+    const relationalResponses = responses.filter(r => r.kpiCategory === 'relational-capacity');
+
+    let primaryArchetype = 'Steady Builder';
+    if (creativeResponses.some(r => r.answer >= 4)) {
+      primaryArchetype = branch === 'safety' ? 'Secure Creator' : 'Visionary Architect';
+      strengthAreas.push('Creative Expression', 'Innovation Mindset');
+    }
+    if (relationalResponses.some(r => r.answer >= 4)) {
+      strengthAreas.push('Community Building', 'Emotional Intelligence');
+    }
+    if (futureResponses.some(r => r.answer >= 4)) {
+      strengthAreas.push('Future Planning', 'Growth Orientation');
+    }
+
+    // Generate viral sharing elements
+    const viralShareData = {
+      tagline: `${primaryArchetype}: ${strengthAreas.slice(0, 2).join(' + ')} ✨`,
+      visualElements: [`${primaryArchetype} Badge`, 'Strength Map', 'Growth Path'],
+      remixPrompts: [
+        `How would you adapt this for your space?`,
+        `What would you add to make this yours?`,
+        `Share your ${primaryArchetype} story`
+      ]
+    };
+
+    return {
+      primaryArchetype,
+      strengthAreas,
+      growthOpportunities: ['Enhanced Lighting', 'Flow Optimization', 'Personal Sanctuary'],
+      recommendedPathways: [`${primaryArchetype} Deep Dive`, 'Community Connection', '72-Hour Design'],
+      viralShareData
+    };
+  };
+
+  // Demo mode handling - simplified for IPE system
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const demoMode = urlParams.get('demo');
     
     if (demoMode === 'safety') {
-      setResponses([2]);
       setBranch('safety');
-      setCurrentQuestion(1);
+      setCurrentQuestionId('safety-deep-01');
+      setQuestionPath(['foundation-01', 'safety-deep-01']);
     } else if (demoMode === 'optimize') {
-      setResponses([4]);
       setBranch('optimization');
-      setCurrentQuestion(1);
+      setCurrentQuestionId('optimization-flow-01');
+      setQuestionPath(['foundation-01', 'optimization-flow-01']);
     }
     
     setIsVisible(true);
   }, []);
 
   const handleAnswer = (answerIndex: number) => {
-    console.log(`📝 Quiz Answer: Q${currentQuestion + 1} = ${answerIndex + 1}`);
-    const newResponses = [...responses, answerIndex + 1];
+    const currentQuestion = getCurrentQuestion();
+    console.log(`📝 IPE Assessment: ${currentQuestion.id} = ${answerIndex + 1} (${currentQuestion.kpiTag})`);
+    
+    // Create enhanced response object
+    const response: AssessmentResponse = {
+      questionId: currentQuestion.id,
+      answer: answerIndex + 1,
+      kpiCategory: currentQuestion.kpiTag,
+      timestamp: new Date(),
+      adaptiveContext: {
+        triggeredBy: questionPath.length > 1 ? questionPath[questionPath.length - 2] : 'initial',
+        branchPath: [...questionPath]
+      }
+    };
+
+    const newResponses = [...responses, response];
     setResponses(newResponses);
 
-    if (currentQuestion === 0) {
-      // First question determines branch
-      const selectedBranch = answerIndex <= 1 ? 'safety' : 'optimization';
-      console.log(`🔀 Branch selected: ${selectedBranch}`);
+    // Determine branch on first question if not set
+    if (currentQuestion.id === 'foundation-01' && !branch) {
+      const selectedBranch = answerIndex === 0 ? 'safety' : 'optimization';
+      console.log(`🔀 IPE Branch selected: ${selectedBranch}`);
       setBranch(selectedBranch);
     }
 
-    if (currentQuestion < 4) {
-      console.log(`➡️ Moving to question ${currentQuestion + 2}`);
-      setCurrentQuestion(currentQuestion + 1);
+    // Adaptive branching logic
+    const nextQuestionId = determineNextQuestion(currentQuestion.id, answerIndex);
+    
+    if (nextQuestionId && ASSESSMENT_QUESTIONS[nextQuestionId]) {
+      console.log(`🧠 Adaptive routing: ${currentQuestion.id} → ${nextQuestionId}`);
+      setCurrentQuestionId(nextQuestionId);
+      setQuestionPath([...questionPath, nextQuestionId]);
+    } else if (questionPath.length < 5) {
+      // Continue with fallback universal questions
+      const nextUniversalIndex = Math.min(questionPath.length, UNIVERSAL_QUESTIONS.length - 1);
+      console.log(`📚 Using universal question ${nextUniversalIndex + 1}`);
+      setCurrentQuestionId(`universal-${String(nextUniversalIndex + 1).padStart(2, '0')}`);
+      setQuestionPath([...questionPath, `universal-${String(nextUniversalIndex + 1).padStart(2, '0')}`]);
     } else {
-      // Quiz complete
-      console.log('✅ Quiz complete! Triggering BreathSync...');
+      // Assessment complete - trigger analysis
+      console.log('✅ IPE Assessment complete! Generating KPI insights...');
       setIsAnalyzing(true);
     }
   };
 
-  const getCurrentQuestion = () => {
-    if (currentQuestion === 0) {
-      return initialQuestion;
-    }
-
-    const questions = branch === 'safety' ? safetyQuestions : optimizationQuestions;
-    return {
-      text: questions[currentQuestion - 1],
-      options: ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
-    };
-  };
-
-  const getProgress = () => ((currentQuestion + 1) / 5) * 100;
+  const getProgress = () => (questionPath.length / 5) * 100;
 
   if (isAnalyzing) {
     return (
@@ -123,54 +224,88 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     );
   }
 
-  // Calculate results data
+  // IPE-compliant results calculation
   const calculateResults = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const demoMode = urlParams.get('demo');
     
-    // Demo mode mock data
+    // Demo mode mock data (preserved for testing)
     if (demoMode === 'safety') {
       return {
         score: 48,
         branch: 'safety' as const,
         topWin: 'Secure Entry',
-        topGap: 'Lighting'
+        topGap: 'Lighting',
+        kpiMetrics: {} as KPIMetrics,
+        archetypeData: {
+          primaryArchetype: 'Secure Creator',
+          strengthAreas: ['Safety Foundation', 'Privacy Control'],
+          growthOpportunities: ['Enhanced Lighting', 'Flow Optimization'],
+          recommendedPathways: ['Safety Deep Dive', '72-Hour Design'],
+          viralShareData: {
+            tagline: 'Secure Creator: Safety + Innovation ✨',
+            visualElements: ['Secure Creator Badge', 'Safety Map'],
+            remixPrompts: ['How would you secure your space?']
+          }
+        }
       };
     } else if (demoMode === 'optimize') {
       return {
         score: 76,
         branch: 'optimization' as const,
         topWin: 'Privacy',
-        topGap: 'Evening Light'
+        topGap: 'Evening Light',
+        kpiMetrics: {} as KPIMetrics,
+        archetypeData: {
+          primaryArchetype: 'Visionary Architect',
+          strengthAreas: ['Future Planning', 'Creative Expression'],
+          growthOpportunities: ['Smart Integration', 'Community Connection'],
+          recommendedPathways: ['Optimization Track', 'Community Building'],
+          viralShareData: {
+            tagline: 'Visionary Architect: Future + Beauty ✨',
+            visualElements: ['Visionary Badge', 'Future Map'],
+            remixPrompts: ['Share your visionary space ideas']
+          }
+        }
       };
     }
 
-    // Calculate actual results from responses
-    const averageScore = responses.length > 0 ? Math.round((responses.reduce((sum, r) => sum + r, 0) / responses.length) * 20) : 50;
+    // Calculate KPI metrics and archetype data
+    const kpiMetrics = calculateKPIMetrics(responses);
+    const archetypeData = generateArchetypeData(responses, branch || 'optimization');
     
-    const safetyFactors = ['Secure Entry', 'Basic Needs', 'Housing Stability', 'Privacy Boundaries'];
-    const optimizationFactors = ['Daily Routines', 'Relaxation Space', 'Lighting Quality', 'Inspiration'];
+    // Calculate overall score from KPI metrics
+    const kpiScores = Object.values(kpiMetrics).map(m => m.score);
+    const averageScore = kpiScores.length > 0 
+      ? Math.round(kpiScores.reduce((sum, score) => sum + score, 0) / kpiScores.length)
+      : 65;
     
-    const factors = branch === 'safety' ? safetyFactors : optimizationFactors;
-    const factorScores = responses.slice(1); // Skip first question
+    // Find top strength and growth area
+    const strengthCategories = Object.entries(kpiMetrics)
+      .sort(([,a], [,b]) => b.score - a.score);
     
-    let topWin = 'Space Layout';
-    let topGap = 'Lighting';
+    const topWin = strengthCategories.length > 0 
+      ? strengthCategories[0][0].replace('-', ' ')
+      : 'Environmental Agency';
     
-    if (factorScores.length > 0) {
-      const maxIndex = factorScores.indexOf(Math.max(...factorScores));
-      const minIndex = factorScores.indexOf(Math.min(...factorScores));
-      topWin = factors[maxIndex] || 'Space Layout';
-      topGap = factors[minIndex] || 'Lighting';
-    }
+    const topGap = strengthCategories.length > 1
+      ? strengthCategories[strengthCategories.length - 1][0].replace('-', ' ')
+      : 'Growth Edge';
 
     return {
       score: averageScore,
       branch: branch!,
       topWin,
-      topGap
+      topGap,
+      kpiMetrics,
+      archetypeData
     };
   };
+
+  // Handle safety outlet display
+  if (showSafety) {
+    return <SafetyOutlet onBack={() => setShowSafety(false)} />;
+  }
 
   if (showResults) {
     const results = calculateResults();
@@ -180,6 +315,8 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
         branch={results.branch}
         topWin={results.topWin}
         topGap={results.topGap}
+        kpiMetrics={results.kpiMetrics}
+        archetypeData={results.archetypeData}
         onBack={onBack}
       />
     );
@@ -201,7 +338,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
             Back
           </Button>
           <div className="text-moonlight/60 font-body font-bold">
-            Question {currentQuestion + 1} of 5
+            Question {questionPath.length} of 5
           </div>
         </div>
 
@@ -219,7 +356,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
         <Card className="bg-navy/50 border border-bronze/30 p-8 rounded-lg">
           <div className="space-y-8">
             <h2 className="font-heading heading-confident text-2xl md:text-3xl text-bronze text-center leading-tight">
-              {question.text}
+              {question.question}
             </h2>
             
             <div className="grid gap-4">
@@ -235,6 +372,11 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
             </div>
           </div>
         </Card>
+
+        {/* Discrete Safety Outlet - IPE Pillar 2 */}
+        <div className="mt-8 text-center">
+          <SafetyOutlet isFooterMode={true} />
+        </div>
       </div>
     </div>
   );
