@@ -56,6 +56,77 @@ export type Database = {
         }
         Relationships: []
       }
+      actualization_profiles: {
+        Row: {
+          achievements_unlocked: string[] | null
+          assessment_id: string | null
+          audio_vision_url: string | null
+          completion_milestones: Json | null
+          core_values: string[] | null
+          created_at: string
+          environment_sketch_url: string | null
+          future_vision: string | null
+          id: string
+          ideal_environment_description: string | null
+          interaction_depth: string | null
+          optimization_focus: string | null
+          peak_experiences: Json | null
+          personalization_score: number | null
+          session_duration: number | null
+          updated_at: string
+          user_id: string
+          vision_board_url: string | null
+        }
+        Insert: {
+          achievements_unlocked?: string[] | null
+          assessment_id?: string | null
+          audio_vision_url?: string | null
+          completion_milestones?: Json | null
+          core_values?: string[] | null
+          created_at?: string
+          environment_sketch_url?: string | null
+          future_vision?: string | null
+          id?: string
+          ideal_environment_description?: string | null
+          interaction_depth?: string | null
+          optimization_focus?: string | null
+          peak_experiences?: Json | null
+          personalization_score?: number | null
+          session_duration?: number | null
+          updated_at?: string
+          user_id: string
+          vision_board_url?: string | null
+        }
+        Update: {
+          achievements_unlocked?: string[] | null
+          assessment_id?: string | null
+          audio_vision_url?: string | null
+          completion_milestones?: Json | null
+          core_values?: string[] | null
+          created_at?: string
+          environment_sketch_url?: string | null
+          future_vision?: string | null
+          id?: string
+          ideal_environment_description?: string | null
+          interaction_depth?: string | null
+          optimization_focus?: string | null
+          peak_experiences?: Json | null
+          personalization_score?: number | null
+          session_duration?: number | null
+          updated_at?: string
+          user_id?: string
+          vision_board_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "actualization_profiles_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       assessment_questions: {
         Row: {
           created_at: string | null
