@@ -76,11 +76,11 @@ const HeroSection = ({
       {/* Title - Mobile Responsive */}
       <h1 className={cn(
         'font-heading text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-normal mb-4 sm:mb-6 relative z-10 heading-welcoming',
-        'w-full text-center flex items-center justify-center px-4',
+        'w-full text-center px-4 block',
         'transition-opacity duration-300',
         titleVisible ? 'opacity-100' : 'opacity-0'
       )}>
-        <span className="block w-full text-center">RECOVERY COMPASS</span>
+        RECOVERY COMPASS
       </h1>
       
       {/* Sophisticated Tagline - Mobile Optimized */}
