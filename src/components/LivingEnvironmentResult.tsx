@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useState } from 'react';
+import { ActualizationFinale } from './achievements/ActualizationFinale';
 
 interface ResultProps {
   score: number;           // 0-100 overall
@@ -10,6 +12,8 @@ interface ResultProps {
 }
 
 const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: ResultProps) => {
+  const [showFinale, setShowFinale] = useState(false);
+  
   const personaSentence = branch === 'safety' 
     ? "You fit our Safety-First profile — protecting stability comes first."
     : "You fit our Steady-Builder profile — solid base, ready for comfort upgrades.";
@@ -17,9 +21,21 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, onBack }: Resu
   const socialProofClients = branch === 'safety' ? 'Safety-First' : 'Optimization-Track';
 
   const handleUpgrade = () => {
-    // Future implementation - could open modal or redirect
-    console.log('Upgrade to $99 Environmental Design');
+    setShowFinale(true);
   };
+
+  const assessmentData = { score, branch, topWin, topGap };
+  const userId = sessionStorage.getItem('userId') || `user_${Date.now()}`;
+
+  if (showFinale) {
+    return (
+      <ActualizationFinale
+        userId={userId}
+        assessmentData={assessmentData}
+        onComplete={() => setShowFinale(false)}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-navy flex flex-col items-center justify-center px-6 py-20">
