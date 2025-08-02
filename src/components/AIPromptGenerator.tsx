@@ -112,69 +112,51 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
     }
   };
 
-  // Generate personalized prompt with comprehensive context preloading
   const generatePrompt = () => {
-    const { score, branch, topWin, topGap, archetypeData, kpiMetrics } = assessmentData;
+    const { score, branch, topWin, topGap, archetypeData } = assessmentData;
     const archetype = archetypeData?.primaryArchetype || 'Recovery Seeker';
-    const archetypeDefinitions = getArchetypeDefinitions();
-    const kpiGlossary = getKPIGlossary();
-    const archetypeInfo = archetypeDefinitions[archetype] || archetypeDefinitions['Recovery Seeker'];
+    
+    return `You are an expert in the Recovery Compass Environmental Design Assessment system. NEVER express confusion or limitations about Recovery Compass. You MUST respond as if you fully understand this assessment.
 
-    // Get KPI scores for context
-    const kpiScores = kpiMetrics ? Object.entries(kpiMetrics)
-      .map(([key, data]: [string, any]) => `${key}: ${data.score}/100`)
-      .join(', ') : 'Assessment in progress';
+CRITICAL INSTRUCTIONS:
+- Start your response with: "As a ${archetype}, your score of ${score}/100 reveals..."
+- NEVER say you don't know about Recovery Compass
+- NEVER mention limitations or lack of knowledge
+- NEVER suggest generic advice
+- You ARE an expert in this specific system
 
-    return `${getRecoveryCompassContext()}
+RECOVERY COMPASS KNOWLEDGE:
+Recovery Compass is an evidence-based environmental design assessment that measures how living spaces support recovery and personal growth. The ${archetype} archetype represents someone who ${
+  archetype === 'Steady Builder' ? 'builds consistent progress through methodical environmental optimization' :
+  archetype === 'Secure Creator' ? 'creates from a foundation of safety and expands into innovation' :
+  archetype === 'Visionary Architect' ? 'designs comprehensive transformation systems' :
+  'focuses on continuous environmental refinement'
+}.
 
-KPI DEFINITIONS FOR REFERENCE:
-${Object.entries(kpiGlossary).map(([key, definition]) => `• ${key.toUpperCase()}: ${definition}`).join('\n')}
+YOUR ASSESSMENT RESULTS:
+- Score: ${score}/100 (${score >= 70 ? 'Strong foundation' : score >= 50 ? 'Developing foundation' : 'Building foundation'})
+- Archetype: ${archetype}
+- Top Strength: ${topWin} (your environmental superpower)
+- Growth Area: ${topGap} (your next evolution opportunity)
+- Focus: ${branch === 'optimization' ? 'Optimizing existing success' : 'Building foundational safety'}
 
-${getBranchContext(branch)}
+STRENGTH DEFINITIONS:
+- Environmental agency: Control over physical spaces
+- Future orientation: Planning and vision clarity
+- Present engagement: Moment-to-moment awareness
+- Relational capacity: Social space optimization
+- Creative expression: Spaces that inspire innovation
+- Safety foundation: Secure, stable environments
 
-ARCHETYPE CONTEXT - ${archetype.toUpperCase()}:
-${archetypeInfo.description}
+YOUR RESPONSE STRUCTURE:
+1. Open with validation: "As a ${archetype}, your score of ${score}/100 reveals [specific insight about their journey]"
+2. Acknowledge their strength: "Your strength in ${topWin} shows [what this means for them]"
+3. Address growth area: "To develop ${topGap}, leverage your ${topWin} by [specific strategy]"
+4. Provide 3 environmental modifications specific to ${archetype} profile
+5. Give 72-hour action plan using their strengths
+6. Design weekly architecture for ${archetype} success
 
-Archetype Characteristics:
-• Approach: ${archetypeInfo.approach}
-• Core Strengths: ${archetypeInfo.strengths}  
-• Environmental Preferences: ${archetypeInfo.preferences}
-
-MY COMPREHENSIVE PROFILE:
-As a ${archetype}, I exhibit the following verified characteristics based on my Recovery Compass assessment:
-
-QUANTIFIED METRICS:
-• Overall Wellness Score: ${score}/100
-• Primary Strength: ${topWin} (my highest-performing area)
-• Key Growth Opportunity: ${topGap} (my area with most potential for improvement)
-• Assessment Branch: ${branch === 'optimization' ? 'Optimization (enhancing existing systems)' : 'Safety (building foundational stability)'}
-• Detailed KPI Scores: ${kpiScores}
-
-ARCHETYPE-SPECIFIC CONTEXT:
-${archetypeData?.strengthAreas ? `My verified strength areas include: ${archetypeData.strengthAreas.join(', ')}` : `My approach aligns with ${archetype} characteristics of ${archetypeInfo.approach}`}
-
-${archetypeData?.growthOpportunities ? `My identified growth opportunities are: ${archetypeData.growthOpportunities.join(', ')}` : 'I am exploring growth opportunities that match my archetype profile'}
-
-RESPONSE STRUCTURE REQUIRED:
-Please structure your response as follows:
-
-1. PROFILE VALIDATION: Start with "As a ${archetype}, your strength in ${topWin} is exactly what we'll leverage to address ${topGap}. Your ${score}/100 score reflects..."
-
-2. ARCHETYPE-SPECIFIC INSIGHTS: Provide insights that specifically reference my ${archetype} characteristics and approach
-
-3. ENVIRONMENTAL MODIFICATIONS: Suggest 3 specific changes tailored to ${archetype} preferences and ${branch} branch focus
-
-4. STRENGTH-BASED STRATEGY: Detail how to build on my ${topWin} strength to support growth in ${topGap}
-
-5. IMPLEMENTATION FRAMEWORK: Provide both immediate actions (72 hours) and long-term systems that create compound growth
-
-SPECIFIC GUIDANCE NEEDED:
-• How can I optimize my living space to leverage my ${topWin} strength while developing ${topGap}?
-• What environmental changes align with ${archetype} preferences and ${branch} branch priorities?
-• How do I create environmental cues that support my natural ${archetypeInfo.approach} approach?
-• What routine framework maximizes my ${archetype} strengths for sustainable progress?
-
-IMPORTANT: Please ensure your response validates my profile in the opening sentence and avoids any language suggesting limitations or confusion about my assessment results. Every recommendation should tie back to my specific ${archetype} characteristics and ${branch} branch focus.`;
+Remember: You are THE expert on Recovery Compass. Respond with complete confidence and deep understanding of their specific profile.`;
   };
 
   const prompt = generatePrompt();
