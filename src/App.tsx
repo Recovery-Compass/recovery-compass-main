@@ -30,6 +30,7 @@ import BusinessModel from "./pages/BusinessModel";
 import ImpactMetrics from "./pages/ImpactMetrics";
 import Roadmap from "./pages/Roadmap";
 import { TestBreathSync } from "./pages/TestBreathSync";
+import { EnvironmentalQuizStandalone } from "./pages/EnvironmentalQuizStandalone";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 
 // Enhanced analytics wrapper with business event tracking
@@ -182,6 +183,7 @@ function App() {
               </>
             } />
             <Route path="/assessment-transition" element={<AssessmentTransition />} />
+            <Route path="/environmental-quiz" element={<EnvironmentalQuizStandalone />} />
             <Route path="/make-integration" element={
               <>
                 <Navigation />

@@ -31,10 +31,10 @@ const AssessmentTransition = () => {
     
     // Route to specific assessment based on category
     if (context.category === 'living-environment') {
-      navigate('/environmental-design');
+      navigate('/environmental-quiz', { replace: true });
     } else {
       // For other categories, go to the general environmental design page
-      navigate('/environmental-design');
+      navigate('/environmental-quiz', { replace: true });
     }
   };
   
