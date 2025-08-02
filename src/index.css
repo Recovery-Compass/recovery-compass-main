@@ -292,6 +292,29 @@
     }
   }
 
+  /* Firefox on iOS specific fixes */
+  @-moz-document url-prefix() {
+    .text-center {
+      text-align: center !important;
+      display: block !important;
+      width: 100% !important;
+    }
+    
+    h1, h2, h3 {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    
+    /* Force centering for flex containers in Firefox iOS */
+    .flex.items-center.justify-center {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+  }
+
   /* Prevent horizontal scroll */
   html, body {
     overflow-x: hidden;
