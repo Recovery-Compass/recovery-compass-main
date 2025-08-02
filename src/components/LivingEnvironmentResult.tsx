@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
-import { ActualizationFinale } from './achievements/ActualizationFinale';
+import { AIPromptGenerator } from './AIPromptGenerator';
 import type { KPIMetrics, ArchetypeData } from '@/types/assessment';
 
 interface ResultProps {
@@ -15,7 +15,7 @@ interface ResultProps {
 }
 
 const LivingEnvironmentResult = ({ score, branch, topWin, topGap, kpiMetrics, archetypeData, onBack }: ResultProps) => {
-  const [showFinale, setShowFinale] = useState(false);
+  const [showPromptGenerator, setShowPromptGenerator] = useState(false);
   
   const personaSentence = branch === 'safety' 
     ? "You fit our Safety-First profile — protecting stability comes first."
@@ -23,19 +23,17 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, kpiMetrics, ar
 
   const socialProofClients = branch === 'safety' ? 'Safety-First' : 'Optimization-Track';
 
-  const handleUpgrade = () => {
-    setShowFinale(true);
+  const handleGeneratePrompt = () => {
+    setShowPromptGenerator(true);
   };
 
-  const assessmentData = { score, branch, topWin, topGap };
-  const userId = sessionStorage.getItem('userId') || `user_${Date.now()}`;
+  const assessmentData = { score, branch, topWin, topGap, kpiMetrics, archetypeData };
 
-  if (showFinale) {
+  if (showPromptGenerator) {
     return (
-      <ActualizationFinale
-        userId={userId}
+      <AIPromptGenerator
         assessmentData={assessmentData}
-        onComplete={() => setShowFinale(false)}
+        onBack={() => setShowPromptGenerator(false)}
       />
     );
   }
@@ -82,35 +80,35 @@ const LivingEnvironmentResult = ({ score, branch, topWin, topGap, kpiMetrics, ar
               </p>
             </div>
 
-            {/* Blurred Preview Card */}
+            {/* AI Prompt Preview */}
             <div className="relative w-full max-w-md mx-auto my-6">
               <div className="relative">
-                <div className="w-full h-48 bg-gradient-to-br from-bronze/20 to-navy/40 rounded-lg blur-sm flex items-center justify-center">
-                  <div className="text-moonlight/60 font-body font-bold text-sm">
-                    Custom Design Preview
+                <div className="w-full h-48 bg-gradient-to-br from-compass-gold/20 to-deep-ocean/40 rounded-lg flex items-center justify-center">
+                  <div className="text-moon-glow/80 font-body font-bold text-sm text-center">
+                    Personalized AI Prompt<br />Ready to Generate
                   </div>
                 </div>
-                <span className="absolute top-2 right-2 bg-bronze text-navy px-2 py-1 text-xs font-bold rounded">
-                  $99 VALUE PACK
+                <span className="absolute top-2 right-2 bg-compass-gold text-midnight-foundation px-2 py-1 text-xs font-bold rounded">
+                  FREE VALUE
                 </span>
               </div>
-              <ul className="mt-4 space-y-1 text-moonlight/80 text-sm font-body">
-                <li>✔ Custom light-map for calmer evenings</li>
-                <li>✔ Privacy & flow mini-layout</li>
-                <li>✔ Product links & checklist</li>
+              <ul className="mt-4 space-y-1 text-moon-glow/80 text-sm font-body">
+                <li>✔ Custom AI prompt for your profile</li>
+                <li>✔ Use with ChatGPT, Claude, or any AI</li>
+                <li>✔ Instant personalized insights</li>
               </ul>
             </div>
 
             {/* Primary CTA */}
             <div className="text-center space-y-2">
               <Button
-                onClick={handleUpgrade}
-                className="w-full bg-bronze text-navy hover:bg-bronze/80 font-body font-bold uppercase tracking-wide text-lg py-4 rounded-lg transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-bronze/30 min-h-[48px]"
+                onClick={handleGeneratePrompt}
+                className="w-full bg-compass-gold text-midnight-foundation hover:bg-compass-gold/80 font-body font-bold uppercase tracking-wide text-lg py-4 rounded-lg transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-compass-gold/30 min-h-[48px]"
               >
-                Unlock My 72-Hour Design – $99
+                Generate My Personalized AI Prompt
               </Button>
-              <p className="text-moonlight/60 text-xs font-body">
-                Next 3 spots available for Tuesday delivery • Love it or full refund
+              <p className="text-moon-glow/60 text-xs font-body">
+                Free insights • Use with any AI assistant • No signup required
               </p>
             </div>
 

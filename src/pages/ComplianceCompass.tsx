@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 import { trackBusinessEvent } from '@/lib/analytics';
 import { DashboardPreview } from '@/components/DashboardPreview';
-import { StripeCheckoutButton } from '@/components/StripeCheckoutButton';
+
 
 const ComplianceCompass = () => {
   const navigate = useNavigate();
