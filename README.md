@@ -30,10 +30,10 @@ git clone <YOUR_GIT_URL>
 cd <YOUR_PROJECT_NAME>
 
 # Step 3: Install the necessary dependencies.
-npm i
+bun install
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+bun run dev
 ```
 
 **Edit a file directly in GitHub**
@@ -59,6 +59,16 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- **Bun** - Ultra-fast JavaScript runtime and package manager (project standard)
+
+## Package Manager Policy
+
+⚠️ **This project uses Bun exclusively**. Do not add other lockfiles (`package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`).
+
+- **Install dependencies**: `bun install`
+- **Run development**: `bun run dev`
+- **Build**: `bun run build`
+- **Type checking**: `bun run type-check`
 
 ## How can I deploy this project?
 
