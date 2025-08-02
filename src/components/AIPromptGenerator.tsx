@@ -39,43 +39,142 @@ export function AIPromptGenerator({ assessmentData, onBack }: AIPromptGeneratorP
     };
   }, []);
 
-  // Generate personalized prompt based on assessment data
+  // Context architecture for comprehensive AI education
+  const getRecoveryCompassContext = () => {
+    return `CONTEXT: Recovery Compass is a comprehensive environmental wellness assessment system that measures how living spaces and daily routines support recovery, growth, and wellbeing. Unlike traditional assessments that focus on symptoms or deficits, Recovery Compass uses positive psychology and environmental design principles to identify strengths and opportunities for environmental optimization.
+
+The assessment measures 8 Key Performance Indicators (KPIs) across two pathways:
+- SAFETY BRANCH: For individuals building foundational stability and security
+- OPTIMIZATION BRANCH: For individuals ready to enhance existing systems for peak performance
+
+RECOVERY COMPASS METHODOLOGY:
+Recovery Compass recognizes that environment shapes behavior, and behavior shapes outcomes. By optimizing physical spaces and daily routines, individuals can create powerful feedback loops that support sustained recovery and growth. The system is based on:
+- Environmental Psychology: How spaces influence mood, behavior, and wellbeing
+- Positive Psychology: Building on strengths rather than fixing weaknesses  
+- Systems Thinking: Creating compound improvements that build on each other
+- Personalized Design: Tailoring recommendations to individual archetypes and circumstances`;
+  };
+
+  const getArchetypeDefinitions = () => {
+    const archetypeMap = {
+      'Steady Builder': {
+        description: 'Steady Builders approach recovery through consistent, incremental progress. They value routine, reliability, and building sustainable systems over time. They prefer proven methods and gradual improvements to dramatic changes.',
+        approach: 'methodical and sustainable',
+        strengths: 'consistency, reliability, long-term thinking',
+        preferences: 'structured routines, clear progress markers, stable environments'
+      },
+      'Secure Creator': {
+        description: 'Secure Creators blend creativity with practical stability. They need a safe foundation but express themselves through artistic pursuits, innovation, and beauty. They use creative expression as a pathway to wellbeing.',
+        approach: 'creative within secure frameworks',
+        strengths: 'artistic expression, innovative thinking, aesthetic sense',
+        preferences: 'beautiful spaces, creative tools access, inspiring environments'
+      },
+      'Visionary Architect': {
+        description: 'Visionary Architects think systemically and love designing solutions. They see the big picture and enjoy creating environments that serve multiple functions. They approach recovery as a design challenge to be solved elegantly.',
+        approach: 'systematic and innovative',
+        strengths: 'strategic thinking, solution design, future planning',
+        preferences: 'multi-functional spaces, smart systems, efficiency optimization'
+      },
+      'Community Builder': {
+        description: 'Community Builders prioritize relationships and shared experiences. They understand that recovery happens in connection with others and design their spaces to foster meaningful interactions and mutual support.',
+        approach: 'relational and collaborative',
+        strengths: 'relationship building, empathy, social connection',
+        preferences: 'gathering spaces, shared activities, community-oriented design'
+      },
+      'Recovery Seeker': {
+        description: 'Recovery Seekers are in active exploration of what works for their unique journey. They may be newer to recovery or trying different approaches to find their optimal path.',
+        approach: 'exploratory and adaptive',
+        strengths: 'openness to change, willingness to experiment, growth mindset',
+        preferences: 'flexible spaces, variety of options, adaptable systems'
+      }
+    };
+    return archetypeMap;
+  };
+
+  const getKPIGlossary = () => {
+    return {
+      'future-orientation': 'The ability to envision and plan for positive futures, set meaningful goals, and maintain hope and direction in recovery',
+      'engagement-depth': 'The quality of attention and presence one brings to daily activities, reflecting how fully engaged one is with life',
+      'environmental-agency': 'The sense of control and influence one has over their physical environment and living conditions',
+      'growth-edge': 'The capacity to embrace challenges, learn from experiences, and continuously develop new capabilities',
+      'self-advocacy': 'The ability to identify personal needs, communicate them effectively, and take action to meet them',
+      'creative-expression': 'The freedom and ability to express authentic self through various forms of creativity and personal style',
+      'relational-capacity': 'The ability to form and maintain healthy relationships, set boundaries, and contribute to community',
+      'resource-optimization': 'The skill of efficiently using available resources, managing time and energy, and creating sustainable systems'
+    };
+  };
+
+  const getBranchContext = (branch: string) => {
+    if (branch === 'safety') {
+      return 'SAFETY BRANCH: You are focused on building foundational stability and security. This pathway prioritizes creating predictable, safe environments that support basic needs and emotional regulation. Safety-branch individuals often benefit from routines, clear boundaries, and environments that reduce stress and anxiety.';
+    } else {
+      return 'OPTIMIZATION BRANCH: You are ready to enhance existing systems for peak performance. This pathway focuses on fine-tuning, innovation, and maximizing the potential of established foundations. Optimization-branch individuals often benefit from efficiency improvements, creative enhancements, and systems that support growth and achievement.';
+    }
+  };
+
+  // Generate personalized prompt with comprehensive context preloading
   const generatePrompt = () => {
-    const { score, branch, topWin, topGap, archetypeData } = assessmentData;
+    const { score, branch, topWin, topGap, archetypeData, kpiMetrics } = assessmentData;
     const archetype = archetypeData?.primaryArchetype || 'Recovery Seeker';
-    
-    return `I'm seeking strategic guidance for optimizing my living environment and daily routines. Based on my recent assessment:
+    const archetypeDefinitions = getArchetypeDefinitions();
+    const kpiGlossary = getKPIGlossary();
+    const archetypeInfo = archetypeDefinitions[archetype] || archetypeDefinitions['Recovery Seeker'];
 
-CURRENT STATE:
-- Wellness Score: ${score}/100 (${archetype} profile)
-- Top strength: ${topWin}
-- Key growth area: ${topGap}
-- Branch focus: ${branch === 'optimization' ? 'Optimization of existing systems' : 'Building foundational safety'}
+    // Get KPI scores for context
+    const kpiScores = kpiMetrics ? Object.entries(kpiMetrics)
+      .map(([key, data]: [string, any]) => `${key}: ${data.score}/100`)
+      .join(', ') : 'Assessment in progress';
 
-CONTEXT:
-I'm looking to enhance my physical space and daily habits to better support my recovery journey and wellbeing goals. ${
-  branch === 'optimization' 
-    ? "I have a solid foundation but know there's room for meaningful improvements."
-    : "I'm focused on creating a safe, supportive foundation for sustainable growth."
-}
+    return `${getRecoveryCompassContext()}
 
-SPECIFIC AREAS OF INTEREST:
-1. How can I optimize my living space for ${topWin.toLowerCase()} while addressing ${topGap.toLowerCase()}?
-2. What are the highest-leverage environmental changes for someone with my ${archetype} profile?
-3. How do I build on my strength in ${topWin} to support growth in ${topGap}?
-4. What specific routines or environmental cues would accelerate my progress?
+KPI DEFINITIONS FOR REFERENCE:
+${Object.entries(kpiGlossary).map(([key, definition]) => `• ${key.toUpperCase()}: ${definition}`).join('\n')}
 
-MY GROWTH OPPORTUNITIES:
-${archetypeData?.growthOpportunities?.map((opp, i) => `${i + 1}. ${opp}`).join('\n') || '- Deepening daily practices\n- Building consistent routines\n- Enhancing environmental support'}
+${getBranchContext(branch)}
 
-Please provide:
-- 3 specific environmental modifications tailored to my ${archetype} profile
-- A weekly routine framework that leverages my ${topWin} strength
-- Strategies to address my ${topGap} growth area through environmental design
-- Quick wins I can implement within 72 hours
-- Long-term architectural changes for sustainable transformation
+ARCHETYPE CONTEXT - ${archetype.toUpperCase()}:
+${archetypeInfo.description}
 
-Consider that I value evidence-based approaches and appreciate when suggestions include the "why" behind them. I'm particularly interested in solutions that compound over time and create positive feedback loops in my recovery journey.`;
+Archetype Characteristics:
+• Approach: ${archetypeInfo.approach}
+• Core Strengths: ${archetypeInfo.strengths}  
+• Environmental Preferences: ${archetypeInfo.preferences}
+
+MY COMPREHENSIVE PROFILE:
+As a ${archetype}, I exhibit the following verified characteristics based on my Recovery Compass assessment:
+
+QUANTIFIED METRICS:
+• Overall Wellness Score: ${score}/100
+• Primary Strength: ${topWin} (my highest-performing area)
+• Key Growth Opportunity: ${topGap} (my area with most potential for improvement)
+• Assessment Branch: ${branch === 'optimization' ? 'Optimization (enhancing existing systems)' : 'Safety (building foundational stability)'}
+• Detailed KPI Scores: ${kpiScores}
+
+ARCHETYPE-SPECIFIC CONTEXT:
+${archetypeData?.strengthAreas ? `My verified strength areas include: ${archetypeData.strengthAreas.join(', ')}` : `My approach aligns with ${archetype} characteristics of ${archetypeInfo.approach}`}
+
+${archetypeData?.growthOpportunities ? `My identified growth opportunities are: ${archetypeData.growthOpportunities.join(', ')}` : 'I am exploring growth opportunities that match my archetype profile'}
+
+RESPONSE STRUCTURE REQUIRED:
+Please structure your response as follows:
+
+1. PROFILE VALIDATION: Start with "As a ${archetype}, your strength in ${topWin} is exactly what we'll leverage to address ${topGap}. Your ${score}/100 score reflects..."
+
+2. ARCHETYPE-SPECIFIC INSIGHTS: Provide insights that specifically reference my ${archetype} characteristics and approach
+
+3. ENVIRONMENTAL MODIFICATIONS: Suggest 3 specific changes tailored to ${archetype} preferences and ${branch} branch focus
+
+4. STRENGTH-BASED STRATEGY: Detail how to build on my ${topWin} strength to support growth in ${topGap}
+
+5. IMPLEMENTATION FRAMEWORK: Provide both immediate actions (72 hours) and long-term systems that create compound growth
+
+SPECIFIC GUIDANCE NEEDED:
+• How can I optimize my living space to leverage my ${topWin} strength while developing ${topGap}?
+• What environmental changes align with ${archetype} preferences and ${branch} branch priorities?
+• How do I create environmental cues that support my natural ${archetypeInfo.approach} approach?
+• What routine framework maximizes my ${archetype} strengths for sustainable progress?
+
+IMPORTANT: Please ensure your response validates my profile in the opening sentence and avoids any language suggesting limitations or confusion about my assessment results. Every recommendation should tie back to my specific ${archetype} characteristics and ${branch} branch focus.`;
   };
 
   const prompt = generatePrompt();
