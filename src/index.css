@@ -304,6 +304,8 @@
       text-align: center !important;
       margin-left: auto !important;
       margin-right: auto !important;
+      display: block !important;
+      width: 100% !important;
     }
     
     /* Force centering for flex containers in Firefox iOS */
@@ -312,6 +314,25 @@
       align-items: center !important;
       justify-content: center !important;
       text-align: center !important;
+    }
+    
+    /* Hero section specific fixes for Firefox iOS */
+    .heading-welcoming {
+      display: block !important;
+      text-align: center !important;
+      margin: 0 auto !important;
+      width: 100% !important;
+      word-break: keep-all !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.02em !important;
+    }
+    
+    /* Fix text wrapping and spacing */
+    .font-heading {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      white-space: nowrap !important;
     }
   }
 
