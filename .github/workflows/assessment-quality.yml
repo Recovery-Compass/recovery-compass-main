@@ -1,5 +1,7 @@
 # IPE Pillar 7: Implementation-ready CI/CD guardrails
 name: Assessment Quality Assurance
+permissions:
+  contents: read
 
 on:
   push:
