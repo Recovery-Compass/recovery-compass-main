@@ -50,7 +50,11 @@ class AnalyticsService {
   }
 
   private generateSessionId(): string {
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    // Use cryptographically secure random values for session ID
+    const array = new Uint8Array(12);
+    window.crypto.getRandomValues(array);
+    const randomHex = Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+    return `session_${Date.now()}_${randomHex}`;
   }
 
   private initializeAnalytics(): void {
