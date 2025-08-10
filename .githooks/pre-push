@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "🔎 Running local RLS check..."
+if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+  echo "ℹ️  Skipping local RLS check (env not set)"; exit 0
+fi
+npx -y tsx scripts/verify-rls.ts || { echo "❌ RLS check failed"; exit 1; }
+echo "✅ RLS ok"
