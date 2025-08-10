@@ -1,0 +1,14 @@
+
+name: Bug report
+labels: bug
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Steps to reproduce
+  - type: input
+    attributes:
+      label: URL / Route
+  - type: textarea
+    attributes:
+      label: Expected vs Actual

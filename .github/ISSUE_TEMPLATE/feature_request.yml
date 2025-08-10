@@ -1,0 +1,8 @@
+
+name: Feature request
+labels: enhancement
+body:
+  - type: textarea
+    attributes:
+      label: What & Why
+      description: 2–3 sentences, keep it simple
