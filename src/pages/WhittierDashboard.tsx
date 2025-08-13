@@ -125,7 +125,7 @@ const WhittierDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-moonlight">
+    <div className="min-h-screen bg-moonlight pt-20">
       {/* Header with Whittier First Day Branding */}
       <div className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-6 py-4">

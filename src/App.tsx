@@ -149,37 +149,49 @@ function App() {
             <Route path="/compass-companion" element={
               <>
                 <Navigation />
-                <CompassCompanion />
+                <div className="pt-20">
+                  <CompassCompanion />
+                </div>
               </>
             } />
             <Route path="/impact-translator" element={
               <>
                 <Navigation />
-                <ImpactTranslator />
+                <div className="pt-20">
+                  <ImpactTranslator />
+                </div>
               </>
             } />
             <Route path="/partnership-proposals" element={
               <>
                 <Navigation />
-                <PartnershipProposals />
+                <div className="pt-20">
+                  <PartnershipProposals />
+                </div>
               </>
             } />
             <Route path="/pathway-select" element={
               <>
                 <Navigation />
-                <PathwaySelect />
+                <div className="pt-20">
+                  <PathwaySelect />
+                </div>
               </>
             } />
             <Route path="/environmental-design" element={
               <>
                 <Navigation />
-                <EnvironmentalDesignAdaptive />
+                <div className="pt-20">
+                  <EnvironmentalDesignAdaptive />
+                </div>
               </>
             } />
             <Route path="/environmental-design-static" element={
               <>
                 <Navigation />
-                <EnvironmentalDesign />
+                <div className="pt-20">
+                  <EnvironmentalDesign />
+                </div>
               </>
             } />
             <Route path="/assessment-transition" element={<AssessmentTransition />} />
@@ -187,19 +199,25 @@ function App() {
             <Route path="/make-integration" element={
               <>
                 <Navigation />
-                <MakeIntegration />
+                <div className="pt-20">
+                  <MakeIntegration />
+                </div>
               </>
             } />
             <Route path="/whittier-dashboard" element={
               <>
                 <Navigation />
-                <WhittierDashboard />
+                <div className="pt-20">
+                  <WhittierDashboard />
+                </div>
               </>
             } />
             <Route path="/compliance-compass" element={
               <>
                 <Navigation />
-                <ComplianceCompass />
+                <div className="pt-20">
+                  <ComplianceCompass />
+                </div>
               </>
             } />
             <Route path="/wfd-attachments" element={<WFDAttachmentSuite />} />
