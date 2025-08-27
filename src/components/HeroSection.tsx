@@ -92,14 +92,23 @@ const HeroSection = ({
         RECOVERY COMPASS
       </h1>
       
-      {/* Sophisticated Tagline - Mobile Optimized */}
+      {/* Environmental Response Architecture™ Statement */}
       <h2 className={cn(
-        'font-body text-white/80 text-lg sm:text-xl md:text-2xl mb-12 sm:mb-16 tracking-wide relative z-10 max-w-xs sm:max-w-lg md:max-w-2xl text-center px-4',
+        'font-body text-white/90 text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 tracking-wide relative z-10 max-w-xs sm:max-w-lg md:max-w-2xl text-center px-4',
         'transition-all duration-500',
         ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}>
-        Where Safe Space Creates Infinite Possibility
+        Environmental Response Architecture™: Where Success Becomes Inevitable
       </h2>
+      
+      {/* Subtle Methodology Introduction */}
+      <p className={cn(
+        'font-body text-white/70 text-sm sm:text-base mb-12 sm:mb-16 relative z-10 max-w-md sm:max-w-lg text-center px-4',
+        'transition-all duration-500 delay-300',
+        ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      )}>
+        Environments Designed for Inevitable Success
+      </p>
       
       {/* Mobile-First Button Layout */}
       <div className={cn(
@@ -113,6 +122,16 @@ const HeroSection = ({
         >
           TRANSFORM YOUR ORGANIZATION
         </Button>
+        
+        {/* The First Exhibit Link - Subtle */}
+        <div className="mt-4 sm:mt-6">
+          <button 
+            onClick={() => onNavigate('/first-exhibit')}
+            className="text-moon-glow/60 hover:text-compass-gold font-body text-sm sm:text-base transition-colors underline touch-target inline-block"
+          >
+            The First Exhibit
+          </button>
+        </div>
         
         {/* Secondary CTA - iOS Style */}
         <Button 

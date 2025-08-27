@@ -135,51 +135,59 @@ const ComplianceCompass = () => {
           <DashboardPreview />
         </section>
 
-        {/* Intelligence Exchange Section */}
+        {/* The Prompt Engine - Interactive Installation */}
         <section className="text-center mb-20">
           <div className="intelligence-exchange">
             <h2 className="text-[2.25rem] font-inter font-bold text-moon-glow mb-6">
-              Compliance Intelligence Exchange
+              The Prompt Engine
             </h2>
+            <p className="text-base text-moon-glow/70 mb-4 max-w-xl mx-auto italic">
+              An Interactive Installation for Organizational Transformation
+            </p>
             
-            <p className="text-xl text-moon-glow/80 mb-8 max-w-3xl mx-auto">
-              Get our proprietary AI compliance audit prompt. 
-              Share your results. Receive personalized insights.
+            <p className="text-xl text-moon-glow/80 mb-4 max-w-3xl mx-auto">
+              This is not a form. This is not a sales process. This is an act of connection—
+              a collaborative exploration of what becomes possible when environments are designed for inevitable success.
+            </p>
+            
+            <p className="text-lg text-moon-glow/70 mb-8 max-w-2xl mx-auto">
+              Share your organization's reality. Receive a personalized Environmental Response Assessment 
+              and discover your pathway from current performance to 95%+ achievement.
             </p>
             
             <button 
-              onClick={() => {/* TODO: Open exchange modal */}}
-              className="bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-inter font-bold px-12 py-4 rounded-[12px] hover:transform hover:translateY(-2px) transition-all duration-300 shadow-[0_4px_12px_rgba(212,175,55,0.25)]"
+              onClick={handleExecutiveBriefing}
+              className="bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-inter font-bold px-12 py-4 rounded-[12px] hover:transform hover:translateY(-2px) transition-all duration-300 shadow-[0_4px_12px_rgba(212,175,55,0.25)] hover:scale-105"
             >
-              Get Your Free AI Compliance Audit
+              Begin the Exploration
             </button>
             
             <p className="text-sm text-moon-glow/60 mt-4">
-              Join 50+ organizations uncovering hidden compliance gaps
+              Join 50+ organizations discovering what 95%+ performance feels like
             </p>
           </div>
         </section>
 
-        {/* Intelligence Value Prop */}
+        {/* Connection Intelligence Value Prop */}
         <section className="intelligence-value-prop mb-20">
           <h2 className="text-[2.25rem] font-inter font-bold text-moon-glow text-center mb-12">
-            Why 50+ Organizations Trust Our Intelligence Exchange
+            Why 50+ Organizations Choose Connection Over Transaction
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="value-point text-center p-8">
-              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Immediate Insight</h3>
-              <p className="text-moon-glow/80 font-inter">AI-powered compliance gaps revealed in minutes</p>
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Immediate Understanding</h3>
+              <p className="text-moon-glow/80 font-inter">Environmental Response patterns revealed through genuine dialogue</p>
             </div>
             
             <div className="value-point text-center p-8">
-              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Custom Roadmap</h3>
-              <p className="text-moon-glow/80 font-inter">Personalized pathway based on your specific gaps</p>
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Custom Architecture</h3>
+              <p className="text-moon-glow/80 font-inter">Personalized pathway designed for your specific organizational reality</p>
             </div>
             
             <div className="value-point text-center p-8">
-              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Ongoing Intelligence</h3>
-              <p className="text-moon-glow/80 font-inter">Weekly insights from aggregated compliance data</p>
+              <h3 className="font-inter font-bold text-xl text-compass-gold mb-4">Ongoing Partnership</h3>
+              <p className="text-moon-glow/80 font-inter">Continued collaboration as transformation becomes inevitable</p>
             </div>
           </div>
         </section>

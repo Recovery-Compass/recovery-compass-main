@@ -22,6 +22,8 @@ import WhittierDashboard from "./pages/WhittierDashboard";
 import NotFound from "./pages/NotFound";
 import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
 import ComplianceCompass from "./pages/ComplianceCompass";
+import FirstExhibit from "./pages/FirstExhibit";
+import Methodology from "./pages/Methodology";
 // Investor Pages
 import InvestorPitch from "./pages/InvestorPitch";
 import MarketAnalysis from "./pages/MarketAnalysis";
@@ -53,8 +55,10 @@ const AnalyticsWrapper = () => {
         '/solution-demo': 'Solution Demo - Recovery Compass',
         '/business-model': 'Business Model - Recovery Compass',
         '/impact-metrics': 'Impact Metrics - Recovery Compass',
-        '/roadmap': 'Roadmap - Recovery Compass',
+        '/compliance-compass': 'Compliance Compass - Recovery Compass',
         '/wfd-attachments': 'Dashboard Case Studies - Recovery Compass',
+        '/first-exhibit': 'The First Exhibit - Recovery Compass',
+        '/methodology': 'Environmental Response Architecture™ - Recovery Compass',
       };
       return titleMap[pathname] || 'Recovery Compass';
     };
@@ -217,6 +221,22 @@ function App() {
                 <Navigation />
                 <div className="pt-20">
                   <ComplianceCompass />
+                </div>
+              </>
+            } />
+            <Route path="/first-exhibit" element={
+              <>
+                <Navigation />
+                <div className="pt-20">
+                  <FirstExhibit />
+                </div>
+              </>
+            } />
+            <Route path="/methodology" element={
+              <>
+                <Navigation />
+                <div className="pt-20">
+                  <Methodology />
                 </div>
               </>
             } />

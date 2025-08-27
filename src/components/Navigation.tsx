@@ -56,19 +56,22 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <Link to="/methodology" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
+              The Method
+            </Link>
+            <Link to="/first-exhibit" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
+              Proof of Concept
+            </Link>
             <Link to="/compliance-compass" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
-              The Compliance Compass™
+              Transform
             </Link>
-            <Link to="/case-studies" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
-              Case Studies
-            </Link>
-            <Link to="/impact" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
-              Impact
-            </Link>
-            <Link to="/investors" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
+            <Link to="/investor-pitch" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Investors
             </Link>
-            <Button className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-body font-semibold">
+            <Button 
+              onClick={() => window.location.href = '/compliance-compass'}
+              className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-body font-semibold hover:scale-105 transition-all"
+            >
               Get Started
             </Button>
             
