@@ -19,13 +19,13 @@ const HeroSection = ({
   useEffect(() => {
     const titleTimer = setTimeout(() => {
       setTitleVisible(true);
-    }, 800);
+    }, 200);
     const ctaTimer = setTimeout(() => {
       setCtaVisible(true);
-    }, 1200);
+    }, 400);
     const buttonTimer = setTimeout(() => {
       setButtonVisible(true);
-    }, 1600);
+    }, 600);
     return () => {
       clearTimeout(titleTimer);
       clearTimeout(ctaTimer);
@@ -98,7 +98,7 @@ const HeroSection = ({
         'transition-all duration-500',
         ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}>
-        Environmental Response Architecture™: Where Success Becomes Inevitable
+        Environmental Response Architecture™: Where Your Environment Becomes Your Ally
       </h2>
       
       {/* Subtle Methodology Introduction */}
@@ -107,7 +107,7 @@ const HeroSection = ({
         'transition-all duration-500 delay-300',
         ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       )}>
-        Environments Designed for Inevitable Success
+        Environments Designed as Partners in Your Journey
       </p>
       
       {/* Mobile-First Button Layout */}
@@ -122,16 +122,6 @@ const HeroSection = ({
         >
           TRANSFORM YOUR ORGANIZATION
         </Button>
-        
-        {/* The First Exhibit Link - Subtle */}
-        <div className="mt-4 sm:mt-6">
-          <button 
-            onClick={() => onNavigate('/first-exhibit')}
-            className="text-moon-glow/60 hover:text-compass-gold font-body text-sm sm:text-base transition-colors underline touch-target inline-block"
-          >
-            The First Exhibit
-          </button>
-        </div>
         
         {/* Secondary CTA - iOS Style */}
         <Button 
