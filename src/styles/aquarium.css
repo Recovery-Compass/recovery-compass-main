@@ -1,0 +1,145 @@
+/* Aquarium Motion Background - CSS Only */
+
+.aquarium-container {
+  position: relative;
+  min-height: 100vh;
+  background: hsl(var(--midnight-foundation));
+  overflow: hidden;
+}
+
+.aquarium-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  
+  /* Layered gradients for underwater depth */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, hsl(210, 45%, 12%) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 30% 70%, hsl(200, 50%, 8%) 0%, transparent 60%),
+    linear-gradient(120deg, hsl(var(--midnight-foundation)) 40%, hsl(210, 40%, 10%) 100%);
+}
+
+/* Water caustics and particles using pseudo-elements */
+.aquarium-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-radial-gradient(circle at 60% 40%, 
+      hsla(190, 80%, 70%, 0.06) 0%, 
+      hsla(190, 80%, 70%, 0.06) 2%, 
+      transparent 4%),
+    repeating-radial-gradient(circle at 20% 80%, 
+      hsla(180, 70%, 60%, 0.04) 0%, 
+      hsla(180, 70%, 60%, 0.04) 3%, 
+      transparent 6%);
+  animation: water-caustics-1 12s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.aquarium-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-radial-gradient(circle at 80% 20%, 
+      hsla(200, 60%, 80%, 0.04) 0%, 
+      hsla(200, 60%, 80%, 0.04) 2%, 
+      transparent 5%);
+  animation: water-caustics-2 8s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes water-caustics-1 {
+  0% { 
+    background-position: 0% 0%, 100% 100%;
+    transform: scale(1);
+  }
+  100% { 
+    background-position: 30% 40%, 70% 60%;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes water-caustics-2 {
+  0% { 
+    background-position: 100% 0%;
+    opacity: 0.6;
+  }
+  100% { 
+    background-position: 60% 80%;
+    opacity: 0.8;
+  }
+}
+
+/* Floating particles effect */
+.aquarium-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow:
+    0 0 40px 8px hsla(190, 60%, 70%, 0.02),
+    0 0 80px 16px hsla(180, 50%, 60%, 0.015),
+    0 0 120px 24px hsla(200, 40%, 50%, 0.01);
+  animation: particles-drift 15s linear infinite alternate;
+}
+
+@keyframes particles-drift {
+  0% { transform: translateY(0px) translateX(0px); }
+  100% { transform: translateY(-20px) translateX(10px); }
+}
+
+/* Content overlay for proper contrast */
+.aquarium-content {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(
+    180deg,
+    hsla(var(--midnight-foundation), 0.3) 0%,
+    hsla(var(--midnight-foundation), 0.6) 50%,
+    hsla(var(--midnight-foundation), 0.8) 100%
+  );
+}
+
+/* Logo floating animation */
+.logo-float {
+  animation: logo-float 6s ease-in-out infinite alternate;
+}
+
+@keyframes logo-float {
+  0% { 
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 4px 20px hsla(var(--compass-gold), 0.15));
+  }
+  100% { 
+    transform: translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 8px 30px hsla(var(--compass-gold), 0.25));
+  }
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .aquarium-bg,
+  .aquarium-bg::before,
+  .aquarium-bg::after,
+  .aquarium-particles,
+  .logo-float {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .aquarium-bg {
+    background: hsl(var(--midnight-foundation));
+  }
+}
+
+/* Ensure text contrast over animated background */
+.aquarium-text {
+  text-shadow: 0 2px 12px hsla(0, 0%, 0%, 0.6);
+}
+
+.aquarium-heading {
+  text-shadow: 0 3px 16px hsla(0, 0%, 0%, 0.7);
+}
