@@ -16,16 +16,6 @@
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Atkinson Hyperlegible', sans-serif;
 
-    /* Fraunces Variable Font Settings */
-    --font-heading-weight-soft: 400;
-    --font-heading-weight-regular: 600;
-    --font-heading-weight-strong: 900;
-    --font-heading-optical-min: 9;
-    --font-heading-optical-max: 144;
-    --font-heading-soft-min: 0;
-    --font-heading-soft-max: 100;
-    --font-heading-wonk-min: 0;
-    --font-heading-wonk-max: 1;
 
     /* Body Font Settings */
     --font-body-weight-regular: 400;
@@ -75,21 +65,11 @@
   }
 
   /* Typography Classes - Recovery Journey States */
-  .heading-welcoming {
-    font-family: var(--font-heading);
-    font-variation-settings: 'opsz' 72, 'wght' 400, 'SOFT' 100, 'WONK' 0;
-    line-height: var(--line-height-heading);
-  }
-
-  .heading-confident {
-    font-family: var(--font-heading);
-    font-variation-settings: 'opsz' 72, 'wght' 700, 'SOFT' 0, 'WONK' 0.3;
-    line-height: var(--line-height-heading);
-  }
-
+  .heading-welcoming,
+  .heading-confident,
   .heading-celebrating {
     font-family: var(--font-heading);
-    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 50, 'WONK' 1;
+    font-weight: 900; /* Montserrat Black */
     line-height: var(--line-height-heading);
   }
 
