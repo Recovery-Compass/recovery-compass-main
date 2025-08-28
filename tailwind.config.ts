@@ -83,7 +83,7 @@ export default {
 			fontFamily: {
 				sans: ['Atkinson Hyperlegible', 'system-ui', '-apple-system', 'sans-serif'], // Primary body font
 				body: ['Atkinson Hyperlegible', 'system-ui', '-apple-system', 'sans-serif'],
-				heading: ['Fraunces', 'serif'],
+				heading: ['Montserrat', 'sans-serif'],
 			},
 			// Enhanced spacing for larger logos
 			spacing: {

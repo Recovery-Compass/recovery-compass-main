@@ -56,7 +56,7 @@ const CompassLogo = ({
           </div>
         ) : (
           <img 
-            src="/lovable-uploads/73fd7494-0513-4b33-8d5e-279d5bc10ff2.png" 
+            src="/lovable-uploads/a3dd77ca-2111-41fe-8111-fe1d04695f12.png" 
             alt="Recovery Compass - Tree of Life Logo" 
             className={cn(
               'object-contain w-full h-full',
