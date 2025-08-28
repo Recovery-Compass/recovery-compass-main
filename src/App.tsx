@@ -24,6 +24,7 @@ import WFDAttachmentSuite from "./components/WFDAttachmentSuite";
 import ComplianceCompass from "./pages/ComplianceCompass";
 import FirstExhibit from "./pages/FirstExhibit";
 import Methodology from "./pages/Methodology";
+import Adventure from "./pages/Adventure";
 // Investor Pages
 import InvestorPitch from "./pages/InvestorPitch";
 import MarketAnalysis from "./pages/MarketAnalysis";
@@ -56,6 +57,7 @@ const AnalyticsWrapper = () => {
         '/business-model': 'Business Model - Recovery Compass',
         '/impact-metrics': 'Impact Metrics - Recovery Compass',
         '/compliance-compass': 'Compliance Compass - Recovery Compass',
+        '/adventure': 'Adventure Prompt Engine - Recovery Compass',
         '/wfd-attachments': 'Dashboard Case Studies - Recovery Compass',
         '/first-exhibit': 'The First Exhibit - Recovery Compass',
         '/methodology': 'Environmental Response Architecture™ - Recovery Compass',
@@ -237,6 +239,14 @@ function App() {
                 <Navigation />
                 <div className="pt-20">
                   <Methodology />
+                </div>
+              </>
+            } />
+            <Route path="/adventure" element={
+              <>
+                <Navigation />
+                <div className="pt-20">
+                  <Adventure />
                 </div>
               </>
             } />

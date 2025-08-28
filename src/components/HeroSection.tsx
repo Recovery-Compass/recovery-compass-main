@@ -49,13 +49,12 @@ const HeroSection = ({
     });
     onNavigate('/wfd-attachments');
   };
-  const handleComplianceDemo = () => {
-    trackBusinessEvent('demo_request', {
-      demo_type: 'compliance_compass',
+  const handleTransformOrganization = () => {
+    trackBusinessEvent('adventure_prompt_accessed', {
       entry_point: 'hero_primary_cta',
       timestamp: new Date().toISOString()
     });
-    navigate('/compliance-compass');
+    navigate('/adventure');
   };
 
   return (
@@ -117,7 +116,7 @@ const HeroSection = ({
       )}>
         {/* Primary CTA - iOS Style */}
         <Button 
-          onClick={handleComplianceDemo}
+          onClick={handleTransformOrganization}
           className="w-full touch-target px-6 py-4 sm:px-8 sm:py-6 text-base sm:text-lg font-body font-bold tracking-wide bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300 hover:scale-105 rounded-xl uppercase min-h-[56px] active:scale-95"
         >
           TRANSFORM YOUR ORGANIZATION
