@@ -60,8 +60,22 @@
   cursor: pointer !important;
   transition: background 0.18s, color 0.18s, transform 0.18s !important;
   text-decoration: none !important;
-  display: inline-block !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
   margin-top: 1.5rem;
+  line-height: 1 !important;
+}
+
+/* Mobile optimization for buttons */
+@media (max-width: 768px) {
+  .cta-btn-gold, .submit-btn-gold {
+    font-size: 1rem !important;
+    padding: 1rem 2rem !important;
+    width: 100% !important;
+    min-height: 3rem !important;
+  }
 }
 
 .cta-btn-gold:focus,

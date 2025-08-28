@@ -114,31 +114,31 @@ Here are my organization's current challenges: [Share your specific situation he
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <CompassLogo 
               size="lg" 
               animated={true} 
-              className="mx-auto mb-8 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]" 
+              className="mx-auto mb-6 md:mb-8 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]" 
             />
-            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 heading-welcoming">
+            <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-white">
               Engage the Prompt
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4">
               Transform organizational challenges into environmental opportunities through AI-guided analysis
             </p>
           </div>
 
           {/* Prompt Block */}
-          <div className="bg-white/10 rounded-lg p-6 mb-8 backdrop-blur-sm">
-            <div className="flex justify-between items-start mb-4">
-              <h2 className="font-heading text-2xl font-bold text-gold heading-confident">
+          <div className="bg-white/10 rounded-lg p-4 md:p-6 mb-6 md:mb-8 backdrop-blur-sm mx-4 md:mx-0">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-4">
+              <h2 className="font-heading text-xl md:text-2xl font-black text-compass-gold">
                 Environmental Response Architecture™ Prompt
               </h2>
               <Button
                 onClick={handleCopyPrompt}
                 variant="outline"
                 size="sm"
-                className="bg-transparent border-gold text-gold hover:bg-gold hover:text-navy transition-all duration-200"
+                className="bg-transparent border-compass-gold text-compass-gold hover:bg-compass-gold hover:text-navy transition-all duration-200 self-start md:self-auto flex items-center gap-2"
               >
                 {promptCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 {promptCopied ? 'Copied!' : 'Copy'}
@@ -150,84 +150,86 @@ Here are my organization's current challenges: [Share your specific situation he
           </div>
 
           {/* Guidance */}
-          <div className="bg-white/5 rounded-lg p-6 mb-8">
-            <h3 className="font-heading text-xl font-bold mb-4 text-gold heading-confident">
+          <div className="bg-white/5 rounded-lg p-4 md:p-6 mb-6 md:mb-8 mx-4 md:mx-0">
+            <h3 className="font-heading text-lg md:text-xl font-black mb-4 text-compass-gold">
               Three Simple Steps
             </h3>
-            <ol className="space-y-4 text-lg">
-              <li className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center font-bold">
+            <ol className="space-y-4 text-base md:text-lg">
+              <li className="flex items-start gap-3 md:gap-4">
+                <span className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-compass-gold text-navy rounded-full flex items-center justify-center font-bold text-sm md:text-base">
                   1
                 </span>
-                <span>Copy the prompt above</span>
+                <span className="text-white/90 leading-relaxed">Copy the prompt above</span>
               </li>
-              <li className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center font-bold">
+              <li className="flex items-start gap-3 md:gap-4">
+                <span className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-compass-gold text-navy rounded-full flex items-center justify-center font-bold text-sm md:text-base">
                   2
                 </span>
-                <span>Paste into ChatGPT, Claude, or Gemini with your organization's specific challenges</span>
+                <span className="text-white/90 leading-relaxed">Paste into ChatGPT, Claude, or Gemini with your organization's specific challenges</span>
               </li>
-              <li className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 bg-gold text-navy rounded-full flex items-center justify-center font-bold">
+              <li className="flex items-start gap-3 md:gap-4">
+                <span className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-compass-gold text-navy rounded-full flex items-center justify-center font-bold text-sm md:text-base">
                   3
                 </span>
-                <span>Paste the AI's response below with your email. You'll receive a thoughtful reflection within 48 hours.</span>
+                <span className="text-white/90 leading-relaxed">Paste the AI's response below with your email. You'll receive a thoughtful reflection within 48 hours.</span>
               </li>
             </ol>
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="ai-response" className="block text-lg font-bold mb-3 text-gold">
-                AI Response
-              </label>
-              <Textarea
-                id="ai-response"
-                value={aiResponse}
-                onChange={(e) => setAiResponse(e.target.value)}
-                placeholder="Paste the AI's analysis here..."
-                className="min-h-[200px] bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-gold"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-lg font-bold mb-3 text-gold">
-                Email Address
-              </label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-gold"
-                required
-              />
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full submit-btn-gold font-bold text-lg py-6 transition-all duration-200 hover:transform hover:-translate-y-0.5"
-            >
-              {isSubmitting ? 'Sending...' : 'Share Your Insight'}
-            </Button>
-
-            {formMessage && (
-              <div
-                className={`form-message ${formStatus} mt-4 p-4 rounded-lg ${
-                  formStatus === 'success' 
-                    ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
-                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                }`}
-                role={formStatus === 'error' ? 'alert' : 'status'}
-              >
-                {formMessage}
+          <div className="px-4 md:px-0">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="ai-response" className="block text-base md:text-lg font-bold mb-3 text-compass-gold">
+                  AI Response
+                </label>
+                <Textarea
+                  id="ai-response"
+                  value={aiResponse}
+                  onChange={(e) => setAiResponse(e.target.value)}
+                  placeholder="Paste the AI's analysis here..."
+                  className="min-h-[200px] bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base md:text-base"
+                  required
+                />
               </div>
-            )}
-          </form>
+
+              <div>
+                <label htmlFor="email" className="block text-base md:text-lg font-bold mb-3 text-compass-gold">
+                  Email Address
+                </label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base md:text-base h-12"
+                  required
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full submit-btn-gold font-bold text-base md:text-lg py-4 md:py-6 transition-all duration-200 hover:transform hover:-translate-y-0.5 flex items-center justify-center min-h-[3rem] md:min-h-[3.5rem]"
+              >
+                {isSubmitting ? 'Sending...' : 'Share Your Insight'}
+              </Button>
+
+              {formMessage && (
+                <div
+                  className={`form-message ${formStatus} mt-4 p-4 rounded-lg text-center ${
+                    formStatus === 'success' 
+                      ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
+                      : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                  }`}
+                  role={formStatus === 'error' ? 'alert' : 'status'}
+                >
+                  {formMessage}
+                </div>
+              )}
+            </form>
+          </div>
 
           {/* Footer Note */}
           <div className="text-center mt-8 text-white/70">
