@@ -84,31 +84,31 @@
 
   /* Typography System - Recovery Compass Design System */
   h1 { 
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'wght' 400, 'SOFT' 100, 'WONK' 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Montserrat Black */
     font-size: var(--h1); 
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.1;
   }
 
   h2 { 
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 50, 'WONK' 0.2;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Montserrat Black */
     font-size: var(--h2); 
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
 
   h3 { 
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 0, 'WONK' 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Montserrat Black */
     font-size: var(--h3); 
     line-height: 1.3;
   }
 
   h4 { 
-    font-family: 'Fraunces', serif;
-    font-variation-settings: 'opsz' 72, 'wght' 600, 'SOFT' 0, 'WONK' 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Montserrat Black */
     font-size: var(--h4); 
     line-height: 1.4;
   }
