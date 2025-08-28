@@ -7,7 +7,9 @@ import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
 import Footer from "./components/Footer";
+import { AuthProvider } from "./hooks/useAuth";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CompassCompanion from "./pages/CompassCompanion";
@@ -107,11 +109,14 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <BrowserRouter>
-          <AnalyticsWrapper />
-          <Routes>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <BrowserRouter>
+            <AnalyticsWrapper />
+            <Routes>
+              {/* Authentication Route */}
+              <Route path="/auth" element={<Auth />} />
             {/* Investor Relations Routes */}
             <Route path="/investor-pitch" element={
               <div className="min-h-screen bg-navy">
@@ -259,7 +264,8 @@ function App() {
           <Footer />
         </BrowserRouter>
       </TooltipProvider>
-    </QueryClientProvider>
+    </AuthProvider>
+  </QueryClientProvider>
   );
 }
 

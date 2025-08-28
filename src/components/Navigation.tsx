@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,6 +17,16 @@ import CompassLogo from './CompassLogo';
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success('Signed out successfully');
+    } catch (error) {
+      toast.error('Error signing out');
+    }
+  };
 
   const isActive = (path: string) => location.pathname === path;
   const isHomePage = location.pathname === '/';
@@ -74,6 +86,34 @@ export const Navigation = () => {
             >
               Get Started
             </Button>
+            
+            {/* Authentication Buttons */}
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-moon-glow">
+                  Welcome back!
+                </span>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="text-moon-glow border-moon-glow hover:bg-moon-glow hover:text-midnight-foundation"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button 
+                onClick={() => window.location.href = '/auth'}
+                variant="outline"
+                size="sm"
+                className="text-moon-glow border-moon-glow hover:bg-moon-glow hover:text-midnight-foundation"
+              >
+                <User className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+            )}
             
             {/* Investors Dropdown - Only show if not on home page */}
             {!isHomePage && (
