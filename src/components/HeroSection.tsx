@@ -50,7 +50,7 @@ const HeroSection = ({
     onNavigate('/wfd-attachments');
   };
   const handleTransformOrganization = () => {
-    trackBusinessEvent('adventure_prompt_accessed', {
+    trackBusinessEvent('journey_started', {
       entry_point: 'hero_primary_cta',
       timestamp: new Date().toISOString()
     });
