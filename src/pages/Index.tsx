@@ -1,22 +1,20 @@
-import HeroSection from '@/components/HeroSection';
-import Footer from '@/components/Footer';
+import CompassLogo from '@/components/CompassLogo';
 import '../styles/aquarium.css';
 
 const Index = () => {
   return (
-    <div className="aquarium-container">
-      {/* Aquarium background layers */}
-      <div className="aquarium-bg" aria-hidden="true" />
-      <div className="aquarium-particles" aria-hidden="true" />
-      
-      {/* Main content with proper contrast overlay */}
-      <div className="aquarium-content">
-        <main className="min-h-screen flex flex-col">
-          <HeroSection />
-        </main>
-        <Footer />
+    <main className="homepage-container">
+      <div className="hero-content">
+        <div className="logo-float">
+          <CompassLogo 
+            size="xl" 
+            className="w-40 h-40" 
+            priority 
+          />
+        </div>
+        <h1 className="hero-headline">RECOVERY COMPASS</h1>
       </div>
-    </div>
+    </main>
   );
 };
 
