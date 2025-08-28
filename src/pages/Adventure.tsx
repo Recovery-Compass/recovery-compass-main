@@ -13,6 +13,8 @@ const Adventure = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [promptCopied, setPromptCopied] = useState(false);
+  const [formMessage, setFormMessage] = useState('');
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { toast } = useToast();
 
   const adventurePrompt = `You are an Environmental Response Architecture™ analyst. I'm going to share my organization's current challenges with you. Please analyze them through the lens of "environment as ally" and provide:
@@ -45,13 +47,12 @@ Here are my organization's current challenges: [Share your specific situation he
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormMessage('');
+    setFormStatus('idle');
     
     if (!aiResponse.trim() || !email.trim()) {
-      toast({
-        title: "Missing information",
-        description: "Please provide both your AI response and email address.",
-        variant: "destructive",
-      });
+      setFormStatus('error');
+      setFormMessage('Please fill in both fields.');
       return;
     }
 
@@ -67,18 +68,14 @@ Here are my organization's current challenges: [Share your specific situation he
 
       if (error) throw error;
 
-      setIsSubmitted(true);
-      toast({
-        title: "Insight received!",
-        description: "Your thoughtful reflection will arrive within 48 hours.",
-      });
+      setFormStatus('success');
+      setFormMessage("Thank you! We've received your insight. We review all submissions and respond as appropriate.");
+      setAiResponse('');
+      setEmail('');
     } catch (error) {
       console.error('Error submitting insight:', error);
-      toast({
-        title: "Submission failed",
-        description: "Please try again or contact support if the issue persists.",
-        variant: "destructive",
-      });
+      setFormStatus('error');
+      setFormMessage('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -213,10 +210,23 @@ Here are my organization's current challenges: [Share your specific situation he
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gold text-navy hover:bg-gold/90 font-bold text-lg py-6 transition-all duration-200 hover:transform hover:-translate-y-0.5"
+              className="w-full submit-btn-gold font-bold text-lg py-6 transition-all duration-200 hover:transform hover:-translate-y-0.5"
             >
-              {isSubmitting ? 'Sharing Your Insight...' : 'Share Your Insight'}
+              {isSubmitting ? 'Sending...' : 'Share Your Insight'}
             </Button>
+
+            {formMessage && (
+              <div
+                className={`form-message ${formStatus} mt-4 p-4 rounded-lg ${
+                  formStatus === 'success' 
+                    ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
+                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                }`}
+                role={formStatus === 'error' ? 'alert' : 'status'}
+              >
+                {formMessage}
+              </div>
+            )}
           </form>
 
           {/* Footer Note */}

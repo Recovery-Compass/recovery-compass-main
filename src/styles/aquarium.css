@@ -46,10 +46,58 @@
   text-shadow: 0 2px 16px rgba(0,0,0,0.5);
 }
 
+/* Golden CTA Button */
+.cta-btn-gold, .submit-btn-gold {
+  background: linear-gradient(90deg, #ffd700 0%, #ffb700 100%) !important;
+  color: #101a2b !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.15rem !important;
+  border-radius: 999px !important;
+  padding: 1.1rem 2.5rem !important;
+  border: none !important;
+  box-shadow: 0 2px 16px rgba(255,215,0,0.12) !important;
+  cursor: pointer !important;
+  transition: background 0.18s, color 0.18s, transform 0.18s !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-top: 1.5rem;
+}
+
+.cta-btn-gold:focus,
+.cta-btn-gold:hover,
+.submit-btn-gold:focus,
+.submit-btn-gold:hover {
+  background: linear-gradient(90deg, #ffe066 0%, #ffd700 100%) !important;
+  color: #0b2a4a !important;
+  outline: 2px solid #ffd700 !important;
+  transform: translateY(-2px) scale(1.03) !important;
+}
+
+/* Form Message Styles */
+.form-message {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-message.success {
+  color: #22c55e;
+}
+
+.form-message.error {
+  color: #ef4444;
+}
+
 /* Accessibility: Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .logo-float {
     animation: none !important;
+    transform: none !important;
+  }
+  
+  .cta-btn-gold:hover,
+  .submit-btn-gold:hover {
     transform: none !important;
   }
 }

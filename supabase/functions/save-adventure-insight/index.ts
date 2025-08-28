@@ -70,8 +70,9 @@ serve(async (req) => {
       );
     }
 
-    // Send immediate confirmation email
+    // Send confirmation email to user and notification to Eric
     try {
+      // Send confirmation to user
       const confirmationEmail = await resend.emails.send({
         from: 'Recovery Compass <insights@resend.dev>',
         to: [email],
@@ -86,7 +87,7 @@ serve(async (req) => {
             <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 25px;">
               <h2 style="color: #1a1f3a; font-size: 22px; margin-bottom: 15px;">Adventure Insight Received</h2>
               <p style="color: #333; font-size: 16px; line-height: 1.6; margin-bottom: 15px;">
-                Thank you for engaging with our Environmental Response Architecture™ prompt. We've received your AI analysis and will craft a personalized reflection within 48 hours.
+                Thank you for sharing your insight. We review all submissions and respond as appropriate.
               </p>
               <p style="color: #666; font-size: 14px; line-height: 1.5;">
                 <strong>What happens next:</strong><br>
@@ -106,6 +107,37 @@ serve(async (req) => {
       });
 
       console.log('Confirmation email sent:', confirmationEmail);
+
+      // Send notification to Eric
+      const notificationEmail = await resend.emails.send({
+        from: 'Recovery Compass <insights@resend.dev>',
+        to: ['eric@recovery-compass.org'],
+        subject: 'New Adventure Insight Submission',
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #1a1f3a; font-size: 28px; margin-bottom: 10px;">Recovery Compass</h1>
+              <p style="color: #666; font-size: 16px;">New Adventure Insight Submission</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 25px;">
+              <p style="color: #333; font-size: 16px; margin-bottom: 15px;"><strong>Submitted by:</strong> ${email}</p>
+              <p style="color: #333; font-size: 16px; margin-bottom: 15px;"><strong>AI Response:</strong></p>
+              <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #d4af37;">
+                <pre style="white-space: pre-wrap; font-family: inherit; margin: 0; color: #333;">${ai_response}</pre>
+              </div>
+            </div>
+            
+            <div style="text-align: center; padding: 20px 0;">
+              <p style="color: #666; font-size: 14px;">
+                Submission ID: ${data.id} | Created: ${data.created_at}
+              </p>
+            </div>
+          </div>
+        `
+      });
+
+      console.log('Notification email sent to Eric:', notificationEmail);
     } catch (emailError) {
       console.error('Email error:', emailError);
       // Don't fail the entire request if email fails
