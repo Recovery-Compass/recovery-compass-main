@@ -19,10 +19,11 @@ const SanctuaryHero: React.FC = () => {
       {/* Foreground panel content only */}
       <section className="rc-hero-panel" aria-label="Recovery Compass hero">
         <div className="rc-hero-panel-inner">
-          <div className="rc-hero-logo-wrap">
-            <img src="/assets/logo.png" alt="Recovery Compass logo" className="rc-hero-logo" decoding="async" />
+          {/* Crisp logo overlay, precisely positioned over the background logo */}
+          <div className="rc-hero-logo-wrap" aria-hidden="true">
+            <img src="/assets/logo.png" alt="" className="rc-hero-logo" decoding="async" />
           </div>
-          <h1 className="rc-hero-title">RECOVERY COMPASS</h1>
+          {/* We intentionally rely on the background video text for \"RECOVERY COMPASS\" to avoid duplication. */}
           <div className="rc-hero-cta-wrap">
             <a className="rc-hero-cta" href="/adventure" aria-label="Begin your journey">BEGIN YOUR JOURNEY</a>
           </div>

@@ -8,9 +8,9 @@
 .rc-panel-video { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; opacity: 1; }
  .rc-hero-panel-inner { position: relative; z-index: 1; width: 100%; height: auto; display: grid; grid-template-rows: auto auto auto; align-items: start; justify-items: center; }
 
-/* Logo at top */
-.rc-hero-logo-wrap { align-self: start; margin-top: 6vh; }
-.rc-hero-logo { width: clamp(200px, 28vw, 300px); height: auto; object-fit: contain; }
+/* Logo overlay — absolutely centered, adjustable vertical offset to match background logo */
+.rc-hero-logo-wrap { position: absolute; top: var(--rc-logo-top, 36%); left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.rc-hero-logo { width: clamp(160px, 24vw, 280px); height: auto; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.35)); }
 
 /* Title below logo */
 .rc-hero-title { grid-row: 2; margin-top: 16px; color: #eaeaea; font-weight: 700; letter-spacing: 0.08em; font-size: clamp(22px, 3.4vw, 34px); text-transform: uppercase; text-align: center; }
