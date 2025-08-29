@@ -6,7 +6,6 @@ const VIDEO_BASE = '/videos'
 const SanctuaryHero: React.FC = () => {
   return (
     <main className="rc-hero-page">
-      <div className="rc-hero-bg" aria-hidden="true" />
       <section className="rc-hero-panel" aria-label="Recovery Compass hero">
         {/* Water video INSIDE the panel — single source of truth for branding */}
         <video className="rc-panel-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" poster={`${VIDEO_BASE}/compass-poster-desktop.jpg`}>
