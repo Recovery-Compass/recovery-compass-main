@@ -1,13 +1,19 @@
 import React from 'react'
 import '../styles/rc-hero.css'
 
+const VIDEO_SRC = 'https://github.com/EssenceAlignment/sanctuary-hero-bloom/raw/main/Video/Most%20closely%20aligned%20version%20of%20the%20video%20file%20for%20home%20page%20AUG%2029.mp4'
+
 const SanctuaryHero: React.FC = () => {
   return (
     <main className="rc-hero-page">
+      {/* Subtle water motion video background */}
+      <video className="rc-video-bg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
       <div className="rc-hero-bg" aria-hidden="true" />
       <section className="rc-hero-panel" aria-label="Recovery Compass hero">
         <div className="rc-hero-panel-inner">
-          <div>
+          <div className="rc-hero-logo-wrap">
             <img src="/assets/logo.png" alt="Recovery Compass logo" className="rc-hero-logo" decoding="async" />
           </div>
           <h1 className="rc-hero-title">RECOVERY COMPASS</h1>
