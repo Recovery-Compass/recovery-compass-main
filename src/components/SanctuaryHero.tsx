@@ -6,12 +6,12 @@ const VIDEO_SRC = 'https://github.com/EssenceAlignment/sanctuary-hero-bloom/raw/
 const SanctuaryHero: React.FC = () => {
   return (
     <main className="rc-hero-page">
-      {/* Subtle water motion video background */}
-      <video className="rc-video-bg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
       <div className="rc-hero-bg" aria-hidden="true" />
       <section className="rc-hero-panel" aria-label="Recovery Compass hero">
+        {/* Water video INSIDE the panel */}
+        <video className="rc-panel-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
         <div className="rc-hero-panel-inner">
           <div className="rc-hero-logo-wrap">
             <img src="/assets/logo.png" alt="Recovery Compass logo" className="rc-hero-logo" decoding="async" />

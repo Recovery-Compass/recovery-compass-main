@@ -7,15 +7,16 @@
   linear-gradient(180deg, #1b4e8a 0%, #0b2a4a 70%);
   pointer-events: none; }
 
-.rc-hero-panel { position: relative; z-index: 2; width: min(720px, 92vw); height: min(88vh, 760px); background: #0a0a0a; border-radius: 32px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); display: grid; place-items: center; padding: 24px; }
- .rc-hero-panel-inner { position: relative; width: 100%; height: 100%; display: grid; grid-template-rows: auto 1fr auto auto; align-items: center; justify-items: center; }
+.rc-hero-panel { position: relative; z-index: 2; width: min(720px, 92vw); height: min(88vh, 760px); background: #0a0a0a; border-radius: 32px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); display: grid; place-items: center; padding: 24px; overflow: hidden; }
+.rc-panel-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.85; }
+ .rc-hero-panel-inner { position: relative; z-index: 1; width: 100%; height: 100%; display: grid; grid-template-rows: auto auto 1fr auto; align-items: center; justify-items: center; }
 
 /* Logo at top and larger */
 .rc-hero-logo-wrap { align-self: start; margin-top: 4vh; }
 .rc-hero-logo { width: clamp(200px, 28vw, 300px); height: auto; object-fit: contain; }
 
 /* Title above CTA (grid ordering) */
-.rc-hero-title { grid-row: 3; margin: 0; color: #eaeaea; font-weight: 700; letter-spacing: 0.08em; font-size: clamp(22px, 3.4vw, 34px); text-transform: uppercase; text-align: center; }
+.rc-hero-title { grid-row: 2; margin: 16px 0 0 0; color: #eaeaea; font-weight: 700; letter-spacing: 0.08em; font-size: clamp(22px, 3.4vw, 34px); text-transform: uppercase; text-align: center; }
 
 /* CTA at bottom */
 .rc-hero-cta-wrap { grid-row: 4; align-self: end; margin-bottom: 40px; display: grid; place-items: center; }
