@@ -16,18 +16,12 @@ const VideoHero: React.FC = () => {
         playsInline
         preload="metadata"
       >
-        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.src.mp4`} type="video/mp4" />
-        <source src={`${VIDEO_BASE}/compass-mobile.src.mp4`} type="video/mp4" />
+        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.src.mp4?v=3`} type="video/mp4" />
+        <source src={`${VIDEO_BASE}/compass-mobile.src.mp4?v=3`} type="video/mp4" />
       </video>
 
-      {/* Centered Panel */}
+      {/* Centered Panel (CTA only) */}
       <div className="hero-panel">
-        <img
-          src="/assets/branding/recovery-compass-logo.png"
-          alt="Recovery Compass Logo"
-          className="brand-logo"
-        />
-        <h1 className="brand-wordmark">RECOVERY COMPASS</h1>
         <Link to="/begin" className="hero-cta" aria-label="Begin your journey">
           BEGIN YOUR JOURNEY
         </Link>
