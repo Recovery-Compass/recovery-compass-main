@@ -27,6 +27,7 @@ import ComplianceCompass from "./pages/ComplianceCompass";
 import FirstExhibit from "./pages/FirstExhibit";
 import Methodology from "./pages/Methodology";
 import Adventure from "./pages/Adventure";
+import Begin from "./pages/Begin";
 // Investor Pages
 import InvestorPitch from "./pages/InvestorPitch";
 import MarketAnalysis from "./pages/MarketAnalysis";
@@ -157,6 +158,7 @@ function App() {
 
             {/* Main Recovery Compass Routes */}
             <Route path="/" element={<VideoHero />} />
+            <Route path="/begin" element={<Begin />} />
             <Route path="/compass-companion" element={
               <>
                 <Navigation />

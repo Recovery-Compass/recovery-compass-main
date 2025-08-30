@@ -50,7 +50,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
 
       {/* Golden CTA Button Container */}
       <div className="hero-cta-container">
-        <Link to="/pathway-select" className="hero-cta" aria-label="Begin your journey">
+        <Link to="/begin" className="hero-cta" aria-label="Begin your journey">
           BEGIN YOUR JOURNEY
         </Link>
       </div>
