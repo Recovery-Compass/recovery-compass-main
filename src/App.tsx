@@ -48,6 +48,7 @@ const AnalyticsWrapper = () => {
     const getPageTitle = (pathname: string): string => {
       const titleMap: Record<string, string> = {
         '/': 'Recovery Compass - AI-Powered Addiction Recovery Platform',
+        '/begin': 'Choose Your Journey - Recovery Compass',
         '/compass-companion': 'Compass Companion - Recovery Compass',
         '/impact-translator': 'Impact Translator - Recovery Compass',
         '/partnership-proposals': 'Partnership Proposals - Recovery Compass',

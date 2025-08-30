@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { trackBusinessEvent } from '../lib/analytics';
 
 const cardStyle: React.CSSProperties = {
   display: 'grid',
@@ -76,7 +77,16 @@ export default function Begin() {
         <div style={cardStyle}>
           <h2 style={titleStyle}>Transform your organization</h2>
           <p style={subStyle}>Engage the prompt: Transform organizational challenges.</p>
-          <Link to="/adventure" style={ctaStyle} aria-label="Transform your organization">
+          <Link
+            to="/adventure"
+            style={ctaStyle}
+            aria-label="Transform your organization"
+            onClick={() => trackBusinessEvent('journey_choice', {
+              choice: 'organization',
+              from: 'begin',
+              timestamp: new Date().toISOString(),
+            })}
+          >
             Continue
           </Link>
         </div>
@@ -85,7 +95,16 @@ export default function Begin() {
         <div style={cardStyle}>
           <h2 style={titleStyle}>Begin your journey</h2>
           <p style={subStyle}>Explore your personal path and tools.</p>
-          <Link to="/pathway-select" style={ctaStyle} aria-label="Begin your individual journey">
+          <Link
+            to="/pathway-select"
+            style={ctaStyle}
+            aria-label="Begin your individual journey"
+            onClick={() => trackBusinessEvent('journey_choice', {
+              choice: 'individual',
+              from: 'begin',
+              timestamp: new Date().toISOString(),
+            })}
+          >
             Continue
           </Link>
         </div>
