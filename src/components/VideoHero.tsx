@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/VideoHero.css';
 
 interface VideoHeroProps {
@@ -49,9 +50,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
 
       {/* Golden CTA Button Container */}
       <div className="hero-cta-container">
-        <a href="#learn-more" className="hero-cta" aria-label="Begin your journey">
+        <Link to="/pathway-select" className="hero-cta" aria-label="Begin your journey">
           BEGIN YOUR JOURNEY
-        </a>
+        </Link>
       </div>
 
       {/* Scroll Indicator */}
