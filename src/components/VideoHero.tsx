@@ -15,12 +15,9 @@ const VideoHero: React.FC = () => {
         loop
         playsInline
         preload="metadata"
-        poster={`${VIDEO_BASE}/compass-poster-desktop.jpg`}
       >
-        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.webm`} type="video/webm" />
-        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.mp4`} type="video/mp4" />
-        <source src={`${VIDEO_BASE}/compass-mobile.webm`} type="video/webm" />
-        <source src={`${VIDEO_BASE}/compass-mobile.mp4`} type="video/mp4" />
+        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.src.mp4`} type="video/mp4" />
+        <source src={`${VIDEO_BASE}/compass-mobile.src.mp4`} type="video/mp4" />
       </video>
 
       {/* Centered Panel */}
