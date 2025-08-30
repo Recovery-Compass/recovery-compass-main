@@ -29,13 +29,15 @@
 /* Video Hero Section */
 .video-hero {
   position: relative;
+  width: 100vw;
   /* iOS Safari viewport fix - use dynamic viewport height */
-  height: 100vh;
   height: 100dvh; /* Dynamic viewport height for iOS */
-  min-height: 600px;
   min-height: -webkit-fill-available; /* iOS safe area support */
   overflow: hidden;
   background: #000; /* Fallback black background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* Performance optimizations */
   -webkit-transform: translate3d(0, 0, 0); /* Hardware acceleration */
   transform: translate3d(0, 0, 0);
@@ -176,8 +178,8 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .video-hero {
-    height: 100vh;
-    min-height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
     background: #000;
   }
   

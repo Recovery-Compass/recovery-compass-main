@@ -13,8 +13,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
   // Force visibility with inline styles as backup
   const heroStyle: React.CSSProperties = {
     position: 'relative',
-    height: '100vh',
-    minHeight: '100vh',
+    width: '100vw',
+    height: '100dvh',
+    minHeight: '100dvh',
     overflow: 'hidden',
     background: '#000',
     display: 'flex',
@@ -22,7 +23,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
     justifyContent: 'center',
     visibility: 'visible',
     opacity: 1,
-    zIndex: 1
+    zIndex: 1,
   };
 
   return (
@@ -39,11 +40,12 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
         style={{
           position: 'absolute',
           inset: 0,
-          width: '100%',
-          height: '100%',
+          width: '100vw',
+          height: '100dvh',
           objectFit: 'cover',
           zIndex: 0,
           opacity: 1,
+          transform: 'none',
         }}
       >
         {/* Desktop sources */}
@@ -66,10 +68,10 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
           position: 'relative',
           zIndex: 2,
           background: 'rgba(0,0,0,0.65)',
-          borderRadius: '24px',
+          borderRadius: '18px',
           boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
-          padding: '32px 16px 24px 16px',
-          maxWidth: '340px',
+          padding: '20px 12px 16px 12px',
+          maxWidth: '320px',
           width: '92vw',
           display: 'flex',
           flexDirection: 'column',
@@ -82,9 +84,9 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
           alt="Recovery Compass Logo"
           className="brand-logo"
           style={{
-            width: '80px',
-            height: '80px',
-            marginBottom: '18px',
+            width: '54px',
+            height: '54px',
+            marginBottom: '12px',
             objectFit: 'contain',
             filter: 'drop-shadow(0 4px 16px rgba(212,175,55,0.25))',
           }}
@@ -96,10 +98,10 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
             color: '#FFFFFF',
             fontWeight: 900,
             fontFamily: 'Montserrat ExtraBold, Montserrat, sans-serif',
-            fontSize: '1.3rem',
+            fontSize: '1.1rem',
             letterSpacing: '0.08em',
             textAlign: 'center',
-            marginBottom: '18px',
+            marginBottom: '12px',
             textShadow: '0 2px 12px rgba(0,0,0,0.45)',
           }}
         >
@@ -116,10 +118,10 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
             color: '#000',
             fontWeight: 900,
             fontFamily: 'Montserrat ExtraBold, Montserrat, sans-serif',
-            fontSize: '1rem',
+            fontSize: '0.95rem',
             letterSpacing: '0.08em',
             borderRadius: '999px',
-            padding: '12px 28px',
+            padding: '8px 18px',
             boxShadow: '0 4px 20px rgba(212,175,55,0.35), 0 2px 10px rgba(0,0,0,0.2)',
             border: 'none',
             cursor: 'pointer',
