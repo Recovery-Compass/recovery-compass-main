@@ -253,7 +253,7 @@
 /* Hide any duplicate brand elements injected by Lovable */
 .hero-brand ~ .hero-brand,
 .hero-brand + * .hero-brand,
-.video-hero > :not(.video-background):not(.hero-brand):not(.hero-cta-container):not(.scroll-indicator):not(.video-loading-skeleton):not(.video-error-fallback) {
+.video-hero > :not(.video-background):not(.hero-brand):not(.hero-cta-container):not(.scroll-indicator):not(.video-loading-skeleton):not(.video-error-fallback):not(.hero-panel) {
   display: none !important;
 }
 
