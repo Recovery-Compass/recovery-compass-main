@@ -14,10 +14,12 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
   const heroStyle: React.CSSProperties = {
     position: 'relative',
     height: '100vh',
-    minHeight: '600px',
+    minHeight: '100vh',
     overflow: 'hidden',
     background: '#000',
-    display: 'block',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     visibility: 'visible',
     opacity: 1,
     zIndex: 1
@@ -34,6 +36,15 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
         playsInline
         preload="metadata"
         poster={`${VIDEO_BASE}/compass-poster-desktop.jpg`}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 1,
+        }}
       >
         {/* Desktop sources */}
         <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.webm`} type="video/webm" />
@@ -48,18 +59,78 @@ const VideoHero: React.FC<VideoHeroProps> = ({ className = '' }) => {
 
       {/* Removed duplicate compass overlay — logo/wordmark is embedded in the video */}
 
-      {/* Golden CTA Button Container */}
-      <div className="hero-cta-container">
-        <Link to="/begin" className="hero-cta" aria-label="Begin your journey">
+      {/* Centered Panel */}
+      <div
+        className="hero-panel"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          background: 'rgba(0,0,0,0.65)',
+          borderRadius: '24px',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+          padding: '32px 16px 24px 16px',
+          maxWidth: '340px',
+          width: '92vw',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {/* Logo */}
+        <img
+          src="/assets/branding/recovery-compass-logo.png"
+          alt="Recovery Compass Logo"
+          className="brand-logo"
+          style={{
+            width: '80px',
+            height: '80px',
+            marginBottom: '18px',
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 4px 16px rgba(212,175,55,0.25))',
+          }}
+        />
+
+        {/* Title */}
+        <h1
+          style={{
+            color: '#FFFFFF',
+            fontWeight: 900,
+            fontFamily: 'Montserrat ExtraBold, Montserrat, sans-serif',
+            fontSize: '1.3rem',
+            letterSpacing: '0.08em',
+            textAlign: 'center',
+            marginBottom: '18px',
+            textShadow: '0 2px 12px rgba(0,0,0,0.45)',
+          }}
+        >
+          RECOVERY COMPASS
+        </h1>
+
+        {/* CTA Button */}
+        <Link
+          to="/begin"
+          className="hero-cta"
+          aria-label="Begin your journey"
+          style={{
+            background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 100%)',
+            color: '#000',
+            fontWeight: 900,
+            fontFamily: 'Montserrat ExtraBold, Montserrat, sans-serif',
+            fontSize: '1rem',
+            letterSpacing: '0.08em',
+            borderRadius: '999px',
+            padding: '12px 28px',
+            boxShadow: '0 4px 20px rgba(212,175,55,0.35), 0 2px 10px rgba(0,0,0,0.2)',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: 'auto',
+            marginBottom: '0',
+            display: 'inline-block',
+            textDecoration: 'none',
+          }}
+        >
           BEGIN YOUR JOURNEY
         </Link>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="scroll-indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M7 10l5 5 5-5z" />
-        </svg>
       </div>
     </section>
   );
