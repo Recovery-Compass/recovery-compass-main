@@ -1,0 +1,435 @@
+/* Remove any Lovable-injected duplicate elements and background compass */
+.video-hero > img:not(.brand-logo),
+.video-hero > div > img:not(.brand-logo),
+.video-hero [class*="compass"]:not(.brand-logo):not(.brand-wordmark):not(.video-hero),
+.video-hero [class*="recovery"]:not(.brand-word):not(.brand-wordmark),
+[data-lovable-injected],
+.lovable-element,
+/* Hide any background compass images */
+.video-hero::before,
+.video-hero::after,
+.video-hero > *::before,
+.video-hero > *::after {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Ensure our brand logo is the only visible compass */
+.hero-brand {
+  isolation: isolate !important;
+}
+
+.hero-brand .brand-logo {
+  position: relative !important;
+  z-index: 9999 !important;
+  background: transparent !important;
+}
+
+/* Video Hero Section */
+.video-hero {
+  position: relative;
+  /* iOS Safari viewport fix - use dynamic viewport height */
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for iOS */
+  min-height: 600px;
+  min-height: -webkit-fill-available; /* iOS safe area support */
+  overflow: hidden;
+  background: #000; /* Fallback black background */
+  /* Performance optimizations */
+  -webkit-transform: translate3d(0, 0, 0); /* Hardware acceleration */
+  transform: translate3d(0, 0, 0);
+  contain: layout style paint; /* CSS containment for performance */
+  /* iOS touch optimizations */
+  -webkit-touch-callout: none; /* Prevent callout on long press */
+  -webkit-user-select: none; /* Prevent text selection */
+  user-select: none;
+  /* Ensure our elements are on top */
+  isolation: isolate;
+}
+
+/* Video Background - FULL OPACITY, NO FILTERS */
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1; /* CRITICAL: Full opacity for vibrancy */
+  /* NO filters, NO brightness adjustments */
+  /* iOS Performance */
+  -webkit-transform: translateX(-50%) translateY(-50%) translateZ(0);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Golden CTA Button Container - Positioned at bottom */
+.hero-cta-container {
+  position: absolute;
+  bottom: 140px; /* Desktop: 140px from bottom */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+/* Golden Button Style - Montserrat 900 */
+.hero-cta {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: #000000;
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 20%, #F4E4A1 50%, #FFD700 80%, #D4AF37 100%);
+  padding: 22px 65px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5),
+              0 2px 10px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  /* iOS Touch Targets - minimum 44px */
+  min-height: 44px;
+  /* Prevent iOS zoom on tap */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Shimmer effect on CTA */
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+/* CTA Hover State */
+.hero-cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6),
+              0 4px 15px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.hero-cta:hover::before {
+  left: 100%;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+.scroll-indicator svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .video-hero {
+    height: 100vh;
+    min-height: 100vh;
+    background: #000;
+  }
+  
+  /* Hide any background compass on mobile */
+  .video-hero::before,
+  .video-hero::after {
+    content: none !important;
+    display: none !important;
+  }
+  
+  
+  .hero-cta {
+    font-size: 18px;
+    padding: 18px 45px;
+    letter-spacing: 2px;
+  }
+  
+  .hero-cta-container {
+    bottom: 80px; /* Mobile: closer to bottom */
+    padding: 0 20px;
+  }
+  
+  .hero-cta {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* Ensure video covers entire container on all screen sizes */
+@media (aspect-ratio: 16/9) {
+  .video-background {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (aspect-ratio: 9/16) {
+  .video-background {
+    width: auto;
+    height: 100%;
+  }
+}
+
+/* Brand lockup (logo + wordmark) */
+.hero-brand {
+  /* Removed positioning to allow inline styles to take precedence */
+  animation: fadeInUp 1s ease-out 0.3s both;
+  pointer-events: none; /* brand is non-interactive */
+  /* Ensure visibility */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Hide any duplicate brand elements injected by Lovable */
+.hero-brand ~ .hero-brand,
+.hero-brand + * .hero-brand,
+.video-hero > :not(.video-background):not(.hero-brand):not(.hero-cta-container):not(.scroll-indicator):not(.video-loading-skeleton):not(.video-error-fallback) {
+  display: none !important;
+}
+
+.brand-logo {
+  width: clamp(120px, 15vw, 180px);
+  height: clamp(120px, 15vw, 180px);
+  /* Transparent logo - no background handling needed */
+  background: transparent;
+  margin: 0 auto 20px auto;
+  filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
+  object-fit: contain;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.brand-wordmark {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5vw, 56px);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #ffffff; /* base word color for RECOVERY */
+  line-height: 1.05;
+  margin: 0;
+  text-shadow:
+    0 4px 22px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.brand-wordmark .brand-word {
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.brand-wordmark .accent {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 30%, #F4E4A1 60%, #FFD700 85%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* reveal gradient */
+  text-shadow: none; /* gradient is vibrant; remove white shadow */
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.45));
+}
+
+/* Additional mobile adjustments for brand */
+@media (max-width: 768px) {
+  .hero-brand {
+    top: 32%;
+  }
+
+  .brand-logo {
+    width: clamp(70px, 18vw, 110px);
+    margin-bottom: 10px;
+  }
+
+  .brand-wordmark {
+    font-size: clamp(22px, 7vw, 34px);
+    letter-spacing: 4px;
+  }
+}
+
+/* iOS Safe Area Support (iPhone X and later) */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .hero-cta-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .scroll-indicator {
+    bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* iOS Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta,
+  .hero-brand,
+  .hero-cta-container {
+    animation: none !important;
+  }
+  
+  .hero-cta::before {
+    transition: none !important;
+  }
+  
+  .scroll-indicator {
+    animation: none !important;
+  }
+}
+
+/* iOS Landscape Mode Optimizations */
+@media (max-width: 896px) and (orientation: landscape) {
+  .video-hero {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .hero-brand {
+    top: 25%;
+  }
+  
+  .brand-logo {
+    width: 60px;
+    margin-bottom: 8px;
+  }
+  
+  .brand-wordmark {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+  
+  .hero-cta-container {
+    bottom: 60px;
+  }
+  
+  .hero-cta {
+    font-size: 16px;
+    padding: 14px 40px;
+  }
+  
+  .scroll-indicator {
+    display: none; /* Hide on landscape mobile */
+  }
+}
+
+/* High Performance Mode for Video */
+@media (max-width: 768px) {
+  .video-background {
+    /* Use lower quality transforms on mobile for better performance */
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  }
+}
+
+/* Loading Skeleton for Video */
+.video-loading-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+  z-index: 1;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* Pulse animation for compass logo */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.3));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 15px 40px rgba(212, 175, 55, 0.5));
+  }
+}
+
+/* Error Fallback Gradient */
+.video-error-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.fallback-gradient {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(15, 15, 30, 1) 100%
+  );
+}

@@ -8,7 +8,7 @@ import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./hooks/useAuth";
-import Index from "./pages/Index";
+import VideoHero from "./components/VideoHero";
 import Auth from "./pages/Auth";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -156,7 +156,7 @@ function App() {
             } />
 
             {/* Main Recovery Compass Routes */}
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<VideoHero />} />
             <Route path="/compass-companion" element={
               <>
                 <Navigation />
