@@ -86,11 +86,15 @@
 @media (max-width: 768px) {
   .video-hero {
     padding-bottom: 18vh; /* mobile spacing: keep CTA comfortably above bottom */
+    height: 100dvh;       /* lock viewport height on mobile */
+    min-height: 100dvh;
   }
   .hero-panel {
+    background: transparent !important; /* remove dark block behind CTA on mobile */
+    box-shadow: none !important;
+    border-radius: 0 !important;
     max-width: 94vw !important;
     padding: 16px 6px 12px 6px !important;
-    border-radius: 14px !important;
   }
   .brand-logo {
     width: 44px !important;
@@ -118,16 +122,16 @@
 /* Mobile portrait: show full video width and overlay CTA inside video area */
 @media (max-width: 768px) and (orientation: portrait) {
   .video-hero {
-    height: 100vh;          /* match viewport; center video with letterboxing */
-    min-height: 100vh;
+    height: 100dvh;         /* lock to dynamic viewport height */
+    min-height: 100dvh;
     padding-bottom: 0;      /* CTA uses absolute bottom offset */
   }
   .video-background {
     position: absolute;     /* center within container */
     inset: 0;
     width: 100vw;
-    height: 100vh;
-    object-fit: contain;    /* show left/right water without crop */
+    height: 100dvh;
+    object-fit: cover;      /* prevent letterboxing; match desktop behavior */
   }
   .hero-panel {
     position: absolute;     /* overlay within video area */
