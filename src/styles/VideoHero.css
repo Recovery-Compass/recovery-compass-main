@@ -87,14 +87,6 @@
   .video-hero {
     padding-bottom: 18vh; /* mobile spacing: keep CTA comfortably above bottom */
   }
-  /* Show full video width in portrait (avoid cropping left/right water) */
-  @media (orientation: portrait) {
-    .video-background {
-      width: 100vw;
-      height: auto;
-      object-fit: contain;
-    }
-  }
   .hero-panel {
     max-width: 94vw !important;
     padding: 16px 6px 12px 6px !important;
@@ -119,6 +111,34 @@
   @supports (padding: env(safe-area-inset-bottom)) {
     .video-hero {
       padding-bottom: calc(18vh + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* Mobile portrait: show full video width and overlay CTA inside video area */
+@media (max-width: 768px) and (orientation: portrait) {
+  .video-hero {
+    height: auto;           /* let container size to video height */
+    min-height: 100vh;      /* still fill viewport */
+    padding-bottom: 0;      /* handled by absolute CTA below */
+  }
+  .video-background {
+    position: static;       /* participate in document flow */
+    width: 100vw;
+    height: auto;
+    object-fit: contain;    /* show left/right water */
+  }
+  .hero-panel {
+    position: absolute;     /* overlay within video area */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18vh;           /* align similar to desktop spacing */
+    z-index: 2;
+    background: rgba(0,0,0,0.65);
+  }
+  @supports (padding: env(safe-area-inset-bottom)) {
+    .hero-panel {
+      bottom: calc(18vh + env(safe-area-inset-bottom));
     }
   }
 }
