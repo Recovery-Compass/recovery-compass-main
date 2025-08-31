@@ -5,7 +5,8 @@
   height: 100dvh;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
+  flex-direction: column; /* vertical stacking so justify-content controls vertical placement */
+  align-items: center;     /* center horizontally */
   justify-content: flex-end; /* push CTA toward bottom */
   background: #000;
   overflow: hidden;
