@@ -87,6 +87,14 @@
   .video-hero {
     padding-bottom: 18vh; /* mobile spacing: keep CTA comfortably above bottom */
   }
+  /* Show full video width in portrait (avoid cropping left/right water) */
+  @media (orientation: portrait) {
+    .video-background {
+      width: 100vw;
+      height: auto;
+      object-fit: contain;
+    }
+  }
   .hero-panel {
     max-width: 94vw !important;
     padding: 16px 6px 12px 6px !important;
