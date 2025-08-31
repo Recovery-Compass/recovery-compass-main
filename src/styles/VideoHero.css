@@ -118,15 +118,16 @@
 /* Mobile portrait: show full video width and overlay CTA inside video area */
 @media (max-width: 768px) and (orientation: portrait) {
   .video-hero {
-    height: auto;           /* let container size to video height */
-    min-height: 100vh;      /* still fill viewport */
-    padding-bottom: 0;      /* handled by absolute CTA below */
+    height: 100vh;          /* match viewport; center video with letterboxing */
+    min-height: 100vh;
+    padding-bottom: 0;      /* CTA uses absolute bottom offset */
   }
   .video-background {
-    position: static;       /* participate in document flow */
+    position: absolute;     /* center within container */
+    inset: 0;
     width: 100vw;
-    height: auto;
-    object-fit: contain;    /* show left/right water */
+    height: 100vh;
+    object-fit: contain;    /* show left/right water without crop */
   }
   .hero-panel {
     position: absolute;     /* overlay within video area */
