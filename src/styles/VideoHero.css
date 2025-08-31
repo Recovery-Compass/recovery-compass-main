@@ -5,11 +5,20 @@
   height: 100dvh;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* vertical stacking so justify-content controls vertical placement */
+  align-items: center;     /* center horizontally */
+  justify-content: flex-end; /* push CTA toward bottom */
   background: #000;
   overflow: hidden;
   isolation: isolate;
+  padding-bottom: 15vh; /* desktop spacing: CTA ~15% up from bottom */
+}
+
+/* iOS safe-area support on desktop/tablet */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .video-hero {
+    padding-bottom: calc(15vh + env(safe-area-inset-bottom));
+  }
 }
 
 .video-background {
@@ -57,8 +66,8 @@
 }
 
 .hero-cta {
-  font-size: 0.95rem;
-  padding: 8px 18px;
+  font-size: 1.1rem; /* slightly larger */
+  padding: 12px 24px; /* increase tap area */
   border-radius: 999px;
   font-weight: 900;
   font-family: 'Montserrat ExtraBold', Montserrat, sans-serif;
@@ -71,9 +80,13 @@
   margin-bottom: 0;
   display: inline-block;
   text-decoration: none;
+  min-height: 44px; /* mobile-friendly tap target */
 }
 
 @media (max-width: 768px) {
+  .video-hero {
+    padding-bottom: 18vh; /* mobile spacing: keep CTA comfortably above bottom */
+  }
   .hero-panel {
     max-width: 94vw !important;
     padding: 16px 6px 12px 6px !important;
@@ -89,7 +102,15 @@
     margin-bottom: 8px !important;
   }
   .hero-cta {
-    font-size: 0.85rem !important;
-    padding: 7px 14px !important;
+    font-size: 1rem !important; /* modest bump on mobile */
+    padding: 12px 20px !important;
+    min-height: 44px !important;
+  }
+
+  /* iOS safe-area support on mobile */
+  @supports (padding: env(safe-area-inset-bottom)) {
+    .video-hero {
+      padding-bottom: calc(18vh + env(safe-area-inset-bottom));
+    }
   }
 }

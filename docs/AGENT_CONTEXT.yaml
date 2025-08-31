@@ -1,0 +1,42 @@
+project: recovery-compass
+hero:
+  branding_source: video_only
+  overlay:
+    logo: false
+    title: false
+    cta: true
+  video_sources:
+    desktop: "/videos/compass-desktop.src.mp4"
+    mobile: "/videos/compass-mobile.src.mp4"
+  cache_bust: true
+  cta:
+    desktop:
+      bottom_offset_vh: 15
+      font_size_rem: 1.1
+      padding_px: [12,24]
+    mobile:
+      bottom_offset_vh: 18
+      font_size_rem: 1.0
+      padding_px: [12,20]
+    safe_area: true
+routes:
+  - path: "/"
+    element: "VideoHero"
+  - path: "/begin"
+    element: "Begin"
+  - path: "/adventure"
+    element: "Adventure"
+  - path: "/pathway-select"
+    element: "PathwaySelect"
+  - path: "/environmental-quiz"
+    element: "EnvironmentalQuizStandalone"
+  - path: "/environmental-design"
+    element: "EnvironmentalDesignAdaptive"
+  - path: "*"
+    element: "NotFound"
+analytics:
+  events:
+    - name: "journey_choice"
+      route: "/begin"
+      payload: ["choice","from","timestamp"]
+
