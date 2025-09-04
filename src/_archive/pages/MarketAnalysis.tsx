@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Users, MapPin, TrendingUp, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import InvestorContactSection from '../components/partnership/InvestorContactSection';
+import InvestorContactSection from '@/components/partnership/InvestorContactSection';
 
 const MarketAnalysis = () => {
   const [visibleCounter, setVisibleCounter] = useState(0);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BreathSync } from '../components/individual/BreathSync';
-import { Card } from '../components/ui/card';
+import { BreathSync } from '@/components/individual/BreathSync';
+import { Card } from '@/components/ui/card';
 
 export const TestBreathSync = () => {
   const [showBreathSync, setShowBreathSync] = useState(true);

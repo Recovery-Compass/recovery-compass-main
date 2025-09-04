@@ -175,7 +175,7 @@ class AnalyticsService {
   }
 
   // Track business-critical events for Recovery Compass
-  trackBusinessEvent(eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request', data?: Record<string, any>): void {
+  trackBusinessEvent(eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request' | 'journey_choice', data?: Record<string, any>): void {
     this.trackEvent(`business_${eventType}`, {
       ...data,
       business_critical: true,
@@ -220,7 +220,7 @@ export const trackEvent = (eventName: string, properties?: Record<string, any>) 
   analytics.trackEvent(eventName, properties);
 };
 
-export const trackBusinessEvent = (eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request', data?: Record<string, any>) => {
+export const trackBusinessEvent = (eventType: 'journey_started' | 'investor_page_view' | 'partnership_inquiry' | 'demo_request' | 'journey_choice', data?: Record<string, any>) => {
   analytics.trackBusinessEvent(eventType, data);
 };
 

@@ -2,7 +2,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import InvestorNavigation from "./components/InvestorNavigation";
@@ -14,6 +14,9 @@ import EnvironmentalDesignAdaptive from "./pages/EnvironmentalDesignAdaptive";
 import NotFound from "./pages/NotFound";
 import Adventure from "./pages/Adventure";
 import Begin from "./pages/Begin";
+import Personal from "./pages/Personal";
+import PersonalDiscovery from "./pages/PersonalDiscovery";
+import Organizations from "./pages/Organizations";
 import { EnvironmentalQuizStandalone } from "./pages/EnvironmentalQuizStandalone";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 
@@ -30,8 +33,10 @@ const AnalyticsWrapper = () => {
         '/compass-companion': 'Compass Companion - Recovery Compass',
         '/impact-translator': 'Impact Translator - Recovery Compass',
         '/partnership-proposals': 'Partnership Proposals - Recovery Compass',
-        '/pathway-select': 'Pathway Select - Recovery Compass',
-        '/environmental-design': 'Environmental Design - Recovery Compass',
+        '/personal': 'Personal Journey - Recovery Compass',
+        '/personal/discovery': 'Discovery Assessment - Recovery Compass',
+        '/organizations': 'Organization Journey - Recovery Compass',
+        '/organizations/transform': 'Transform - Recovery Compass',
         '/make-integration': 'Make Integration - Recovery Compass',
         '/investor-pitch': 'Investor Pitch - Recovery Compass',
         '/market-analysis': 'Market Analysis - Recovery Compass',
@@ -98,15 +103,20 @@ function App() {
             {/* Minimal app routes */}
             <Route path="/" element={<VideoHero />} />
             <Route path="/begin" element={<Begin />} />
-            <Route path="/adventure" element={<Adventure />} />
-            <Route path="/pathway-select" element={
-              <>
-                <Navigation />
-                <div className="pt-20">
-                  <PathwaySelect />
-                </div>
-              </>
-            } />
+            
+            {/* Personal Journey Routes */}
+            <Route path="/personal" element={<Personal />} />
+            <Route path="/personal/discovery" element={<PersonalDiscovery />} />
+            
+            {/* Organization Journey Routes */}
+            <Route path="/organizations" element={<Organizations />} />
+            <Route path="/organizations/transform" element={<Adventure />} />
+            
+            {/* Legacy URL Redirects */}
+            <Route path="/pathway-select" element={<Navigate to="/personal" replace />} />
+            <Route path="/adventure" element={<Navigate to="/organizations/transform" replace />} />
+            
+            {/* Existing routes with navigation */}
             <Route path="/environmental-quiz" element={<EnvironmentalQuizStandalone />} />
             <Route path="/environmental-design" element={
               <>

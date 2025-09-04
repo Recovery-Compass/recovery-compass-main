@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ArrowRight, TrendingUp, Users, Target, DollarSign, CheckCircle, Building, Globe, Shield, AlertTriangle, Info, Calculator, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import InvestorContactSection from '../components/partnership/InvestorContactSection';
+import InvestorContactSection from '@/components/partnership/InvestorContactSection';
 
 const InvestorPitch = () => {
   const [metricsVisible, setMetricsVisible] = useState(false);

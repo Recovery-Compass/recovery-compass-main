@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Target, Users, Zap, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import InvestorContactSection from '../components/partnership/InvestorContactSection';
+import InvestorContactSection from '@/components/partnership/InvestorContactSection';
 
 const Roadmap = () => {
   const [activePhase, setActivePhase] = useState('30-day');

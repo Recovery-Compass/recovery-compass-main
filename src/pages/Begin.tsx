@@ -78,7 +78,7 @@ export default function Begin() {
           <h2 style={titleStyle}>Transform your organization</h2>
           <p style={subStyle}>Engage the prompt: Transform organizational challenges.</p>
           <Link
-            to="/adventure"
+            to="/organizations"
             style={ctaStyle}
             aria-label="Transform your organization"
             onClick={() => trackBusinessEvent('journey_choice', {
@@ -96,7 +96,7 @@ export default function Begin() {
           <h2 style={titleStyle}>Begin your journey</h2>
           <p style={subStyle}>Explore your personal path and tools.</p>
           <Link
-            to="/pathway-select"
+            to="/personal"
             style={ctaStyle}
             aria-label="Begin your individual journey"
             onClick={() => trackBusinessEvent('journey_choice', {

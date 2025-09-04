@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Heart, TrendingUp, Users, DollarSign, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import InvestorContactSection from '../components/partnership/InvestorContactSection';
+import InvestorContactSection from '@/components/partnership/InvestorContactSection';
 
 const ImpactMetrics = () => {
   const [timeframe, setTimeframe] = useState('year1');

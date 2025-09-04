@@ -33,10 +33,10 @@ export const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/compass-companion', label: 'Compass Companion' },
-    { path: '/impact-translator', label: 'Impact Translator' },
-    { path: '/partnership-proposals', label: 'Partnership' },
-    { path: '/whittier-dashboard', label: 'Whittier Dashboard' },
+    { path: '/personal', label: 'For You' },
+    { path: '/organizations', label: 'For Organizations' },
+    { path: '/methodology', label: 'The Method' },
+    { path: '/first-exhibit', label: 'Proof of Concept' },
   ];
 
   const investorPages = [
@@ -68,21 +68,24 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <Link to="/personal" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
+              For You
+            </Link>
+            <Link to="/organizations" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
+              For Organizations
+            </Link>
             <Link to="/methodology" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               The Method
             </Link>
             <Link to="/first-exhibit" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Proof of Concept
             </Link>
-            <Link to="/compliance-compass" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
-              Transform
-            </Link>
             <Link to="/investor-pitch" className="text-moon-glow hover:text-compass-gold font-body transition-colors">
               Investors
             </Link>
             <Button 
-              onClick={() => window.location.href = '/compliance-compass'}
-              className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-body font-semibold hover:scale-105 transition-all"
+              onClick={() => window.location.href = '/personal'}
+              className="ml-8 bg-gradient-to-r from-compass-gold to-tree-copper text-midnight-foundation font-body font-semibold hover:scale-105 transition-all min-h-[3rem]"
             >
               Get Started
             </Button>
