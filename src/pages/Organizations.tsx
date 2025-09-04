@@ -54,27 +54,28 @@ const Organizations = () => {
             </div>
           </div>
 
-          {/* Proof Points */}
+          {/* Partnership & Evidence-Building */}
           <div className="bg-white/10 rounded-lg p-8 backdrop-blur-sm mb-12">
             <h2 className="font-heading text-2xl font-bold mb-6 text-compass-gold">
-              Proven Results
+              Partnership & Evidence-Building
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="text-left">
-                <h3 className="font-semibold text-white mb-3">Whittier First Day School</h3>
+                <h3 className="font-semibold text-white mb-3">Data Systems Partnership</h3>
                 <p className="text-white/80 text-sm leading-relaxed">
-                  Successfully implemented Environmental Response Architecture™ to transform 
-                  outcomes for students with complex behavioral challenges through strategic 
-                  environmental modifications rather than traditional intervention approaches.
+                  Recovery Compass and Whittier First Day will collaborate on a six-month 
+                  pilot starting September 2025 to validate Environmental Response Design™ 
+                  methodology through unified data collection using a Master Program Data 
+                  Sheet with standardized fields and data integrity protocols.
                 </p>
               </div>
               <div className="text-left">
-                <h3 className="font-semibold text-white mb-3">Key Outcomes</h3>
+                <h3 className="font-semibold text-white mb-3">Research Goals</h3>
                 <ul className="text-white/80 text-sm space-y-1">
-                  <li>• Reduced crisis incidents through environmental design</li>
-                  <li>• Improved staff effectiveness and satisfaction</li>
-                  <li>• Enhanced student engagement and learning outcomes</li>
-                  <li>• Sustainable, scalable transformation model</li>
+                  <li>• Establish ERD as formally recognized evidence-based practice</li>
+                  <li>• Co-author joint case study for professional publication</li>
+                  <li>• Validate methodology through systematic data collection</li>
+                  <li>• Advocate through professional platforms and networks</li>
                 </ul>
               </div>
             </div>
