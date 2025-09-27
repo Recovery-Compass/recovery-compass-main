@@ -1,15 +1,6 @@
-name: deny-env
+name: Retired - deny-env
+
 on:
-  pull_request:
-    paths:
-      - "**/.env"
-      - "**/.env.*"
-permissions: {}
-jobs:
-  deny:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Block .env commits
-        run: |
-          echo "'.env' files must not be committed to this repository." 1>&2
-          exit 1
+  workflow_dispatch:
+
+jobs: {}

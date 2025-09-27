@@ -1,45 +1,6 @@
-name: bun-lockfile-sync
+name: Retired - bun-lockfile-sync
+
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'package.json'
-      - 'packages/*/package.json'
-permissions:
-  contents: write
-  pull-requests: write
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-      
-      - name: Install dependencies and update lockfile
-        run: |
-          bun install --frozen-lockfile || bun install
-      
-      - name: Check for changes
-        id: changes
-        run: |
-          if git diff --quiet bun.lockb; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Commit and push if changed
-        if: steps.changes.outputs.changed == 'true'
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add bun.lockb
-          git commit -m "chore: update bun lockfile [skip ci]"
-          git push
+
+jobs: {}
