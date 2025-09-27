@@ -1,4 +1,3 @@
-
 // Enhanced analytics service with privacy compliance and launch-ready features
 interface AnalyticsEvent {
   name: string;
