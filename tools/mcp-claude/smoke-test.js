@@ -1,7 +1,9 @@
 /* Minimal MCP client to call the "summarize" tool using stdio */
 const { spawn } = require('child_process');
-const { Client } = require('@modelcontextprotocol/sdk/client');
-const { StdioClientTransport } = require('@modelcontextprotocol/sdk/client/stdio');
+const clientPath = "/Users/ericjones/Projects/recovery-compass/recovery-compass-main/tools/mcp-claude/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/index.js";
+const stdioPath = "/Users/ericjones/Projects/recovery-compass/recovery-compass-main/tools/mcp-claude/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js";
+const { Client } = require(clientPath);
+const { StdioClientTransport } = require(stdioPath);
 
 (async () => {
   const cmd = '/Users/ericjones/Projects/recovery-compass/recovery-compass-main/tools/mcp-claude/run-mcp-claude.sh';
@@ -12,10 +14,16 @@ const { StdioClientTransport } = require('@modelcontextprotocol/sdk/client/stdio
     process.stderr.write(d);
   });
 
-  const transport = new StdioClientTransport(child.stdout, child.stdin);
-  const client = new Client({ name: 'smoke-test', version: '0.1.0' }, transport);
+const transport = new StdioClientTransport({
+  command: cmd,
+  stderr: 'pipe'
+});
+if (transport.stderr) {
+  transport.stderr.on('data', (d) => process.stderr.write(d));
+}
+const client = new Client({ name: 'smoke-test', version: '0.1.0' });
 
-  await client.initialize();
+await client.connect(transport);
 
   const tools = await client.listTools();
   console.log('Tools:', tools);
