@@ -17,9 +17,9 @@
  */
 
 import Anthropic from "@anthropic-ai/sdk";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import { ListToolsRequestSchema, CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 
 // Context awareness for guardrails
 const MCP_CONTEXT = (process.env.MCP_CONTEXT || "staging").toLowerCase();
@@ -50,8 +50,8 @@ const SYSTEM_INSTRUCTION =
 const MAX_TOKENS = IS_PROD ? 300 : 600;
 const MAX_INPUT_CHARS = IS_PROD ? 8000 : 16000;
 
-// Build MCP server (high-level) and register tool
-const mcp = new McpServer(
+// Build low-level MCP Server and register tool handlers
+const server = new Server(
   {
     name: "recovery-compass-mcp-claude",
     version: "0.1.0",
@@ -63,85 +63,86 @@ const mcp = new McpServer(
   }
 );
 
-// Zod schema for tool input
-const SummarizeInput = z.object({
-  text: z.string().min(1, "text is required"),
-  style: z.string().optional(),
-  max_sentences: z.number().min(1).max(8).optional(),
-});
+// Register tools capability explicitly
+server.registerCapabilities({ tools: { listChanged: true } });
 
-mcp.registerTool(
-  "summarize",
-  {
+// List tools handler
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  const toolDefinition = {
+    name: "summarize",
     title: "Summarize text",
     description:
       "Summarize input text concisely using Claude with safety guardrails.",
-    inputSchema: SummarizeInput,
-  },
-  async ({ text, style, max_sentences }) => {
-    // Defensive checks
-    const input = (text || "").trim();
-    if (!input) {
-      return {
-        content: [
-          { type: "text", text: "Input is empty; nothing to summarize." },
-        ],
-      };
-    }
-    if (input.length > MAX_INPUT_CHARS) {
-      return {
-        content: [
-          {
-            type: "text",
-            text: `Input too long (${input.length} chars). Limit is ${MAX_INPUT_CHARS}.`,
-          },
-        ],
-      };
-    }
+    inputSchema: {
+      type: "object",
+      properties: {
+        text: {
+          type: "string",
+          description: "The text to summarize. Length is limited by server policy.",
+          minLength: 1,
+        },
+        style: {
+          type: "string",
+          description: "Optional style hint, e.g. 'bullets', 'executive', or 'plain'.",
+        },
+        max_sentences: {
+          type: "number",
+          description: "Optional maximum number of sentences in the summary (1-8).",
+          minimum: 1,
+          maximum: 8,
+        },
+      },
+      required: ["text"],
+      additionalProperties: false,
+    },
+  };
+  return { tools: [toolDefinition] };
+});
 
-    // Style and length hints
-    const styleHint = (style || "bullets").toLowerCase();
-    const maxSentences = Math.max(
-      1,
-      Math.min(8, Number(max_sentences || (IS_PROD ? 4 : 6)))
-    );
-
-    // Build user content prompt
-    const userPrompt = [
-      `Summarize the following text in at most ${maxSentences} sentences.`,
-      `Style: ${styleHint}.`,
-      `Be precise and neutral; do not invent facts.`,
-      "",
-      "TEXT:",
-      input,
-    ].join("\n");
-
-    // Call Claude
-    const response = await anthropic.messages.create({
-      model: DEFAULT_MODEL,
-      max_tokens: MAX_TOKENS,
-      system: SYSTEM_INSTRUCTION,
-      messages: [{ role: "user", content: userPrompt }],
-    });
-
-    // Extract text segments
-    const textParts = (response.content || [])
-      .filter((p: any) => p && p.type === "text" && typeof p.text === "string")
-      .map((p: any) => p.text) || [];
-
-    const summary = textParts.length > 0 ? textParts.join("\n\n") : "[No text returned]";
-
-    // Return MCP tool result
+// Call tool handler
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params as any;
+  if (name !== "summarize") {
     return {
-      content: [{ type: "text", text: summary }],
-    };
+      isError: true,
+      content: [{ type: "text", text: `Tool ${name} not found` }],
+    } as any;
   }
-);
+  const input = String((args?.text ?? "")).trim();
+  if (!input) {
+    return { content: [{ type: "text", text: "Input is empty; nothing to summarize." }] } as any;
+  }
+  if (input.length > MAX_INPUT_CHARS) {
+    return { content: [{ type: "text", text: `Input too long (${input.length} chars). Limit is ${MAX_INPUT_CHARS}.` }] } as any;
+  }
+  const styleHint = String(args?.style ?? "bullets").toLowerCase();
+  const maxSentences = Math.max(1, Math.min(8, Number(args?.max_sentences ?? (IS_PROD ? 4 : 6))));
+  const userPrompt = [
+    `Summarize the following text in at most ${maxSentences} sentences.`,
+    `Style: ${styleHint}.`,
+    `Be precise and neutral; do not invent facts.`,
+    "",
+    "TEXT:",
+    input,
+  ].join("\n");
+
+  const response = await anthropic.messages.create({
+    model: DEFAULT_MODEL,
+    max_tokens: MAX_TOKENS,
+    system: SYSTEM_INSTRUCTION,
+    messages: [{ role: "user", content: userPrompt }],
+  });
+  const textParts = (response.content || [])
+    .filter((p: any) => p && p.type === "text" && typeof p.text === "string")
+    .map((p: any) => p.text) || [];
+  const summary = textParts.length > 0 ? textParts.join("\n\n") : "[No text returned]";
+  return { content: [{ type: "text", text: summary }] } as any;
+});
 
 // Start stdio transport
 async function main() {
   const transport = new StdioServerTransport();
-  await mcp.connect(transport);
+  await server.connect(transport);
 
   // Optional structured startup log (no secrets)
   const info = {
