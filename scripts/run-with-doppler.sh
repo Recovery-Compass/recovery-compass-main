@@ -17,5 +17,13 @@ fi
 # Resolve token from Keychain (never printed)
 TOKEN="$($HOME/bin/doppler-token.sh)"
 
-# Execute script via Doppler; secrets stay in env, not files
-exec doppler --token "$TOKEN" run -- bun run "$CMD"
+# Execute under Doppler with PUBLIC_* → VITE_PUBLIC_* mapping at runtime (no printing)
+export RUN_CMD="$CMD"
+exec doppler --token "$TOKEN" run -- bash -lc '
+  set -Eeuo pipefail
+  # Map PUBLIC_* → VITE_PUBLIC_* without printing values
+  for name in $(env | awk -F= '\''/^PUBLIC_/ {print $1}'\''); do
+    export VITE_${name}="${!name}"
+  done
+  exec bun run "$RUN_CMD"
+'
