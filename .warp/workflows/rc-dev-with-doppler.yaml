@@ -1,0 +1,7 @@
+name: Recovery Compass Dev (Doppler)
+command: cd /Users/ericjones/Projects/recovery-compass/recovery-compass-main && doppler run -- npm run dev
+tags:
+  - development
+  - recovery-compass
+  - doppler
+description: Start Vite dev server with secrets injected by Doppler (manus-warp-api-keys-ecosystem-overhaul/dev_rc_apis)

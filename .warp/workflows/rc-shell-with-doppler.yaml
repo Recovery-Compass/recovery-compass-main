@@ -1,0 +1,8 @@
+name: Recovery Compass Shell (Doppler)
+command: cd /Users/ericjones/Projects/recovery-compass/recovery-compass-main && doppler run -- zsh
+tags:
+  - development
+  - recovery-compass
+  - doppler
+  - shell
+description: Open an interactive shell with all Doppler secrets injected as environment variables
