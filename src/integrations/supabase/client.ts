@@ -2,8 +2,17 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = "https://shcuzhyonrpacdynxjjd.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNoY3V6aHlvbnJwYWNkeW54ampkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAyMzcxNzIsImV4cCI6MjA2NTgxMzE3Mn0._GF157A1ifzBSOvDbHgICOXWQhIz-wberdi8JWdBCC8";
+// Read Supabase credentials from environment variables (injected by Doppler)
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+// Validate at startup for better DX and security hygiene
+if (!SUPABASE_URL) {
+  throw new Error('Missing VITE_SUPABASE_URL. Are you running via Doppler (doppler run --) with config dev_rc_apis?');
+}
+if (!SUPABASE_PUBLISHABLE_KEY) {
+  throw new Error('Missing VITE_SUPABASE_PUBLISHABLE_KEY. Are you running via Doppler (doppler run --) with config dev_rc_apis?');
+}
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
