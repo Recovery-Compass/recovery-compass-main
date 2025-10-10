@@ -16,8 +16,8 @@ const VideoHero: React.FC = () => {
         playsInline
         preload="metadata"
       >
-        <source media="(min-width: 768px)" src={`${VIDEO_BASE}/compass-desktop.src.mp4?v=3`} type="video/mp4" />
-        <source src={`${VIDEO_BASE}/compass-mobile.src.mp4?v=3`} type="video/mp4" />
+        {/* Use desktop video on all devices to show three-panel layout */}
+        <source src={`${VIDEO_BASE}/compass-desktop.src.mp4?v=3`} type="video/mp4" />
       </video>
 
       {/* Centered Panel (CTA only) */}
