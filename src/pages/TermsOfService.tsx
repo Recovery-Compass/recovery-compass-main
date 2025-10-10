@@ -20,8 +20,8 @@ export default function TermsOfService() {
           </h1>
           
           <p className="text-moon-glow/80 font-inter mb-8">
-            <strong>Effective Date:</strong> July 26, 2025<br />
-            <strong>Last Updated:</strong> July 26, 2025
+            <strong>Effective Date:</strong> January 10, 2025<br />
+            <strong>Last Updated:</strong> January 10, 2025
           </p>
 
           <div className="space-y-8 text-midnight-foundation">

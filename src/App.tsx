@@ -18,6 +18,8 @@ import Personal from "./pages/Personal";
 import PersonalDiscovery from "./pages/PersonalDiscovery";
 import Organizations from "./pages/Organizations";
 import { EnvironmentalQuizStandalone } from "./pages/EnvironmentalQuizStandalone";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 
 // Enhanced analytics wrapper with business event tracking
@@ -126,6 +128,11 @@ function App() {
                 </div>
               </>
             } />
+            
+            {/* Legal Pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
