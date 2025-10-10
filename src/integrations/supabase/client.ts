@@ -7,17 +7,22 @@ const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 // Validate at startup for better DX and security hygiene
+// Use console.warn instead of throw to allow homepage to load without Supabase
 if (!SUPABASE_URL) {
-  throw new Error('Missing VITE_SUPABASE_URL. Are you running via Doppler (doppler run --) with config dev_rc_apis?');
+  console.warn('Missing VITE_SUPABASE_URL. Supabase features will be disabled. For full functionality, run via Doppler (doppler run --) with config dev_rc_apis.');
 }
 if (!SUPABASE_PUBLISHABLE_KEY) {
-  throw new Error('Missing VITE_SUPABASE_PUBLISHABLE_KEY. Are you running via Doppler (doppler run --) with config dev_rc_apis?');
+  console.warn('Missing VITE_SUPABASE_PUBLISHABLE_KEY. Supabase features will be disabled. For full functionality, run via Doppler (doppler run --) with config dev_rc_apis.');
 }
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+// Create a dummy client if credentials are missing to prevent crashes
+const dummyUrl = SUPABASE_URL || 'https://placeholder.supabase.co';
+const dummyKey = SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsYWNlaG9sZGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDUxOTI4MDAsImV4cCI6MTk2MDc2ODgwMH0.placeholder';
+
+export const supabase = createClient<Database>(dummyUrl, dummyKey, {
   auth: {
     storage: localStorage,
     persistSession: true,
