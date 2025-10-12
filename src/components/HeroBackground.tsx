@@ -24,8 +24,15 @@ const HeroBackground: React.FC = () => {
   }, []);
 
   if (reduced || error) {
-    // Do not render the video; CSS gradient and any poster in foreground handle visuals
-    return null;
+    // Render the poster image for visual consistency when reduced motion is preferred or video fails
+    return (
+      <img
+        className="video-background-poster"
+        src={POSTER}
+        alt="Background"
+        aria-hidden="true"
+      />
+    );
   }
 
   return (
