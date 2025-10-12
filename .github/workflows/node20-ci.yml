@@ -25,6 +25,8 @@ jobs:
           node-version: 20
           cache: npm
       - name: Install dependencies (safe)
+        env:
+          NODE_ENV: development
         run: |
           if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
             npm ci --ignore-scripts --no-audit --no-fund
@@ -33,8 +35,8 @@ jobs:
           else
             echo "No package.json; skipping"
           fi
-      - name: Lint (if present) - TEMPORARILY DISABLED
-        run: echo "Skipping lint check - pre-existing ESLint errors unrelated to video integration"
+      - name: Lint (if present)
+        run: npm run -s lint --if-present
       - name: Type check (if present)
         run: npm run -s type-check --if-present
       - name: Build (if present)
