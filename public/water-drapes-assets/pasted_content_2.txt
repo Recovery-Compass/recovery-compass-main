@@ -1,0 +1,184 @@
+Got it. I’ll proceed with a single, deterministic calm‑ocean loop and poster, embedded via Base64 with reduced‑motion fallback. Here’s the component, ready to paste into Lovable. Replace the two Base64 constants and publish.
+
+Plan
+ 1. Create one 720p H.264 MP4 loop (~10s, ≤8 MB) and one 1280×720 JPEG poster (≤100 KB), validate locally.
+ 2. Paste Base64 payloads (single-line) into constants; construct data URLs; avoid external URIs.
+ 3. Render poster for instant paint; video autoplay muted/loop/playsInline; honor prefers‑reduced‑motion; readability overlay.
+ 4. Keep self-contained; no crossOrigin or CDNs.
+
+Pseudocode
+ • Input: poster_b64, mp4_b64 (single-line strings)
+ • Build poster_url = “data:image/jpeg;base64,” + poster_b64
+ • Build video_url = “data:video/mp4;base64,” + mp4_b64
+ • Detect prefers-reduced-motion via matchMedia
+ • Render section:
+ ▫ Always render     <img> poster; visible when reduced-motion, otherwise under video
+ ▫ If not reduced-motion, render     <video> with src=video_url muted loop playsInline autoPlay poster=poster_url
+ ▫ Add overlay and content layer (title/CTA)
+ • Validate inline playback; file sizes within limits; Base64 strings have no newlines
+
+// components/VideoHero.tsx
+import React from "react";
+import "./VideoHero.css";
+
+/**
+ * Recovery Compass — Deterministic Calm Ocean Loop
+ *
+ * Strategy:
+ * - Determinism: Embed a single validated loop and poster via Base64 to eliminate CDN/CORS variability.
+ * - Performance: 1280×720 (~10s), H.264, ≤8 MB; poster paints instantly for zero layout shift.
+ * - Accessibility: Honors prefers-reduced-motion by showing a static poster and hiding motion.
+ *
+ * Usage:
+ * - Replace POSTER_B64 and MP4_B64 with one-line Base64 payloads (no whitespace, no newlines).
+ * - Confirm loop seam and sizes with your local FFmpeg pipeline before embedding.
+ */
+
+// IMPORTANT: Paste Base64 payloads as single-line double-quoted strings.
+// Do not include newlines or spaces; avoid backticks/template literals.
+const POSTER_B64 = "PASTE_POSTER_BASE64_HERE";
+const MP4_B64 = "PASTE_MP4_BASE64_HERE";
+
+// Construct deterministic data URLs from Base64 payloads
+const POSTER_DATA_URL = `data:image/jpeg;base64,${POSTER_B64}`;
+const VIDEO_DATA_URL = `data:video/mp4;base64,${MP4_B64}`;
+
+export default function VideoHero() {
+  // Respect user motion preferences at render time
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    "matchMedia" in window &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  return (
+    <section className="hero" aria-label="Calm ocean visualization">
+      {/* Poster paints instantly; visible for reduced motion users */}
+      <img
+        className={`hero__poster${prefersReducedMotion ? " hero__poster--visible" : ""}`}
+        src={POSTER_DATA_URL}
+        alt="Calm ocean"
+        decoding="async"
+      />
+
+      {/* Deterministic loop: muted, inline, autoplay; hidden if reduced motion */}
+      {!prefersReducedMotion && (
+        <video
+          className="hero__video"
+          src={VIDEO_DATA_URL}
+          preload="metadata"
+          muted
+          loop
+          playsInline
+          autoPlay
+          poster={POSTER_DATA_URL}
+        />
+      )}
+
+      {/* Contrast overlay for readable content over varied water luminance */}
+      <div className="hero__overlay" />
+
+      {/* Content layer */}
+      <div className="hero__content">
+        <h1 className="hero__title">Recovery Compass</h1>
+        <a className="hero__cta" href="/start">Begin Your Journey</a>
+      </div>
+    </section>
+  );
+}
+/* styles/VideoHero.css */
+
+/* Reduced motion: show poster, hide video */
+@media (prefers-reduced-motion: reduce) {
+  .hero__poster { display: block; }
+  .hero__video { display: none; }
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  /* Progressive enhancement fallback (visible if video not yet loaded) */
+  background:
+    radial-gradient(1200px 600px at 50% 40%, rgba(255,255,255,0.08), rgba(0,0,0,0.4)),
+    linear-gradient(180deg, rgba(7,25,36,1) 0%, rgba(10,18,25,1) 100%);
+}
+
+.hero__poster,
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__poster {
+  display: none; /* visible via reduced-motion or JS class */
+}
+
+.hero__poster--visible {
+  display: block;
+}
+
+.hero__video {
+  /* Gentle tone adjustments for readability and mood consistency */
+  filter: contrast(0.95) saturate(0.9) brightness(0.9);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 0 24px;
+  color: #eaf2f7;
+}
+
+.hero__title {
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.45);
+}
+
+.hero__cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.9);
+  color: #0b1a24;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 640px) {
+  .hero__video {
+    filter: contrast(0.95) saturate(0.9) brightness(0.92);
+  }
+  .hero__cta {
+    padding: 12px 20px;
+  }
+}
+
+Notes and edge cases
+ • Base64 hygiene: ensure .b64 outputs are single-line; remove trailing newline; avoid smart quotes/hidden whitespace.
+ • Video compatibility: H.264 (libx264), profile high, yuv420p, -movflags +faststart; ~10s; ≤8 MB; if over, increase CRF to 26 or reduce fps to 24.
+ • Seam validation: apply a 0.8s tail‑to‑head xfade in your FFmpeg pipeline only if a jump is visible.
+ • Autoplay policies: muted + playsInline + no controls enable mobile autoplay.
+ • Performance: preload=“metadata” ensures instant poster paint without heavy upfront download.
+
+Next action: Click Edit, open your homepage section, paste both files, replace the Base64 constants, then click Publish.

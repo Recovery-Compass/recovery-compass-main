@@ -74,8 +74,8 @@
 }
 
 .hero-cta {
-  font-size: 1.1rem; /* slightly larger */
-  padding: 12px 24px; /* increase tap area */
+  font-size: 1.05rem; /* slightly reduced from 1.1rem */
+  padding: 10px 22px; /* reduced from 12px 24px for sleeker look */
   border-radius: 999px;
   font-weight: 900;
   font-family: 'Montserrat ExtraBold', Montserrat, sans-serif;
@@ -115,8 +115,8 @@
     margin-bottom: 8px !important;
   }
   .hero-cta {
-    font-size: 1rem !important; /* modest bump on mobile */
-    padding: 12px 20px !important;
+    font-size: 0.95rem !important; /* modest size on mobile */
+    padding: 10px 20px !important; /* sleeker padding matching desktop proportions */
     min-height: 44px !important;
   }
 
@@ -128,7 +128,7 @@
   }
 }
 
-/* Mobile portrait: show full video width and overlay CTA inside video area */
+/* Mobile portrait: show full video width including side panels */
 @media (max-width: 768px) and (orientation: portrait) {
   .video-hero {
     height: 100dvh;         /* lock to dynamic viewport height */
@@ -140,7 +140,8 @@
     inset: 0;
     width: 100vw;
     height: 100dvh;
-    object-fit: cover;      /* prevent letterboxing; match desktop behavior */
+    object-fit: contain;    /* show full video width to reveal side panels */
+    background: #000;       /* fill letterbox areas with black */
   }
   .hero-panel {
     position: absolute;     /* overlay within video area */

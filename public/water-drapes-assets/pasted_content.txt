@@ -1,0 +1,105 @@
+Short answer: Make a 10-second, seamless 720p H.264 MP4 loop from any suitable water clip, compress it to ≤8 MB with ffmpeg, validate playback locally, then convert to Base64.
+
+Plan
+ 1. Source a royalty-free water clip with continuous motion and minimal hard cuts.
+ 2. Edit a seamless loop: trim to 8–12 seconds, match start/end frames, add crossfade if needed.
+ 3. Encode and compress to H.264 MP4 1280×720 at ≤8 MB with ffmpeg.
+ 4. Validate autoplay and decoding locally with a data URL in a simple HTML file.
+ 5. Convert to Base64 and paste into your component.
+
+Pseudocode (language-agnostic)
+ • choose clip with calm water motion
+ • trim 8–12s segment and make loop seamless (optional crossfade)
+ • ffmpeg encode: scale=1280:-1, fps ~24–30, libx264, crf 23–26, preset veryfast, no audio
+ • check size ≤8 MB; if >8 MB, raise crf or lower fps
+ • create local HTML with data:video/mp4;base64,  <payload> and open in Safari/Chrome
+ • when validated, paste into WATER_MP4_DATA_URL
+
+Bash + ffmpeg workflow (copy-paste-ready)# 0) Install ffmpeg if needed (macOS)
+# brew install ffmpeg
+
+# 1) Inspect your source file to choose a calm segment
+ffprobe -hide_banner -i source.mp4
+
+# 2) Trim a candidate 12-second segment (adjust -ss for your chosen start)
+ffmpeg -hide_banner -y \
+  -ss 00:00:10 -t 12 \
+  -i source.mp4 \
+  -an -c:v libx264 -crf 24 -preset veryfast -r 30 \
+  -vf "scale=1280:-1:flags=lanczos" \
+  candidate-720p.mp4
+
+# 3) Option A: If the clip already loops cleanly, skip crossfade and compress final
+ffmpeg -hide_banner -y \
+  -i candidate-720p.mp4 \
+  -an -c:v libx264 -crf 24 -preset veryfast -r 30 \
+  water-loop-720p.mp4
+
+# 3b) Option B: Make a seamless loop via tail→head crossfade (1s)
+# This creates a 11s output where the last 1s crossfades to the first 1s.
+ffmpeg -hide_banner -y \
+  -stream_loop 1 -t 11 -i candidate-720p.mp4 \
+  -filter_complex "[0:v]split=2[v0][v1]; \
+    [v0]trim=0:10,setpts=PTS-STARTPTS[a]; \
+    [v1]trim=0:10,setpts=PTS-STARTPTS[b]; \
+    [a][b]xfade=transition=fade:duration=1:offset=9" \
+  -an -c:v libx264 -crf 24 -preset veryfast -r 30 \
+  -vf "scale=1280:-1:flags=lanczos" \
+  water-loop-720p.mp4
+
+# 4) Check size; adjust CRF or FPS if >8 MB
+ls -lh water-loop-720p.mp4
+# If >8 MB:
+# - Increase quality factor (CRF) to 25–26, or
+# - Lower frame rate to 24 fps, or
+# - Slightly reduce duration (e.g., 10s)
+
+# Example smaller encode (24 fps, CRF 25)
+ffmpeg -hide_banner -y \
+  -i water-loop-720p.mp4 \
+  -an -c:v libx264 -crf 25 -preset veryfast -r 24 \
+  water-loop-720p-small.mp4
+
+# 5) Convert to Base64
+base64 -i water-loop-720p-small.mp4 > water-loop.b64
+
+# 6) Validate in a local HTML file
+cat > validate.html <<'HTML'
+<!doctype html>
+<meta charset="utf-8">
+<title>Validate Water Loop</title>
+<style>html,body{height:100%;margin:0}video{width:100%;height:100%;object-fit:cover}</style>
+<video muted loop playsinline autoplay preload="metadata" src="">
+<script>
+fetch('water-loop.b64').then(r=>r.text()).then(b64=>{
+  const url = 'data:video/mp4;base64,' + b64.trim();
+  const v = document.querySelector('video');
+  v.src = url;
+  v.addEventListener('error', ()=>console.log('Decode error'));
+  v.addEventListener('canplay', ()=>console.log('Can play'));
+});
+</script>
+HTML
+open validate.html
+
+JavaScript embedding snippet (for your component)// Replace with your validated Base64 payload (no whitespace/BOM)
+const WATER_MP4_DATA_URL = "data:video/mp4;base64,PASTE_BASE64_HERE";
+
+Quality tips
+ • Pick footage with consistent luminance and camera stillness; avoid jump cuts.
+ • Target 24 fps for smaller size; use 30 fps only if motion looks jittery at 24.
+ • Use CRF 24–26; higher number = smaller file. Preset veryfast keeps encoding time low.
+ • Strip audio (-an) to satisfy autoplay policies and reduce size.
+ • If the loop seam is visible, add a 0.7–1.0 second xfade or pick a different segment.
+
+Security and reliability
+ • Work entirely offline until validated; do not embed external URLs.
+ • Do not paste Base64 with leading/trailing spaces or newlines inside your constant.
+ • Keep the payload ≤8 MB to avoid editor lag in AI Studio.
+
+If you don’t have source footage
+ • Record a short clip yourself: phone camera, landscape orientation, fixed viewpoint, slow water motion.
+ • Use a royalty-free provider and download a 1920×1080 H.264 MP4, then downscale to 1280×720 with the above ffmpeg commands.
+ • Verify licensing permits redistribution inside your nonprofit’s site.
+
+Next action: Prepare a 10-second 720p H.264 MP4 using ffmpeg with CRF 24–26, then convert to Base64 and paste into your component constant.
