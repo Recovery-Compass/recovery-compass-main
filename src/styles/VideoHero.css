@@ -8,7 +8,10 @@
   flex-direction: column; /* vertical stacking so justify-content controls vertical placement */
   align-items: center;     /* center horizontally */
   justify-content: flex-end; /* push CTA toward bottom */
-  background: #000;
+  /* Brand-aligned twilight aurora base gradient for instant paint */
+  background:
+    radial-gradient(1200px 600px at 50% 40%, rgba(255,255,255,0.06), rgba(0,0,0,0.35)),
+    linear-gradient(180deg, #002f34 0%, #005c6a 25%, #003d4f 60%, #071c29 100%);
   overflow: hidden;
   isolation: isolate;
   padding-bottom: 15vh; /* desktop spacing: CTA ~15% up from bottom */
@@ -19,6 +22,11 @@
   .video-hero {
     padding-bottom: calc(15vh + env(safe-area-inset-bottom));
   }
+}
+
+/* Reduced motion: hide video; gradient base remains */
+@media (prefers-reduced-motion: reduce) {
+  .video-background { display: none; }
 }
 
 .video-background {
