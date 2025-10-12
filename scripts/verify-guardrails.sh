@@ -35,8 +35,9 @@ fi
 
 echo ""
 echo "== SSH guardrails verification =="
-SSH_BIN="/usr/bin/ssh"
-SSH_ADD_BIN="/usr/bin/ssh-add"
+# Use which to find SSH binaries for better cross-platform compatibility
+SSH_BIN="$(which ssh 2>/dev/null || echo "/usr/bin/ssh")"
+SSH_ADD_BIN="$(which ssh-add 2>/dev/null || echo "/usr/bin/ssh-add")"
 FINGERPRINT="SHA256:2TB7n4C+bOneTr5SXXLPzZxeivUujr9VzyVkYZZ8EO0"
 IDENTITY_FILE="$HOME/.ssh/my_new_ed25519"
 
