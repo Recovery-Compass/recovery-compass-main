@@ -27,7 +27,7 @@ export const useBreathingPattern = (
       if (phaseDuration === 0 || elapsed >= phaseDuration) {
         // Move to next phase
         const phases: BreathPhase[] = ['inhale', 'hold', 'exhale', 'rest']
-        let currentIndex = phases.indexOf(phase)
+        const currentIndex = phases.indexOf(phase)
         let nextIndex = (currentIndex + 1) % phases.length
         let nextPhase = phases[nextIndex]
         
