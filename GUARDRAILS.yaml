@@ -1,0 +1,13 @@
+ssh:
+  github_identity_file: ~/.ssh/my_new_ed25519
+  fingerprint_sha256: "2TB7n4C+bOneTr5SXXLPzZxeivUujr9VzyVkYZZ8EO0"
+  use_keychain: true
+  add_keys_to_agent: true
+  identities_only: true
+  discovery:
+    config_command: "ssh -G github.com"
+    verify_command: "ssh-add -l -E sha256"
+    load_command: "ssh-add --apple-use-keychain ~/.ssh/my_new_ed25519"
+policy:
+  never_prompt_for_passphrase: true
+  never_echo_secrets: true
