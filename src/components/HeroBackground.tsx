@@ -1,0 +1,50 @@
+import React, { useEffect, useState } from 'react';
+
+/**
+ * HeroBackground — renders a resilient background video with poster and graceful fallbacks.
+ * - Uses prefers-reduced-motion to disable motion automatically.
+ * - Uses onError to hide the <video> if loading/decoding fails (gradient base remains via CSS).
+ * - Serves WebM first, MP4 fallback. Poster paints instantly for LCP.
+ * - Paths assume assets live under /public/videos and /public/images.
+ */
+const POSTER = '/images/water-drapes-poster.jpg';
+const WEBM = '/videos/water-drapes.webm';
+const MP4 = '/videos/water-drapes.mp4';
+
+const HeroBackground: React.FC = () => {
+  const [reduced, setReduced] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('matchMedia' in window)) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(!!mq.matches);
+    update();
+    mq.addEventListener?.('change', update);
+    return () => mq.removeEventListener?.('change', update);
+  }, []);
+
+  if (reduced || error) {
+    // Do not render the video; CSS gradient and any poster in foreground handle visuals
+    return null;
+  }
+
+  return (
+    <video
+      className="video-background"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      onError={() => setError(true)}
+      poster={POSTER}
+      aria-hidden="true"
+    >
+      <source src={WEBM} type="video/webm" />
+      <source src={MP4} type="video/mp4" />
+    </video>
+  );
+};
+
+export default HeroBackground;
