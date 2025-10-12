@@ -25,6 +25,8 @@ jobs:
           node-version: 20
           cache: npm
       - name: Install dependencies (safe)
+        env:
+          NODE_ENV: development
         run: |
           if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
             npm ci --ignore-scripts --no-audit --no-fund

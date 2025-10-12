@@ -1,7 +1,7 @@
 // Enhanced analytics service with privacy compliance and launch-ready features
 interface AnalyticsEvent {
   name: string;
-  properties?: Record<string, any>;
+  properties?: Record<string, string | number | boolean | null>;
   timestamp?: string;
   userId?: string;
   sessionId?: string;
