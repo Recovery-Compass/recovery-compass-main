@@ -5,7 +5,16 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: [
+      "dist",
+      // Exclude virtual environments and Python/Jupyter artifacts from lint noise
+      "**/venv/**",
+      "**/.venv/**",
+      "**/site-packages/**",
+      "**/nbextensions/**",
+      // Project-local nested venv (observed path)
+      "recovery-compass/venv/**",
+    ] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
