@@ -1,23 +1,13 @@
 [build]
-  publish = "dist"
-  command = "npm run build"
+  command   = "bun install --frozen-lockfile && bun run build"
+  publish   = "dist"
+  # Uncomment if using Netlify Functions:
+  # functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+  NODE_ENV          = "production"
+  NODE_VERSION      = "20"
+  BUN_VERSION       = "1.2.19"
+  NETLIFY_USE_BUN   = "true"
+  # Add non-secret runtime defaults here if desired; keep real secrets in Netlify UI
+  # VITE_API_URL    = "https://example.api"
