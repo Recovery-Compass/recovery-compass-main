@@ -17,7 +17,7 @@ const VideoHero: React.FC = () => {
           alt="Recovery Compass" 
           className="hero-logo"
         />
-
+        
         {/* Text as clickable link, no button frame */}
         <Link to="/begin" className="hero-text" aria-label="Begin your journey">
           BEGIN YOUR JOURNEY

@@ -7,20 +7,19 @@
   display: flex;
   flex-direction: column; /* vertical stacking so justify-content controls vertical placement */
   align-items: center;     /* center horizontally */
-  justify-content: flex-end; /* push CTA toward bottom */
+  justify-content: center; /* center overlay vertically */
   /* Brand-aligned twilight aurora base gradient for instant paint */
   background:
     radial-gradient(1200px 600px at 50% 40%, rgba(255,255,255,0.06), rgba(0,0,0,0.35)),
     linear-gradient(180deg, #002f34 0%, #005c6a 25%, #003d4f 60%, #071c29 100%);
   overflow: hidden;
   isolation: isolate;
-  padding-bottom: 15vh; /* desktop spacing: CTA ~15% up from bottom */
 }
 
 /* iOS safe-area support on desktop/tablet */
 @supports (padding: env(safe-area-inset-bottom)) {
   .video-hero {
-    padding-bottom: calc(15vh + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
@@ -39,6 +38,16 @@
   opacity: 1;
 }
 
+.video-background-poster {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+}
+
 /* Clean overlay container - no background, just flex positioning */
 .hero-overlay {
   position: relative;
@@ -48,7 +57,6 @@
   align-items: center;
   justify-content: center;
   gap: 24px; /* Space between logo and text */
-  height: 100%;
 }
 
 /* Recovery Compass Logo */
@@ -108,7 +116,7 @@
   /* iOS safe-area support */
   @supports (padding: env(safe-area-inset-bottom)) {
     .video-hero {
-      padding-bottom: calc(18vh + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
     }
   }
 }
@@ -117,9 +125,8 @@
 @media (max-width: 768px) and (orientation: portrait) {
   .video-hero {
     justify-content: center; /* Center overlay vertically */
-    padding-bottom: 0;
   }
-  
+
   .hero-overlay {
     padding: 0 16px; /* Horizontal padding for text wrapping */
   }
