@@ -7,20 +7,19 @@
   display: flex;
   flex-direction: column; /* vertical stacking so justify-content controls vertical placement */
   align-items: center;     /* center horizontally */
-  justify-content: flex-end; /* push CTA toward bottom */
+  justify-content: center; /* center overlay vertically */
   /* Brand-aligned twilight aurora base gradient for instant paint */
   background:
     radial-gradient(1200px 600px at 50% 40%, rgba(255,255,255,0.06), rgba(0,0,0,0.35)),
     linear-gradient(180deg, #002f34 0%, #005c6a 25%, #003d4f 60%, #071c29 100%);
   overflow: hidden;
   isolation: isolate;
-  padding-bottom: 15vh; /* desktop spacing: CTA ~15% up from bottom */
 }
 
 /* iOS safe-area support on desktop/tablet */
 @supports (padding: env(safe-area-inset-bottom)) {
   .video-hero {
-    padding-bottom: calc(15vh + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
@@ -39,121 +38,107 @@
   opacity: 1;
 }
 
-.hero-panel {
+.video-background-poster {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* Clean overlay container - no background, just flex positioning */
+.hero-overlay {
   position: relative;
   z-index: 2;
-  background: rgba(0,0,0,0.65);
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-  padding: 20px 12px 16px 12px;
-  max-width: 320px;
-  width: 92vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 24px; /* Space between logo and text */
 }
 
-.brand-logo {
-  width: 54px;
-  height: 54px;
-  margin-bottom: 12px;
+/* Recovery Compass Logo */
+.hero-logo {
+  width: clamp(120px, 20vw, 200px); /* Responsive: 120px mobile, 200px desktop */
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 16px rgba(212,175,55,0.25));
-  background: transparent;
+  filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.4)); /* Gold glow */
+  animation: gentle-float 3s ease-in-out infinite; /* Subtle float animation */
 }
 
-.brand-wordmark {
-  font-family: 'Montserrat ExtraBold', Montserrat, sans-serif;
+/* "BEGIN YOUR JOURNEY" text - gold, no button frame */
+.hero-text {
+  font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.45);
-}
-
-.hero-cta {
-  font-size: 1.05rem; /* slightly reduced from 1.1rem */
-  padding: 10px 22px; /* reduced from 12px 24px for sleeker look */
-  border-radius: 999px;
-  font-weight: 900;
-  font-family: 'Montserrat ExtraBold', Montserrat, sans-serif;
-  background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
-  color: #000;
-  box-shadow: 0 4px 20px rgba(212,175,55,0.35), 0 2px 10px rgba(0,0,0,0.2);
-  border: none;
-  cursor: pointer;
-  margin-top: auto;
-  margin-bottom: 0;
-  display: inline-block;
+  font-size: clamp(1.1rem, 3vw, 1.5rem); /* Responsive text size */
+  letter-spacing: 0.12em;
+  color: #FFD700; /* Compass gold */
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.8),
+    0 4px 16px rgba(212, 175, 55, 0.5); /* Double shadow for depth */
   text-decoration: none;
   text-align: center;
-  min-height: 44px; /* mobile-friendly tap target */
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
+.hero-text:hover {
+  color: #FFF; /* Lighten to white on hover */
+  text-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.9),
+    0 6px 20px rgba(212, 175, 55, 0.7); /* Enhanced glow on hover */
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+/* Gentle floating animation for logo */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .video-hero {
-    padding-bottom: 18vh; /* mobile spacing: keep CTA comfortably above bottom */
-    height: 100dvh;       /* lock viewport height on mobile */
-    min-height: 100dvh;
-  }
-  .hero-panel {
-    background: transparent !important; /* remove dark block behind CTA on mobile */
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    max-width: 94vw !important;
-    padding: 16px 6px 12px 6px !important;
-  }
-  .brand-logo {
-    width: 44px !important;
-    height: 44px !important;
-    margin-bottom: 8px !important;
-  }
-  .brand-wordmark {
-    font-size: 0.85rem !important;
-    margin-bottom: 8px !important;
-  }
-  .hero-cta {
-    font-size: 0.95rem !important; /* modest size on mobile */
-    padding: 10px 20px !important; /* sleeker padding matching desktop proportions */
-    min-height: 44px !important;
+  .hero-overlay {
+    gap: 16px; /* Tighter spacing on mobile */
   }
 
-  /* iOS safe-area support on mobile */
+  .hero-logo {
+    width: clamp(100px, 25vw, 160px); /* Smaller on mobile */
+  }
+
+  .hero-text {
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+    letter-spacing: 0.1em;
+  }
+
+  /* iOS safe-area support */
   @supports (padding: env(safe-area-inset-bottom)) {
     .video-hero {
-      padding-bottom: calc(18vh + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
     }
   }
 }
 
-/* Mobile portrait: show full video width including side panels */
+/* Mobile portrait: center overlay within video */
 @media (max-width: 768px) and (orientation: portrait) {
   .video-hero {
-    height: 100dvh;         /* lock to dynamic viewport height */
-    min-height: 100dvh;
-    padding-bottom: 0;      /* CTA uses absolute bottom offset */
+    justify-content: center; /* Center overlay vertically */
   }
-  .video-background {
-    position: absolute;     /* center within container */
-    inset: 0;
-    width: 100vw;
-    height: 100dvh;
-    object-fit: contain;    /* show full video width to reveal side panels */
-    background: #000;       /* fill letterbox areas with black */
+
+  .hero-overlay {
+    padding: 0 16px; /* Horizontal padding for text wrapping */
   }
-  .hero-panel {
-    position: absolute;     /* overlay within video area */
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 18vh;           /* align similar to desktop spacing */
-    z-index: 2;
-    background: rgba(0,0,0,0.65);
+}
+
+/* Reduced motion: disable animations */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo {
+    animation: none;
   }
-  @supports (padding: env(safe-area-inset-bottom)) {
-    .hero-panel {
-      bottom: calc(18vh + env(safe-area-inset-bottom));
-    }
+
+  .hero-text:hover {
+    transform: none;
   }
 }
