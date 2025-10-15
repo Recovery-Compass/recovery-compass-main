@@ -16,7 +16,9 @@ export type Database = {
     Tables: {
       adventure_insights: {
         Row: {
+          ai_response: string
           created_at: string
+          email: string
           id: string
           insights: Json | null
           name: string | null
@@ -29,7 +31,9 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          ai_response: string
           created_at?: string
+          email: string
           id?: string
           insights?: Json | null
           name?: string | null
@@ -42,7 +46,9 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          ai_response?: string
           created_at?: string
+          email?: string
           id?: string
           insights?: Json | null
           name?: string | null
