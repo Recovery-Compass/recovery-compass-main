@@ -10,6 +10,11 @@ import { Copy, Check } from 'lucide-react';
 const Adventure = () => {
   const [aiResponse, setAiResponse] = useState('');
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [orgType, setOrgType] = useState('');
+  const [orgSize, setOrgSize] = useState('');
+  const [primaryChallenge, setPrimaryChallenge] = useState('');
+  const [role, setRole] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [promptCopied, setPromptCopied] = useState(false);
@@ -50,9 +55,29 @@ Here are my organization's current challenges: [Share your specific situation he
     setFormMessage('');
     setFormStatus('idle');
     
-    if (!aiResponse.trim() || !email.trim()) {
+    // Validate required fields
+    if (!aiResponse.trim()) {
       setFormStatus('error');
-      setFormMessage('Please fill in both fields.');
+      setFormMessage('Please paste the AI response.');
+      return;
+    }
+    
+    if (!email.trim()) {
+      setFormStatus('error');
+      setFormMessage('Please provide your email address.');
+      return;
+    }
+    
+    if (!name.trim()) {
+      setFormStatus('error');
+      setFormMessage('Please provide your name.');
+      return;
+    }
+    
+    // Validate AI response length (minimum 100 characters)
+    if (aiResponse.trim().length < 100) {
+      setFormStatus('error');
+      setFormMessage('Please paste the complete AI response (at least 100 characters).');
       return;
     }
 
@@ -62,16 +87,26 @@ Here are my organization's current challenges: [Share your specific situation he
       const { data, error } = await supabase.functions.invoke('save-adventure-insight', {
         body: { 
           email: email.trim(), 
-          ai_response: aiResponse.trim() 
+          name: name.trim(),
+          ai_response: aiResponse.trim(),
+          org_type: orgType || null,
+          org_size: orgSize || null,
+          primary_challenge: primaryChallenge || null,
+          role: role.trim() || null
         }
       });
 
       if (error) throw error;
 
       setFormStatus('success');
-      setFormMessage("Thank you! We've received your insight. We review all submissions and respond as appropriate.");
+      setFormMessage("Thank you! We've received your insight. You'll receive expert analysis within 48 hours.");
       setAiResponse('');
       setEmail('');
+      setName('');
+      setOrgType('');
+      setOrgSize('');
+      setPrimaryChallenge('');
+      setRole('');
     } catch (error) {
       console.error('Error submitting insight:', error);
       setFormStatus('error');
@@ -179,23 +214,28 @@ Here are my organization's current challenges: [Share your specific situation he
           {/* Form */}
           <div className="px-4 md:px-0">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* AI Response - Required */}
               <div>
                 <label htmlFor="ai-response" className="block text-base md:text-lg font-bold mb-3 text-compass-gold">
-                  AI Response
+                  AI Response *
                 </label>
                 <Textarea
                   id="ai-response"
                   value={aiResponse}
                   onChange={(e) => setAiResponse(e.target.value)}
-                  placeholder="Paste the AI's analysis here..."
+                  placeholder="Paste the AI's analysis here (minimum 100 characters)..."
                   className="min-h-[200px] bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base md:text-base"
                   required
                 />
+                <p className="text-sm text-white/60 mt-2">
+                  💡 Include the full AI response for the most helpful expert analysis
+                </p>
               </div>
 
+              {/* Email - Required */}
               <div>
                 <label htmlFor="email" className="block text-base md:text-lg font-bold mb-3 text-compass-gold">
-                  Email Address
+                  Email Address *
                 </label>
                 <Input
                   id="email"
@@ -208,14 +248,126 @@ Here are my organization's current challenges: [Share your specific situation he
                 />
               </div>
 
+              {/* Name - Required */}
+              <div>
+                <label htmlFor="name" className="block text-base md:text-lg font-bold mb-3 text-compass-gold">
+                  Your Name *
+                </label>
+                <Input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="First and Last Name"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base md:text-base h-12"
+                  required
+                />
+              </div>
+
+              {/* Optional Context Section */}
+              <div className="bg-white/5 rounded-lg p-6 space-y-6 border border-white/10">
+                <div className="mb-4">
+                  <h3 className="font-heading text-lg md:text-xl font-black text-compass-gold mb-2">
+                    Help Us Personalize Your Response
+                  </h3>
+                  <p className="text-sm text-white/70">
+                    These fields are optional but help us tailor our expert analysis to your specific context
+                  </p>
+                </div>
+
+                {/* Organization Type - Optional */}
+                <div>
+                  <label htmlFor="org-type" className="block text-base font-bold mb-3 text-white/90">
+                    Organization Type <span className="text-white/50 font-normal">(optional)</span>
+                  </label>
+                  <select
+                    id="org-type"
+                    value={orgType}
+                    onChange={(e) => setOrgType(e.target.value)}
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-md px-4 py-3 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base h-12"
+                  >
+                    <option value="" className="bg-navy">Select one...</option>
+                    <option value="treatment-center" className="bg-navy">Treatment Center / Rehab</option>
+                    <option value="sober-living" className="bg-navy">Sober Living / Recovery Housing</option>
+                    <option value="outpatient" className="bg-navy">Outpatient Program</option>
+                    <option value="nonprofit" className="bg-navy">Nonprofit / Community Organization</option>
+                    <option value="government" className="bg-navy">Government / Public Health</option>
+                    <option value="healthcare" className="bg-navy">Healthcare System</option>
+                    <option value="education" className="bg-navy">Education / University</option>
+                    <option value="other" className="bg-navy">Other</option>
+                  </select>
+                </div>
+
+                {/* Organization Size - Optional */}
+                <div>
+                  <label htmlFor="org-size" className="block text-base font-bold mb-3 text-white/90">
+                    Organization Size <span className="text-white/50 font-normal">(optional)</span>
+                  </label>
+                  <select
+                    id="org-size"
+                    value={orgSize}
+                    onChange={(e) => setOrgSize(e.target.value)}
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-md px-4 py-3 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base h-12"
+                  >
+                    <option value="" className="bg-navy">Select one...</option>
+                    <option value="1-10" className="bg-navy">1-10 staff</option>
+                    <option value="11-50" className="bg-navy">11-50 staff</option>
+                    <option value="51-200" className="bg-navy">51-200 staff</option>
+                    <option value="201-500" className="bg-navy">201-500 staff</option>
+                    <option value="500+" className="bg-navy">500+ staff</option>
+                  </select>
+                </div>
+
+                {/* Primary Challenge - Optional */}
+                <div>
+                  <label htmlFor="primary-challenge" className="block text-base font-bold mb-3 text-white/90">
+                    Primary Challenge <span className="text-white/50 font-normal">(optional)</span>
+                  </label>
+                  <select
+                    id="primary-challenge"
+                    value={primaryChallenge}
+                    onChange={(e) => setPrimaryChallenge(e.target.value)}
+                    className="w-full bg-white/10 border border-white/20 text-white rounded-md px-4 py-3 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base h-12"
+                  >
+                    <option value="" className="bg-navy">What's your biggest challenge right now?</option>
+                    <option value="staff-retention" className="bg-navy">Staff Retention / Burnout</option>
+                    <option value="client-engagement" className="bg-navy">Client Engagement / Motivation</option>
+                    <option value="relapse-prevention" className="bg-navy">Relapse Prevention</option>
+                    <option value="program-effectiveness" className="bg-navy">Program Effectiveness / Outcomes</option>
+                    <option value="facility-design" className="bg-navy">Facility Design / Physical Environment</option>
+                    <option value="culture-change" className="bg-navy">Culture Change / Leadership</option>
+                    <option value="compliance" className="bg-navy">Compliance / Accreditation</option>
+                    <option value="funding" className="bg-navy">Funding / Sustainability</option>
+                    <option value="other" className="bg-navy">Other</option>
+                  </select>
+                </div>
+
+                {/* Your Role - Optional */}
+                <div>
+                  <label htmlFor="role" className="block text-base font-bold mb-3 text-white/90">
+                    Your Role <span className="text-white/50 font-normal">(optional)</span>
+                  </label>
+                  <Input
+                    id="role"
+                    type="text"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    placeholder="e.g., Executive Director, Program Manager"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-compass-gold focus:ring-2 focus:ring-compass-gold/20 text-base md:text-base h-12"
+                  />
+                </div>
+              </div>
+
+              {/* Submit Button */}
               <Button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full submit-btn-gold font-bold text-base md:text-lg py-4 md:py-6 transition-all duration-200 hover:transform hover:-translate-y-0.5 flex items-center justify-center min-h-[3rem] md:min-h-[3.5rem]"
               >
-                {isSubmitting ? 'Sending...' : 'Share Your Insight'}
+                {isSubmitting ? 'Sending...' : 'Get My Expert Analysis'}
               </Button>
 
+              {/* Form Messages */}
               {formMessage && (
                 <div
                   className={`form-message ${formStatus} mt-4 p-4 rounded-lg text-center ${

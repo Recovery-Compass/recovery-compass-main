@@ -1,8 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
-// Resend temporarily disabled due to build environment dependency resolution
-// import { Resend } from "npm:resend@4.0.0";
+import { Resend } from 'https://esm.sh/resend@4.0.0';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -11,10 +10,10 @@ const corsHeaders = {
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-// const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
+const resendApiKey = Deno.env.get('RESEND_API_KEY')!;
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
-// const resend = new Resend(resendApiKey);
+const resend = new Resend(resendApiKey);
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -23,12 +22,20 @@ serve(async (req) => {
   }
 
   try {
-    const { email, ai_response } = await req.json();
+    const { 
+      email, 
+      name,
+      ai_response, 
+      org_type,
+      org_size,
+      primary_challenge,
+      role
+    } = await req.json();
 
-    // Validate input
-    if (!email || !ai_response) {
+    // Validate required fields
+    if (!email || !ai_response || !name) {
       return new Response(
-        JSON.stringify({ error: 'Email and AI response are required' }),
+        JSON.stringify({ error: 'Email, name, and AI response are required' }),
         { 
           status: 400, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -48,13 +55,29 @@ serve(async (req) => {
       );
     }
 
+    // Validate AI response length (minimum 100 characters)
+    if (ai_response.length < 100) {
+      return new Response(
+        JSON.stringify({ error: 'AI response must be at least 100 characters' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
     // Save to database
     const { data, error: dbError } = await supabase
       .from('adventure_insights')
       .insert([
         {
           email: email.trim(),
-          ai_response: ai_response.trim()
+          name: name.trim(),
+          ai_response: ai_response.trim(),
+          org_type: org_type || null,
+          org_size: org_size || null,
+          primary_challenge: primary_challenge || null,
+          role: role ? role.trim() : null
         }
       ])
       .select()
@@ -72,23 +95,84 @@ serve(async (req) => {
     }
 
     // Send confirmation email to user and notification to Eric
-    // TEMPORARILY DISABLED: Email functionality commented out due to Resend/OpenAI type resolution issue
-    // TODO: Re-enable once Lovable Cloud build environment properly installs npm dependencies before type-checking
-    /*
     try {
       // Send confirmation to user
       const confirmationEmail = await resend.emails.send({
-...
+        from: 'Recovery Compass <hello@erdmethod.org>',
+        to: [email],
+        subject: 'Your Expert Analysis is On The Way',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h1 style="color: #D4AF37;">Thank you for your submission!</h1>
+            <p>Hi ${name},</p>
+            <p>We've received your Environmental Response Architecture™ submission and our team is reviewing it now.</p>
+            <p><strong>What happens next:</strong></p>
+            <ul>
+              <li>Our recovery environment specialists will analyze your AI response</li>
+              <li>You'll receive personalized guidance within 48 hours</li>
+              <li>The analysis will include specific implementation recommendations</li>
+            </ul>
+            <p>We're excited to help you transform your organization's environment into your ally.</p>
+            <p style="color: #666; font-size: 14px; margin-top: 30px;">
+              — Recovery Compass Team<br>
+              Environmental Response Design™
+            </p>
+          </div>
+        `
+      });
+      
+      console.log('Confirmation email sent to user:', confirmationEmail);
+      
+      // Format organization context for Eric's email
+      const formatOrgType = org_type ? org_type.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) : '(not provided)';
+      const formatChallenge = primary_challenge ? primary_challenge.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) : '(not provided)';
+      
+      // Send notification to Eric
+      const notificationEmail = await resend.emails.send({
+        from: 'Recovery Compass <hello@erdmethod.org>',
+        to: ['eric@recovery-compass.org'],
+        subject: `New Adventure Insight Submission from ${name} (${email})`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #D4AF37;">New Submission Received</h2>
+            
+            <h3>Contact Information</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Role:</strong> ${role || '(not provided)'}</p>
+            
+            <h3>Organization Context</h3>
+            <p><strong>Organization Type:</strong> ${formatOrgType}</p>
+            <p><strong>Organization Size:</strong> ${org_size || '(not provided)'}</p>
+            <p><strong>Primary Challenge:</strong> ${formatChallenge}</p>
+            
+            <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Submission ID:</strong> ${data.id}</p>
+            
+            <hr style="border: 1px solid #eee; margin: 20px 0;">
+            <h3>AI Response:</h3>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap; font-family: monospace; font-size: 13px;">
+${ai_response.substring(0, 1500)}${ai_response.length > 1500 ? '...' : ''}
+            </div>
+            ${ai_response.length > 1500 ? `<p style="color: #666; font-size: 12px;">(Truncated to 1500 characters. Full response: ${ai_response.length} characters)</p>` : ''}
+            
+            <hr style="border: 1px solid #eee; margin: 20px 0;">
+            <p><a href="${supabaseUrl}/project/default/editor" style="background: #D4AF37; color: #000; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">View in Supabase Dashboard</a></p>
+          </div>
+        `
+      });
+      
       console.log('Notification email sent to Eric:', notificationEmail);
     } catch (emailError) {
       console.error('Email error:', emailError);
       // Don't fail the entire request if email fails
+      // Still return success to user, but log the email failure
     }
-    */
 
-    console.log('Adventure insight saved (email notifications temporarily disabled):', {
+    console.log('Adventure insight saved successfully (emails sent):', {
       id: data.id,
       email: email,
+      name: name,
       created_at: data.created_at
     });
 
