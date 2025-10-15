@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      adventure_insights: {
+        Row: {
+          ai_response: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          org_size: string | null
+          org_type: string | null
+          primary_challenge: string | null
+          role: string | null
+        }
+        Insert: {
+          ai_response: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          org_size?: string | null
+          org_type?: string | null
+          primary_challenge?: string | null
+          role?: string | null
+        }
+        Update: {
+          ai_response?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          org_size?: string | null
+          org_type?: string | null
+          primary_challenge?: string | null
+          role?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
