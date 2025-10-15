@@ -16,37 +16,43 @@ export type Database = {
     Tables: {
       adventure_insights: {
         Row: {
-          ai_response: string
           created_at: string
-          email: string
           id: string
-          name: string
+          insights: Json | null
+          name: string | null
           org_size: string | null
           org_type: string | null
           primary_challenge: string | null
           role: string | null
+          status: string | null
+          updated_at: string
+          user_id: string | null
         }
         Insert: {
-          ai_response: string
           created_at?: string
-          email: string
           id?: string
-          name: string
+          insights?: Json | null
+          name?: string | null
           org_size?: string | null
           org_type?: string | null
           primary_challenge?: string | null
           role?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
         }
         Update: {
-          ai_response?: string
           created_at?: string
-          email?: string
           id?: string
-          name?: string
+          insights?: Json | null
+          name?: string | null
           org_size?: string | null
           org_type?: string | null
           primary_challenge?: string | null
           role?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
