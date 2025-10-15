@@ -80,19 +80,19 @@ export const AchievementSystem = ({
 
   const initializeAchievements = async () => {
     try {
-      const { data: profile } = await supabase
+      const { data: profile } = await (supabase as any)
         .from('actualization_profiles')
         .select('achievements_unlocked, completion_milestones')
         .eq('user_id', userId)
         .single();
 
-      const unlockedIds = profile?.achievements_unlocked || [];
+      const unlockedIds = (profile as any)?.achievements_unlocked || [];
       setUnlockedAchievements(unlockedIds);
 
       const achievementsList: Achievement[] = achievementTemplates.map(template => ({
         ...template,
         unlocked: unlockedIds.includes(template.id),
-        progress: getAchievementProgress(template.id, profile?.completion_milestones || {})
+        progress: getAchievementProgress(template.id, (profile as any)?.completion_milestones || {})
       }));
 
       setAchievements(achievementsList);
@@ -153,7 +153,7 @@ export const AchievementSystem = ({
     try {
       const newUnlockedList = [...unlockedAchievements, achievement.id];
       
-      await supabase
+      await (supabase as any)
         .from('actualization_profiles')
         .upsert({
           user_id: userId,
