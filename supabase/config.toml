@@ -1,1 +1,4 @@
 project_id = "udpilfxpsgyhbmjikuxt"
+
+[functions.save-adventure-insight]
+verify_jwt = false
