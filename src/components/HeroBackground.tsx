@@ -9,34 +9,52 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 
-// VERIFIED LIGHTHOUSE VIDEOS - 2025-10-16T06:30 UTC
-// Desktop: erd-method-homepage.mp4 (user uploaded, lighthouse verified)
-// Mobile: homepage-mobile-20251016.mp4 (2.9MB, user uploaded, lighthouse verified)
-// Poster: water-drapes-poster-v2.jpg (111KB, lighthouse verified, MD5: 99be73cf2721227cbf5a17f31d251028)
+// VERIFIED LIGHTHOUSE ASSETS - 2025-10-16T09:55 UTC
+// Desktop video: erd-method-homepage.mp4 (lighthouse verified)
+// Mobile video: homepage-mobile-20251016.mp4 (2.9MB, lighthouse verified)
+// Desktop poster: water-drapes-poster-v3.jpg (73KB, extracted from desktop video at 3s)
+// Mobile poster: water-drapes-poster-mobile-v3.jpg (82KB, extracted from mobile video at 3s)
 
-const POSTER = '/images/water-drapes-poster-v2.jpg';
+const POSTER_DESKTOP = '/images/water-drapes-poster-v3.jpg';
+const POSTER_MOBILE = '/images/water-drapes-poster-mobile-v3.jpg';
 const MP4_DESKTOP = '/videos/erd-method-homepage.mp4';
 const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
   const [error, setError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !('matchMedia' in window)) return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReduced(!!mq.matches);
-    update();
-    mq.addEventListener?.('change', update);
-    return () => mq.removeEventListener?.('change', update);
+    
+    // Check for reduced motion
+    const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotion = () => setReduced(!!motionMq.matches);
+    updateMotion();
+    motionMq.addEventListener?.('change', updateMotion);
+    
+    // Check for mobile viewport
+    const mobileMq = window.matchMedia('(max-width: 768px)');
+    const updateMobile = () => setIsMobile(!!mobileMq.matches);
+    updateMobile();
+    mobileMq.addEventListener?.('change', updateMobile);
+    
+    return () => {
+      motionMq.removeEventListener?.('change', updateMotion);
+      mobileMq.removeEventListener?.('change', updateMobile);
+    };
   }, []);
+
+  // Select appropriate poster based on viewport
+  const poster = isMobile ? POSTER_MOBILE : POSTER_DESKTOP;
 
   if (reduced || error) {
     // Render the poster image for visual consistency when reduced motion is preferred or video fails
     return (
       <img
         className="video-background-poster"
-        src={POSTER}
+        src={poster}
         alt="Background"
         aria-hidden="true"
       />
@@ -52,7 +70,7 @@ const HeroBackground: React.FC = () => {
       playsInline
       preload="metadata"
       onError={() => setError(true)}
-      poster={POSTER}
+      poster={poster}
       aria-hidden="true"
     >
       {/* Mobile-first: User-verified portrait video with lighthouse (2.9MB) */}
