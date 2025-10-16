@@ -1,0 +1,5 @@
+name = "erdmethod"
+compatibility_date = "2025-10-16"
+
+[site]
+bucket = "./dist"
