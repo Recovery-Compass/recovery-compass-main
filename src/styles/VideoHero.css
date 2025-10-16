@@ -99,11 +99,11 @@
   50% { transform: translateY(-8px); }
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - UPDATED 2025-10-16-05:15 UTC */
 @media (max-width: 768px) {
   .video-background {
     object-fit: cover; /* Fill mobile screen - no letterbox */
-    object-position: center 35%; /* Shift focus upward to show lighthouse */
+    object-position: center 30%; /* Aggressive shift upward to show lighthouse */
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
@@ -112,7 +112,7 @@
 
   .video-background-poster {
     object-fit: cover; /* Match video behavior */
-    object-position: center 35%; /* Match video positioning */
+    object-position: center 30%; /* Match video positioning */
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
