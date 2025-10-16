@@ -12,8 +12,9 @@ import React, { useEffect, useState } from 'react';
 // VERIFIED LIGHTHOUSE VIDEOS - 2025-10-16T06:30 UTC
 // Desktop: erd-method-homepage.mp4 (user uploaded, lighthouse verified)
 // Mobile: homepage-mobile-20251016.mp4 (2.9MB, user uploaded, lighthouse verified)
+// Poster: water-drapes-poster-v2.jpg (111KB, lighthouse verified, MD5: 99be73cf2721227cbf5a17f31d251028)
 
-const POSTER = '/images/water-drapes-poster.jpg';
+const POSTER = '/images/water-drapes-poster-v2.jpg';
 const MP4_DESKTOP = '/videos/erd-method-homepage.mp4';
 const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
 
