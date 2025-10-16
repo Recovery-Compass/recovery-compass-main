@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 const POSTER = '/images/water-drapes-poster.jpg';
-const MP4 = '/videos/water-drapes.mp4';
+const MP4 = '/videos/erd-method-homepage.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
