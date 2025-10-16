@@ -102,16 +102,16 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .video-background {
-    object-fit: cover; /* Cover with mobile-optimized portrait video */
+    object-fit: cover; /* Fill mobile screen - no letterbox */
     object-position: center center;
     width: 100vw;
-    height: 100vh; /* Use vh instead of dvh for better mobile support */
+    height: 100vh;
     min-height: 100vh;
     min-height: -webkit-fill-available; /* iOS Safari fix */
   }
 
   .video-background-poster {
-    object-fit: cover;
+    object-fit: cover; /* Match video behavior */
     object-position: center center;
     width: 100vw;
     height: 100vh;
