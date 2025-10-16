@@ -1,7 +1,6 @@
 /* Recovery Compass Design System - Brand Transformation 2025 */
 
-@layer base {
-  :root {
+:root {
     /* Typography System - Complete Type Scale - WCAG AA COMPLIANT */
     --font-size-xs: 16px;    /* ACCESSIBILITY FIX: 16px minimum for all text */
     --font-size-sm: 16px;
@@ -166,10 +165,8 @@
   .high-contrast-mode .text-sky {
     color: #0066CC; /* Higher contrast blue */
   }
-}
 
-@layer components {
-  /* Button Components - Recovery Compass Standards */
+/* Button Components - Recovery Compass Standards */
   .btn-primary {
     background-color: var(--color-gold);
     color: var(--color-navy-dark); /* CONTRAST FIX: Dark text on gold for better contrast */
@@ -313,10 +310,8 @@
   .brand-radius { border-radius: var(--border-radius-lg); }
   .brand-shadow { box-shadow: var(--shadow-base); }
   .brand-transition { transition: var(--transition-base); }
-}
 
-@layer utilities {
-  /* Focus Management */
+/* Focus Management */
   .focus-visible:focus-visible {
     outline: 3px solid var(--color-gold);
     outline-offset: 2px;
@@ -355,4 +350,3 @@
     .text-sky { color: #000 !important; }
     .bg-navy { background: #fff !important; color: #000 !important; }
   }
-}
