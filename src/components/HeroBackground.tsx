@@ -9,12 +9,12 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 
-// DEPLOYMENT TRIGGER - Updated: 2025-10-16T04:30:00Z
-// Force rebuild for video asset sync - desktop-canva.mp4 (10.8MB) + mobile.mp4 (2.9MB)
+// NUCLEAR OPTION - Brand new filenames to bypass ALL caching - 2025-10-16T04:29:00Z
+// These URLs have NEVER existed before - no cache anywhere
 
 const POSTER = '/images/water-drapes-poster.jpg';
-const MP4_DESKTOP = '/videos/erd-method-homepage-desktop-canva.mp4?v=20251016';
-const MP4_MOBILE = '/videos/erd-method-homepage-mobile.mp4?v=20251016';
+const MP4_DESKTOP = '/videos/homepage-desktop-20251016.mp4';
+const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
