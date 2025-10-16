@@ -9,12 +9,12 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 
-// VERIFIED LIGHTHOUSE VIDEOS - 2025-10-16T05:36 UTC
-// Desktop: homepage-desktop-20251016.mp4 (2.6MB, lighthouse verified)
-// Mobile: homepage-mobile-20251016.mp4 (1.1MB, Google Veo, lighthouse verified)
+// VERIFIED LIGHTHOUSE VIDEOS - 2025-10-16T06:30 UTC
+// Desktop: erd-method-homepage.mp4 (user uploaded, lighthouse verified)
+// Mobile: homepage-mobile-20251016.mp4 (2.9MB, user uploaded, lighthouse verified)
 
 const POSTER = '/images/water-drapes-poster.jpg';
-const MP4_DESKTOP = '/videos/homepage-desktop-20251016.mp4';
+const MP4_DESKTOP = '/videos/erd-method-homepage.mp4';
 const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
 
 const HeroBackground: React.FC = () => {
@@ -54,13 +54,13 @@ const HeroBackground: React.FC = () => {
       poster={POSTER}
       aria-hidden="true"
     >
-      {/* Mobile-first: Google Veo portrait video for small screens */}
+      {/* Mobile-first: User-verified portrait video with lighthouse (2.9MB) */}
       <source 
         media="(max-width: 768px)" 
         src={MP4_MOBILE} 
         type="video/mp4" 
       />
-      {/* Desktop: landscape video for larger screens */}
+      {/* Desktop: User-verified landscape video with lighthouse */}
       <source 
         src={MP4_DESKTOP} 
         type="video/mp4" 
