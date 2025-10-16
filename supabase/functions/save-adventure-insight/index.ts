@@ -22,6 +22,34 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting check
+    const clientIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
+    
+    // Check rate limit: max 3 submissions per minute from same IP
+    const { data: recentSubmissions, error: rateLimitError } = await supabase
+      .from('rate_limits')
+      .select('created_at')
+      .eq('identifier', clientIp)
+      .eq('endpoint', 'save-adventure-insight')
+      .gte('created_at', new Date(Date.now() - 60000).toISOString());
+    
+    if (!rateLimitError && recentSubmissions && recentSubmissions.length >= 3) {
+      console.log('Rate limit exceeded for IP:', clientIp);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again in a minute.' }),
+        { 
+          status: 429, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+    
+    // Record this request for rate limiting
+    await supabase.from('rate_limits').insert({
+      identifier: clientIp,
+      endpoint: 'save-adventure-insight'
+    });
+    
     const { 
       email, 
       name,
@@ -29,8 +57,21 @@ serve(async (req) => {
       org_type,
       org_size,
       primary_challenge,
-      role
+      role,
+      honeypot
     } = await req.json();
+    
+    // Honeypot check - silent rejection for bots
+    if (honeypot) {
+      console.log('Bot detected via honeypot field');
+      return new Response(
+        JSON.stringify({ success: true }),
+        { 
+          status: 200, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
 
     // Validate required fields
     if (!email || !ai_response || !name) {
