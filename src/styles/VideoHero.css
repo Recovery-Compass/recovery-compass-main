@@ -103,7 +103,7 @@
 @media (max-width: 768px) {
   .video-background {
     object-fit: cover; /* Fill mobile screen - no letterbox */
-    object-position: center center;
+    object-position: center 35%; /* Shift focus upward to show lighthouse */
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
@@ -112,7 +112,7 @@
 
   .video-background-poster {
     object-fit: cover; /* Match video behavior */
-    object-position: center center;
+    object-position: center 35%; /* Match video positioning */
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
