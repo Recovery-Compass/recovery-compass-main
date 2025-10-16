@@ -102,13 +102,15 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .video-background {
-    object-fit: cover; /* Cover with mobile-optimized portrait video */
-    object-position: center center;
+    object-fit: contain; /* Show full video on mobile instead of cropping */
+    object-position: center center; /* Center the contained video */
+    background: #002f34; /* Fill letterbox bars with brand color */
   }
 
   .video-background-poster {
-    object-fit: cover;
+    object-fit: contain; /* Match video behavior */
     object-position: center center;
+    background: #002f34;
   }
 
   .hero-overlay {
