@@ -34,6 +34,7 @@
   width: 100vw;
   height: 100dvh;
   object-fit: cover;
+  object-position: center center; /* Desktop: center the video */
   z-index: 0;
   opacity: 1;
 }
@@ -100,6 +101,14 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  .video-background {
+    object-position: center 40%; /* Position video to show lighthouse on mobile */
+  }
+
+  .video-background-poster {
+    object-position: center 40%; /* Match video positioning */
+  }
+
   .hero-overlay {
     gap: 16px; /* Tighter spacing on mobile */
   }
