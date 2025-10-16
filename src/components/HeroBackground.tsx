@@ -4,11 +4,13 @@ import React, { useEffect, useState } from 'react';
  * HeroBackground — renders a resilient background video with poster and graceful fallbacks.
  * - Uses prefers-reduced-motion to disable motion automatically.
  * - Uses onError to hide the <video> if loading/decoding fails (gradient base remains via CSS).
+ * - Uses responsive video sources: portrait for mobile, landscape for desktop.
  * - Uses MP4 video with poster. Poster paints instantly for LCP.
  * - Paths assume assets live under /public/videos and /public/images.
  */
 const POSTER = '/images/water-drapes-poster.jpg';
-const MP4 = '/videos/erd-method-homepage-video.mp4';
+const MP4_DESKTOP = '/videos/erd-method-homepage-desktop.mp4';
+const MP4_MOBILE = '/videos/erd-method-homepage-mobile.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
@@ -47,7 +49,17 @@ const HeroBackground: React.FC = () => {
       poster={POSTER}
       aria-hidden="true"
     >
-      <source src={MP4} type="video/mp4" />
+      {/* Mobile-first: portrait video for small screens */}
+      <source 
+        media="(max-width: 768px)" 
+        src={MP4_MOBILE} 
+        type="video/mp4" 
+      />
+      {/* Desktop: landscape video for larger screens */}
+      <source 
+        src={MP4_DESKTOP} 
+        type="video/mp4" 
+      />
     </video>
   );
 };
