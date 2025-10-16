@@ -9,17 +9,17 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 
-// VERIFIED LIGHTHOUSE ASSETS - 2025-10-16T10:50 UTC
-// Desktop video: erd-method-homepage-v2.mp4 (user uploaded, 7.8s duration)
-// Mobile video: homepage-mobile-v2.mp4 (user uploaded, 7.8s duration)
-// Desktop poster: water-drapes-poster-v3.jpg (73KB, temporary - extract v4 from new videos)
-// Mobile poster: water-drapes-poster-mobile-v3.jpg (82KB, temporary - extract v4 from new videos)
-// TODO: Extract new v4 posters from v2 videos at 3s for perfect visual match
+// VERIFIED LIGHTHOUSE ASSETS - 2025-10-16T10:50 UTC  
+// FINAL CORRECT PATHS - DO NOT CHANGE
+// Desktop video: erd-method-homepage.mp4 (1.1MB, lighthouse verified)
+// Mobile video: homepage-mobile-20251016.mp4 (2.9MB, lighthouse verified)
+// Desktop poster: water-drapes-poster-v3.jpg (73KB, extracted from desktop video @3s)
+// Mobile poster: water-drapes-poster-mobile-v3.jpg (82KB, extracted from mobile video @3s)
 
 const POSTER_DESKTOP = '/images/water-drapes-poster-v3.jpg';
 const POSTER_MOBILE = '/images/water-drapes-poster-mobile-v3.jpg';
-const MP4_DESKTOP = '/videos/erd-method-homepage-v2.mp4';
-const MP4_MOBILE = '/videos/homepage-mobile-v2.mp4';
+const MP4_DESKTOP = '/videos/erd-method-homepage.mp4';
+const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
