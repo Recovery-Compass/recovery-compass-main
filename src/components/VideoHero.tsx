@@ -13,7 +13,7 @@ const VideoHero: React.FC = () => {
       <div className="hero-overlay">
         {/* Recovery Compass Logo */}
         <img 
-          src="/assets/branding/recovery-compass-logo.png" 
+          src="/images/erd-method-homepage-logo.png" 
           alt="Recovery Compass" 
           className="hero-logo"
         />
