@@ -3,6 +3,21 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 import { Resend } from 'https://esm.sh/resend@4.0.0';
 
+// HTML escaping function to prevent XSS attacks
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Enum validation constants
+const VALID_ORG_TYPES = ['treatment-center', 'sober-living', 'outpatient', 'nonprofit', 'government', 'healthcare', 'education', 'other'];
+const VALID_ORG_SIZES = ['1-10', '11-50', '51-200', '201-500', '500+'];
+const VALID_CHALLENGES = ['staff-retention', 'client-engagement', 'relapse-prevention', 'program-effectiveness', 'facility-design', 'culture-change', 'compliance', 'funding', 'other'];
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -107,6 +122,50 @@ serve(async (req) => {
       );
     }
 
+    // Validate field lengths
+    if (name.length > 200) {
+      return new Response(
+        JSON.stringify({ error: 'Name exceeds maximum length' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (role && role.length > 200) {
+      return new Response(
+        JSON.stringify({ error: 'Role exceeds maximum length' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (ai_response.length > 10000) {
+      return new Response(
+        JSON.stringify({ error: 'AI response exceeds maximum length' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Validate enum fields
+    if (org_type && !VALID_ORG_TYPES.includes(org_type)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid organization type' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (org_size && !VALID_ORG_SIZES.includes(org_size)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid organization size' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (primary_challenge && !VALID_CHALLENGES.includes(primary_challenge)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid primary challenge' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Save to database
     const { data, error: dbError } = await supabase
       .from('adventure_insights')
@@ -145,7 +204,7 @@ serve(async (req) => {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #D4AF37;">Thank you for your submission!</h1>
-            <p>Hi ${name},</p>
+            <p>Hi ${escapeHtml(name)},</p>
             <p>We've received your Environmental Response Architecture™ submission and our team is reviewing it now.</p>
             <p><strong>What happens next:</strong></p>
             <ul>
@@ -178,14 +237,14 @@ serve(async (req) => {
             <h2 style="color: #D4AF37;">New Submission Received</h2>
             
             <h3>Contact Information</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Role:</strong> ${role || '(not provided)'}</p>
+            <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+            <p><strong>Role:</strong> ${escapeHtml(role || '(not provided)')}</p>
             
             <h3>Organization Context</h3>
-            <p><strong>Organization Type:</strong> ${formatOrgType}</p>
-            <p><strong>Organization Size:</strong> ${org_size || '(not provided)'}</p>
-            <p><strong>Primary Challenge:</strong> ${formatChallenge}</p>
+            <p><strong>Organization Type:</strong> ${escapeHtml(formatOrgType)}</p>
+            <p><strong>Organization Size:</strong> ${escapeHtml(org_size || '(not provided)')}</p>
+            <p><strong>Primary Challenge:</strong> ${escapeHtml(formatChallenge)}</p>
             
             <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
             <p><strong>Submission ID:</strong> ${data.id}</p>
@@ -193,7 +252,7 @@ serve(async (req) => {
             <hr style="border: 1px solid #eee; margin: 20px 0;">
             <h3>AI Response:</h3>
             <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap; font-family: monospace; font-size: 13px;">
-${ai_response.substring(0, 1500)}${ai_response.length > 1500 ? '...' : ''}
+${escapeHtml(ai_response.substring(0, 1500))}${ai_response.length > 1500 ? '...' : ''}
             </div>
             ${ai_response.length > 1500 ? `<p style="color: #666; font-size: 12px;">(Truncated to 1500 characters. Full response: ${ai_response.length} characters)</p>` : ''}
             
