@@ -6,8 +6,8 @@ hero:
     title: false
     cta: true
   video_sources:
-    desktop: "/videos/compass-desktop.src.mp4"
-    mobile: "/videos/compass-mobile.src.mp4"
+    desktop: "/videos/erd-method-homepage.mp4"
+    mobile: "/videos/homepage-mobile-20251016.mp4"
   cache_bust: true
   cta:
     desktop:
