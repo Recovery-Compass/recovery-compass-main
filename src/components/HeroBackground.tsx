@@ -62,8 +62,12 @@ const HeroBackground: React.FC = () => {
     );
   }
 
+  // Select appropriate video based on viewport
+  const videoSrc = isMobile ? MP4_MOBILE : MP4_DESKTOP;
+
   return (
     <video
+      key={videoSrc} // Force re-mount when video source changes
       className="video-background"
       autoPlay
       muted
@@ -73,19 +77,8 @@ const HeroBackground: React.FC = () => {
       onError={() => setError(true)}
       poster={poster}
       aria-hidden="true"
-    >
-      {/* Mobile-first: User-verified portrait video with lighthouse (2.9MB) */}
-      <source 
-        media="(max-width: 768px)" 
-        src={MP4_MOBILE} 
-        type="video/mp4" 
-      />
-      {/* Desktop: User-verified landscape video with lighthouse */}
-      <source 
-        src={MP4_DESKTOP} 
-        type="video/mp4" 
-      />
-    </video>
+      src={videoSrc}
+    />
   );
 };
 
