@@ -85,13 +85,6 @@
   cursor: pointer;
 }
 
-.hero-text sup {
-  font-size: 0.6em;
-  vertical-align: sub; /* Subscript positioning (lower) */
-  position: relative;
-  top: 0.3em; /* Fine-tune subscript positioning */
-}
-
 .hero-text:hover {
   color: #D89A2E; /* Lighter orange on hover */
   text-shadow: 

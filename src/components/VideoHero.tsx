@@ -20,7 +20,7 @@ const VideoHero: React.FC = () => {
         
         {/* Text as clickable link, no button frame */}
         <Link to="/begin" className="hero-text" aria-label="Begin your journey">
-          BEGIN YOUR JOURNEY<sup>2</sup>
+          BEGIN YOUR JOURNEY
         </Link>
       </div>
     </section>
