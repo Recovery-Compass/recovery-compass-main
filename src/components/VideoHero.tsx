@@ -11,16 +11,16 @@ const VideoHero: React.FC = () => {
 
       {/* Clean overlay: Logo + Text only */}
       <div className="hero-overlay">
-        {/* Recovery Compass Logo */}
+        {/* Recovery Compass ERD Method Logo */}
         <img 
-          src="/images/erd-method-homepage-logo.png" 
+          src="/images/rc-erd-method-logo.png" 
           alt="Recovery Compass" 
           className="hero-logo"
         />
         
         {/* Text as clickable link, no button frame */}
         <Link to="/begin" className="hero-text" aria-label="Begin your journey">
-          BEGIN YOUR JOURNEY
+          BEGIN YOUR JOURNEY<sup>2</sup>
         </Link>
       </div>
     </section>

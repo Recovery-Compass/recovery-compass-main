@@ -69,27 +69,34 @@
   animation: gentle-float 3s ease-in-out infinite; /* Subtle float animation */
 }
 
-/* "BEGIN YOUR JOURNEY" text - gold, no button frame */
+/* "BEGIN YOUR JOURNEY RIGHT NOW²" text - orange/gold with subscript 2 */
 .hero-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-size: clamp(1.1rem, 3vw, 1.5rem); /* Responsive text size */
   letter-spacing: 0.12em;
-  color: #FFD700; /* Compass gold */
+  color: #BF7812; /* Orange hex from user */
   text-shadow: 
     0 2px 8px rgba(0, 0, 0, 0.8),
-    0 4px 16px rgba(212, 175, 55, 0.5); /* Double shadow for depth */
+    0 4px 16px rgba(191, 120, 18, 0.5); /* Double shadow for depth */
   text-decoration: none;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
+.hero-text sup {
+  font-size: 0.6em;
+  vertical-align: sub; /* Subscript positioning (lower) */
+  position: relative;
+  top: 0.3em; /* Fine-tune subscript positioning */
+}
+
 .hero-text:hover {
-  color: #FFF; /* Lighten to white on hover */
+  color: #D89A2E; /* Lighter orange on hover */
   text-shadow: 
     0 2px 12px rgba(0, 0, 0, 0.9),
-    0 6px 20px rgba(212, 175, 55, 0.7); /* Enhanced glow on hover */
+    0 6px 20px rgba(191, 120, 18, 0.7); /* Enhanced glow on hover */
   transform: translateY(-2px); /* Subtle lift */
 }
 

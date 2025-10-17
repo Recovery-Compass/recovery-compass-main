@@ -9,17 +9,16 @@ import React, { useEffect, useState } from 'react';
  * - Paths assume assets live under /public/videos and /public/images.
  */
 
-// VERIFIED LIGHTHOUSE ASSETS - 2025-10-16T10:50 UTC  
-// FINAL CORRECT PATHS - DO NOT CHANGE
-// Desktop video: erd-method-homepage.mp4 (1.1MB, lighthouse verified)
-// Mobile video: homepage-mobile-20251016.mp4 (2.9MB, lighthouse verified)
-// Desktop poster: water-drapes-poster-v3.jpg (73KB, extracted from desktop video @3s)
-// Mobile poster: water-drapes-poster-mobile-v3.jpg (82KB, extracted from mobile video @3s)
+// ERD METHOD HOMEPAGE ASSETS - 2025-10-17
+// Desktop video: erd-method-homepage-desktop.mp4 (4.7MB, optimized)
+// Mobile video: erd-method-homepage-mobile.mp4 (5.1MB, optimized)
+// Desktop poster: erd-method-homepage-desktop-poster.png (4.7MB static image)
+// Mobile poster: erd-method-homepage-mobile-poster.png (1.6MB static image)
 
-const POSTER_DESKTOP = '/images/water-drapes-poster-v3.jpg';
-const POSTER_MOBILE = '/images/water-drapes-poster-mobile-v3.jpg';
-const MP4_DESKTOP = '/videos/erd-method-homepage.mp4';
-const MP4_MOBILE = '/videos/homepage-mobile-20251016.mp4';
+const POSTER_DESKTOP = '/images/erd-method-homepage-desktop-poster.png';
+const POSTER_MOBILE = '/images/erd-method-homepage-mobile-poster.png';
+const MP4_DESKTOP = '/videos/erd-method-homepage-desktop.mp4';
+const MP4_MOBILE = '/videos/erd-method-homepage-mobile.mp4';
 
 const HeroBackground: React.FC = () => {
   const [reduced, setReduced] = useState(false);
