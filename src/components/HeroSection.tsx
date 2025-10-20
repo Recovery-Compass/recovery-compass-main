@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import CompassLogo from "@/components/CompassLogo";
+import CompassLogo from "@/components/shared/CompassLogo";
 
 const HeroSection = () => {
   const handleContactClick = () => {

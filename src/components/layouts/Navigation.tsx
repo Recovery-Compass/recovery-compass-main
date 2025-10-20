@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import CompassLogo from './CompassLogo';
+import CompassLogo from '../shared/CompassLogo';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
