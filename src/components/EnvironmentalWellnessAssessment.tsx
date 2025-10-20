@@ -92,7 +92,7 @@ const EnvironmentalWellnessAssessment = () => {
       setShowQuiz(true);
     } else {
       // Future implementation for other assessment pages
-      console.log('Selected category:', categoryId);
+
     }
   };
   const handleBack = () => {

@@ -2,7 +2,7 @@ import type { P5CanvasInstance } from '@p5-wrapper/react'
 import type { BreathSyncSketchProps } from './types'
 
 export const breathSyncSketch = (p5: P5CanvasInstance<BreathSyncSketchProps>) => {
-  console.log('🎨 P5 sketch initializing');
+
   
   let circleSize = 100
   let targetSize = 100
@@ -13,7 +13,7 @@ export const breathSyncSketch = (p5: P5CanvasInstance<BreathSyncSketchProps>) =>
   }
 
   p5.setup = () => {
-    console.log('🖼️ P5 setup called');
+
     try {
       const canvas = p5.createCanvas(
         Math.min(600, p5.windowWidth - 40), 
@@ -21,14 +21,14 @@ export const breathSyncSketch = (p5: P5CanvasInstance<BreathSyncSketchProps>) =>
       )
       p5.noStroke()
       p5.frameRate(60)
-      console.log('✅ Canvas created successfully');
+
     } catch (error) {
       console.error('❌ Canvas creation failed:', error);
     }
   }
 
   p5.updateWithProps = (newProps: BreathSyncSketchProps) => {
-    console.log('📊 Props updated:', newProps);
+
     props = newProps
     
     if (!props.isPlaying) {

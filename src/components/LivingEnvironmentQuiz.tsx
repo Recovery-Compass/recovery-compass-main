@@ -29,14 +29,14 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('debug') === 'breathsync') {
-      console.log('🐛 Debug mode: Forcing BreathSync display');
+
       setIsAnalyzing(true);
     }
   }, []);
 
   // Track state changes for debugging
   useEffect(() => {
-    console.log('🔄 Quiz state - isAnalyzing:', isAnalyzing, 'showResults:', showResults);
+
   }, [isAnalyzing, showResults]);
 
   // IPE-compliant adaptive question logic
@@ -160,7 +160,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
 
   const handleAnswer = (answerIndex: number) => {
     const currentQuestion = getCurrentQuestion();
-    console.log(`📝 IPE Assessment: ${currentQuestion.id} = ${answerIndex + 1} (${currentQuestion.kpiTag})`);
+
     
     // Create enhanced response object
     const response: AssessmentResponse = {
@@ -180,7 +180,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     // Determine branch on first question if not set
     if (currentQuestion.id === 'foundation-01' && !branch) {
       const selectedBranch = answerIndex === 0 ? 'safety' : 'optimization';
-      console.log(`🔀 IPE Branch selected: ${selectedBranch}`);
+
       setBranch(selectedBranch);
     }
 
@@ -188,18 +188,18 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     const nextQuestionId = determineNextQuestion(currentQuestion.id, answerIndex);
     
     if (nextQuestionId && ASSESSMENT_QUESTIONS[nextQuestionId]) {
-      console.log(`🧠 Adaptive routing: ${currentQuestion.id} → ${nextQuestionId}`);
+
       setCurrentQuestionId(nextQuestionId);
       setQuestionPath([...questionPath, nextQuestionId]);
     } else if (questionPath.length < 5) {
       // Continue with fallback universal questions
       const nextUniversalIndex = Math.min(questionPath.length, UNIVERSAL_QUESTIONS.length - 1);
-      console.log(`📚 Using universal question ${nextUniversalIndex + 1}`);
+
       setCurrentQuestionId(`universal-${String(nextUniversalIndex + 1).padStart(2, '0')}`);
       setQuestionPath([...questionPath, `universal-${String(nextUniversalIndex + 1).padStart(2, '0')}`]);
     } else {
       // Assessment complete - trigger analysis
-      console.log('✅ IPE Assessment complete! Generating KPI insights...');
+
       setIsAnalyzing(true);
     }
   };

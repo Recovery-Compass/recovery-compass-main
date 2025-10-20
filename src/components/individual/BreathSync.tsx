@@ -6,7 +6,7 @@ import { breathSyncSketch } from './sketches/breathSync'
 const ReactP5Wrapper = React.lazy(() => 
   import('@p5-wrapper/react')
     .then(mod => {
-      console.log('✅ P5 wrapper loaded successfully');
+
       return { default: mod.ReactP5Wrapper };
     })
     .catch(err => {
@@ -28,19 +28,19 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
   onComplete,
   className = ''
 }) => {
-  console.log('🌟 BreathSync component mounted with pattern:', pattern);
+
   
   const [isPlaying, setIsPlaying] = useState(true)
   const [hasError, setHasError] = useState(false)
   const { phase, cycles } = useBreathingPattern(pattern, isPlaying)
 
   useEffect(() => {
-    console.log('🔄 Phase changed:', phase, 'Cycles:', cycles);
+
   }, [phase, cycles]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('⏰ Duration complete, calling onComplete');
+
       onComplete?.()
     }, duration * 1000)
 

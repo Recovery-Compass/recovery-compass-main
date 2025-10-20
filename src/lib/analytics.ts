@@ -89,7 +89,7 @@ class AnalyticsService {
     
     if (!this.isEnabled) {
       if (import.meta.env.DEV) {
-        console.log('📊 Analytics disabled - Page view:', title, currentPath);
+
       }
       return;
     }
@@ -133,7 +133,7 @@ class AnalyticsService {
       }
 
       if (import.meta.env.DEV) {
-        console.log('📊 Page view tracked:', event);
+
       }
       
     } catch (error) {
@@ -144,7 +144,7 @@ class AnalyticsService {
   trackEvent(eventName: string, properties?: Record<string, any>): void {
     if (!this.isEnabled) {
       if (import.meta.env.DEV) {
-        console.log('📊 Analytics disabled - Event:', eventName, properties);
+
       }
       return;
     }
@@ -165,7 +165,7 @@ class AnalyticsService {
       this.events.push(event);
       
       if (import.meta.env.DEV) {
-        console.log('📊 Event tracked:', event);
+
       }
       
     } catch (error) {
