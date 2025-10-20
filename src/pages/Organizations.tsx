@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import CompassLogo from '@/components/CompassLogo';
+import CompassLogo from '@/components/shared/CompassLogo';
 import { trackBusinessEvent } from '@/lib/analytics';
 
 const Organizations = () => {

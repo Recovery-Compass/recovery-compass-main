@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/useToast';
-import CompassLogo from '@/components/CompassLogo';
+import CompassLogo from '@/components/shared/CompassLogo';
 import { Copy, Check } from 'lucide-react';
 
 const Adventure = () => {
