@@ -56,7 +56,7 @@ const environmentPrompts = [
   "Private sanctuary for deep work and reflection"
 ];
 
-export const VisionBoardCreator = ({ onComplete, _assessmentData }: VisionBoardCreatorProps) => {
+export const VisionBoardCreator = ({ onComplete }: VisionBoardCreatorProps) => {
   const [step, setStep] = useState(1);
   const [visionData, setVisionData] = useState<VisionData>({
     vision: '',

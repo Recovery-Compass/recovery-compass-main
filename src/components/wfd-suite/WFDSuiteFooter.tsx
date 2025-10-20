@@ -1,5 +1,3 @@
-
-import React from 'react';
 import { Download } from 'lucide-react';
 
 const WFDSuiteFooter = () => {

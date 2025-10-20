@@ -114,7 +114,7 @@ class AnalyticsService {
         },
         timestamp: new Date().toISOString(),
         sessionId: this.sessionId,
-        userId: this.userId,
+        userId: this.userId ?? undefined,
       };
 
       this.events.push(event);
@@ -159,7 +159,7 @@ class AnalyticsService {
         },
         timestamp: new Date().toISOString(),
         sessionId: this.sessionId,
-        userId: this.userId,
+        userId: this.userId ?? undefined,
       };
 
       this.events.push(event);

@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import WFDSuiteHeader from './wfd-suite/WFDSuiteHeader';
 import WFDSuiteNavigation from './wfd-suite/WFDSuiteNavigation';
 import DashboardView from './wfd-suite/DashboardView';

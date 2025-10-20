@@ -81,7 +81,7 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
     // CSS Fallback
     return (
       <div className={`relative ${className}`}>
-        <BreathSyncCSS pattern={pattern} phase={phase} _onComplete={onComplete} />
+        <BreathSyncCSS pattern={pattern} phase={phase} />
       </div>
     );
   }
@@ -154,8 +154,8 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
   )
 }
 
-// CSS Fallback Component
-const BreathSyncCSS: React.FC<any> = ({ phase, _onComplete }) => {
+// CSS Fallback Component (no props needed - for display only)
+const BreathSyncCSS: React.FC<{ pattern: string; phase: string }> = ({ phase }) => {
   const phaseConfig = {
     inhale: { scale: 'scale-150', duration: '4s' },
     hold: { scale: 'scale-150', duration: '7s' },

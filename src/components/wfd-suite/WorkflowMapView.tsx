@@ -1,5 +1,3 @@
-
-import React from 'react';
 import { ArrowRight, Database, BarChart3, FileText, Settings, TrendingUp } from 'lucide-react';
 
 const WorkflowMapView = () => (

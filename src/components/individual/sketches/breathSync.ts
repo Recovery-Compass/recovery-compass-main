@@ -15,7 +15,7 @@ export const breathSyncSketch = (p5: P5CanvasInstance<BreathSyncSketchProps>) =>
   p5.setup = () => {
 
     try {
-      const _canvas = p5.createCanvas(
+      p5.createCanvas(
         Math.min(600, p5.windowWidth - 40), 
         Math.min(400, p5.windowHeight * 0.4)
       )

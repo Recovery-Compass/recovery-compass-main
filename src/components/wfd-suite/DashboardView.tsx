@@ -1,6 +1,3 @@
-
-import React from 'react';
-
 const DashboardView = () => (
   <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
     <div className="mb-6">

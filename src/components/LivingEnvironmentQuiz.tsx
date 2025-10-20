@@ -6,7 +6,7 @@ import LivingEnvironmentResult from './LivingEnvironmentResult';
 import { BreathSync } from './individual/BreathSync';
 import { SafetyOutlet } from './SafetyOutlet';
 import { ASSESSMENT_QUESTIONS, UNIVERSAL_QUESTIONS } from '@/data/assessmentQuestions';
-import type { AssessmentResponse, AssessmentSession, KPIMetrics, ArchetypeData } from '@/types/assessment';
+import type { AssessmentResponse, KPIMetrics, ArchetypeData } from '@/types/assessment';
 
 interface LivingEnvironmentQuizProps {
   onBack: () => void;
@@ -99,9 +99,9 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
     return metrics;
   };
 
-  const generateArchetypeData = (responses: AssessmentResponse[], branch: string): ArchetypeData => {
+  // Helper function for archetype data generation
+  const _generateArchetypeData = (responses: AssessmentResponse[], branch: string): ArchetypeData => {
     const strengthAreas: string[] = [];
-    const _growthOpportunities: string[] = [];
     
     // Analyze response patterns for archetype classification
     const creativeResponses = responses.filter(r => r.kpiCategory === 'creative-expression');
@@ -213,7 +213,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
           <BreathSync 
             pattern="4-7-8" 
             duration={15}
-            onComplete={() => {
+            _onComplete={() => {
               setIsAnalyzing(false);
               setShowResults(true);
             }}
@@ -272,7 +272,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
 
     // Calculate KPI metrics and archetype data
     const kpiMetrics = calculateKPIMetrics(responses);
-    const archetypeData = generateArchetypeData(responses, branch || 'optimization');
+    const archetypeData = _generateArchetypeData(responses, branch || 'optimization');
     
     // Calculate overall score from KPI metrics
     const kpiScores = Object.values(kpiMetrics).map(m => m.score);

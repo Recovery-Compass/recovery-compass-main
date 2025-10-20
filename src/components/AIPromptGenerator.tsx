@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Copy, Sparkles, Brain, Target, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -42,6 +42,7 @@ export function AIPromptGenerator({ assessmentData, onBack }: AIPromptGeneratorP
   // Context architecture for comprehensive AI education
   // TODO: These helper functions are defined but not currently used. 
   // They will be integrated in Phase 3 when we implement the full AI prompt generation system.
+  // @ts-expect-error - Intentionally unused until Phase 3
   const _getRecoveryCompassContext = () => {
     return `CONTEXT: Recovery Compass is a comprehensive environmental wellness assessment system that measures how living spaces and daily routines support recovery, growth, and wellbeing. Unlike traditional assessments that focus on symptoms or deficits, Recovery Compass uses positive psychology and environmental design principles to identify strengths and opportunities for environmental optimization.
 
@@ -57,6 +58,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
 - Personalized Design: Tailoring recommendations to individual archetypes and circumstances`;
   };
 
+  // @ts-expect-error - Intentionally unused until Phase 3
   const _getArchetypeDefinitions = () => {
     const archetypeMap = {
       'Steady Builder': {
@@ -93,6 +95,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
     return archetypeMap;
   };
 
+  // @ts-expect-error - Intentionally unused until Phase 3
   const _getKPIGlossary = () => {
     return {
       'future-orientation': 'The ability to envision and plan for positive futures, set meaningful goals, and maintain hope and direction in recovery',
@@ -106,6 +109,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
     };
   };
 
+  // @ts-expect-error - Intentionally unused until Phase 3
   const _getBranchContext = (branch: string) => {
     if (branch === 'safety') {
       return 'SAFETY BRANCH: You are focused on building foundational stability and security. This pathway prioritizes creating predictable, safe environments that support basic needs and emotional regulation. Safety-branch individuals often benefit from routines, clear boundaries, and environments that reduce stress and anxiety.';

@@ -50,9 +50,9 @@ const AssessmentTransition = () => {
         </p>
         
         <BreathSync 
-          pattern="4-7-8"
-          duration={15}
-          onComplete={handleBreathComplete}
+          pattern="4-7-8" 
+          duration={15} 
+          _onComplete={handleBreathComplete}
         />
       </Card>
     </div>

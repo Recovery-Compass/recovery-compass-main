@@ -84,7 +84,7 @@ Here are my organization's current challenges: [Share your specific situation he
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('save-adventure-insight', {
+      const { error } = await supabase.functions.invoke('save-adventure-insight', {
         body: { 
           email: email.trim(), 
           name: name.trim(),
@@ -116,7 +116,7 @@ Here are my organization's current challenges: [Share your specific situation he
     }
   };
 
-  if (isSubmitted) {
+  if (_isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-navy to-navy-dark text-white">
         <div className="container mx-auto px-4 py-12">

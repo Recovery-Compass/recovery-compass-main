@@ -1,6 +1,3 @@
-
-import React from 'react';
-
 interface WFDSuiteNavigationProps {
   activeAttachment: string;
   onAttachmentChange: (attachment: string) => void;
