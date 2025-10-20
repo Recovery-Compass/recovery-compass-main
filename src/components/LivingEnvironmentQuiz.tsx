@@ -22,8 +22,8 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
   const [showResults, setShowResults] = useState(false);
   const [showSafety, setShowSafety] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
-  const [userId] = useState(() => sessionStorage.getItem('userId') || `user_${Date.now()}`);
+  const [_sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [_userId] = useState(() => sessionStorage.getItem('userId') || `user_${Date.now()}`);
 
   // Debug mode: force show BreathSync with ?debug=breathsync
   useEffect(() => {
@@ -101,7 +101,7 @@ const LivingEnvironmentQuiz = ({ onBack }: LivingEnvironmentQuizProps) => {
 
   const generateArchetypeData = (responses: AssessmentResponse[], branch: string): ArchetypeData => {
     const strengthAreas: string[] = [];
-    const growthOpportunities: string[] = [];
+    const _growthOpportunities: string[] = [];
     
     // Analyze response patterns for archetype classification
     const creativeResponses = responses.filter(r => r.kpiCategory === 'creative-expression');

@@ -13,7 +13,6 @@ import {
   ArrowRight,
   Sparkles,
   Mic,
-  Play,
   Pause
 } from 'lucide-react';
 

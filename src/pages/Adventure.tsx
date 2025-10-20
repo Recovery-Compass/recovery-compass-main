@@ -16,7 +16,7 @@ const Adventure = () => {
   const [primaryChallenge, setPrimaryChallenge] = useState('');
   const [role, setRole] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [_isSubmitted, _setIsSubmitted] = useState(false);
   const [promptCopied, setPromptCopied] = useState(false);
   const [formMessage, setFormMessage] = useState('');
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');

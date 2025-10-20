@@ -15,7 +15,6 @@ import {
   CheckCircle, 
   AlertCircle,
   RefreshCw,
-  Download,
   Upload
 } from 'lucide-react';
 

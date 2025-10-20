@@ -40,7 +40,9 @@ export function AIPromptGenerator({ assessmentData, onBack }: AIPromptGeneratorP
   }, []);
 
   // Context architecture for comprehensive AI education
-  const getRecoveryCompassContext = () => {
+  // TODO: These helper functions are defined but not currently used. 
+  // They will be integrated in Phase 3 when we implement the full AI prompt generation system.
+  const _getRecoveryCompassContext = () => {
     return `CONTEXT: Recovery Compass is a comprehensive environmental wellness assessment system that measures how living spaces and daily routines support recovery, growth, and wellbeing. Unlike traditional assessments that focus on symptoms or deficits, Recovery Compass uses positive psychology and environmental design principles to identify strengths and opportunities for environmental optimization.
 
 The assessment measures 8 Key Performance Indicators (KPIs) across two pathways:
@@ -55,7 +57,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
 - Personalized Design: Tailoring recommendations to individual archetypes and circumstances`;
   };
 
-  const getArchetypeDefinitions = () => {
+  const _getArchetypeDefinitions = () => {
     const archetypeMap = {
       'Steady Builder': {
         description: 'Steady Builders approach recovery through consistent, incremental progress. They value routine, reliability, and building sustainable systems over time. They prefer proven methods and gradual improvements to dramatic changes.',
@@ -91,7 +93,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
     return archetypeMap;
   };
 
-  const getKPIGlossary = () => {
+  const _getKPIGlossary = () => {
     return {
       'future-orientation': 'The ability to envision and plan for positive futures, set meaningful goals, and maintain hope and direction in recovery',
       'engagement-depth': 'The quality of attention and presence one brings to daily activities, reflecting how fully engaged one is with life',
@@ -104,7 +106,7 @@ Recovery Compass recognizes that environment shapes behavior, and behavior shape
     };
   };
 
-  const getBranchContext = (branch: string) => {
+  const _getBranchContext = (branch: string) => {
     if (branch === 'safety') {
       return 'SAFETY BRANCH: You are focused on building foundational stability and security. This pathway prioritizes creating predictable, safe environments that support basic needs and emotional regulation. Safety-branch individuals often benefit from routines, clear boundaries, and environments that reduce stress and anxiety.';
     } else {

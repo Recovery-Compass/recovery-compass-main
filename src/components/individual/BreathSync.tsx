@@ -18,14 +18,14 @@ const ReactP5Wrapper = React.lazy(() =>
 interface BreathSyncProps {
   pattern?: '4-7-8' | 'box' | 'coherent'
   duration?: number
-  onComplete?: () => void
+  _onComplete?: () => void
   className?: string
 }
 
 export const BreathSync: React.FC<BreathSyncProps> = ({ 
   pattern = '4-7-8', 
   duration = 15,
-  onComplete,
+  _onComplete,
   className = ''
 }) => {
 
@@ -41,20 +41,20 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
 
-      onComplete?.()
+      _onComplete?.()
     }, duration * 1000)
 
     return () => clearTimeout(timer)
-  }, [duration, onComplete])
+  }, [duration, _onComplete])
 
   // Accessibility: Reduced motion preference
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion && onComplete) {
+    if (prefersReducedMotion && _onComplete) {
       // Skip to completion if user prefers reduced motion
-      setTimeout(onComplete, 1000)
+      setTimeout(_onComplete, 1000)
     }
-  }, [onComplete])
+  }, [_onComplete])
 
   // Handle keyboard controls
   useEffect(() => {
@@ -62,14 +62,14 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
       if (e.code === 'Space') {
         e.preventDefault()
         setIsPlaying(!isPlaying)
-      } else if (e.code === 'Escape' && onComplete) {
-        onComplete()
+      } else if (e.code === 'Escape' && _onComplete) {
+        _onComplete()
       }
     }
 
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [isPlaying, onComplete])
+  }, [isPlaying, _onComplete])
 
   // Error boundary for p5
   const handleError = () => {
@@ -81,7 +81,7 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
     // CSS Fallback
     return (
       <div className={`relative ${className}`}>
-        <BreathSyncCSS pattern={pattern} phase={phase} onComplete={onComplete} />
+        <BreathSyncCSS pattern={pattern} phase={phase} _onComplete={onComplete} />
       </div>
     );
   }
@@ -128,9 +128,9 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
           {isPlaying ? 'Pause' : 'Resume'}
         </button>
         
-        {onComplete && (
+        {_onComplete && (
           <button
-            onClick={onComplete}
+            onClick={_onComplete}
             className="px-4 py-2 text-moonlight/50 hover:text-moonlight transition-colors font-body"
             aria-label="Skip breathing exercise"
           >
@@ -141,7 +141,7 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
       
       <div className="mt-4 text-center text-moonlight/50 text-sm">
         Press <kbd className="px-2 py-1 bg-navy/30 rounded">Space</kbd> to pause/resume
-        {onComplete && (
+        {_onComplete && (
           <> or <kbd className="px-2 py-1 bg-navy/30 rounded">Esc</kbd> to skip</>
         )}
       </div>
@@ -155,7 +155,7 @@ export const BreathSync: React.FC<BreathSyncProps> = ({
 }
 
 // CSS Fallback Component
-const BreathSyncCSS: React.FC<any> = ({ phase, onComplete }) => {
+const BreathSyncCSS: React.FC<any> = ({ phase, _onComplete }) => {
   const phaseConfig = {
     inhale: { scale: 'scale-150', duration: '4s' },
     hold: { scale: 'scale-150', duration: '7s' },
@@ -163,7 +163,7 @@ const BreathSyncCSS: React.FC<any> = ({ phase, onComplete }) => {
     rest: { scale: 'scale-100', duration: '0s' }
   };
 
-  const config = phaseConfig[phase] || phaseConfig.inhale;
+  const config = phaseConfig[phase as keyof typeof phaseConfig] || phaseConfig.inhale;
 
   return (
     <div className="flex flex-col items-center justify-center p-8">
