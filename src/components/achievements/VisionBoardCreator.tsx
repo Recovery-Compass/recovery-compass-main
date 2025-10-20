@@ -13,7 +13,6 @@ import {
   Zap,
   Crown,
   ArrowRight,
-  Upload,
   Sparkles,
   Eye,
   Plus,
@@ -30,7 +29,7 @@ interface VisionData {
 
 interface VisionBoardCreatorProps {
   onComplete: (visionData: VisionData) => void;
-  assessmentData?: any;
+  _assessmentData?: any;
 }
 
 const focusAreas = [
@@ -57,7 +56,7 @@ const environmentPrompts = [
   "Private sanctuary for deep work and reflection"
 ];
 
-export const VisionBoardCreator = ({ onComplete, assessmentData }: VisionBoardCreatorProps) => {
+export const VisionBoardCreator = ({ onComplete, _assessmentData }: VisionBoardCreatorProps) => {
   const [step, setStep] = useState(1);
   const [visionData, setVisionData] = useState<VisionData>({
     vision: '',
