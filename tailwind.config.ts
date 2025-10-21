@@ -75,6 +75,21 @@ export default {
 				teal: '#148D8D',
 				gold: '#D4AF37',
 				moonlight: '#F5F5DC',
+				// WFD Brand Colors
+				'wfd-blue': '#004B87',
+				'wfd-gold': '#F5A623',
+				'wfd-purple': '#6B46C1',
+				// Data Quality Colors
+				'quality-red': '#E53E3E',
+				'quality-yellow': '#D69E2E',
+				'quality-green': '#38A169',
+				// Recovery Compass Brand (Secondary)
+				'rc-primary': '#1A365D',
+				'rc-accent': '#3182CE',
+				'rc-success': '#38A169',
+				'rc-warning': '#D69E2E',
+				'rc-error': '#E53E3E',
+				'rc-bg': '#F7FAFC',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

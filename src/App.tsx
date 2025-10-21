@@ -20,6 +20,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import AssessmentTransition from "./components/AssessmentTransition";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
+import ComplianceDashboard from "./pages/wfd/ComplianceDashboard";
+import ClientList from "./pages/wfd/ClientList";
+import ProgramPerformance from "./pages/wfd/ProgramPerformance";
+import DataQuality from "./pages/wfd/DataQuality";
 
 // Enhanced analytics wrapper with business event tracking
 const AnalyticsWrapper = () => {
@@ -47,6 +51,10 @@ const AnalyticsWrapper = () => {
         '/compliance-compass': 'Compliance Compass - Recovery Compass',
         '/adventure': 'Adventure Prompt Engine - Recovery Compass',
         '/wfd-attachments': 'Dashboard Case Studies - Recovery Compass',
+        '/wfd/compliance': 'WFD Compliance Dashboard - Recovery Compass',
+        '/wfd/compliance/clients': 'Client Data - WFD Compliance - Recovery Compass',
+        '/wfd/compliance/programs': 'Program Performance - WFD Compliance - Recovery Compass',
+        '/wfd/compliance/quality': 'Data Quality - WFD Compliance - Recovery Compass',
         '/first-exhibit': 'The First Exhibit - Recovery Compass',
         '/methodology': 'Environmental Response Architecture™ - Recovery Compass',
       };
@@ -134,6 +142,12 @@ function App() {
 
             {/* Assessment Transition */}
             <Route path="/assessment-transition" element={<AssessmentTransition />} />
+            
+            {/* WFD Compliance Dashboard Routes */}
+            <Route path="/wfd/compliance" element={<ComplianceDashboard />} />
+            <Route path="/wfd/compliance/clients" element={<ClientList />} />
+            <Route path="/wfd/compliance/programs" element={<ProgramPerformance />} />
+            <Route path="/wfd/compliance/quality" element={<DataQuality />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
