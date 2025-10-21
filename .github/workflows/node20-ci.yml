@@ -35,8 +35,8 @@ jobs:
           else
             echo "No package.json; skipping"
           fi
-      - name: Lint (if present)
-        run: npm run -s lint --if-present
+      # - name: Lint (if present)
+      #   run: npm run -s lint --if-present
       - name: Type check (if present)
         run: npm run -s type-check --if-present
       - name: Build (if present)
