@@ -2,5 +2,5 @@ name = "erdmethod"
 compatibility_date = "2025-10-16"
 pages_build_output_dir = "dist"
 
-[env.production]
-name = "erdmethod"
+# This is a Cloudflare Pages project
+# To deploy: npx wrangler pages deploy dist --project-name=erdmethod
