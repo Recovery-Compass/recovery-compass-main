@@ -1,0 +1,32 @@
+{
+  "name": "@recovery-compass/mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Recovery Compass",
+  "type": "module",
+  "main": "dist/recovery-compass-server.js",
+  "bin": {
+    "recovery-compass-mcp": "./dist/recovery-compass-server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/recovery-compass-server.js",
+    "dev": "tsc && node dist/recovery-compass-server.js",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "recovery",
+    "compliance",
+    "ai"
+  ],
+  "author": "Recovery Compass Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
