@@ -1,10 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { read, utils } from 'xlsx';
 import { Upload, FileSpreadsheet, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useComplianceStore } from '@/stores/complianceStore';
 import { ClientRecord, UploadValidation } from '@/types/compliance';
-import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const REQUIRED_COLUMNS = [
@@ -41,6 +40,16 @@ export function FileUploadInterface() {
         setValidation({
           isValid: false,
           error: 'File is empty. Please upload a file with client data.',
+        });
+        setIsProcessing(false);
+        return;
+      }
+
+      // Security: Validate row count to prevent DoS
+      if (data.length > MAX_ROW_COUNT) {
+        setValidation({
+          isValid: false,
+          error: `File contains too many records. Maximum ${MAX_ROW_COUNT.toLocaleString()} records allowed.`,
         });
         setIsProcessing(false);
         return;
@@ -88,6 +97,9 @@ export function FileUploadInterface() {
     }
   }, [setClientRecords]);
 
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit for security
+  const MAX_ROW_COUNT = 10000; // Maximum rows to prevent DoS
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
@@ -96,6 +108,22 @@ export function FileUploadInterface() {
       'text/csv': ['.csv'],
     },
     multiple: false,
+    maxSize: MAX_FILE_SIZE,
+    onDropRejected: (fileRejections) => {
+      const rejection = fileRejections[0];
+      if (rejection.errors.some(e => e.code === 'file-too-large')) {
+        setValidation({
+          isValid: false,
+          error: `File too large. Maximum size is ${MAX_FILE_SIZE / 1024 / 1024}MB`,
+        });
+      } else {
+        setValidation({
+          isValid: false,
+          error: 'File rejected. Please upload a valid Excel or CSV file.',
+        });
+      }
+      setIsProcessing(false);
+    },
   });
 
   return (

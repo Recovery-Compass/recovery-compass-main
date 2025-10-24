@@ -1,2 +1,3 @@
 // Journey components barrel export
-export * from './Adventure';
+export { default as PathwaySelect } from '../../PathwaySelect';
+export { default as Adventure } from '../../../pages/Adventure';

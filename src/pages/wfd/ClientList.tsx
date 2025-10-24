@@ -1,4 +1,3 @@
-import React from 'react';
 import { useComplianceStore } from '@/stores/complianceStore';
 import { ClientDataTable } from '@/components/compliance/ClientDataTable';
 import { WFDComplianceLayout } from '@/components/wfd-suite/WFDComplianceLayout';

@@ -1,12 +1,9 @@
-import React from 'react';
 import { useComplianceStore } from '@/stores/complianceStore';
 import { FileUploadInterface } from '@/components/compliance/FileUploadInterface';
 import { OverviewMetrics } from '@/components/compliance/OverviewMetrics';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { WFDComplianceLayout } from '@/components/wfd-suite/WFDComplianceLayout';
 import { Button } from '@/components/ui/button';
-import { Upload } from 'lucide-react';
 
 export default function ComplianceDashboard() {
   const clientRecords = useComplianceStore(state => state.clientRecords);

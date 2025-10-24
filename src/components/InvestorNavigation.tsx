@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import CompassLogo from './CompassLogo';
+import CompassLogo from './shared/CompassLogo';
 
 const InvestorNavigation = () => {
   const location = useLocation();

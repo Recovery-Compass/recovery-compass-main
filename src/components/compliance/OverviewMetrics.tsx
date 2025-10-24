@@ -1,4 +1,3 @@
-import React from 'react';
 import { useComplianceStore } from '@/stores/complianceStore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Home, Clock, TrendingUp, Activity } from 'lucide-react';
