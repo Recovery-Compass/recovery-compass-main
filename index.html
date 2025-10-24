@@ -112,14 +112,26 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 - Recovery Compass (Enhanced with City Tracking) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9CS3DLEYRY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-9CS3DLEYRY');
+      // Enhanced configuration for city-level tracking
+      gtag('config', 'G-9CS3DLEYRY', {
+        'send_page_view': true,
+        'anonymize_ip': false,  // Accurate city tracking
+        'allow_google_signals': true,  // Demographics
+        'allow_ad_personalization_signals': false,  // Privacy-first
+        'cookie_flags': 'SameSite=None;Secure',
+        'custom_map': {
+          'dimension1': 'recovery_stage',
+          'dimension2': 'user_journey_step',
+          'dimension3': 'feature_used'
+        }
+      });
     </script>
     <!-- Vercel Web Analytics -->
     <script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
