@@ -1,1 +1,0 @@
-{"phase": "readiness", "anthr_status_code": 400, "classification": "TERMINAL_EXTERNAL_DEPENDENCY", "attempts": 1, "deadline_reached": false, "message": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This organization has been disabled.\"},\"request_id\":\"req_011CTYgPyTGDCMMPV7mjgGsW\"}"}

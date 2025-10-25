@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Fighting a system that refuses to count your lived experiences as credentials</title>
+    <meta name="description" content="Trust. Belonging. Community. Because you'll never know what you can do until you feel safe enough to do it.">
+    <meta name="keywords" content="addiction recovery, AI recovery, substance use disorder, recovery platform, addiction treatment, recovery compass">
+    <meta name="author" content="Recovery Compass" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1a1f3a" />
+    
+    <!-- Open Graph Meta Tags -->
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://open-recovery.compass.org/" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/rPuB83fsUnXRWbVixt28bMOpSll1/social-images/social-1760700023304-Recovery Compass-Environmental Response Design.png">
+    <meta property="og:site_name" content="Recovery Compass" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/rPuB83fsUnXRWbVixt28bMOpSll1/social-images/social-1760700023304-Recovery Compass-Environmental Response Design.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://recoverycompass.app" />
+    
+    <!-- Fonts - Recovery Compass Design System -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G8WgMMjgT.woff2" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Recovery Compass",
+      "description": "AI-powered addiction recovery platform democratizing access to evidence-based treatment",
+      "url": "https://recoverycompass.app",
+      "logo": "https://recoverycompass.app/lovable-uploads/b58fecf5-5250-412d-b11c-e29a4e090138.png",
+      "foundingDate": "2024",
+      "founder": {
+        "@type": "Person",
+        "name": "Eric Brakebill Jones",
+        "jobTitle": "Founder & CEO"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/recovery-compass"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      }
+    }
+    </script>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Fighting a system that refuses to count your lived experiences as credentials">
+  <meta name="twitter:title" content="Fighting a system that refuses to count your lived experiences as credentials">
+  <meta property="og:description" content="Trust. Belonging. Community. Because you&#39;ll never know what you can do until you feel safe enough to do it.">
+  <meta name="twitter:description" content="Trust. Belonging. Community. Because you&#39;ll never know what you can do until you feel safe enough to do it.">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Google Analytics 4 - Recovery Compass (Enhanced with City Tracking) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9CS3DLEYRY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Enhanced configuration for city-level tracking
+      gtag('config', 'G-9CS3DLEYRY', {
+        'send_page_view': true,
+        'anonymize_ip': false,  // Accurate city tracking
+        'allow_google_signals': true,  // Demographics
+        'allow_ad_personalization_signals': false,  // Privacy-first
+        'cookie_flags': 'SameSite=None;Secure',
+        'custom_map': {
+          'dimension1': 'recovery_stage',
+          'dimension2': 'user_journey_step',
+          'dimension3': 'feature_used'
+        }
+      });
+    </script>
+    <!-- Vercel Web Analytics -->
+    <script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
+  </body>
+</html>
