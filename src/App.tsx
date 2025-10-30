@@ -18,6 +18,7 @@ import Organizations from "./pages/Organizations";
 import { EnvironmentalQuizStandalone } from "./pages/EnvironmentalQuizStandalone";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import About from "./pages/About";
 import AssessmentTransition from "./components/AssessmentTransition";
 import { trackPageView, trackBusinessEvent } from "./lib/analytics";
 import ComplianceDashboard from "./pages/wfd/ComplianceDashboard";
@@ -139,6 +140,7 @@ function App() {
             {/* Legal Pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/about" element={<About />} />
 
             {/* Assessment Transition */}
             <Route path="/assessment-transition" element={<AssessmentTransition />} />
