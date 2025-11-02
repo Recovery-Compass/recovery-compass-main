@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHPOA | APS Case #80404096 Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 20px; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1 { font-size: 2em; margin-bottom: 10px; }
+        .status-badge { display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9em; margin-top: 10px; }
+        .dual-pane { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        @media (max-width: 1024px) { .dual-pane { grid-template-columns: 1fr; } }
+        .pane { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .pane h2 { color: #667eea; margin-bottom: 20px; font-size: 1.5em; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        .concerns h2 { color: #ff6b6b; border-bottom-color: #ff6b6b; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: #f8f9fa; padding: 12px; text-align: left; font-weight: 600; font-size: 0.85em; text-transform: uppercase; color: #666; border-bottom: 2px solid #e9ecef; }
+        td { padding: 12px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+        .score { font-weight: bold; font-size: 1.2em; color: #667eea; }
+        .concerns .score { color: #ff6b6b; }
+        .bar { display: flex; align-items: center; gap: 8px; }
+        .bar-fill { height: 8px; background: #e9ecef; border-radius: 4px; flex-grow: 1; overflow: hidden; }
+        .bar-inner { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); transition: width 0.3s; }
+        .concerns .bar-inner { background: linear-gradient(90deg, #ff6b6b, #ee5a6f); }
+        .threat-section { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .threat-section h2 { color: #f59e0b; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; margin-bottom: 20px; }
+        .threat-low { color: #10b981; }
+        .threat-med { color: #f59e0b; }
+        .threat-high { color: #ef4444; }
+        .trend { font-size: 1.2em; }
+        .notes { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .notes h3 { color: #667eea; margin: 20px 0 10px 0; }
+        .notes ul { margin-left: 20px; }
+        .notes li { margin: 8px 0; }
+        .success-signal { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .pfv-badge { display: inline-block; padding: 4px 8px; background: #f3f4f6; border-radius: 4px; font-size: 0.75em; margin-left: 8px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Kathy Hart POA | APS Case #80404096</h1>
+            <div>Updated: Nov 2, 2025, 12:40 AM PT</div>
+            <span class="status-badge">🟠 CODE ORANGE (85% complete)</span>
+            <span class="status-badge">Target: 🟢 GREEN by Wed Nov 6</span>
+        </header>
+
+        <div class="dual-pane">
+            <div class="pane opportunities">
+                <h2>📈 Top 10 Opportunities</h2>
+                <table>
+                    <tr><th>#</th><th>Opportunity</th><th>Score</th><th>Bar</th></tr>
+                    <tr><td>1</td><td><strong>Complete Amy briefing Sunday</strong><br><small>Amy prepared = better Mon interview</small></td><td class="score">95</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 95%"></div></div></div></td></tr>
+                    <tr><td>2</td><td><strong>Secure attorney consultation Mon AM</strong><br><small>Professional risk assessment</small></td><td class="score">92</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 92%"></div></div></div></td></tr>
+                    <tr><td>3</td><td><strong>Maintain "do not send unsolicited" posture</strong><br><small>Demonstrates confidence</small></td><td class="score">88</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 88%"></div></div></div></td></tr>
+                    <tr><td>4</td><td><strong>Leverage "initiated APS case" narrative</strong><br><small>Core defense: transparency</small></td><td class="score">85</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 85%"></div></div></div></td></tr>
+                    <tr><td>5</td><td><strong>Document positive outcome for Kathy</strong><br><small>Before/after shows Eric helped</small></td><td class="score">82</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 82%"></div></div></div></td></tr>
+                    <tr><td>6</td><td><strong>Amy McCellon as credible witness</strong><br><small>Hired by Eric; daily care</small></td><td class="score">78</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 78%"></div></div></div></td></tr>
+                    <tr><td>7</td><td><strong>Google Drive backup for mobile access</strong><br><small>Safety net for docs</small></td><td class="score">72</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 72%"></div></div></div></td></tr>
+                    <tr><td>8</td><td><strong>Chase obstruction documentation</strong><br><small>Explains debit card workaround</small></td><td class="score">70</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 70%"></div></div></div></td></tr>
+                    <tr><td>9</td><td><strong>Professional support network</strong><br><small>3 attorneys + caretaker</small></td><td class="score">65</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 65%"></div></div></div></td></tr>
+                    <tr><td>10</td><td><strong>48h no-action window starts Mon</strong><br><small>CODE GREEN Wed 6PM</small></td><td class="score">60</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 60%"></div></div></div></td></tr>
+                </table>
+            </div>
+
+            <div class="pane concerns">
+                <h2>⚠️ Top 10 Concerns</h2>
+                <table>
+                    <tr><th>#</th><th>Concern</th><th>Score</th><th>Bar</th></tr>
+                    <tr><td>1</td><td><strong>Debit card usage questioned by APS</strong><br><small>Mitigation: Verbal auth + Chase obstruction</small></td><td class="score">68</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 68%"></div></div></div></td></tr>
+                    <tr><td>2</td><td><strong>Third-party counter-complaint filed</strong><br><small>Mitigation: Original APS case + outcome</small></td><td class="score">62</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 62%"></div></div></div></td></tr>
+                    <tr><td>3</td><td><strong>AI-assisted communication misperceived</strong><br><small>Mitigation: Assistive technology frame</small></td><td class="score">55</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 55%"></div></div></div></td></tr>
+                    <tr><td>4</td><td><strong>No written debit card authorization</strong><br><small>Mitigation: Circumstantial evidence</small></td><td class="score">52</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 52%"></div></div></div></td></tr>
+                    <tr><td>5</td><td><strong>Exhaustion impairs Monday judgment</strong><br><small>Mitigation: SLEEP tonight + rest</small></td><td class="score">48</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 48%"></div></div></div></td></tr>
+                    <tr><td>6</td><td><strong>Amy interview goes poorly Mon</strong><br><small>Mitigation: Sunday brief + positive relationship</small></td><td class="score">45</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 45%"></div></div></div></td></tr>
+                    <tr><td>7</td><td><strong>Bank statements unavailable</strong><br><small>Mitigation: Request if needed</small></td><td class="score">42</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 42%"></div></div></div></td></tr>
+                    <tr><td>8</td><td><strong>Attorney conflict/unavailable</strong><br><small>Mitigation: Identify separate counsel</small></td><td class="score">38</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 38%"></div></div></div></td></tr>
+                    <tr><td>9</td><td><strong>Over-optimization anxiety spiral</strong><br><small>Mitigation: STOP at 85%; Sunday 30min only</small></td><td class="score">35</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 35%"></div></div></div></td></tr>
+                    <tr><td>10</td><td><strong>PDFs requested but not ready</strong><br><small>Mitigation: Preview export 2 min</small></td><td class="score">28</td><td><div class="bar"><div class="bar-fill"><div class="bar-inner" style="width: 28%"></div></div></div></td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="threat-section">
+            <h2>🎯 Threat Tracker (People/Entities)</h2>
+            <table>
+                <tr><th>Subject</th><th>Role</th><th>Threat</th><th>Trend</th><th>Why Changed</th></tr>
+                <tr><td><strong>Dana Hill</strong></td><td>APS Caseworker</td><td class="threat-med">45</td><td class="trend">→</td><td>Neutral; visited Nov 1, wants Amy Mon. No Eric contact yet. Likely routine.</td></tr>
+                <tr><td><strong>Amy McCellon</strong></td><td>Caretaker (Eric hired)</td><td class="threat-low">12</td><td class="trend">↓</td><td>Ally; hired Aug 29. Daily care since Sep 3. Reports to Eric. Trust established.</td></tr>
+                <tr><td><strong>Lesley</strong></td><td>Kathy's daughter</td><td class="threat-high">72</td><td class="trend">→</td><td>Subject of original APS complaint. Financial exploitation alleged. Status unknown.</td></tr>
+                <tr><td><strong>Texas APS (agency)</strong></td><td>Regulatory authority</td><td class="threat-med">38</td><td class="trend">→</td><td>Initiated by Eric Aug 16. Three cooperative interactions. Inquiry purpose unclear.</td></tr>
+                <tr><td><strong>Chase Bank</strong></td><td>Financial institution</td><td class="threat-high">65</td><td class="trend">→</td><td>4-week POA obstruction. Forced workaround. OCC complaint filed. Potential negative reports.</td></tr>
+                <tr><td><strong>Andrea</strong></td><td>Suspected APS (unverified)</td><td class="threat-low">28</td><td class="trend">→</td><td>Suspicious Aug 25 visit. Identity unconfirmed. Secondary concern.</td></tr>
+            </table>
+            <p style="margin-top: 15px; font-size: 0.9em; color: #666;"><strong>Legend:</strong> <span class="threat-low">0-25 Ally/Neutral</span> | <span class="threat-med">26-50 Monitor</span> | <span style="color:#f97316">51-75 Caution</span> | <span class="threat-high">76-100 High Threat</span></p>
+        </div>
+
+        <div class="notes">
+            <h3>📋 Open Questions</h3>
+            <ul>
+                <li>What is Dana Hill's specific inquiry scope? (Answered Mon post-Amy interview)</li>
+                <li>Does Spitzer/Hughes have conflict advising Eric? (Resolve Sun attorney call)</li>
+                <li>Will APS request documentation from Eric? (Await request; don't send unsolicited)</li>
+            </ul>
+
+            <h3>🎯 Next 3 Moves (PFV-Aligned)</h3>
+            <ol>
+                <li><strong>Tonight:</strong> STOP and SLEEP — No further artifacts; rest critical (EV: +15 reduced exhaustion)</li>
+                <li><strong>Sunday (30 min):</strong> Insert contact, send Amy brief, call attorney; then RELEASE (EV: +16)</li>
+                <li><strong>Monday:</strong> Respond only if contacted; professional posture; await Branch A/B/C (EV: +10)</li>
+            </ol>
+
+            <h3>✅ Success Signal</h3>
+            <div class="success-signal">
+                <strong>Target:</strong> "Amy interviewed Monday, reported positive interaction, no request for Eric contact. Matter appears routine follow-up. Documentation ready but not requested. Eric returns to sanctuary rest Tuesday. 48h clock starts. CODE GREEN Wednesday."
+            </div>
+        </div>
+    </div>
+</body>
+</html>
