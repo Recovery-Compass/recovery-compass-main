@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Trophy, Target, Zap, Crown, Star } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 interface Achievement {
   id: string;
@@ -20,7 +21,6 @@ interface Achievement {
 }
 
 interface AchievementSystemProps {
-  userId: string;
   onAchievementUnlock?: (achievement: Achievement) => void;
   currentAssessmentData?: any;
 }
@@ -65,15 +65,18 @@ const achievementTemplates: Omit<Achievement, 'unlocked' | 'progress'>[] = [
 ];
 
 export const AchievementSystem = ({ 
-  userId, 
   onAchievementUnlock,
   currentAssessmentData 
 }: AchievementSystemProps) => {
+  const { user } = useAuth();
+  const userId = user?.id;
+  
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
   const [showCelebration, setShowCelebration] = useState<Achievement | null>(null);
 
   useEffect(() => {
+    if (!userId) return;
     initializeAchievements();
     checkForNewAchievements();
   }, [userId, currentAssessmentData]);
