@@ -62,6 +62,210 @@ export type Database = {
         }
         Relationships: []
       }
+      otter_knowledge_extracts: {
+        Row: {
+          content: string
+          extract_type: string
+          extracted_at: string | null
+          extraction_method: string | null
+          id: string
+          related_case: string | null
+          relevance_score: number | null
+          source_segment_ids: string[] | null
+          tags: string[] | null
+          title: string
+          transcript_id: string | null
+          verified: boolean | null
+        }
+        Insert: {
+          content: string
+          extract_type: string
+          extracted_at?: string | null
+          extraction_method?: string | null
+          id?: string
+          related_case?: string | null
+          relevance_score?: number | null
+          source_segment_ids?: string[] | null
+          tags?: string[] | null
+          title: string
+          transcript_id?: string | null
+          verified?: boolean | null
+        }
+        Update: {
+          content?: string
+          extract_type?: string
+          extracted_at?: string | null
+          extraction_method?: string | null
+          id?: string
+          related_case?: string | null
+          relevance_score?: number | null
+          source_segment_ids?: string[] | null
+          tags?: string[] | null
+          title?: string
+          transcript_id?: string | null
+          verified?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "otter_knowledge_extracts_transcript_id_fkey"
+            columns: ["transcript_id"]
+            isOneToOne: false
+            referencedRelation: "otter_transcripts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "otter_knowledge_extracts_transcript_id_fkey"
+            columns: ["transcript_id"]
+            isOneToOne: false
+            referencedRelation: "recent_transcripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      otter_segments: {
+        Row: {
+          created_at: string | null
+          end_time_seconds: number | null
+          id: string
+          segment_text: string
+          segment_vector: string | null
+          speaker_name: string | null
+          start_time_seconds: number | null
+          transcript_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          end_time_seconds?: number | null
+          id?: string
+          segment_text: string
+          segment_vector?: string | null
+          speaker_name?: string | null
+          start_time_seconds?: number | null
+          transcript_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          end_time_seconds?: number | null
+          id?: string
+          segment_text?: string
+          segment_vector?: string | null
+          speaker_name?: string | null
+          start_time_seconds?: number | null
+          transcript_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "otter_segments_transcript_id_fkey"
+            columns: ["transcript_id"]
+            isOneToOne: false
+            referencedRelation: "otter_transcripts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "otter_segments_transcript_id_fkey"
+            columns: ["transcript_id"]
+            isOneToOne: false
+            referencedRelation: "recent_transcripts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      otter_transcripts: {
+        Row: {
+          access_count: number | null
+          audio_file_path: string | null
+          california_pc632_compliant: boolean | null
+          category: string | null
+          contains_privileged_content: boolean | null
+          content_vector: string | null
+          created_at: string
+          custom_intelligence: Json | null
+          docx_file_path: string | null
+          duration_seconds: number | null
+          folder_name: string | null
+          id: string
+          ingested_at: string | null
+          last_accessed: string | null
+          notes: string | null
+          otter_speech_id: string
+          pdf_file_path: string | null
+          processed_at: string | null
+          search_tsv: unknown
+          source: string | null
+          speakers: Json | null
+          srt_file_path: string | null
+          summary: string | null
+          tags: string[] | null
+          title: string
+          transcript_text: string
+          txt_file_path: string | null
+          updated_at: string | null
+          word_count: number | null
+        }
+        Insert: {
+          access_count?: number | null
+          audio_file_path?: string | null
+          california_pc632_compliant?: boolean | null
+          category?: string | null
+          contains_privileged_content?: boolean | null
+          content_vector?: string | null
+          created_at: string
+          custom_intelligence?: Json | null
+          docx_file_path?: string | null
+          duration_seconds?: number | null
+          folder_name?: string | null
+          id?: string
+          ingested_at?: string | null
+          last_accessed?: string | null
+          notes?: string | null
+          otter_speech_id: string
+          pdf_file_path?: string | null
+          processed_at?: string | null
+          search_tsv?: unknown
+          source?: string | null
+          speakers?: Json | null
+          srt_file_path?: string | null
+          summary?: string | null
+          tags?: string[] | null
+          title: string
+          transcript_text: string
+          txt_file_path?: string | null
+          updated_at?: string | null
+          word_count?: number | null
+        }
+        Update: {
+          access_count?: number | null
+          audio_file_path?: string | null
+          california_pc632_compliant?: boolean | null
+          category?: string | null
+          contains_privileged_content?: boolean | null
+          content_vector?: string | null
+          created_at?: string
+          custom_intelligence?: Json | null
+          docx_file_path?: string | null
+          duration_seconds?: number | null
+          folder_name?: string | null
+          id?: string
+          ingested_at?: string | null
+          last_accessed?: string | null
+          notes?: string | null
+          otter_speech_id?: string
+          pdf_file_path?: string | null
+          processed_at?: string | null
+          search_tsv?: unknown
+          source?: string | null
+          speakers?: Json | null
+          srt_file_path?: string | null
+          summary?: string | null
+          tags?: string[] | null
+          title?: string
+          transcript_text?: string
+          txt_file_path?: string | null
+          updated_at?: string | null
+          word_count?: number | null
+        }
+        Relationships: []
+      }
       rate_limits: {
         Row: {
           created_at: string
@@ -85,12 +289,51 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      recent_transcripts: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          duration_seconds: number | null
+          excerpt: string | null
+          id: string | null
+          otter_speech_id: string | null
+          tags: string[] | null
+          title: string | null
+          word_count: number | null
+        }
+        Relationships: []
+      }
+      transcripts_by_category: {
+        Row: {
+          category: string | null
+          total_duration_seconds: number | null
+          total_hours: number | null
+          total_words: number | null
+          transcript_count: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      cleanup_old_rate_limits: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
+      cleanup_old_rate_limits: { Args: never; Returns: undefined }
+      search_otter_transcripts_semantic: {
+        Args: {
+          filter_category?: string
+          filter_tags?: string[]
+          match_count?: number
+          match_threshold?: number
+          query_embedding: string
+        }
+        Returns: {
+          category: string
+          created_at: string
+          id: string
+          otter_speech_id: string
+          similarity: number
+          tags: string[]
+          title: string
+          transcript_text: string
+        }[]
       }
     }
     Enums: {
