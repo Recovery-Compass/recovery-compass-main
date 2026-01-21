@@ -1,0 +1,17 @@
+{
+  "analysis_date": "2025-11-06T03:30:00-08:00",
+  "case": "Sayegh v. Sayegh 25PDFL01441",
+  "eric_investment": "$45,000+ over 3 months",
+  "reconciled_rating": "92/100",
+  "most_likely_outcome": {
+    "scenario": "Moderate Settlement with Partial Eric Reimbursement + Platform Success",
+    "probability": "60%",
+    "eric_total_value_12_months": "$190,000-380,000",
+    "roi_12_months": "322-744% return on $45K investment"
+  },
+  "timeline_probabilities": {
+    "immediate_30_days": "45% probability indirect relief ($3K-8K/month support burden reduction)",
+    "medium_term_3_6_months": "70% probability $25K-50K direct settlement reimbursement",
+    "long_term_12_24_months": "75% probability $190K-380K total value"
+  }
+}
