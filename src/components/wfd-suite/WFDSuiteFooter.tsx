@@ -25,7 +25,7 @@ const WFDSuiteFooter = () => {
       {/* Recovery Compass Branding */}
       <div className="text-center">
         <div className="inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg">
-          <span className="font-bold mr-2">RC</span>
+          <img src="/recovery-compass-logo.png" alt="Recovery Compass Logo" className="h-8 w-auto mr-2" />
           <span>Recovery Compass Strategic Intelligence</span>
         </div>
       </div>

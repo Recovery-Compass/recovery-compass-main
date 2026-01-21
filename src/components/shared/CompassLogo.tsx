@@ -52,7 +52,7 @@ const CompassLogo = ({
         {error ? (
           // Fallback content if image fails to load
           <div className="w-full h-full bg-tree-copper/20 rounded-full flex items-center justify-center border-2 border-tree-copper">
-            <span className="text-tree-copper font-bold text-lg">RC</span>
+            <img src="/recovery-compass-logo.png" alt="Recovery Compass Logo" className="h-10 w-auto object-contain" />
           </div>
         ) : (
           <img 
