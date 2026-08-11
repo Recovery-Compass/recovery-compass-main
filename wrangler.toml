@@ -1,6 +1,9 @@
-name = "erdmethod"
+# Cloudflare Workers config (migrated from Pages-style config 2026-08-11)
+# Assets-only Worker serving the Vite SPA build output.
+# Deploys via Workers Builds (GitHub connector) with: npx wrangler deploy
+name = "recovery-compass-main"
 compatibility_date = "2025-10-16"
-pages_build_output_dir = "dist"
 
-# This is a Cloudflare Pages project
-# To deploy: npx wrangler pages deploy dist --project-name=erdmethod
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"

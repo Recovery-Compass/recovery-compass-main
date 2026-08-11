@@ -20,7 +20,7 @@
     "lint:fix": "npx eslint . --ext ts,tsx --fix",
     "preview": "npx vite preview",
     "type-check": "npx tsc --noEmit",
-    "deploy": "bun run build && npx wrangler pages deploy dist --project-name=erdmethod"
+    "deploy": "bun run build && npx wrangler deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -106,7 +106,8 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
-    "vite": "^5.4.20"
+    "vite": "^5.4.20",
+    "wrangler": "^4.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
