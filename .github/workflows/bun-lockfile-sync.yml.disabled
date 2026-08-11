@@ -1,6 +1,0 @@
-name: Retired - bun-lockfile-sync
-
-on:
-  workflow_dispatch:
-
-jobs: {}
